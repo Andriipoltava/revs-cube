@@ -1,0 +1,193 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+	
+	{% set slides = [{
+		'image': TimberImage(post.banner_image),
+		'image_position': 'right',
+		'flair_has_flair': false,
+		'title': '',
+		'title_weight': '2',
+		'title_color': '',
+		'content': '',
+		'content_color': '',
+		'has_button': false,
+	}] %}
+
+	{% include 'organisms/hero.twig' with {
+		'moduleClasses': 'hero--thin hero--blogfeatured',
+		'slider': slides
+	}%}
+
+	{% include 'organisms/mobile-accordian.twig' with {
+		'moduleClasses': '',
+		'data_accordian': 'blog-menu',
+		'text': 'Blog Menu'
+	}%}
+
+	<div class="bg bg--mottle--color blog">
+		
+		<div class="container">
+			<div class="row">
+				
+				{# Main Content #}
+				<div class="col-lg-8 col-xl-9 blog__main">
+					{% include 'organisms/blog-body.twig' with {
+						'has_flair': true,
+						'flair__text': post.terms('category') | join(', '),
+						'flair__color': {
+							'color': 'green',
+						},
+						'title': post.title,
+						'title_weight': '3',
+						'title_color': 'black'
+					}%}
+				</div>
+					
+				{# Sidebar #}
+				<div data-mobile-accordian-target="blog-menu" class="col-lg-4 col-xl-3 blog__sidebar">
+					
+					<div class="widgetbar">
+
+						<div class="widgetbar__widget">
+							<form action="{{site.link}}/blog">
+								{% include 'atoms/input.twig' with {
+									type:"search", 
+									placeholder: filter_active ? 'Searching for '~ filter_name : 'Search the blog',
+									name: 'search'
+								}	%}
+							</form>
+						</div>
+
+						<div class="widgetbar__widget widgetbar__widget--panel">
+							<h5 class="text--center">Categories</h5>
+							<ul class="list list--categories">
+								{% for category in blogCategories %}
+									<li>
+										<p class="m--none">
+											<a class="button button--paragraph" href="{{site.link}}/blog/?filter={{category.slug}}">{{category.name}}<span></span></a>
+										</p>
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
+
+						<div class="widgetbar__widget widgetbar__widget--panel">
+							<h5 class="text--center">Follow us</h5>
+							<ul class="list list--social">
+								{% if options.facebook_page %}
+									<li>
+										<a href="{{options.facebook_page}}" target="_blank" class=""><img src="{{site.theme.link}}/app/img/svg/social-facebook.svg"></a>
+									</li>
+								{% endif %}
+								{% if options.twitter_page %}
+									<li>
+										<a href="{{options.twitter_page}}" target="_blank" class=""><img src="{{site.theme.link}}/app/img/svg/social-twitter.svg"></a>
+									</li>
+								{% endif %}
+								{% if options.instagram_page %}
+									<li>
+										<a href="{{options.instagram_page}}" target="_blank" class=""><img src="{{site.theme.link}}/app/img/svg/social-instagram.svg"></a>
+									</li>
+								{% endif %}
+								{% if options.youtube_page %}
+									<li>
+										<a href="{{options.youtube_page}}" target="_blank" class=""><img src="{{site.theme.link}}/app/img/svg/social-youtube.svg"></a>
+									</li>
+								{% endif %}
+							</ul>
+						</div>
+
+						{# <div class="widgetbar__widget">
+							{% include 'molecules/conveyor-item.twig' with {
+								'background': site.theme.link~'/app/img/tmp/conveyor-bg-1.jpg',	
+								'foreground': {
+									'url': site.theme.link~'/app/img/tmp/conveyor-main-1.png',
+									'alt': 'Example foreground image',
+								},
+								'button': {
+									'type': 'regular',
+									'text': 'Book Now',
+									'color': 'skyblue'
+								}
+							}%}
+						</div> #}
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="blog__forms bg bg--texture--06">
+
+		<div class="container">
+			<div class="row row--a-c">
+				<div class="col-md-6">
+
+					<div class="blog__book-wrapper">
+
+						{% include 'organisms/booking-form.twig' with {
+							'prepop' : {
+								'cube_form_id' : 31
+							},
+							settings : { 
+								'form_id' : 'book',
+								'form_name' : 'book',
+								'minimum_booking_type_options' : true,
+								'layout' : 'widget'
+							},
+							'showboth' : true
+						} %}
+
+					</div>
+
+				</div>
+				<div class="col-md-6">
+
+					<div class="blog__subscribe-wrapper">
+
+						<h5>Subscribe to our newsletter</h5>
+						{% include 'organisms/gravity-form.twig' with {
+							'form_id' : options.blog_signup_form_id,
+							'showboth' : true,
+							'preselect_bar': flase,
+						} %}
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+	{% if related_posts[0] %}
+
+		<div class="bg bg--mottle--color">
+			
+			{% include 'organisms/heading.twig' with {
+				'classes': 'heading--center',
+				'has_flair': true,
+				'flair__text': 'Related',
+				'flair__color': {
+					'color': 'skyblue',
+				},
+				'title': 'Posts',
+				'title_weight': '3',
+				'title_color': 'black'
+			}%}
+
+			{% include 'organisms/conveyor.twig' with {
+				'slides': related_posts
+			} %}
+
+		</div>
+
+	{% endif %}
+
+{% endblock %}

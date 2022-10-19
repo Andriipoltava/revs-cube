@@ -1,0 +1,115 @@
+{% set target = '' %}
+{% set share = '' %}
+
+{% if dataAttributes is not defined %}{%set dataAttributes = '' %}{% endif %}
+
+{% if link_type %}
+	{% if link_type == 'internal' %}
+		{% set link = internal_link %}
+	{% elseif link_type == 'external' %}
+		{% set link = external_link %}
+		{% set target = '_blank' %}
+	{% elseif link_type == 'file' %}
+		{% set link = file.url %}
+		{% set target = '_blank' %}
+	{% elseif link_type == 'share' %}
+		{% if share_uselink %}
+			{% set link = internal_link %}
+		{% else %}
+			{% set link = currentURL %}
+		{% endif %}
+		{% set share = true %}
+	{% elseif link_type == 'dynamic' %}
+		{% set link = '' %}
+		{% set dataAttributes = dataAttributes ~ ' data-stored-bar-info="link"' %}
+	{% endif %}
+{% endif %}
+
+{% if share %}
+<div class="share__container">
+{% endif %}
+
+{% if flag == 'not-html-link'%}<div{% else %}<a href="{{link}}"{% endif %} {{dataAttributes}} class="button button--{{type}} {% if color %}button--{{type}}--{{color}}{% endif %} {% if share %}button--share{% endif %} {{classes}}" target="{{target}}" {% if video %}data-wistiaid="{{video}}"{% endif %}>
+	{% if type == 'regular' %}
+		<span data-text="{{text}}">{% if share %}<i class="icon-share"></i>{% endif %}{{text}}</span>
+	{% elseif type == 'circle' %}
+
+	{% if icon == 'play' %}
+	<svg width="18px" height="22px" viewBox="0 0 18 22" class="play play--original">
+		<g id="play-button" fill="#FFFFFF">
+			<path d="M0,1.77702424 L0,20.0801186 L2.22044605e-16,20.0801186 C2.8967998e-16,20.6324034 0.44771525,21.0801186 1,21.0801186 C1.1830217,21.0801186 1.36253347,21.0298904 1.51897813,20.9349061 L16.5921147,11.7833589 L16.5921147,11.7833589 C17.0642008,11.4967352 17.2145478,10.8816794 16.9279241,10.4095933 C16.8445768,10.2723155 16.7293924,10.1571311 16.5921147,10.0737839 L1.51897813,0.922236724 L1.51897813,0.922236724 C1.04689203,0.635613015 0.431836194,0.785959996 0.145212485,1.25804611 C0.0502282269,1.41449077 -2.74202641e-16,1.59400254 -3.33066907e-16,1.77702424 Z"></path>
+		</g>
+	</svg>
+	<svg width="18px" height="22px" viewBox="0 0 18 22" class="play play--hidden">
+		<g id="play-button" fill="#FFFFFF">
+			<path d="M0,1.77702424 L0,20.0801186 L2.22044605e-16,20.0801186 C2.8967998e-16,20.6324034 0.44771525,21.0801186 1,21.0801186 C1.1830217,21.0801186 1.36253347,21.0298904 1.51897813,20.9349061 L16.5921147,11.7833589 L16.5921147,11.7833589 C17.0642008,11.4967352 17.2145478,10.8816794 16.9279241,10.4095933 C16.8445768,10.2723155 16.7293924,10.1571311 16.5921147,10.0737839 L1.51897813,0.922236724 L1.51897813,0.922236724 C1.04689203,0.635613015 0.431836194,0.785959996 0.145212485,1.25804611 C0.0502282269,1.41449077 -2.74202641e-16,1.59400254 -3.33066907e-16,1.77702424 Z"></path>
+		</g>
+	</svg>
+
+	{% else %}
+	    <svg width="16px" height="26px" viewBox="0 0 16 26" class="{% if direction == 'left' %}arrow-left arrow-left--original {% elseif direction == 'down' %}arrow-down arrow-down--original {% else %}arrow-right arrow-right--original{% endif %}">
+	    	<path d="M187,141 L205,141 L205,144 L187,144 L187,141 Z M202,159 L202,144 L205,144 L205,159 L202,159 Z" transform="translate(2, 12) rotate(45) translate(-196, -150) " fill="#FFFFFF"></path>
+	    </svg>
+	    <svg width="16px" height="26px" viewBox="0 0 16 26" class="{% if direction == 'left' %}arrow-left arrow-left--hidden {% elseif direction == 'down' %}arrow-down arrow-down--hidden {% else %}arrow-right arrow-right--hidden{% endif %}">
+	    	<path d="M187,141 L205,141 L205,144 L187,144 L187,141 Z M202,159 L202,144 L205,144 L205,159 L202,159 Z" transform="translate(2, 12) rotate(45) translate(-196, -150) " fill="#FFFFFF"></path>
+	    </svg>
+	{% endif %}
+
+	{% elseif type == 'underline' or type == 'text' or type == 'paragraph' %}
+	    <span>{{text}}</span>
+	{% elseif type == 'menu' %}
+		<div class="burger bg--default--pattern">
+			<div class="burger__line burger__line--top"></div>
+			<div class="burger__line burger__line--middle"></div>
+			<div class="burger__line burger__line--bottom"></div>
+		</div>
+	{% endif %}
+{% if flag == 'not-html-link'%}</div>{% else %}</a>{% endif %}
+
+{% if data == 'data-book-share' %}
+	<ul data-book-share class="share__list">
+		<li class="share__item share__item--whatsapp">
+			<a target="_blank" href="whatsapp://send?text="><span class="icon-whatsapp"></span></a>
+		</li>
+		<li class="share__item share__item--email">
+			<a href="mailto:?subject=I've%20just%20booked%20at%20Revolución%20de%20Cuba&body="><span class="icon-email"></span></a>
+		</li>
+		<li class="share__item share__item--link js-copy">
+			<a class="tooltip" href="">
+				<span class="icon-link"></span>
+				<div class="tooltip__content">
+					<div class="tooltip__text">
+						<div class="tooltip__inner">Link copied to clipboard</div>
+					</div>
+				</div>
+			</a>
+		</li>
+	</ul>
+</div>
+{% elseif share %}
+	<ul class="share__list">
+		<li class="share__item share__item--facebook">
+			<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{link}}"><span class="icon-facebook"></span></a>
+		</li>
+		<li class="share__item share__item--twitter">
+			<a target="_blank" href="https://twitter.com/intent/tweet?url={{link}}"><span class="icon-twitter"></span></a>
+		</li>
+		<li class="share__item share__item--whatsapp">
+			<a target="_blank" href="whatsapp://send?text={{link}}"><span class="icon-whatsapp"></span></a>
+		</li>
+		<li class="share__item share__item--email">
+			<a href="mailto:?&body={{link}}"><span class="icon-email"></span></a>
+		</li>
+		<li class="share__item share__item--link js-copy {% if share_uselink %}useHREF{% endif %}">
+			<a class="tooltip" href="{{link}}">
+				<span class="icon-link"></span>
+				<div class="tooltip__content">
+					<div class="tooltip__text">
+						<div class="tooltip__inner">Link copied to clipboard</div>
+					</div>
+				</div>
+			</a>
+		</li>
+	</ul>
+</div>
+{% endif %}

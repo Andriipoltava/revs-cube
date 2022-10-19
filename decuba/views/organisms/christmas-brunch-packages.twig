@@ -1,0 +1,1274 @@
+<script>
+$(document).ready(function() {
+    $(".view-menu").click(function() {
+        var menu = $(this).parent().parent().parent().parent().parent().find(".packages-item-menu");
+        menu.addClass("show");
+        menu.parent().addClass("opened-section");
+    })
+
+    $(".close-menu").click(function() {
+        var menu = $(this).parent().parent();
+        menu.parent().removeClass("opened-section");
+        menu.removeClass("show");
+    })
+
+	$('#bottomless-price').hide();
+
+
+    // ---------------- Update price with bar selector ---------------
+    // BOTTOMLESS.
+    $('#bottomless-select').on('change', function() {
+            var selectedBar = this.value;
+
+			var stdBars = ['belfast', 'birmingham', 'cardiff', 'derby', 'harrogate', 'liverpool', 'milton_keynes', 'newcastle', 'reading', 'sheffield', 'southampton'];
+			var premBars = ['bristol', 'leeds', 'manchester', 'norwich', 'nottingham'];
+			var fiestaBars = ['aberdeen', 'glasgow'];
+
+			// Change Belfast brunch to start at 12pm
+			const s = $(this).val()
+			$('#bottomless-time-slot').prop("selectedIndex", 0);
+			$('#bottomless-time-slot option').each(function () {
+				if (($(this).val() === '11' || $(this).val() === '11:30')) {
+					if (s === 'belfast') {
+						$(this).attr('hidden', 'hidden')
+					} else {
+						$(this).removeAttr('hidden')
+
+					}
+				}
+			})
+			// Wrong menus on the ‘download’ option (across all sites)
+			const belfast = $('.button.button-download')
+			const bl='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/eedf0d1e-2e7a-40ee-9a66-c8ff5a58b3bd/110252_RDC_-_Brunch_Menu_AW21_%28NI%29.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220520%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220520T103911Z&X-Amz-Expires=86400&X-Amz-Signature=00825ca2f34453281367c9f466ba4bffd75c3970e925b2942bc41f428cf37177&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22110252%2520RDC%2520-%2520Brunch%2520Menu%2520AW21%2520%28NI%29.pdf%22&x-id=GetObject'
+			if (s === 'belfast' && belfast ) {
+				belfast.data('default', belfast.find('a').attr('href'))
+				belfast.find('a').attr('href', bl)
+			} else {
+				if (belfast.data('default'))
+					belfast.find('a').attr('href', belfast.data('default'))
+			}
+
+            // Standard Bars
+            if (stdBars.includes(selectedBar)) {
+                $('#bottomless-time-slot').on('change', function() {
+                    const checkedOption = $('#bottomless-time-slot option:checked').val();
+
+                    $('#pb1-download').show();
+                    $('#pb2-download').hide();
+                    $('#pb3-download').hide();
+                    $('#pb4-download').hide();
+					$('#bottomless-price').show();
+
+                    // TAB 1 - BOTTOMLESS BRUNCH.
+                    if ($(".tab-label[data-tab='tab-1']").hasClass('active')) {
+
+                        console.log('tab 1');
+
+                        switch (checkedOption) {
+                            case '11':
+                                $('#bottomless-price').text('£30.00 pp');
+                                break;
+                            case '11:30':
+                                $('#bottomless-price').text('£30.00 pp');
+                                break;
+                            case '12':
+                                $('#bottomless-price').text('£30.00 pp');
+                                break;
+                            case '12:30':
+                                $('#bottomless-price').text('£30.00 pp');
+                                break;
+                            case '1':
+                                $('#bottomless-price').text('£30.00 pp');
+                                break;
+                            case '1:30':
+                                $('#bottomless-price').text('£30.00 pp');
+                                break;
+                            case '2':
+                                $('#bottomless-price').text('£30.00 pp');
+                                break;
+                            default:
+                                $('#bottomless-price').text('£30.00 pp');
+                                break;
+                        }
+                    } else if ($(".tab-label[data-tab='tab-2']").hasClass('active')) {
+                        console.log('tab 2');
+                        switch (checkedOption) {
+                            case '11':
+                                $('#bottomless-price').text('£25.00 pp');
+                                break;
+                            case '11:30':
+                                $('#bottomless-price').text('£25.00 pp');
+                                break;
+                            case '12':
+                                $('#bottomless-price').text('£25.00 pp');
+                                break;
+                            case '12:30':
+                                $('#bottomless-price').text('£25.00 pp');
+                                break;
+                            case '1':
+                                $('#bottomless-price').text('£25.00 pp');
+                                break;
+                            case '1:30':
+                                $('#bottomless-price').text('£25.00 pp');
+                                break;
+                            case '2':
+                                $('#bottomless-price').text('£25.00 pp');
+                                break;
+                            default:
+                                $('#bottomless-price').text('£25.00 pp');
+                                break;
+                        }
+                    } else if ($(".tab-label[data-tab='tab-3']").hasClass('active')) {
+                        console.log('tab 3');
+                        switch (checkedOption) {
+                            case '11':
+                                $('#bottomless-price').text('£40.00 pp');
+                                break;
+                            case '11:30':
+                                $('#bottomless-price').text('£40.00 pp');
+                                break;
+                            case '12':
+                                $('#bottomless-price').text('£40.00 pp');
+                                break;
+                            case '12:30':
+                                $('#bottomless-price').text('£40.00 pp');
+                                break;
+                            case '1':
+                                $('#bottomless-price').text('£40.00 pp');
+                                break;
+                            case '1:30':
+                                $('#bottomless-price').text('£40.00 pp');
+                                break;
+                            case '2':
+                                $('#bottomless-price').text('£40.00 pp');
+                                break;
+                            default:
+                                $('#bottomless-price').text('£40.00 pp');
+                                break;
+                        }
+                    }
+                });
+            }
+           
+		    // Premium Bars
+			else if (premBars.includes(selectedBar)) {
+            $('#bottomless-time-slot').on('change', function() {
+                const checkedOption = $('#bottomless-time-slot option:checked').val();
+
+                $('#pb1-download').hide();
+                $('#pb2-download').show();
+                $('#pb3-download').hide();
+                $('#pb4-download').hide();
+				$('#bottomless-price').show();
+
+                // TAB 1 - BOTTOMLESS BRUNCH.
+                if ($(".tab-label[data-tab='tab-1']").hasClass('active')) {
+                    console.log('tab 1');
+                    switch (checkedOption) {
+                        case '11':
+                            $('#bottomless-price').text('£35.00 pp');
+                            break;
+                        case '11:30':
+                            $('#bottomless-price').text('£35.00 pp');
+                            break;
+                        case '12':
+                            $('#bottomless-price').text('£35.00 pp');
+                            break;
+                        case '12:30':
+                            $('#bottomless-price').text('£35.00 pp');
+                            break;
+                        case '1':
+                            $('#bottomless-price').text('£35.00 pp');
+                            break;
+                        case '1:30':
+                            $('#bottomless-price').text('£35.00 pp');
+                            break;
+                        case '2':
+                            $('#bottomless-price').text('£35.00 pp');
+                            break;
+                        default:
+                            $('#bottomless-price').text('£35.00 pp');
+                            break;
+                    }
+                } else if ($(".tab-label[data-tab='tab-2']").hasClass('active')) {
+                    console.log('tab 2');
+                    switch (checkedOption) {
+                        case '11':
+                            $('#bottomless-price').text('£30.00 pp');
+                            break;
+                        case '11:30':
+                            $('#bottomless-price').text('£30.00 pp');
+                            break;
+                        case '12':
+                            $('#bottomless-price').text('£30.00 pp');
+                            break;
+                        case '12:30':
+                            $('#bottomless-price').text('£30.00 pp');
+                            break;
+                        case '1':
+                            $('#bottomless-price').text('£30.00 pp');
+                            break;
+                        case '1:30':
+                            $('#bottomless-price').text('£30.00 pp');
+                            break;
+                        case '2':
+                            $('#bottomless-price').text('£30.00 pp');
+                            break;
+                        default:
+                            $('#bottomless-price').text('£30.00 pp');
+                            break;
+                    }
+                } else if ($(".tab-label[data-tab='tab-3']").hasClass('active')) {
+                    console.log('tab 3');
+                    switch (checkedOption) {
+                        case '11':
+                            $('#bottomless-price').text('£45.00 pp');
+                            break;
+                        case '11:30':
+                            $('#bottomless-price').text('£45.00 pp');
+                            break;
+                        case '12':
+                            $('#bottomless-price').text('£45.00 pp');
+                            break;
+                        case '12:30':
+                            $('#bottomless-price').text('£45.00 pp');
+                            break;
+                        case '1':
+                            $('#bottomless-price').text('£45.00 pp');
+                            break;
+                        case '1:30':
+                            $('#bottomless-price').text('£45.00 pp');
+                            break;
+                        case '2':
+                            $('#bottomless-price').text('£45.00 pp');
+                            break;
+                        default:
+                            $('#bottomless-price').text('£45.00 pp');
+                            break;
+                    }
+                }
+            })
+        }
+    // Fiesta Bars
+	else if (fiestaBars.includes(selectedBar)) {
+    $('#bottomless-time-slot').on('change', function() {
+        const checkedOption = $('#bottomless-time-slot option:checked').val();
+
+        $('#pb1-download').hide();
+        $('#pb2-download').hide();
+        $('#pb3-download').hide();
+        $('#pb4-download').show();
+		$('#bottomless-price').show();
+
+        // TAB 1 - BOTTOMLESS BRUNCH.
+        if ($(".tab-label[data-tab='tab-1']").hasClass('active')) {
+            console.log('tab 1');
+            switch (checkedOption) {
+                case '11':
+                    $('#bottomless-price').text('£25.00 pp');
+                    break;
+                case '11:30':
+                    $('#bottomless-price').text('£25.00 pp');
+                    break;
+                case '12':
+                    $('#bottomless-price').text('£25.00 pp');
+                    break;
+                case '12:30':
+                    $('#bottomless-price').text('£25.00 pp');
+                    break;
+                case '1':
+                    $('#bottomless-price').text('£25.00 pp');
+                    break;
+                case '1:30':
+                    $('#bottomless-price').text('£25.00 pp');
+                    break;
+                case '2':
+                    $('#bottomless-price').text('£25.00 pp');
+                    break;
+                default:
+                    $('#bottomless-price').text('£25.00 pp');
+                    break;
+            }
+        } else if ($(".tab-label[data-tab='tab-2']").hasClass('active')) {
+            console.log('tab 2');
+            switch (checkedOption) {
+                case '11':
+                    $('#bottomless-price').text('£20.00 pp');
+                    break;
+                case '11:30':
+                    $('#bottomless-price').text('£20.00 pp');
+                    break;
+                case '12':
+                    $('#bottomless-price').text('£20.00 pp');
+                    break;
+                case '12:30':
+                    $('#bottomless-price').text('£20.00 pp');
+                    break;
+                case '1':
+                    $('#bottomless-price').text('£20.00 pp');
+                    break;
+                case '1:30':
+                    $('#bottomless-price').text('£20.00 pp');
+                    break;
+                case '2':
+                    $('#bottomless-price').text('£20.00 pp');
+                    break;
+                default:
+                    $('#bottomless-price').text('£20.00 pp');
+                    break;
+            }
+        } else if ($(".tab-label[data-tab='tab-3']").hasClass('active')) {
+            console.log('tab 3');
+            switch (checkedOption) {
+                case '11':
+                    $('#bottomless-price').text('£35.00 pp');
+                    break;
+                case '11:30':
+                    $('#bottomless-price').text('£35.00 pp');
+                    break;
+                case '12':
+                    $('#bottomless-price').text('£35.00 pp');
+                    break;
+                case '12:30':
+                    $('#bottomless-price').text('£35.00 pp');
+                    break;
+                case '1':
+                    $('#bottomless-price').text('£35.00 pp');
+                    break;
+                case '1:30':
+                    $('#bottomless-price').text('£35.00 pp');
+                    break;
+                case '2':
+                    $('#bottomless-price').text('£35.00 pp');
+                    break;
+                default:
+                    $('#bottomless-price').text('£35.00 pp');
+                    break;
+            }
+        }
+    })
+}
+
+// Menu notes.
+if (fiestaBars.includes(selectedBar)) {
+    $('.menu-notes-scotland').show();
+    $('.menu-notes-all').hide();
+
+    $('.scottish-drink').show();
+    $('.not-scottish-drink').hide();
+
+    $('#scotland-tab-title').show();
+    $('#not-scotland-tab-title').hide();
+
+    $('.scottish-toggle').show();
+    $('.not-scottish-toggle').hide();
+} else {
+    $('.menu-notes-scotland').hide();
+    $('.menu-notes-all').show();
+
+    $('.scottish-drink').show();
+    $('.not-scottish-drink').show();
+
+    $('#scotland-tab-title').hide();
+    $('#not-scotland-tab-title').show();
+
+    $('.scottish-toggle').hide();
+    $('.not-scottish-toggle').show();
+}
+});
+
+// Update text and prices when tab changes.
+$('.tab-label').click(function() {
+if ($(".tab-label[data-tab='tab-1']").hasClass('active')) {
+    $('.menu-notes-all').text('Choose one brunch dish and enjoy bottomless drinks from the Drinks selection');
+    $('.menu-notes-scotland').text('Choose one brunch dish, enjoy a mimosa to start and choose from four drinks from the drink selection.');
+    $('#bottomless-price').show();
+    $('#bottomless-wrapper').show();
+    $("#boozeless-premium").hide();
+} else if ($(".tab-label[data-tab='tab-2']").hasClass('active')) {
+    $('.menu-notes-all').text('Off the sauce? Choose our bottomless boozeless brunch. All the same great Cuban flavours but you can still be designated driver after. Choose from the our alcohol-free mocktails and beers. £5 discount on standard brunch price.');
+    $('.menu-notes-scotland').text('Off the sauce? Choose our bottomless boozeless brunch. All the same great Cuban flavours but you can still be designated driver after. Choose from the our alcohol-free mocktails and beers. £5 discount on standard brunch price.');
+    $('#bottomless-price').hide();
+    $('#bottomless-wrapper').hide();
+    $("#boozeless-premium").show();
+} else if ($(".tab-label[data-tab='tab-3']").hasClass('active')) {
+    $('.menu-notes-all').text('Feeling fancy? Upgrade to our Premium Brunch package for only an extra £10pp. Get more cocktails, Rum Perfect Serves and delicious premium food dishes to choose from to make your brunch that extra bit special.');
+    $('.menu-notes-scotland').text('Feeling fancy? Upgrade to our Premium Brunch package for only an extra £10pp. Get more cocktails, Rum Perfect Serves and delicious premium food dishes to choose from to make your brunch that extra bit special.');
+    $('#bottomless-price').hide();
+    $('#bottomless-wrapper').hide();
+    $("#boozeless-premium").show();
+}
+});
+}); // document.ready()
+</script>
+
+
+<section class="packages" id="christmas__menu-g">
+	<div
+		class="packages-content">
+
+		<!-- BOTTOMLESS BRUNCH -->
+		<div class="packages-wrapper">
+			<div class="packages-item">
+				<div class="packages-item-info">
+					<div class="packages-item-info-section">
+						<div class="packages-item-info-subsection">
+							<h3 class="packages-item-info-title">BOTTOMLESS BRUNCH / BRUNCH FIESTA</h3>
+							<p class="packages-item-info-descr">
+								<strong>Choose one of our Cuban Brunch dishes and enjoy 90 minutes of brunch fun from our Drinks Selection.</strong>
+							</p>
+							<div class="packages-item-info-wrapper">
+								<span class="label">From just</span>
+								<span class="cost">£20.00 pp</span>
+							</div>
+						</div>
+						<div class="packages-item-info-buttons">
+							<div class="button view-menu hero__slide__content__button mr-5 christmas-button--menu">
+								{% include 'atoms/button.twig' with {
+                                        'type': 'regular',
+                                        'text': 'View Menus',
+                                        'color': 'skyblue',
+                                        'classes': 'hero__slide__content__button mr-5 christmas-button--menu',
+                                        'flag':'not-html-link',
+                                    }%}
+							</div>
+							<div class="button">
+								{% include 'atoms/button.twig' with {
+                                    'type': 'regular',
+                                    'text': 'Book',
+                                    'color': 'fuschia',
+                                    'link_type' : 'internal',
+                                    'internal_link' : site.link ~ '/book/',
+                                    'classes': 'button button--regular button--regular--green js-circle-2893, christmas-button--book',
+                                }%}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="packages-item-img">
+					<img src="{{site.theme.link}}/app/img/brunch/brunch-package.jpg" alt="course">
+				</div>
+			</div>
+			<div class="packages-item-menu">
+				<div class="packages-item-menu-header" style="margin: auto; background-size: cover; padding: 2rem 1rem;">
+					<div class="tab-header tab-header-mobile" style="flex-wrap: wrap; width: auto;">
+						<div class="select-wrapper" style="max-height: 54px; margin-bottom: 1rem; flex: 0 12rem;">
+							<select id="bottomless-select">
+								<option value="">Venue</option>
+								<option value="aberdeen">Aberdeen</option>
+								<option value="belfast">Belfast</option>
+								<option value="birmingham">Birmingham</option>
+								<option value="bristol">Bristol</option>
+								<option value="cardiff">Cardiff</option>
+								<option value="derby">Derby</option>
+								<option value="glasgow">Glasgow</option>
+								<option value="harrogate">Harrogate</option>
+								<option value="leeds">Leeds</option>
+								<option value="liverpool">Liverpool</option>
+								<option value="manchester">Manchester</option>
+								<option value="milton_keynes">Milton Keynes</option>
+								<option value="newcastle">Newcastle</option>
+								<option value="norwich">Norwich</option>
+								<option value="nottingham">Nottingham</option>
+								<option value="reading">Reading</option>
+								<option value="sheffield">Sheffield</option>
+								<option value="southampton">Southampton</option>
+							</select>
+						</div>
+						<div class="select-wrapper" style="max-height: 54px; margin-bottom: 1rem; flex: 0 12rem;">
+							<select id="bottomless-time-slot">
+								<option value="">Time Slot</option>
+								<option value="11">11am</option>
+								<option value="11:30">11:30am</option>
+								<option value="12">12pm</option>
+								<option value="12:30">12:30pm</option>
+								<option value="1">1pm</option>
+								<option value="1:30">1:30pm</option>
+								<option value="2">2pm</option>
+							</select>
+						</div>
+						<div class="tab-wrapper">
+							<div class="tab-label active" data-tab="tab-1" id="not-scotland-tab-title" style="margin-bottom: 1rem; font-size: 1.5rem;" ;>Bottomless Brunch</div>
+							<div class="tab-label active" data-tab="tab-1" id="scotland-tab-title" style="display: none; margin-bottom: 1rem; font-size: 1.5rem; padding-right: 2em;">Brunch<br />Fiesta</div>
+							<div class="tab-label" data-tab="tab-2" style="margin-bottom: 1rem; font-size: 1.5rem;">Boozeless Brunch</div>
+							<div class="tab-label" data-tab="tab-3" style="margin-bottom: 1rem; font-size: 1.5rem;">Premium Brunch</div>
+						</div>
+					</div>
+					<div class="close-menu">
+						<img src="{{site.theme.link}}/app/img/tmp/сlose_button.svg" alt="close">
+					</div>
+				</div>
+				<div class="packages-item-menu-content">
+					<div class="menu-section" id="bottomless-wrapper" style="display: flex; flex-wrap: wrap;">
+						<div class="price-section" id="bottomless-price" style="background-size: cover; display: inline-block; padding: 20px 50px;">£30.00 pp</div>
+						<div class="menu-buttons">
+							<div class="button">
+								{% include 'atoms/button.twig' with {
+                                        'type': 'regular',
+                                        'text': 'Share Menu',
+                                        'color': 'fuschia',
+                                        'link_type' : 'share',
+                                        'share_uselink': true,
+                                        'internal_link' : barMenu_Christmas.url,
+                                        'classes': 'ch-button-share',
+                                    }%}
+							</div>
+							<div class="button button-download" id="pb1-download">
+								{% include 'atoms/button.twig' with {
+                                        'type': 'regular',
+                                        'text': 'Download',
+                                        'color': 'skyblue',
+                                        'link_type' : 'external',
+                                        'external_link' : 'https://www.revoluciondecuba.com/1643977212992-110252-rdc-brunch-menu-aw21-std/',
+                                    }%}
+							</div>
+							<div class="button button-download" id="pb2-download" style="display: none;">
+								{% include 'atoms/button.twig' with {
+                                        'type': 'regular',
+                                        'text': 'Download',
+                                        'color': 'skyblue',
+                                        'link_type' : 'external',
+                                        'external_link' : 'https://www.revoluciondecuba.com/pdfs/brunch/pb2-menu.pdf',
+                                    }%}
+							</div>
+							<div class="button button-download" id="pb3-download" style="display: none;">
+								{% include 'atoms/button.twig' with {
+                                        'type': 'regular',
+                                        'text': 'Download',
+                                        'color': 'skyblue',
+                                        'link_type' : 'external',
+                                        'external_link' : 'https://www.revoluciondecuba.com/pdfs/brunch/pb3-menu.pdf',
+                                    }%}
+							</div>
+							<div class="button button-download" id="pb4-download" style="display: none;">
+								{% include 'atoms/button.twig' with {
+                                        'type': 'regular',
+                                        'text': 'Download',
+                                        'color': 'skyblue',
+                                        'link_type' : 'external',
+                                        'external_link' : 'https://www.revoluciondecuba.com/pdfs/brunch/pb4-menu.pdf',
+                                    }%}
+							</div>
+						</div>
+						<div class="menu-notes menu-notes-all" style="flex: 1 0 100%;">Choose one brunch dish and enjoy bottomless drinks from the Drinks selection</div>
+						<small class="not-scottish-toggle">Only available for the whole table, with guests receiving 90 minutes of fun. Each guest may order one dish from the brunch menu. Choose from 4 drinks from the selection highlighted, within the timeslot. Guests may only order one drink per person at a time.</small>
+						<div class="menu-notes menu-notes-scotland" style="display: none; flex: 1 0 100%;">Choose one brunch dish, enjoy a mimosa to start and choose from four drinks from the drink selection.</div>
+						<small class="scottish-toggle" style="display: none;">Only available for the whole table, with guests receiving 90 minutes of fun. Each guest may order one dish from the brunch menu. Guests may enjoy a mimosa to start and choose from four of the drinks detailed on the brunch menu within the 90-minute time slot. Guests may only order one drink per person at a time.</small>
+					</div>
+					<div class="menu-section" id="boozeless-premium" style="display: none; flex-wrap: wrap;">
+						<div class="menu-notes-container">
+							<div class="menu-notes menu-notes-all" style="flex: auto; max-width: 80rem; padding-top: 1rem; margin-right: 5rem;">Choose one brunch dish and enjoy bottomless drinks from the Drinks selection</div>
+							<div class="menu-notes menu-notes-scotland" style="display: none; flex: auto; max-width: 80rem; padding-top: 1rem; margin-right: 5rem;">Choose one brunch dish, enjoy a mimosa to start and choose from four drinks from the drink selection.</div>
+							<div class="menu-buttons">
+								<div class="button">
+									{% include 'atoms/button.twig' with {
+                                        'type': 'regular',
+                                        'text': 'Share Menu',
+                                        'color': 'fuschia',
+                                        'link_type' : 'share',
+                                        'share_uselink': true,
+                                        'internal_link' : barMenu_Christmas.url,
+                                        'classes': 'ch-button-share',
+                                    }%}
+								</div>
+								<div class="button button-download" id="pb1-download">
+									{% include 'atoms/button.twig' with {
+                                        'type': 'regular',
+                                        'text': 'Download',
+                                        'color': 'skyblue',
+                                        'link_type' : 'external',
+                                        'external_link' : 'https://www.revoluciondecuba.com/1643977212992-110252-rdc-brunch-menu-aw21-std/',
+                                    }%}
+								</div>
+								<div class="button button-download" id="pb2-download" style="display: none;">
+									{% include 'atoms/button.twig' with {
+                                        'type': 'regular',
+                                        'text': 'Download',
+                                        'color': 'skyblue',
+                                        'link_type' : 'external',
+                                        'external_link' : 'https://www.revoluciondecuba.com/1643977212992-110252-rdc-brunch-menu-aw21-prem/',
+                                    }%}
+								</div>
+								<div class="button button-download" id="pb3-download" style="display: none;">
+									{% include 'atoms/button.twig' with {
+                                        'type': 'regular',
+                                        'text': 'Download',
+                                        'color': 'skyblue',
+                                        'link_type' : 'external',
+                                        'external_link' : 'https://www.revoluciondecuba.com/pdfs/brunch/pb3-menu.pdf',
+                                    }%}
+								</div>
+								<div class="button button-download" id="pb4-download" style="display: none;">
+									{% include 'atoms/button.twig' with {
+                                        'type': 'regular',
+                                        'text': 'Download',
+                                        'color': 'skyblue',
+                                        'link_type' : 'external',
+                                        'external_link' : 'https://www.revoluciondecuba.com/1643977212992-110252-rdc-brunch-menu-aw21-fiesta/',
+                                    }%}
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- BOTTOMLESS - TAB 1 -->
+					<div class="menu-list tab-1 active">
+						<div class="menu-list-section brunch-menu">
+							<div class="menu-list-section-title">
+								<h3>FOOD</h3>
+							</div>
+							<div class="menu-list-section-content brunch-menu-section-content">
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Avocado Brunch</span>
+										<div class="tags">
+											<div class="tags-item tag-green">VE</div>
+										</div>
+									</div>
+									<span class="ingredients">Toasted Cuban bread topped with our homemade guacamole, pico de gallo, a drizzle of olive oil and cracked black pepper.</span>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Breakfast Burrito</span>
+									</div>
+									<span class="ingredients">A soft flour tortilla stuffed with smoky sausage, bacon, omelette, chorizo, mozzarella and spicy tomato sauce. Served with homemade guacamole.</span>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Chorizo Hash</span>
+										<div class="tags">
+											<div class="tags-item tag-blue">G</div>
+										</div>
+									</div>
+									<span class="ingredients">Crispy patatas, chorizo, peppers and Manchego cheese sauce. Topped with a fried egg and spring onions.</span>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Cubano Benedict</span>
+									</div>
+									<span class="ingredients">Our Cuban-style take on a classic eggs benedict: pulled pork in a citrus-and-garlic mojo marinade, poached eggs, hollandaise sauce, mustard and smoky paprika on toasted bread</span>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Full Grilled Breakfast
+										</span>
+									</div>
+									<span class="ingredients">Sausage, bacon, grilled tomato, mushrooms, baked beans and a perfectly fried egg, served with buttered toast.</span>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Sweetcorn Fritters</span>
+										<div class="tags">
+											<span class="tags-item tag-green">V</span>
+										</div>
+									</div>
+									<span class="ingredients">Homemade sweetcorn fritters and guacamole, served with a fried egg and sweet chilli dipping sauce.</span>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Vegetarian Breakfast</span>
+										<div class="tags">
+											<span class="tags-item tag-green">V</span>
+										</div>
+									</div>
+									<span class="ingredients">Quorn sausage, grilled halloumi, grilled tomato, mushrooms and a perfectly fried egg, served with toast.
+									</span>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Vegan Breakfast</span>
+										<div class="tags">
+											<span class="tags-item tag-green">Ve</span>
+										</div>
+									</div>
+									<span class="ingredients">Quorn sausages, avocado, grilled tomato, mushrooms and baked beans, served with toast.
+									</span>
+								</div>
+							</div>
+							<div class="menu-list-section-content brunch-menu-section-content adds-and-sides">
+								<div class="menu-list-section-item border--orange">
+									<div class="menu-list-section-title">
+										<h3>ADD</h3>
+									</div>
+									<div class="title">
+										<span class="name br-name">Poached Egg</span>
+										<div class="tags">
+											<span class="tags-item tag-red">G</span>
+											<span class="tags-item tag-blue">V</span>
+										</div>
+										<div class="price">£1.00</div>
+									</div>
+									<div class="title">
+										<span class="name br-name">Chorizo</span>
+										<div class="tags">
+											<span class="tags-item tag-red">G</span>
+										</div>
+										<div class="price">£2.00</div>
+									</div>
+									<div class="title">
+										<span class="name br-name">Halloumi</span>
+										<div class="tags">
+											<span class="tags-item tag-red">G</span>
+											<span class="tags-item tag-blue">V</span>
+										</div>
+										<div class="price">£2.50</div>
+									</div>
+									<div class="title">
+										<span class="name br-name">Mushrooms</span>
+										<div class="tags">
+											<span class="tags-item tag-red">G</span>
+											<span class="tags-item tag-green">Ve</span>
+										</div>
+										<div class="price">£1.00</div>
+									</div>
+									<div class="title">
+										<span class="name br-name">Guacamole</span>
+										<div class="tags">
+											<span class="tags-item tag-red">G</span>
+											<span class="tags-item tag-green">Ve</span>
+										</div>
+										<div class="price">£1.00</div>
+									</div>
+									<div class="title">
+										<span class="name br-name">Bacon</span>
+										<div class="tags">
+											<span class="tags-item tag-red">G</span>
+										</div>
+										<div class="price">£1.50</div>
+									</div>
+									<div class="title">
+										<span class="name br-name">Quorn Sausage</span>
+										<div class="tags">
+											<span class="tags-item tag-green">Ve</span>
+										</div>
+										<div class="price">£1.50</div>
+									</div>
+								</div>
+								<div class="menu-list-section-item border--orange">
+									<div class="menu-list-section-title">
+										<h3>SIDES</h3>
+									</div>
+									<div class="title">
+										<span class="name br-name">Sweet Potato Fries</span>
+										<div class="tags">
+											<span class="tags-item tag-red">G</span>
+											<span class="tags-item tag-blue">V</span>
+										</div>
+										<div class="price">£3.50</div>
+									</div>
+									<div class="title">
+										<span class="name br-name">Cheesy Cuban Fries</span>
+										<div class="tags">
+											<span class="tags-item tag-red">G</span>
+											<span class="tags-item tag-blue">V</span>
+										</div>
+										<div class="price">£3.50</div>
+									</div>
+									<div class="title">
+										<span class="name br-name">Fries</span>
+										<div class="tags">
+											<span class="tags-item tag-red">G</span>
+											<span class="tags-item tag-blue">V</span>
+										</div>
+										<div class="price">£2.50</div>
+									</div>
+								</div>
+							</div>
+							<style>
+								.tag-red {
+									background: red;
+								}
+							</style>
+						</div>
+
+						{# DRINKS (Not Scotland) #}
+						<div class="menu-list-section brunch-menu not-scottish-toggle">
+							<div class="menu-list-section-title">
+								<h3>DRINKS</h3>
+							</div>
+							<div class="menu-list-section-content brunch-menu-section-content">
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Strawberry Daiquri</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Bloody Mary</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Pint of Mahou</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Disaronno Fizz</span>
+									</div>
+								</div>
+							</div>
+							<div class="menu-list-section-content brunch-menu-section-content right-side-menu-m">
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Aperol Spritz</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Prosecco</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Spanish Shandy</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						{# DRINKS (Scotland) #}
+						<div class="menu-list-section brunch-menu scottish-toggle" style="display:none;">
+							<div class="menu-list-section-title">
+								<h3>DRINKS</h3>
+							</div>
+							<div class="menu-list-section-content brunch-menu-section-content">
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Strawberry Daiquri</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Bloody Mary</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Pint of Mahou</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Disaronno Fizz</span>
+									</div>
+								</div>
+							</div>
+							<div class="menu-list-section-content brunch-menu-section-content right-side-menu-m">
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Aperol Spritz</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Prosecco</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Spanish Shandy</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- BOOZELESS - TAB 2 -->
+					<div class="menu-list tab-2">
+						<div class="menu-list-section brunch-menu">
+							<div class="menu-list-section-title">
+								<h3>DRINKS SELECTION</h3>
+							</div>
+							<div class="menu-list-section-content brunch-menu-section-content">
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Crodino</span>
+									</div>
+								</div>
+							</div>
+							<div class="menu-list-section-content brunch-menu-section-content">
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Virgin Zombie Slayer</span>
+									</div>
+								</div>
+							</div>
+							<div class="menu-list-section-content brunch-menu-section-content">
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Heineken 0%</span>
+									</div>
+								</div>
+							</div>
+							<div class="menu-list-section-content brunch-menu-section-content">
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Brooklyn Special Effects</span>
+									</div>
+								</div>
+							</div>
+							<div class="menu-list-section-content brunch-menu-section-content">
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Caleno + Tonic</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- PREMIUM - TAB 3 -->
+					<div class="menu-list tab-3">
+						<div class="menu-list-section brunch-menu">
+							<div class="menu-list-section-title">
+								<h3>FOOD</h3>
+							</div>
+							<div class="menu-list-section-content brunch-menu-section-content">
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Burritos</span>
+										{# <div class="tags">
+										                                                <div class="tags-item tag-green">VE</div>
+										                                            </div> #}
+									</div>
+									<span class="ingredients">A soft flour tortilla stuffed to the brim with rice, beans, cheese and your choice of filling. Served with tortilla chips and homemade guacamole.</span>
+									<br/>
+									<br/>
+									<span class="ingredients">Want it without the wrap? Make it a burrito bowl.</span>
+									<br/>
+									<br/>
+									<ul style="list-style: none;">
+										<li class="menu-list-section-item">
+											<div class="title">
+												Mushroom Bean &amp; Spinach
+												<div class="tags">
+													<div class="tags-item tag-blue">G</div>
+													<div class="tags-item tag-green">V</div>
+												</div>
+											</div>
+										</li>
+										<li class="menu-list-section-item">
+											<div class="title">
+												Pulled Jackfruit
+												<div class="tags">
+													<div class="tags-item tag-blue">G</div>
+													<div class="tags-item tag-green">Vg</div>
+												</div>
+											</div>
+										</li>
+										<li class="menu-list-section-item">
+											<div class="title">
+												Marinated Chicken
+											</div>
+										</li>
+										<li class="menu-list-section-item">
+											<div class="title">
+												Slow-Cooked Shredded Beef
+												<div class="tags">
+													<div class="tags-item tag-blue">G</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Cuban Cheese Burger</span>
+										{# <div class="tags">
+										                                                <span class="tags-item tag-green">V</span>
+										                                            </div> #}
+									</div>
+									<span class="ingredients">Our 6oz burger topped with Manchego cheese sauce, sliced smoked cheddar and Swiss cheese. Served in a toasted bun with fries and rum mayo.</span>
+								</div>
+							</div>
+						</div>
+						<div class="menu-list-section brunch-menu">
+							<div class="menu-list-section-title">
+								<h3>DRINKS</h3>
+							</div>
+							<div class="menu-list-section-content brunch-menu-section-content">
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">Pornstar Rumtini</span>
+									</div>
+									<span class="ingredients">
+										<strong>Havana Club 3 Year Old rum</strong>
+										with passion fruit, pineapple, vanilla and lime. Served with a prosecco chaser.</span>
+								</div>
+								<div class="menu-list-section-item item-margin">
+									<div class="title">
+										<span class="name">G&amp;T Perfect Serves</span>
+									</div>
+									<span class="ingredients">
+										<strong>Portobello Road gin</strong>
+										with
+										                                            Fever-Tree Refreshingly
+										                                            Light tonic water, garnished
+										                                            with fresh grapefruit.
+										<br/>
+										<br/>
+										<strong>Tanqueray No.TEN™ gin</strong>
+										and Fever-Tree Refreshingly
+										                                            Light tonic water, garnished
+										                                            with fresh raspberries and a
+										                                            twist of orange.
+									</div>
+									<div class="menu-list-section-item item-margin">
+										<div class="title">
+											<span class="name">Rum Perfect Serves</span>
+										</div>
+										<span class="ingredients">
+											<strong>Appleton Estate Signature</strong>
+											with Old Jamaican Ginger
+											                                            Beer and a squeeze of lime.
+											<br/>
+											<br/>
+											<strong>Havana Club 7 Year Old</strong>
+											mixed Coke Zero garnished
+											                                            with a lime wedge.
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<div class="menu-buttons mobile">
+					<div class="button">
+						{% include 'atoms/button.twig' with {
+							'type': 'regular',
+							'text': 'Share Menu',
+							'color': 'fuschia',
+							'link_type' : 'share',
+							'share_uselink': true,
+							'internal_link' : barMenu_Christmas.url,
+							'classes': 'ch-button-share',
+						}%}
+					</div>
+					<div class="button button-download" id="pb1-download">
+						{% include 'atoms/button.twig' with {
+							'type': 'regular',
+							'text': 'Download',
+							'color': 'skyblue',
+							'link_type' : 'external',
+							'external_link' : 'https://www.revoluciondecuba.com/1643977212992-110252-rdc-brunch-menu-aw21-std/',
+						}%}
+					</div>
+					<div class="button button-download" id="pb2-download" style="display: none;">
+						{% include 'atoms/button.twig' with {
+							'type': 'regular',
+							'text': 'Download',
+							'color': 'skyblue',
+							'link_type' : 'external',
+							'external_link' : 'https://www.revoluciondecuba.com/1643977212992-110252-rdc-brunch-menu-aw21-prem/',
+						}%}
+					</div>
+					<div class="button button-download" id="pb3-download" style="display: none;">
+						{% include 'atoms/button.twig' with {
+							'type': 'regular',
+							'text': 'Download',
+							'color': 'skyblue',
+							'link_type' : 'external',
+							'external_link' : 'https://www.revoluciondecuba.com/pdfs/brunch/pb3-menu.pdf',
+						}%}
+					</div>
+					<div class="button button-download" id="pb4-download" style="display: none;">
+						{% include 'atoms/button.twig' with {
+							'type': 'regular',
+							'text': 'Download',
+							'color': 'skyblue',
+							'link_type' : 'external',
+							'external_link' : 'https://www.revoluciondecuba.com/1643977212992-110252-rdc-brunch-menu-aw21-fiesta/',
+						}%}
+					</div>
+				</div>
+			</div>
+			</div>
+
+			<style>
+				.page-brunch .packages {
+					padding: 0 !important;
+				}
+
+				.page-brunch .packages select {
+					margin-bottom: 1rem;
+				}
+
+				/* SELECT WRAPPER */
+				.page-brunch .select-wrapper {
+					flex: 0 100% !important;
+				}
+
+				@media (min-width: 700px) {
+					.page-brunch .select-wrapper {
+						flex: 0 12rem !important;
+					}
+				}		
+
+				/* PACKAGES HEADER */
+				.page-brunch .packages-item-menu-header .tab-header .tab-label {
+					font-size: 2rem;
+					margin-bottom: 1rem;
+				}
+
+				.page-brunch .packages-item-menu-header .tab-header .select-wrapper select {
+					font-size: 16px;
+					margin: 0;
+				}
+
+				@media (min-width: 700px) {
+					.page-brunch .packages-item-menu-header .tab-header .select-wrapper select {
+						font-size: 20px;
+					}
+				}
+
+				.page-brunch .packages-item-menu-header {
+					position: relative;
+				}
+
+				.page-brunch .packages-item-menu-header .close-menu {
+					position: absolute;
+					top: 1px;
+					right: 1px;
+					display: none;
+				}
+
+				.page-brunch .packages-item-menu-header .tab-header.tab-header-mobile {
+					width: 100% !important; 
+				}
+
+				.packages .brunch-menu {
+					flex-wrap: wrap;
+				}
+
+				.page-brunch .tab-wrapper {
+					display: flex;
+				}
+
+				/* BUTTONS */
+				.page-brunch .menu-buttons.mobile {
+					display: block;
+					text-align: left;
+					padding: 0 1.25rem;
+					margin-bottom: 1rem;
+				}
+
+				.page-brunch .menu-buttons.mobile .share__container {
+					max-width: none;
+					display: block;
+				}
+
+				.page-brunch .menu-buttons.mobile .button,
+				.page-brunch .menu-buttons.mobile .button .ch-button-share,
+				.page-brunch .menu-buttons.mobile .button .button-download {
+					max-width: none !important;
+					width: 100%;
+					margin-bottom: 1rem;
+				}
+
+
+				.page-brunch .menu-buttons {
+					display: none;
+				}
+
+				@media (min-width: 900px) {
+				.page-brunch .menu-buttons.mobile {
+					display: none;
+				}
+
+					.page-brunch .menu-buttons {
+						display: flex;
+					}
+				}	
+
+				/* PACKAGES CONTENT */
+				.page-brunch .packages-item-menu-content .menu-list-section-item .title {
+					margin-bottom: 1rem;
+				}
+
+				.page-brunch .packages-item-menu-content .menu-list-section-item .title .name {
+					margin-bottom: 0;
+				}
+
+				.packages-item-menu-content .menu-list-section-title {
+					flex: 1 1 100%;
+					margin-bottom: 0;
+				}
+
+				.page-brunch .adds-and-sides .menu-list-section-item .title {
+					align-items: center;
+					margin-bottom: 0.5rem;
+				}
+
+				.page-brunch .adds-and-sides .menu-list-section-item .title .price {
+					justify-self: flex-end;
+					font-weight: bold;
+					flex: auto;
+					display: flex;
+					justify-content: flex-end;
+				}
+
+				.packages .right-side-menu-m {
+					margin-top: 0 !important;
+				}
+
+				.menu-list-section-item {
+					margin-bottom: 2rem;
+				}
+
+				.page-brunch .tab-label {
+					font-size: 20px !important;
+				}
+
+				@media (min-width: 700px) {
+					.page-brunch .tab-label {
+						font-size: 1.5rem;
+					}
+				}
+
+				.page-brunch .menu-list-section-content.brunch-menu-section-content {
+					width: 100% !important;
+				}
+
+				@media (min-width: 700px) {
+					.page-brunch .menu-list-section-content.brunch-menu-section-content {
+						width: 40% !important;
+					}
+				}
+
+				@media (min-width: 1208px) {
+					.page-brunch .menu-notes-container { 
+						display: flex; 
+						justify-content: space-between;
+					}
+				}
+
+				.packages-item-menu-content .menu-list-section-title h3 {
+					font-size: 22px;
+				}
+				
+				.packages-item-menu-content .menu-list-section-item .title .name {
+					font-size: 20px !important;
+					line-height: 1 !important;
+					margin-bottom: 1rem;
+				}
+
+				.packages-item-menu-content .menu-list-section-item .ingredients {
+					font-size: 16px !important;
+					line-height: 1 !important;
+				}
+
+				.packages-item-menu-content .menu-list-section-item ul {
+					font-size: 14px !important;
+					line-height: 1 !important;
+				}
+
+				.packages-item-menu-content .menu-list-section-item ul li {
+					margin: 0;
+				}
+
+				strong {
+					font-size: 17px;
+				}
+				
+			</style>
+		</section>

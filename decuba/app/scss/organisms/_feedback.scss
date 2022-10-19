@@ -1,0 +1,72 @@
+$c: '.feedback';
+
+#{$c} {
+	background-color: color(orange);
+	background-size: cover;
+	background-image: url(../../app/img/patterns/main_texture.jpg);
+	.no-backgroundblendmode &,
+	.safari.ipad &,
+	.iphone & {
+		background-size: contain;
+		background-repeat: repeat;
+		background-image: url(../../app/img/bg/orange-texture.jpg);
+	}
+	
+	&__container {
+		padding-top: 40px;
+		padding-bottom: 40px;
+		display: flex;
+		flex-flow: column;
+
+		@include mq('md','min') {
+			align-items: center;
+			flex-flow: row wrap;
+		}
+
+		.icon-smiley {
+			@include mq('md','max') {
+				color: color(black);
+				font-size: 40px;
+			}
+		}
+	}
+
+	&__title {
+		flex-grow: 1;
+		text-align: left;
+
+		h4 {
+			@include mq('md','max') {
+				font-family: $body-font-family;
+				font-weight: bold;
+				text-transform: uppercase;
+				font-size: 16px;
+				display: flex;
+			    justify-content: space-between;
+			    width: 100%;
+			}
+		}
+
+		@include mq('768px','min') {
+			margin-bottom: 0;
+		}
+
+		* {
+			margin: 0;
+		}
+	}
+
+	&__link {
+		.button {
+			@include mq('md','max') {
+				font-size: 16px;
+				font-weight: normal;
+				padding: 0;
+
+				&:after {
+					display: none;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,70 @@
+{
+    "key": "group_59c37c4b187bd",
+    "title": "Theme -- Colors",
+    "fields": [
+        {
+            "key": "field_59c37c534bcb3",
+            "label": "Color",
+            "name": "color",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "orange": "Orange",
+                "sunshine": "Sunshine",
+                "skyblue": "Teal",
+                "fuschia": "Hot Pink",
+                "green": "Green",
+                "navy": "Dark Blue",
+                "coral": "Coral",
+                "white": "White",
+                "black": "Black",
+                "texture-01": "Texture 1",
+                "texture-02": "Texture 2",
+                "texture-03": "Texture 3",
+                "texture-04": "Texture 4",
+                "texture-05": "Texture 5",
+                "texture-06": "Texture 6",
+                "texture-07": "Texture 7",
+                "texture-08": "Texture 8",
+                "texture-09": "Texture 9",
+                "texture-10": "Texture 10",
+                "texture-11": "Texture 11",
+                "texture-12": "Texture 12"
+
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "modified": 1649871286
+}

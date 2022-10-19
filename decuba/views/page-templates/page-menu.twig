@@ -1,0 +1,1122 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% set barData = post.parent %}
+
+{% block content %}
+	{% set slides = [{
+		'image': site.theme.link~'/app/img/tmp/hero-menu.jpg',
+		'image_position': 'center',
+		'flair': {
+			'has_flair': true,
+			'flair__text': 'Menus for',
+			'flair__color': {
+				'color': 'sunshine',
+			},
+		},
+		'title': currentVenue.name,
+		'title_weight': '1',
+		'title_color': '',
+		'content': '',
+		'content_color': '',
+		'has_button': true,
+		'form_type': 'booking',
+		'form_id' : 38
+	}] %}
+
+	{% include 'organisms/hero.twig' with {
+		'slider': slides,
+		'hasForm': true,
+		'formType': 'nofloat'
+	} %}
+
+
+
+	<div id="menus">
+		<div class="loading-anim bg--grey-light--pattern">
+			<div class="loading"></div>
+		</div>
+	</div>
+
+
+
+	<div class="bg--grey-light--pattern spacer open" data-menu-container="0" data-menu-container-slug="food">
+		<div class="container">
+			<div class="row">
+
+
+				{% for offers in options.offers %}
+					{% if offers.bar_filter_type == 'exclude' %}
+						{% if barData.id not in offers.bar_filter_list %}
+							{% for offer in offers.menu_assignment %}
+								{% if offer == 'food' %}
+										<div class="col-md-6 col--no-grow">
+											{% include 'molecules/article-offer.twig' with {
+												'background': offers.background_menu.url,
+												'foreground': {
+													'url': offers.overlay_menu.url,
+													'alt': offers.overlay_menu.alt,
+												},
+												'button': {
+													'type': offers.button__type,
+													'text': 'Book now',
+													'color': offers.button__color.color,
+													'link_type' : 'internal',
+													'internal_link' : '#bookingform',
+													'classes': offers.button__classes,
+												}
+											}%}
+										</div>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+					{% elseif offers.bar_filter_type == 'include' %}
+						{% if barData.id in offers.bar_filter_list %}
+							{% for offer in offers.menu_assignment %}
+								{% if offer == 'food' %}
+										<div class="col-md-6 col--no-grow">
+											{% include 'molecules/article-offer.twig' with {
+												'background': offers.background_menu.url,
+												'foreground': {
+													'url': offers.overlay_menu.url,
+													'alt': offers.overlay_menu.alt,
+												},
+												'button': {
+													'type': offers.button__type,
+													'text': 'Book now',
+													'color': offers.button__color.color,
+													'link_type' : 'internal',
+													'internal_link' : '#bookingform',
+													'classes': offers.button__classes,
+												}
+											}%}
+										</div>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+					{% else %}
+						{% for offer in offers.menu_assignment %}
+							{% if offer == 'food' %}
+									<div class="col-md-6 col--no-grow">
+										{% include 'molecules/article-offer.twig' with {
+											'background': offers.background_menu.url,
+											'foreground': {
+												'url': offers.overlay_menu.url,
+												'alt': offers.overlay_menu.alt,
+											},
+											'button': {
+												'type': offers.button__type,
+												'text': 'Book now',
+												'color': offers.button__color.color,
+												'link_type' : 'internal',
+												'internal_link' : '#bookingform',
+												'classes': offers.button__classes,
+											}
+										}%}
+									</div>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				{% endfor %}
+
+			</div>
+		</div>
+	</div>
+
+	<div class="bg--grey-light--pattern spacer" data-menu-container="1" data-menu-container-slug="drink">
+		<div class="container">
+			<div class="row">
+
+				{% for offers in options.offers %}
+					{% if offers.bar_filter_type == 'exclude' %}
+						{% if barData.id not in offers.bar_filter_list %}
+							{% for offer in offers.menu_assignment %}
+								{% if offer == 'drink' %}
+										<div class="col-md-6 col--no-grow">
+											{% include 'molecules/article-offer.twig' with {
+												'background': offers.background_menu.url,
+												'foreground': {
+													'url': offers.overlay_menu.url,
+													'alt': offers.overlay_menu.alt,
+												},
+												'button': {
+													'type': offers.button__type,
+													'text': 'Book now',
+													'color': offers.button__color.color,
+													'link_type' : 'internal',
+													'internal_link' : '#bookingform',
+													'classes': offers.button__classes,
+												}
+											}%}
+										</div>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+					{% elseif offers.bar_filter_type == 'include' %}
+						{% if barData.id in offers.bar_filter_list %}
+							{% for offer in offers.menu_assignment %}
+								{% if offer == 'drink' %}
+										<div class="col-md-6 col--no-grow">
+											{% include 'molecules/article-offer.twig' with {
+												'background': offers.background_menu.url,
+												'foreground': {
+													'url': offers.overlay_menu.url,
+													'alt': offers.overlay_menu.alt,
+												},
+												'button': {
+													'type': offers.button__type,
+													'text': 'Book now',
+													'color': offers.button__color.color,
+													'link_type' : 'internal',
+													'internal_link' : '#bookingform',
+													'classes': offers.button__classes,
+												}
+											}%}
+										</div>
+							{% endif %}
+							{% endfor %}
+						{% endif %}
+					{% else %}
+						{% for offer in offers.menu_assignment %}
+							{% if offer == 'drink' %}
+ 									<div class="col-md-6 col--no-grow">
+										{% include 'molecules/article-offer.twig' with {
+											'background': offers.background_menu.url,
+											'foreground': {
+												'url': offers.overlay_menu.url,
+												'alt': offers.overlay_menu.alt,
+											},
+											'button': {
+												'type': offers.button__type,
+												'text': 'Book now',
+												'color': offers.button__color.color,
+												'link_type' : 'internal',
+												'internal_link' : '#bookingform',
+												'classes': offers.button__classes,
+											}
+										}%}
+									</div>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				{% endfor %}
+
+			</div>
+		</div>
+	</div>
+
+	<div class="bg--grey-light--pattern spacer" data-menu-container="2" data-menu-container-slug="fiesta">
+		<div class="container">
+			<div class="row">
+
+				{% for offers in options.offers %}
+					{% if offers.bar_filter_type == 'exclude' %}
+						{% if barData.id not in offers.bar_filter_list %}
+							{% for offer in offers.menu_assignment %}
+								{% if offer == 'fiesta' %}
+									<div class="col-md-6 col--no-grow">
+											{% include 'molecules/article-offer.twig' with {
+												'background': offers.background_menu.url,
+												'foreground': {
+													'url': offers.overlay_menu.url,
+													'alt': offers.overlay_menu.alt,
+												},
+												'button': {
+													'type': offers.button__type,
+													'text': 'Book now',
+													'color': offers.button__color.color,
+													'link_type' : 'internal',
+													'internal_link' : '#bookingform',
+													'classes': offers.button__classes,
+												}
+											}%}
+										</div>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+					{% elseif offers.bar_filter_type == 'include' %}
+						{% if barData.id in offers.bar_filter_list %}
+							{% for offer in offers.menu_assignment %}
+								{% if offer == 'fiesta' %}
+ 										<div class="col-md-6 col--no-grow">
+											{% include 'molecules/article-offer.twig' with {
+												'background': offers.background_menu.url,
+												'foreground': {
+													'url': offers.overlay_menu.url,
+													'alt': offers.overlay_menu.alt,
+												},
+												'button': {
+													'type': offers.button__type,
+													'text': 'Book now',
+													'color': offers.button__color.color,
+													'link_type' : 'internal',
+													'internal_link' : '#bookingform',
+													'classes': offers.button__classes,
+												}
+											}%}
+										</div>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+					{% else %}
+						{% for offer in offers.menu_assignment %}
+							{% if offer == 'fiesta' %}
+									<div class="col-md-6 col--no-grow">
+										{% include 'molecules/article-offer.twig' with {
+											'background': offers.background_menu.url,
+											'foreground': {
+												'url': offers.overlay_menu.url,
+												'alt': offers.overlay_menu.alt,
+											},
+											'button': {
+												'type': offers.button__type,
+												'text': 'Book now',
+												'color': offers.button__color.color,
+												'link_type' : 'internal',
+												'internal_link' : '#bookingform',
+												'classes': offers.button__classes,
+											}
+										}%}
+									</div>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				{% endfor %}
+
+			</div>
+		</div>
+	</div>
+
+	<div class="menu__sharing spacer--double" data-menu-pattern="0">
+		<div class="container">
+			<div class="row row--a-c">
+				<div class="menu__sharing__form col-md-6 col--no-grow">
+
+					{% include 'organisms/booking-form.twig' with {
+						'prepop' : {
+							'bar_id' : post.api_id ? post.api_id : (currentVenue.api_id ? currentVenue.api_id : currentpostid),
+							'cube_form_id' : ''
+						},
+						'settings' : {
+							'minimum_booking_type_options' : true,
+						},
+					} %}
+
+				</div>
+				<div class="col-md-4">
+					<div class="open" data-menu-container="0" data-menu-container-slug="food">
+						<h4 class="heading--white">Share the experience</h4>
+						<p class="heading--white text--base-lh">Because this isn’t food you can keep to yourself. Even if you want to.<br>Lean across the table, try something new, have some of mine if I have some of yours… Tastes that take you places. Make it a Cuban meal-time. Don’t hold back.</p>
+
+						{# Downloads base on Partypro entry order. #}
+						<div class="button__group button__group--left active" data-product-menu="0" data-product-menu-slug="main-menu">
+							{% include 'atoms/button.twig' with {
+								'classes': '',
+								'type': 'regular',
+								'text': 'Download Menu',
+								'color': 'skyblue',
+								'link_type' : 'external',
+								'external_link' : menus_local_data.cantina_main_menu_download.url,
+							}%}
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Share Menu',
+								'color': 'fuschia',
+								'link_type' : 'share',
+								'share_uselink': true,
+								'internal_link' : menus_local_data.cantina_main_menu_download.url,
+							}%}
+						</div>
+						<div class="button__group button__group--left active" data-product-menu="1" data-product-menu-slug="vegan-specials-menu">
+							{% include 'atoms/button.twig' with {
+								'classes': '',
+								'type': 'regular',
+								'text': 'Download Menu',
+								'color': 'skyblue',
+								'link_type' : 'external',
+								'external_link' : menus_local_data.cantina_specials_menu_download.url,
+							}%}
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Share Menu',
+								'color': 'fuschia',
+								'link_type' : 'share',
+								'share_uselink': true,
+								'internal_link' : menus_local_data.cantina_specials_menu_download.url,
+							}%}
+						</div>
+						<div class="button__group button__group--left" data-product-menu="2" data-product-menu-slug="2-courses">
+							{% include 'atoms/button.twig' with {
+								'classes': '',
+								'type': 'regular',
+								'text': 'Download Menu',
+								'color': 'skyblue',
+								'link_type' : 'external',
+								'external_link' : menus_local_data.cantina_2_courses_download.url,
+							}%}
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Share Menu',
+								'color': 'fuschia',
+								'link_type' : 'share',
+								'share_uselink': true,
+								'internal_link' : menus_local_data.cantina_2_courses_download.url,
+							}%}
+						</div>
+						<div class="button__group button__group--left" data-product-menu="3" data-product-menu-slug="6-lunch">
+							{% include 'atoms/button.twig' with {
+								'classes': '',
+								'type': 'regular',
+								'text': 'Download Menu',
+								'color': 'skyblue',
+								'link_type' : 'external',
+								'external_link' : menus_local_data.cantina_6_lunch_download.url,
+							}%}
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Share Menu',
+								'color': 'fuschia',
+								'link_type' : 'share',
+								'share_uselink': true,
+								'internal_link' : menus_local_data.cantina_6_lunch_download.url,
+							}%}
+						</div>
+						<div class="button__group button__group--left" data-product-menu="kids-menu">
+							{% include 'atoms/button.twig' with {
+								'classes': '',
+								'type': 'regular',
+								'text': 'Download Menu',
+								'color': 'skyblue',
+								'link_type' : 'external',
+								'external_link' : menus_local_data.cantina_kids_download.url,
+							}%}
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Share Menu',
+								'color': 'fuschia',
+								'link_type' : 'share',
+								'share_uselink': true,
+								'internal_link' : menus_local_data.cantina_kids_download.url,
+							}%}
+						</div>
+						<div class="button__group button__group--left" data-product-menu="5" data-product-menu-slug="brunch-menu">
+							{% include 'atoms/button.twig' with {
+								'classes': '',
+								'type': 'regular',
+								'text': 'Download Menu',
+								'color': 'skyblue',
+								'link_type' : 'external',
+								'external_link' : menus_local_data.cantina_brunch_menu_download.url,
+							}%}
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Share Menu',
+								'color': 'fuschia',
+								'link_type' : 'share',
+								'share_uselink': true,
+								'internal_link' : menus_local_data.cantina_brunch_menu_download.url,
+							}%}
+						</div>
+						<div class="button__group button__group--left" data-product-menu="6" data-product-menu-slug="cuban-icons">
+							{% include 'atoms/button.twig' with {
+								'classes': '',
+								'type': 'regular',
+								'text': 'Download Menu',
+								'color': 'skyblue',
+								'link_type' : 'external',
+								'external_link' : menus_local_data.cantina_cuban_icons_menu_download.url,
+							}%}
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Share Menu',
+								'color': 'fuschia',
+								'link_type' : 'share',
+								'share_uselink': true,
+								'internal_link' : menus_local_data.cantina_cuban_icons_menu_download.url,
+							}%}
+						</div>
+					</div>
+					<div data-menu-container="1" data-menu-container-slug="drink">
+						<h4 class="heading--white">Share the experience</h4>
+						<p class="heading--white text--base-lh">All our drinks are best-enjoyed ice cold, and in good company.<br>Here's to good health and good times. Raise your glasses and do it the Cuban way, with smiles on your faces and hopes for the future</p>
+						<div class="button__group button__group--left active" data-product-menu="0" data-product-menu-slug="main-menu">
+							{% include 'atoms/button.twig' with {
+								'classes': '',
+								'type': 'regular',
+								'text': 'Download Menu',
+								'color': 'skyblue',
+								'link_type' : 'external',
+								'external_link' : menus_local_data.cocktails_main_menu_download.url,
+							}%}
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Share Menu',
+								'color': 'fuschia',
+								'link_type' : 'share',
+								'share_uselink': true,
+								'internal_link' : menus_local_data.cocktails_main_menu_download.url,
+							}%}
+						</div>
+						<div class="button__group button__group--left" data-product-menu="1" data-product-menu-slug="cocktail-specials-menu">
+							{% include 'atoms/button.twig' with {
+								'classes': '',
+								'type': 'regular',
+								'text': 'Download Menu',
+								'color': 'skyblue',
+								'link_type' : 'external',
+								'external_link' : menus_local_data.cocktails_specials_menu_download.url,
+							}%}
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Share Menu',
+								'color': 'fuschia',
+								'link_type' : 'share',
+								'share_uselink': true,
+								'internal_link' : menus_local_data.cocktails_specials_menu_download.url,
+							}%}
+						</div>
+						<div class="button__group button__group--left" data-product-menu="1" data-product-menu-slug="cuban-icons">
+							{% include 'atoms/button.twig' with {
+								'classes': '',
+								'type': 'regular',
+								'text': 'Download Menu',
+								'color': 'skyblue',
+								'link_type' : 'external',
+								'external_link' : menus_local_data.cantina_cuban_icons_menu_download.url,
+							}%}
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Share Menu',
+								'color': 'fuschia',
+								'link_type' : 'share',
+								'share_uselink': true,
+								'internal_link' : menus_local_data.cantina_cuban_icons_menu_download.url,
+							}%}
+						</div>
+					</div>
+					<div data-menu-container="2" data-menu-container-slug="fiesta">
+						<h4 class="heading--white">Share the experience</h4>
+						<p class="heading--white text--base-lh">No great fiesta is complete without good friends.<br>Call them up. Tell 'em the plan. We've got the place, with the food, drinks and vibes, so the party's in the bag. Just pick your bar - and your best outfit, of course.</p>
+						<div class="button__group button__group--left active" data-product-menu="0" data-product-menu-slug="cantina-packages">
+							{% include 'atoms/button.twig' with {
+								'classes': '',
+								'type': 'regular',
+								'text': 'Download Menu',
+								'color': 'skyblue',
+								'link_type' : 'external',
+								'external_link' : menus_local_data.fiesta_cantina_packages_download.url,
+							}%}
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Share Menu',
+								'color': 'fuschia',
+								'link_type' : 'share',
+								'share_uselink': true,
+								'internal_link' : menus_local_data.fiesta_cantina_packages_download.url,
+							}%}
+						</div>
+						<div class="button__group button__group--left" data-product-menu="1" data-product-menu-slug="drinks-packages">
+							{% include 'atoms/button.twig' with {
+								'classes': '',
+								'type': 'regular',
+								'text': 'Download Menu',
+								'color': 'skyblue',
+								'link_type' : 'external',
+								'external_link' : menus_local_data.fiesta_drinks_packages_download.url,
+							}%}
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Share Menu',
+								'color': 'fuschia',
+								'link_type' : 'share',
+								'share_uselink': true,
+								'internal_link' : menus_local_data.fiesta_drinks_packages_download.url,
+							}%}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block html_footer_container %}
+	{{ parent() }}
+
+	<script>
+
+		var apiId = {{barData.api_id}}; // RDC - [CURRENT BAR]
+		var initMenuType = "{{menu_type}}";
+		var initSubMenuType = "{{menu_subtype}}";
+		var slug = "{{barData.slug}}";
+
+		(function() {
+			"use strict";
+
+			var self = {};
+			_.extend(self, APP.Mediator);
+
+			$(function()
+			{
+				// FOOD Menus
+				menuDataHandler.MainMenu(self, apiId);
+				menuDataHandler.SpecialsMenuFood(self, apiId);
+				// menuDataHandler.TwoCourses(self, apiId);
+				// menuDataHandler.SixPoundLunchMenu(self, apiId);
+				// menuDataHandler.KidsMenu(self, apiId);
+				menuDataHandler.BrunchMenu(self, apiId);
+				// menuDataHandler.CubanIconsMenu(self, apiId);
+
+				// Drinks Menus
+				menuDataHandler.MainMenuDrinks(self, apiId);
+				// menuDataHandler.SpecialsMenuDrinks(self, apiId);
+				menuDataHandler.WinesBeersMenuDrinks(self, apiId);
+				menuDataHandler.TheRumStoreMenuDrinks(self, apiId);
+				// menuDataHandler.CubanIconsMenuDrinks(self, apiId);
+
+				// Drinks Menus
+				// menuDataHandler.WeekdayParty(self, apiId);
+				// menuDataHandler.WeekendParty(self, apiId);
+				menuDataHandler.CantinaPackages(self, apiId);
+				menuDataHandler.DrinksPackages(self, apiId);
+				menuDataHandler.PageSlug(slug);
+				// menuDataHandler.CocktailMasterclass(self, apiId);
+
+
+				self.query("barInfo", apiId).then(function(data)
+				{
+					var address = (data.address + '<br>' + data.postcode);
+
+					address = address.replace(',', ',<br>');
+					$('.hero__slide__content__content__address').append(address);
+
+				});
+
+			});
+
+		})();
+	</script>
+{{ dump(barData.slug)}}
+	<script id="menu-template" type="text/x-handlebars-template">
+
+		{% raw %}
+
+			<div class="menu-nav__main">
+				{{#each this as |data_menu|}}
+
+
+				<div class="menu-nav__main__button {{#ifCond data_menu.menuType 'Drink'}}menu-nav__main__button--green{{/ifCond}} {{#ifCond data_menu.menuType 'Fiesta'}}menu-nav__main__button--blue{{/ifCond}} {{#if @first}}open{{/if}}" data-menu="{{@index}}" data-menu-slug="{{data_menu.menuTypeSlug}}" data-track="Menu Interaction|click|{{data_menu.menuType}}||false"><p>{{data_menu.menuType}} Menu</p>
+					</div>
+				{{/each}}
+			</div>
+
+			{{#each this as |data_menu|}}
+				<div class="bg--grey-light--pattern {{#ifCond data_menu.menuType 'Drink'}}green{{/ifCond}} {{#ifCond data_menu.menuType 'Fiesta'}}blue menu_fiesta{{/ifCond}} {{#if @first}}open{{/if}}" data-menu-container="{{@index}}" data-menu-container-slug="{{data_menu.menuTypeSlug}}">
+					<div class="menu-nav__sub active">
+						<div class="menu-nav__sub__container">
+							{{#each data_menu.menus as |data_menuSection|}}
+							 	<div class="menu-nav__sub__button {{#if @first}}active{{/if}}" data-menu-section="{{@index}}" data-menu-section-slug="{{data_menuSection.menuSectionSlug}}" data-track="Menu Interaction|click|{{data_menu.menuType}} - {{data_menuSection.menuSection}}||false"><p>{{data_menuSection.menuSection}}</p></div>
+							{{/each}}
+						</div>
+					</div>
+
+					<div class="container menu-filter__container">
+						<div class="row">
+							<div class="col-md-12 menu-filter">
+								<a target="_blank" href="https://revcuba.com/allergens" class="button button--underline button--underline--orange">Download allergen information</a>
+
+								{{#if data_menu.menuAllergens}}
+
+									<div class="menu-filter">
+
+										<div class="menu-filter__tab">
+											<span class="label">Dietary Filter</span>
+										</div>
+										<div class="menu-filter__options">
+
+											<div class="menu-filter__options__section">
+												<p class="menu-filter__options__label">Show me dishes that:</p>
+
+												<div>
+													<div class="menu-filter__options__option include">
+														<div class="menu-filter__options__option">
+															<div class="field field--checkbox">
+																<span class="field__element-wrap">
+																	<input class="field__element" type="checkbox" id="vegetarian-{{@index}}" name="vegetarian">
+																	<label class="field__sub-label" for="vegetarian-{{@index}}">are Vegetarian</label>
+																</span>
+															</div>
+														</div>
+													</div>
+													<div class="menu-filter__options__option include">
+														<div class="menu-filter__options__option">
+															<div class="field field--checkbox">
+																<span class="field__element-wrap">
+																	<input class="field__element" type="checkbox" id="vegan-{{@index}}" name="vegan">
+																	<label class="field__sub-label" for="vegan-{{@index}}">are Vegan</label>
+																</span>
+															</div>
+														</div>
+													</div>
+													<div class="menu-filter__options__option include">
+														<div class="menu-filter__options__option">
+															<div class="field field--checkbox">
+																<span class="field__element-wrap">
+																	<input class="field__element" type="checkbox" id="glutenfree{{@index}}" name="glutenfree">
+																	<label class="field__sub-label" for="glutenfree{{@index}}">do not contain Gluten</label>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+											<div class="menu-filter__options__section">
+												<p class="menu-filter__options__label">Show me dishes that don’t contain these ingredients:</p>
+												<div>
+													{{#each data_menu.menuAllergens}}
+														<div class="menu-filter__options__option dontinclude">
+															<div class="field field--checkbox">
+																<span class="field__element-wrap">
+																	<input class="field__element" type="checkbox" id="{{this.slug}}-{{@../index}}" name="{{this.slug}}">
+																	<label class="field__sub-label" for="{{this.slug}}-{{@../index}}">{{this.title}}</label>
+																</span>
+															</div>
+														</div>
+													{{/each}}
+												</div>
+											</div>
+
+
+											<div class="menu-filter__buttons">
+												<div class="menu-filter__button">
+													<a href="" class="button button--regular  menu-filter__apply" target="">
+														<span data-text="Apply Filters">Apply Filters</span>
+													</a>
+												</div>
+												<div class="menu-filter__button">
+													<div class="menu-filter__button">
+														<a href="" class="button button--underline button--underline--fuschia  menu-filter__reset" target="">
+															<span>Reset Filters</span>
+														</a>
+													</div>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								{{/if}}
+
+							</div>
+						</div>
+					</div>
+
+					<div class="data-product-menu">
+						{{#each data_menu.menus as |menu|}}
+							<div class="container product-menu {{#if @first}}active{{/if}}" data-product-menu="{{@index}}" data-product-menu-slug="{{menu.menuSectionSlug}}">
+								<div class="row">
+									<div class="col-md-12 product-menu__container">
+										{{#each menu.menuSubsections as |block|}}
+											{{#if block.options }}
+											 	<div class="menu-block" data-menu-name="{{formatAllergens this.title}}">
+													<div class="menu-block__inner">
+
+														<div class="menu-block__header">
+															<h4>{{this.title}}</h4>
+														</div>
+
+														{{#if this.description}}
+															<div class="menu-block__description">
+																{{{this.description}}}
+															</div>
+														{{/if}}
+
+													{{#if block.categories }}
+
+														{{#each block.categories as |category|}}
+
+
+															{{#ifContains category.name 'Subsection'}}
+																<div class="menu-block__subheader">
+																	<h5>{{category.cat}}</h5>
+																</div>
+
+																<div class="menu-block__items">
+
+																	{{#each block.options as |menuItem|}}
+
+																		{{#each menuItem.meta.data as |menuItemCategory|}}
+																			{{#ifCond menuItemCategory.value category.cat}}
+																				<div class="product-menu-item" data-vegetarian="{{#if menuItem.vegetarian}}yes{{else}}no{{/if}}" data-vegan="{{#if menuItem.vegan}}yes{{else}}no{{/if}}" data-glutenfree="{{#if menuItem.gluten_free}}yes{{else}}no{{/if}}" {{#each menuItem.allergens.data}} data-allergen-{{formatAllergens this.allergen}}="{{lowercasePlease this.value}}"{{/each}}>
+
+																					{{#ifNOT menuItem.title ' '}}
+																						<div class="product-menu-item__meta">
+																							<p><strong>{{menuItem.title}}</strong></p>
+
+																							<ul class="product-menu-item__icons">
+																								{{#if menuItem.vegetarian}}
+																									<li>
+																										<img src="{{./origin}}/wp-content/themes/decuba/app/img/svg/vegetarian.svg" width="17px" height="17px">
+																									</li>
+																								{{/if}}
+																								{{#if menuItem.vegan}}
+																									<li>
+																										<img src="{{./origin}}/wp-content/themes/decuba/app/img/svg/vegan.svg" width="17px" height="17px">
+																									</li>
+																								{{/if}}
+																								{{#if menuItem.gluten_free}}
+																									<li>
+																										<img src="{{./origin}}/wp-content/themes/decuba/app/img/svg/gluten_free.svg" width="17px" height="17px">
+																									</li>
+																								{{/if}}
+																							</ul>
+																							{{#ifNOT menuItem.price '0'}}
+																								<div class="product-menu-item__price">
+																									<p><strong><span>&#163;</span>{{twoDecimalPrice menuItem.price}}</strong></p>
+																								</div>
+																							{{/ifNOT}}
+																						</div>
+																					{{/ifNOT}}
+																					{{#if menuItem.description }}
+																						<p>{{{formatDescIcons menuItem.description}}}</p>
+																					{{else}}
+																						<p>No Description</p>
+																					{{/if}}
+																					{{#each menuItem.meta.data as |priceMeta|}}
+																						{{#ifContains priceMeta.name 'Price'}}
+																							<div class="product-menu-item__price product-menu-item__price--choices">
+																								<p><strong>{{{formatPriceChoices priceMeta.value}}}</strong></p>
+																							</div>
+																						{{/ifContains}}
+																					{{/each}}
+																				</div>
+																			{{/ifCond}}
+																		{{/each}}
+
+																	{{/each}}
+
+																</div>
+															{{/ifContains}}
+														{{/each}}
+
+													{{else}}
+
+														<div class="menu-block__items">
+
+															{{#each block.options}}
+																<div class="product-menu-item" data-vegetarian="{{#if this.vegetarian}}yes{{else}}no{{/if}}" data-vegan="{{#if this.vegan}}yes{{else}}no{{/if}}" data-glutenfree="{{#if this.gluten_free}}yes{{else}}no{{/if}}" {{#each this.allergens.data}} data-allergen-{{formatAllergens this.allergen}}="{{lowercasePlease this.value}}"{{/each}}>
+
+																	<div class="product-menu-item__meta">
+																		<p><strong>{{this.title}}</strong></p>
+
+																		<ul class="product-menu-item__icons">
+																			{{#if this.vegetarian}}
+																				<li>
+																					<img src="{{./origin}}/wp-content/themes/decuba/app/img/svg/vegetarian.svg" width="17px" height="17px">
+																				</li>
+																			{{/if}}
+																			{{#if this.vegan}}
+																				<li>
+																					<img src="{{./origin}}/wp-content/themes/decuba/app/img/svg/vegan.svg" width="17px" height="17px">
+																				</li>
+																			{{/if}}
+																			{{#if this.gluten_free}}
+																				<li>
+																					<img src="{{./origin}}/wp-content/themes/decuba/app/img/svg/gluten_free.svg" width="17px" height="17px">
+																				</li>
+																			{{/if}}
+																		</ul>
+																		{{#ifNOT this.price '0'}}
+																			<div class="product-menu-item__price">
+																				<p><strong><span>&#163;</span>{{twoDecimalPrice this.price}}</strong></p>
+																			</div>
+																		{{/ifNOT}}
+																	</div>
+
+																	{{#if this.description }}
+																		<p>{{{formatDescIcons this.description}}}</p>
+																	{{else}}
+																		<p>No Description</p>
+																	{{/if}}
+																	{{#each this.meta.data as |priceMeta|}}
+																		{{#ifContains priceMeta.name 'Price'}}
+																			<div class="product-menu-item__price product-menu-item__price--choices">
+																				<p><strong>{{{formatPriceChoices priceMeta.value}}}</strong></p>
+																			</div>
+																		{{/ifContains}}
+																	{{/each}}
+																</div>
+															{{/each}}
+
+														</div>
+
+													{{/if}}
+
+														<div class="menu-block__toggle"></div>
+													</div>
+												</div>
+											{{/if}}
+										{{/each}}
+
+										{{#ifCond data_menu.menuType 'Food'}}
+											{{#ifNOT data_menu.pageSlug 'aberdeen'}}
+												<div class="menu-block menu-block--image" data-track="Gallery|Opened|{{data_menu.menuType}} - {{menu.menuSection}}||false">
+													<img src="{{./origin}}/wp-content/themes/decuba/app/img/tmp/menu/galleries/{{data_menu.menuType}}/tapas-selection.jpg" alt="">
+													<span class="menu-block--image__icon icon-takeover"></span>
+												</div>
+												<div class="js-modal full-gallery" data-modal="gallery">
+											<div class="container">
+												<div class="gallery gallery--full">
+													<div class="gallery--full__container">
+
+													<div class="gallery--full__image">
+															<img src="{{./origin}}/wp-content/themes/decuba/app/img/tmp/menu/galleries/{{data_menu.menuType}}/tapas-selection.jpg" alt="">
+
+															<div class="gallery--full__product-menu-item">
+																<div class="product-menu-item">
+																	<div class="product-menu-item__meta">
+																		<p><strong>Tapas Selection</strong></p>
+																		<div class="product-menu-item__price">
+																			<p><strong></strong></p>
+																		</div>
+																	</div>
+																	<p>Can’t decide? Let us pick for you. Choose one of our Tapas Selections and enjoy a specially selected set of tapas perfect for 3-4 people.</p>
+																</div>
+															</div>
+														</div>
+														<div class="gallery--full__image">
+															<img src="{{./origin}}/wp-content/themes/decuba/app/img/tmp/menu/galleries/{{data_menu.menuType}}/chilli-plantano-bites.jpg" alt="">
+
+																<div class="gallery--full__product-menu-item">
+																<div class="product-menu-item">
+																	<div class="product-menu-item__meta">
+																		<p><strong>Chilli Plantano Bites</strong></p>
+																		<div class="product-menu-item__price">
+																			<p><strong></strong></p>
+																		</div>
+																	</div>
+																	<p>Banana blossom & chipotle chilli bites, served with banana ketchup and zesty pico de gallo.</p>
+																</div>
+															</div>
+														</div>
+														<div class="gallery--full__image">
+															<img src="{{./origin}}/wp-content/themes/decuba/app/img/tmp/menu/galleries/{{data_menu.menuType}}/burger-royale.jpg" alt="">
+
+																<div class="gallery--full__product-menu-item">
+																<div class="product-menu-item">
+																	<div class="product-menu-item__meta">
+																		<p><strong>Burger Royale</strong></p>
+																		<div class="product-menu-item__price">
+																			<p><strong></strong></p>
+																		</div>
+																	</div>
+																	<p>Our 6oz burger topped with smoky BBQ pulled beef, Manchego cheese sauce, crispy onions and fresh pickle. Served in a toasted bun with fries and rum mayo.</p>
+																</div>
+															</div>
+														</div>
+														<div class="gallery--full__image">
+															<img src="{{./origin}}/wp-content/themes/decuba/app/img/tmp/menu/galleries/{{data_menu.menuType}}/beef-fillet-skewers.jpg" alt="">
+
+																<div class="gallery--full__product-menu-item">
+																<div class="product-menu-item">
+																	<div class="product-menu-item__meta">
+																		<p><strong>Beef Fillet Skewers</strong></p>
+																		<div class="product-menu-item__price">
+																			<p><strong></strong></p>
+																		</div>
+																	</div>
+																	<p>Tender slices of beef fillet with charred mixed peppers and red onion, coated in our chilli jam glaze and served on a bed of zesty rice.</p>
+																</div>
+															</div>
+														</div>
+
+
+													</div>
+
+													<div class="gallery--full__arrow gallery--full__arrow--prev">
+														<a class="button button--circle">
+														 	<svg width="16px" height="26px" viewBox="0 0 16 26" class="arrow-left arrow-left--original">
+														    	<path d="M187,141 L205,141 L205,144 L187,144 L187,141 Z M202,159 L202,144 L205,144 L205,159 L202,159 Z" transform="translate(2, 12) rotate(45) translate(-196, -150) " fill="#FFFFFF"></path>
+														    </svg>
+														    <svg width="16px" height="26px" viewBox="0 0 16 26" class="arrow-left arrow-left--hidden">
+														    	<path d="M187,141 L205,141 L205,144 L187,144 L187,141 Z M202,159 L202,144 L205,144 L205,159 L202,159 Z" transform="translate(2, 12) rotate(45) translate(-196, -150) " fill="#FFFFFF"></path>
+														    </svg>
+														</a>
+													</div>
+													<div class="gallery--full__arrow gallery--full__arrow--next">
+														<a class="button button--circle">
+														 	<svg width="16px" height="26px" viewBox="0 0 16 26" class="arrow-right arrow-right--original">
+														    	<path d="M187,141 L205,141 L205,144 L187,144 L187,141 Z M202,159 L202,144 L205,144 L205,159 L202,159 Z" transform="translate(2, 12) rotate(45) translate(-196, -150) " fill="#FFFFFF"></path>
+														    </svg>
+														    <svg width="16px" height="26px" viewBox="0 0 16 26" class="arrow-right arrow-right--hidden">
+														    	<path d="M187,141 L205,141 L205,144 L187,144 L187,141 Z M202,159 L202,144 L205,144 L205,159 L202,159 Z" transform="translate(2, 12) rotate(45) translate(-196, -150) " fill="#FFFFFF"></path>
+														    </svg>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+											{{/ifNOT}}
+										{{/ifCond}}
+										{{#ifCond data_menu.menuType 'Drink'}}
+										<div class="menu-block menu-block--image" data-track="Gallery|Opened|{{data_menu.menuType}} - menu.menuSection}}||false">
+											<img src="{{./origin}}/wp-content/themes/decuba/app/img/tmp/menu/galleries/{{data_menu.menuType}}/carousel-el-hombre.jpg" alt="">
+											<span class="menu-block--image__icon icon-takeover"></span>
+										</div>
+										<div class="js-modal full-gallery" data-modal="gallery">
+											<div class="container">
+												<div class="gallery gallery--full">
+													<div class="gallery--full__container">
+
+														<div class="gallery--full__image">
+															<img src="{{./origin}}/wp-content/themes/decuba/app/img/tmp/menu/galleries/{{data_menu.menuType}}/carousel-el-hombre.jpg" alt="">
+
+															<div class="gallery--full__product-menu-item">
+																<div class="product-menu-item">
+																	<div class="product-menu-item__meta">
+																		<p><strong>El Hombre</strong></p>
+																		<div class="product-menu-item__price">
+																			<p><strong></strong></p>
+																		</div>
+																	</div>
+																	<p>El Dorado 12 Year Old rum, Chambord raspberry liqueur, cranberry, Angostura bitters and honey.</p>
+																</div>
+															</div>
+														</div>
+														<div class="gallery--full__image">
+															<img src="{{./origin}}/wp-content/themes/decuba/app/img/tmp/menu/galleries/{{data_menu.menuType}}/carousel-pineapple-daiquiri.jpg" alt="">
+
+																<div class="gallery--full__product-menu-item">
+																<div class="product-menu-item">
+																	<div class="product-menu-item__meta">
+																		<p><strong>Pineapple Daiquiri</strong></p>
+																		<div class="product-menu-item__price">
+																			<p><strong></strong></p>
+																		</div>
+																	</div>
+																	<p>Havana Club Cuban Spiced rum, pineapple, lime and sugar.</p>
+																</div>
+															</div>
+														</div>
+														<div class="gallery--full__image">
+															<img src="{{./origin}}/wp-content/themes/decuba/app/img/tmp/menu/galleries/{{data_menu.menuType}}/carousel-polynesian-paradise.jpg" alt="">
+
+																<div class="gallery--full__product-menu-item">
+																<div class="product-menu-item">
+																	<div class="product-menu-item__meta">
+																		<p><strong>Polynesian Paradise</strong></p>
+																		<div class="product-menu-item__price">
+																			<p><strong></strong></p>
+																		</div>
+																	</div>
+																	<p>Absolut Watermelon, cranberry, grenadine, lime and Il Baco da Seta Prosecco.</p>
+																</div>
+															</div>
+														</div>
+														<div class="gallery--full__image">
+															<img src="{{./origin}}/wp-content/themes/decuba/app/img/tmp/menu/galleries/{{data_menu.menuType}}/carousel-pornstar-mojtio.jpg" alt="">
+
+																<div class="gallery--full__product-menu-item">
+																<div class="product-menu-item">
+																	<div class="product-menu-item__meta">
+																		<p><strong>Pornstar Mojito</strong></p>
+																		<div class="product-menu-item__price">
+																			<p><strong></strong></p>
+																		</div>
+																	</div>
+																	<p>Havana Club 3 Year and 7 Year Old rums, passionfruit, pineapple, lime, mint and Il Baco da Seta Prosecco.</p>
+																</div>
+															</div>
+														</div>
+
+														<div class="gallery--full__image">
+															<img src="{{./origin}}/wp-content/themes/decuba/app/img/tmp/menu/galleries/{{data_menu.menuType}}/carousel-cuban-iced-tea.jpg" alt="">
+
+																<div class="gallery--full__product-menu-item">
+																<div class="product-menu-item">
+																	<div class="product-menu-item__meta">
+																		<p><strong>Cuban Iced Tea</strong></p>
+																		<div class="product-menu-item__price">
+																			<p><strong></strong></p>
+																		</div>
+																	</div>
+																	<p>Our secret blend of four Havana Club rums, Appleton Estate Signature Blend rum, vanilla syrup and Coca–Cola Zero.</p>
+																</div>
+															</div>
+														</div>
+
+														<div class="gallery--full__image">
+															<img src="{{./origin}}/wp-content/themes/decuba/app/img/tmp/menu/galleries/{{data_menu.menuType}}/carousel-mango-mai-tai.jpg" alt="">
+
+																<div class="gallery--full__product-menu-item">
+																<div class="product-menu-item">
+																	<div class="product-menu-item__meta">
+																		<p><strong>Mango Mai Tai</strong></p>
+																		<div class="product-menu-item__price">
+																			<p><strong></strong></p>
+																		</div>
+																	</div>
+																	<p>Appleton Estate Signature Blend rum, Appleton Estate 8 Year Old Reserve rum, Giffard Orgeat syrup, mango, lime and Angostura bitters.</p>
+																</div>
+															</div>
+														</div>
+
+														<div class="gallery--full__image">
+															<img src="{{./origin}}/wp-content/themes/decuba/app/img/tmp/menu/galleries/{{data_menu.menuType}}/carousel-mango-passion-spritz.jpg" alt="">
+
+																<div class="gallery--full__product-menu-item">
+																<div class="product-menu-item">
+																	<div class="product-menu-item__meta">
+																		<p><strong>Mango Passion Spritz</strong></p>
+																		<div class="product-menu-item__price">
+																			<p><strong></strong></p>
+																		</div>
+																	</div>
+																	<p>Bacardí Añejo Cuatro rum, Il Baco da Seta Prosecco, mango, passionfruit, soda water and lime.</p>
+																</div>
+															</div>
+														</div>
+
+													</div>
+
+													<div class="gallery--full__arrow gallery--full__arrow--prev">
+														<a class="button button--circle">
+														 	<svg width="16px" height="26px" viewBox="0 0 16 26" class="arrow-left arrow-left--original">
+														    	<path d="M187,141 L205,141 L205,144 L187,144 L187,141 Z M202,159 L202,144 L205,144 L205,159 L202,159 Z" transform="translate(2, 12) rotate(45) translate(-196, -150) " fill="#FFFFFF"></path>
+														    </svg>
+														    <svg width="16px" height="26px" viewBox="0 0 16 26" class="arrow-left arrow-left--hidden">
+														    	<path d="M187,141 L205,141 L205,144 L187,144 L187,141 Z M202,159 L202,144 L205,144 L205,159 L202,159 Z" transform="translate(2, 12) rotate(45) translate(-196, -150) " fill="#FFFFFF"></path>
+														    </svg>
+														</a>
+													</div>
+													<div class="gallery--full__arrow gallery--full__arrow--next">
+														<a class="button button--circle">
+														 	<svg width="16px" height="26px" viewBox="0 0 16 26" class="arrow-right arrow-right--original">
+														    	<path d="M187,141 L205,141 L205,144 L187,144 L187,141 Z M202,159 L202,144 L205,144 L205,159 L202,159 Z" transform="translate(2, 12) rotate(45) translate(-196, -150) " fill="#FFFFFF"></path>
+														    </svg>
+														    <svg width="16px" height="26px" viewBox="0 0 16 26" class="arrow-right arrow-right--hidden">
+														    	<path d="M187,141 L205,141 L205,144 L187,144 L187,141 Z M202,159 L202,144 L205,144 L205,159 L202,159 Z" transform="translate(2, 12) rotate(45) translate(-196, -150) " fill="#FFFFFF"></path>
+														    </svg>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										{{/ifCond}}
+
+
+									</div>
+								</div>
+							</div>
+
+
+						{{/each}}
+					</div>
+				</div>
+			{{/each}}
+		{% endraw %}
+	</script>
+
+{% endblock %}

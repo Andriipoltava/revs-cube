@@ -1,0 +1,16 @@
+$c: '.page-tertiary';
+
+#{$c} {
+	h1 {
+		font-size: 2.5rem;
+
+		@include mq('md','min') {
+			line-height: 4.063rem;
+			font-size: 4.375rem;
+			> span {
+				font-size: 5.938rem;
+				letter-spacing: 7.21x;
+			}
+		}
+	}
+}

@@ -1,0 +1,7 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h{% if title_weight %}{{title_weight}}{% else %}1{% endif %} class="color--{% if title_color %}{{title_color}}{% else %}white{% endif %} {% if not content %}no-margin{% endif %} {{classes}}">{% if has_flair %}<span class="color--{{flair__color.color}}">{{flair__text}}</span>{% endif %}{{title}}</h{% if title_weight %}{{title_weight}}{% else %}1{% endif %}>
+		</div>
+	</div>
+</div>

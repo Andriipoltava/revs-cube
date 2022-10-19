@@ -1,0 +1,17 @@
+<div class="offer-block {{moduleClasses}}">
+	<div class="offer-block__image">
+		{% include 'atoms/tag.twig' with {
+			'text': tag.tag__text,
+			'theme': tag.color,
+			'size': tag.tag__size,
+			'price': tag.price,
+		}%}
+
+		<img src="{{image}}" alt="">
+	</div>
+	<div class="offer-block__content">
+		<h4 class="offer-block__content__title">{{title}}</h4>
+		{{content}}
+		<small>{{small_print}}</small>
+	</div>
+</div>

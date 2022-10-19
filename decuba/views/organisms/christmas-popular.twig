@@ -1,0 +1,80 @@
+<div class="bg--christmas-green--pattern christmas__popular">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text--center christmas__popular__heading">				
+				<h3 class="christmas__popular__title color--white">
+					Popular
+					<span class="color--christmas-red bottom">Locations</span>
+				</h3>
+			</div>
+
+
+			<div class="col-md-12 text--center color--white">
+				<p>Check out our incredible Christmas party venues. We’ve got 19 bars across the UK, so you’re never far from the fiesta.</p>
+			</div>
+
+
+			<div class="col-md-12 text--center color--white christmas__popular__buttons-wrap">
+				<div class="christmas__popular__buttons">
+					<span>
+						{% include 'atoms/button.twig' with {
+							'type': 'underline',
+							'text': 'Belfast',
+							'color': 'orange',
+							'link': '/bar/belfast/christmas/'
+						}%}
+					</span>
+					<span>
+						{% include 'atoms/button.twig' with {
+							'type': 'underline',
+							'text': 'Liverpool',
+							'color': 'orange',
+							'link': '/bar/liverpool/christmas/'
+						}%}
+					</span>
+					<span>
+						{% include 'atoms/button.twig' with {
+							'type': 'underline',
+							'text': 'Birmingham',
+							'color': 'orange',
+							'link': '/bar/birmingham/christmas/'
+						}%}
+					</span>
+					<span>
+						{% include 'atoms/button.twig' with {
+							'type': 'underline',
+							'text': 'Leeds',
+							'color': 'orange',
+							'link': '/bar/leeds/christmas/'
+						}%}
+					</span>
+					<span>
+						{% include 'atoms/button.twig' with {
+							'type': 'underline',
+							'text': 'Nottingham',
+							'color': 'orange',
+							'link': '/bar/nottingham/christmas/'
+						}%}
+					</span>
+					<span>
+						{% include 'atoms/button.twig' with {
+							'type': 'underline',
+							'text': 'Manchester',
+							'color': 'orange',
+							'link': '/bar/manchester/christmas/'
+						}%}
+					</span>
+				</div>
+			</div>
+
+			<div class="col-md-12 text--center color--white">
+				{% include 'atoms/button.twig' with {
+					'type': 'regular',
+					'text': 'Find my Bar',
+					'color': 'pink',
+					'classes': 'js-locations-toggle'
+				}%}
+			</div>
+		</div>
+	</div>
+</div>

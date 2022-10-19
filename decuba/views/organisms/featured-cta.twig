@@ -1,0 +1,32 @@
+<div class="featured-cta {% if direction == 'right' %}featured-cta--right{% endif %} {{moduleClasses}} {% if alternate %}featured-cta--alternate{% endif %}">
+
+	<div class="featured-cta__sidebar">
+		{% include 'molecules/sidebar.twig' with {
+			'type': 'text',
+			'description': content,
+			'button': {
+				'has_button': has_button,
+				'type': button.type,
+				'text': button.text,
+				'color': button.color.color,
+				'link_type' : button.link_type,
+				'external_link' : button.external_link,
+				'internal_link' : button.internal_link,
+				'file' : button.file,
+				'classes': button.classes,
+			}
+		} %}
+	</div>
+
+	<div class="featured-cta__image rounded--3" style="background-image: url({{image_mob ? image_mob : image}});">
+		<img src="{{image}}" alt="">
+	</div>
+
+	<div class="featured-cta__tag">
+		{% include 'atoms/tag.twig' with {
+			'text': tag.tag__text,
+			'theme': tag.color,
+			'size': tag.tag__size
+		} %}
+	</div>
+</div>

@@ -1,0 +1,34 @@
+@include input-placeholder {
+	font-style: italic;
+	color: color(black);
+	opacity: .5;
+	font-size: .9em;
+};
+
+fieldset {
+	border: none;
+	padding: 0;
+}
+
+input:not([type="submit"]) {
+	font-family: $body-font-family;
+	line-height: 1;
+	font-size: .9em;
+	color: color(black);
+	border: 2px solid color(grey, regular);
+	border-radius: 2px;
+	padding: 15px;
+	outline: none;
+
+	&.error {
+		border-color: color(red);
+	}
+
+	&.success {
+		border-color: color(navy);
+	}
+
+	&:active, &:focus, &.active {
+		border-color: color(orange);
+	}
+}

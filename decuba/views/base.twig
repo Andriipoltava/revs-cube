@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	{% block html_head %}
+		<head>
+			{% block html_head_meta %}{% endblock %}
+			{% block html_head_css %}{% endblock %}
+			{% block html_head_js %}{% endblock %}
+			{% block html_head_other %}{% endblock %}
+		</head>
+	{% endblock %}
+
+	{% block html_body %}
+		<body class="{{body_class}}">
+			{% block html_body_js %}{% endblock %}
+			{% include 'organisms/modal_locations.twig' %}
+			{% include 'organisms/modal_video.twig' %}
+			{% include 'organisms/modal_menu.twig' %}
+			{% include 'organisms/modal_usefulinfo.twig' %}
+			{% include 'organisms/modal_360.twig' %}
+			{% include 'organisms/masthead.twig' %}
+			{% block content %}
+				<p>Whoops! No content</p>
+			{% endblock %}
+
+			{% include 'organisms/footer.twig' %}
+			{% block html_footer_container %}
+				{{ function('wp_footer') }}
+			{% endblock %}
+			{% for script in options.tracking_scripts %}
+				{{script.content}}
+			{% endfor %}
+		</body>
+	{% endblock %}
+</html>

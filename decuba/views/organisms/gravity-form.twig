@@ -1,0 +1,24 @@
+
+{% set unq = function('umod') %}
+
+{# Config #} 
+{% if is_styled is not defined %}{%set is_styled = true %}{% endif %}
+{% if is_widget is not defined %}{%set is_widget = false %}{% endif %}
+{% if use_placeholders is not defined %}{%set use_placeholders = true %}{% endif %}
+
+{# Content #} 
+{% if form_id is not defined %}{%set form_id = '' %}{% endif %}
+{% if form_title is not defined %}{%set form_title = '' %}{% endif %}
+{% if display_title is not defined %}{%set display_title = false %}{% endif %}
+{% if display_description is not defined %}{%set display_description = true %}{% endif %}
+{% if preselect_bar is not defined %}{%set preselect_bar = false %}{% endif %}
+{% if field_values is not defined %}{%set field_values = false %}{% endif %}
+{% if ajax is not defined %}{%set ajax = true %}{% endif %}
+
+
+<div class="gravity-form {% if is_styled %}gravity-form--styled{% endif %} {% if preselect_bar %}gravity-form--preselect-bar{% endif %} {% if footer_signup %}gravity-form--footer_signup{% endif %} {% if use_placeholders %}gravity-form--use-placeholders{% endif %} {% if is_widget %}gravity-form--widget{% endif %} {% if not showboth %}{% if mobile %}gravity-form--mobile {% else %} gravity-form--desktop{% endif %}{% endif %}">
+	{% if display_title %}
+		<h3 class="gravity-form__title">{{ form_title is not empty ? form_title : function('get_grav_form_title', form_id) }}</h3>
+	{% endif %}
+	{{ function('gravity_form', form_id, false, display_description, false, field_values, ajax) }}
+</div>

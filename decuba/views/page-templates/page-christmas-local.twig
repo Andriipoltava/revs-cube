@@ -1,0 +1,160 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+    {# {% set slides = [{
+		'image': site.theme.link~'/app/img/bg/ch_local_background.jpg',
+		'image_position': 'center',
+		'flair': {
+			'has_flair': true,
+			'flair__text': 'Wish You Were Here',
+			'flair__color': {
+				'color': 'white',
+			},
+		},
+		'title': 'CUBAN<br>CHRISTMAS IN<br>MANCHESTER',
+		'title_weight': '1',
+		'title_color': '',
+		'content': 'The festive season is the perfect excuse for a proper fiesta, and our Christmas party venues are renowned for their unique, exotic and totally tropical vibes. ',
+		'content_color': '',
+		'underline': true,
+		'has_button': false,
+		'show_location': false,
+		'page': 'christmas-local',
+	}] %}
+
+	{% include 'organisms/hero.twig' with {
+		'moduleClasses': 'hero--mob-bg-center',
+		'slider': slides,		
+	} %} #}
+
+	{% include 'organisms/hero.twig' with {
+		'moduleClasses': 'hero--mob-bg-center',
+		'slider': post.get_field('hero__slides')
+	}%}
+
+	<div class="christmas-local-about__block">
+		<div class="christmas-local-about__bg  bg--navy--pattern">
+		</div>
+		<div class="christmas-local-about__img">
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="christmas-local-about__left">
+					<h2 class="christmas-local-about__title">
+						<span class="">It’s about time you</span><br>							
+						EXPERIENCE</br>CHRISTMAS</br>IN CUBA!
+						<div class="christmas-local-about__underline">
+						</div>
+					</h2>
+				</div>
+				<div class="christmas-local-about__right">
+						<p>Celebrate the festive season by adding some Cuban sunshine to your Christmas party. We're just putting the finishing touches to our Christmas 2021 menu, ready to make it the best Christmas ever! Expect extra special Christmas cocktails, along with the old exotic favourites; extravagant tapas feasts and a Christmas Dining menu like no other. Enquire now to secure a date for your Christmas party in paradise.</p>
+						<br />
+						<br />
+						<strong>Products, packages and pricing below are from Christmas 2020, and so are subject to change. But rest assured, it will be full of the same Revolucion de Cuba flare and passion to make your Christmas fiesta sparkle.</strong>
+					<div class="christmas-local-about__buttons">
+						{% include 'atoms/button.twig' with {
+							'type': 'regular',
+							'text': 'View Menus',
+							'color': 'skyblue',
+							'link_type' : 'internal',
+							'internal_link' : '#christmas__menu',
+							'classes': 'hero__slide__content__button hero__info__button mr-5 christmas-button--menu',
+						}%}
+						{% include 'atoms/button.twig' with {
+							'type': 'regular',
+							'text': 'Book',
+							'color': 'fuschia',
+							'link_type' : 'external',
+							'external_link' : site.link ~ '/book/',
+							'classes': 'button button--regular button--regular--green  js-locations-toggle js-circle-2893, christmas-button--book',
+						}%}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% set packages = post.get_field('christmas__packages') %}
+
+	{% include 'organisms/christmas-local-packages.twig' with {
+		'packages_title': packages.title,
+		'packages_package': packages.package
+	} %}
+
+	{# <section class="christmas__why-choose christmas__why-choose--no-christmas-menus christmas__why-choose--no-christmas-menus">
+		<div class="container christmas__why-choose__container">
+			<div class="row">
+				<div class="christmas__local__why-choose__left">
+					<h3 class="christmas__local__why-choose__title">
+						WHY CHOOSE US?
+						<span class="christmas__local__title__underline"></span>
+					</h3>
+					<p class="christmas__local__why-choose__text">
+						Located on Peter Street in the city centre, our Cantina, rum and cocktail bar spans two floors, 
+						including the iconic Havana Club Bar and Havana Club Room, ideal for thrilling festive parties and 
+						unforgettable Christmas nights out.
+					</p>
+						<ul>
+							<li>
+								Situated in the heart of the city on Peter Street
+							</li>
+							<li>
+								10-minute walk from Manchester Oxford Road station
+							</li>
+							<li>
+								2-minute walk from Radisson Blu Edwardian Manchester
+							</li>
+							<li>
+								Stunning Cuban-themed Christmas party venue
+							</li>
+						</ul>
+				</div>
+				<div class="christmas__why-choose__right">
+					<div id="map" class="christmas__map"></div>
+				</div>
+			</div>
+		</div>
+	</section> #}
+
+		{% set gallery_large_images = post.get_field('gallery__images') %}
+
+{# <section>
+	{% set gallery_large_images = [{
+		'image' : {
+			'url': site.theme.link~'/app/img/tmp/gallery/ch-local-gallery-img-1.jpg',
+			'alt': 'Example Image 1',
+		},
+	},{
+		'image' : {
+			'url': site.theme.link~'/app/img/tmp/gallery/ch-local-gallery-img-1.jpg',
+			'alt': 'Example Image 1',
+		},
+	},{
+		'image' : {
+			'url': site.theme.link~'/app/img/tmp/gallery/ch-local-gallery-img-1.jpg',
+			'alt': 'Example Image 1',
+		},
+	}] %} #}
+	<div class="christmas__local__gallery--desktop">
+		{% include 'organisms/gallery.twig' with {
+			'type': 'christmas-large',
+			'images': gallery_large_images,
+			'has_sidebar': true,
+			'sidebar_type': 'location',
+			'page': 'christmas-local',
+		}%}
+	</div>
+	<div class="christmas__local__gallery--mobile">
+		{% include 'organisms/gallery.twig' with {
+			'type': 'large',
+			'images': gallery_large_images,
+			'has_sidebar': true,
+			'sidebar_type': 'location',
+			'page': 'christmas-local',
+		}%}
+	</div>
+</section>
+
+{% endblock %}

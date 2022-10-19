@@ -1,0 +1,25 @@
+
+{% if loadmorePosts %}
+
+	{# Section -- All Post #}
+	{% for post in loadmorePosts %}
+
+		{% include 'molecules/blog-post.twig' with {
+			'image': {
+				'url': TimberImage(post.overview_image),
+				'alt': 'Package 1',
+			},
+			'title':  post.blog_mini_title ? post.blog_mini_title : post.title,
+			'content':  post.overview_synopsis ? post.overview_synopsis : post.content|excerpt(10),
+			'category': post.terms('category') | join(', '),
+			'button': {
+				'type': 'text',
+				'text': 'Read More',
+				'color': 'skyblue',
+				'link': post.link
+			}
+		} %}
+	{% endfor %}
+	
+{% endif %}
+

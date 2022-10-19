@@ -1,0 +1,49 @@
+<div class="package {{class}}">
+	<div class="package__pb2price" style="display: none;">{{ tag.pb2text }}</div>
+	<div class="package__image">
+		<img src="{{image.url}}" alt="{{image.alt}}">
+
+		{% if popular %}
+			<div class="package__popular">
+				{% include 'atoms/tag.twig' with {
+					'text': 'Most popular',
+					'theme': 'pink',
+					'size': 'medium'
+				}%}
+			</div>
+		{% endif %}
+		
+		{% if tag.text %}
+			<div class="package__tag">
+				{% include 'atoms/tag.twig' with {
+					'text': tag.text,
+					'theme': tag.theme,
+					'link': tag.link,
+					'size': tag.size,
+					'flair': tag.flair,
+					'flair_text': tag.flair_text,
+					'flair_color': tag.flair_color,
+					'price': tag.price
+				}%}
+			</div>
+		{% endif %}
+	</div>
+
+	<div class="package__content">
+		<h3>{{title}}</h3>
+
+		<p class="mobile-text-m">{{content|raw}}</p>
+
+		{% if button %}
+			{% include 'atoms/button.twig' with {
+				'type': button.type,
+				'text': button.text,
+				'color': button.color,
+				'link_type': button.link_type,
+				'external_link': button.external_link,
+				'internal_link': button.internal_link,
+				'file': button.file,
+			}%}
+		{% endif %}
+	</div>
+</div>

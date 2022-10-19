@@ -1,0 +1,29 @@
+    <div class="fiesta">
+        <div class="fiesta__sidebar">
+            {% include 'molecules/sidebar.twig' with {
+                'small': sidebar.small,
+                'type': sidebar.type,
+                'has_flair': sidebar.has_flair,
+                'flair': {
+                    'color': sidebar.flair.color,
+                    'text': sidebar.flair.text,
+                },
+                'title': sidebar.title,
+                'description':  fn('truncate',sidebar.description,153),
+                'button': {
+                    'text': sidebar.button.text,
+                    'type': 'regular',
+                    'link_type' : 'external',
+                    'has_button':true,
+                    'internal_link': sidebar.button.internal_link,
+                    'external_link': sidebar.button.external_link,
+                    'file':''
+
+                }
+            } %}
+        </div>
+
+        <div class="fiesta__image">
+            <img src="{{ image.url }}" alt="{{ image.alt }}">
+        </div>
+    </div>

@@ -1,0 +1,280 @@
+// 1. Boring
+// 2. Fun
+// 3. Animation
+
+
+/**********************
+** 1. Boring
+**********************/
+
+@mixin modalActive($el) {
+	visibility: visible;
+	opacity: 1;
+	transition: $default-timing $default-easing;
+	transition-delay: .3s;
+	pointer-events: all;
+	-webkit-overflow-scrolling: touch;
+	z-index: 401;
+
+	> * {
+		opacity: 1;
+		transform: translateY(0);
+		transition: 1s $default-easing;
+		transition-delay: .3s;
+	}
+
+	#{$el} {
+		&__social {
+			transition-delay: .6s;
+		}
+
+		&__background {
+			transition: background-color $default-timing $default-easing;
+		}
+	}
+}
+
+// Gives you the things needed for a pseudo class to work, saving you three whole lines of code!
+//
+// .example::after {
+//     @include pseudo;
+//     top: -1rem; left: -1rem;
+//     width: 1rem; height: 1rem;
+// }
+
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+	content: $content;
+	display: $display;
+	position: $pos;
+}
+
+@mixin placeholder {
+	&::-moz-placeholder { @content }
+	&::-webkit-input-placeholder { @content }
+	&:-ms-input-placeholder { @content }
+}
+
+// The engine behind our fluid type layout. You give us a min and max horizontal width, and a min and max value, and we'll sort out the rest.
+@function strip-unit($value) {
+	@return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+	$u1: unit($min-vw);
+	$u2: unit($max-vw);
+	$u3: unit($min-font-size);
+	$u4: unit($max-font-size);
+
+	@if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+		& {
+			font-size: $min-font-size;
+
+			@media screen and (min-width: $min-vw) {
+				font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+			}
+
+			@media screen and (min-width: $max-vw) {
+				font-size: $max-font-size;
+			}
+		}
+	}
+}
+
+// Media query mixin that does min-width by default, gets values from grid breakpoints in _settings.scss
+//
+// @include mq('xs', 'max') {
+//     padding-top: 10px;
+// }
+
+@mixin mq($width, $type: min) {
+	@if map_has_key($grid-breakpoints, $width) {
+		$width: map_get($grid-breakpoints, $width);
+		@if $type == max {
+			$width: $width - 1px;
+		}
+		@media only screen and (#{$type}-width: $width) {
+			@content;
+		}
+	} @else {
+		@media only screen and (#{$type}-width: $width) {
+			@content;
+		}
+	}
+}
+
+
+// Retina images
+//
+// .example {
+//     @include retina {
+//         background-image: url(../img/background@2x.png);
+//     }
+// }
+
+@mixin retina {
+	@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (-moz-min-device-pixel-ratio: 1.5),
+	only screen and (-o-min-device-pixel-ratio: 3 / 2),
+	only screen and (min-device-pixel-ratio: 1.5),
+	only screen and (min-resolution: 1.5dppx) {
+		@content;
+	}
+}
+
+// We don't need to keep duplicating placeholder styles for each browser anymore! Just include this.
+@mixin input-placeholder {
+	&.placeholder { @content; }
+	&:-moz-placeholder { @content; }
+	&::-moz-placeholder { @content; }
+	&:-ms-input-placeholder { @content; }
+	&::-webkit-input-placeholder { @content; }
+}
+
+// Hardware accelerate that animation
+@mixin hardware($backface: true, $perspective: 1000) {
+	@if $backface {
+		backface-visibility: hidden;
+	}
+	perspective: $perspective;
+}
+
+// Simple aligning. For ab-center, use:
+// .example {
+//     @include align(true, true, absolute);
+// }
+
+@mixin align($vertical: true, $horizontal: false, $position: relative) {
+	@if $position {
+		position: $position;
+	}
+	@if $vertical {
+		top: 50%;
+	}
+	@if $horizontal {
+		left: 50%;
+	}
+
+	@if $vertical and $horizontal {
+		transform: translateX(-50%) translateY(-50%);
+	} @else if $vertical {
+		transform: translateY(-50%);
+	} @else {
+		transform: translateX(-50%);
+	}
+}
+
+@mixin aspect-ratio($width, $height, $selector: '.content') {
+	position: relative;
+	&:before {
+		@include pseudo(block,relative);
+		width: 100%;
+		padding-top: ($height / $width) * 100%;
+	}
+
+	> #{$selector} {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+// Links
+@mixin all-link-states()
+{
+	&, &:hover, &:focus, &:visited, &:active
+	{
+		@content;
+	}
+}
+
+// Lists
+@mixin unstyled-list()
+{
+	margin: 0;
+	list-style: none;
+	padding-left: 0;
+}
+
+// Target IE 10 only
+//
+// @include ie10 {
+//     padding-top: 10px;
+// }
+
+@mixin ie10 {
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+		@content;
+	}
+}
+
+/**********************
+** 2. Fun
+**********************/
+
+// Handy CSS triangle generator (uses 'pseudo' mixin as dependency)
+@mixin css-triangle($color, $direction, $size: 6px, $position: absolute, $round: false){
+	@include pseudo($pos: $position);
+	width: 0;
+	height: 0;
+	@if $round {
+		border-radius: 3px;
+	}
+	@if $direction == down {
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+		border-top: $size solid $color;
+		margin-top: 0 - round( $size / 2.5 );
+	} @else if $direction == up {
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+		border-bottom: $size solid $color;
+		margin-bottom: 0 - round( $size / 2.5 );
+	} @else if $direction == right {
+		border-top: $size solid transparent;
+		border-bottom: $size solid transparent;
+		border-left: $size solid $color;
+		margin-right: -$size;
+	} @else if  $direction == left {
+		border-top: $size solid transparent;
+		border-bottom: $size solid transparent;
+		border-right: $size solid $color;
+		margin-left: -$size;
+	}
+}
+
+/**********************
+** 3. Animation
+**********************/
+@mixin animation($animate...) {
+	$max: length($animate);
+	$animations: '';
+
+	@for $i from 1 through $max {
+		$animations: #{$animations + nth($animate, $i)};
+
+		@if $i < $max {
+			$animations: #{$animations + ", "};
+		}
+	}
+	-webkit-animation: $animations;
+	-moz-animation:    $animations;
+	-o-animation:      $animations;
+	animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+	@-webkit-keyframes #{$animationName} {
+		@content;
+	}
+	@-moz-keyframes #{$animationName} {
+		@content;
+	}
+	@-o-keyframes #{$animationName} {
+		@content;
+	}
+	@keyframes #{$animationName} {
+		@content;
+	}
+}

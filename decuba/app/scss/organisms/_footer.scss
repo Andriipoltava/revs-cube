@@ -1,0 +1,145 @@
+$c: '.footer';
+
+#{$c} {
+	background-color: color(white);
+
+	.list--stack {
+		display: flex;
+    	flex-direction: column;
+    	margin-top: 0;
+    	margin-bottom: 0; 
+		
+		@include mq('ipl', 'max') {
+    	    flex-direction: row;
+			flex-wrap: wrap;
+			padding: 0;
+		}
+
+    	li {
+    		display: inline;
+    		@include mq('ipl', 'max') {
+    			flex-grow: 1;
+    		}
+    		@include mq('md', 'max') {
+    			flex: 0 50%;
+			}
+    	}
+		a, span {
+			@extend .h5-size;
+			font-family: $header-font-family;
+			@include mq('ipl', 'max') {
+			    margin: 0 auto;
+				display: table;
+    		}
+    		@include mq('md', 'max') {
+    			display: block;
+    		}
+		}
+	}
+	.list--social {
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		
+		li {
+			padding: 0;
+			flex-grow: 0;
+			&:first-child {
+				a {
+					padding-left: 0;
+				}
+			}
+			&:last-child {
+				a {
+					@include mq('md', 'max') {
+						padding-right: 0;
+					}
+				}
+			}
+		}
+		a {
+			text-decoration: none;
+			color: color(black);
+			font-size: 20px;
+			padding: 10px 15px;
+			@include mq('md', 'max') {
+				opacity: 0.5;
+			}
+		}
+	}
+
+	.smallcopy {
+		font-size: 14px;
+		a {
+			color: color(black);
+		}
+	}
+
+	form {
+		.button--text {
+			background-color: transparent;
+			border: none;
+		}
+	}
+	.copyright {
+		color: color(black);
+	}
+	> .container {
+		@include mq('ipl', 'max') {
+			padding: 0;
+		}
+	}
+	&__container {
+		padding: 15px 0;
+		
+		> [class^="col-"], [class*=" col-"] {
+			@include mq('md', 'max') {
+				border-bottom: 1px solid #17171F;
+			}
+			@include mq('ipl', 'max') {
+				padding-left: $gutter/2 + px;
+				padding-right: $gutter/2 + px;
+			}
+			&:first-child {
+				@include mq('ipl', 'max') {
+					border-bottom: 1px solid #17171F;
+				}
+			}
+		}
+	}
+}
+
+.cookie-popup {
+	text-align: center;
+	background-color: color(coral);
+	background-size: auto;
+	background-image: url(../../app/img/patterns/main_texture.jpg);
+	background-repeat: repeat;
+	position: fixed;
+	bottom: -300px;
+	left: 0;
+	width: 100%;
+	color: color(black);
+	z-index: 9999;
+	transition: 300ms ease-in-out all;
+
+	&.show {
+		bottom: 0;
+		transition: 300ms ease-in-out all;
+	}
+
+	a {
+		color: color(default);
+		transition: 300ms ease-in-out all;
+
+		&:hover {
+			color: darken(color(default), 5%);
+		}
+	}
+
+	#cookie-consent {
+		margin-top: 15px;
+		border: unset;
+		padding: 10px;
+		cursor: pointer;
+	}
+}

@@ -1,0 +1,44 @@
+<div class="packages packages--3 bg--default--pattern" id="christmas__menu">
+	<div class="container">
+
+		<div class="container__title">
+			<h3>{{ packages_title }}</h3>
+			<div class="christmas__local__packages__underline"></div>
+		</div>
+
+		<div class="christmas__local__packages__wrapper">
+			<div class="packages__container christmas__local__packages__container">
+
+				{% for package in packages_package %}
+					<div class="package">
+						<div
+							class="package__image">
+							{# <img src="{{site.theme.link}}/app/img/tmp/ch_page_package_3.png" alt="package"> #}
+							<img src="{{package.image.url}}" alt="package">
+						</div>
+						<div class="package__content christmas__package">
+							<h3 class="package__content__title">{{ package.title }}</h3>
+							<div class="package__price__container">
+								<p class="package__price__title">From just</p>
+								<p class="package__price">£{{ package.price }} pp</p>
+							</div>
+							<p>{{ package.desc }}</p>
+
+							<div class="package__button christmas__package__button">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Book Now',
+									'color': 'skyblue',
+									'link_type': 'internal',
+									'external_link': '',
+									'internal_link': site.link ~ '/book/',
+									'file': '',
+								}%}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>

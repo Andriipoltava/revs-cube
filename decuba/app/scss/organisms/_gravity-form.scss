@@ -1,0 +1,695 @@
+
+/**
+ * Form styles
+ */
+
+
+
+// Gravity Forms -------------------------------------
+
+$c: gravity-form;
+.#{$c}
+{
+	&--mobile {
+		@include mq('md','min') {
+			display: none;
+		}
+	}
+
+	&--desktop {
+		@include mq('md','max') {
+			display: none;
+		}
+	}
+
+}
+
+$c: gravity-form--styled;
+.#{$c}
+{
+	form
+	{
+		@extend .form !optional;
+	}
+
+	.gform_fields,
+	.form__field-wrapper
+	{
+		@include unstyled-list;
+		margin-left: -$form-spacing;
+	}
+
+	.form--tight,
+	&.form--tight
+	{
+		.gform_fields,
+		.form__field-wrapper
+		{
+			margin-left: -$form-spacing/2;
+		}
+	}
+
+	.gfield
+	{
+		@extend .field !optional;
+
+		display: inline-block;
+		width: 100%;
+		padding-left: $form-spacing;
+		vertical-align: top;
+		margin-bottom: $form-spacing;
+
+		&--type--hidden,
+		{
+			margin-bottom: 0px;
+			@include extend(vis-clip);
+		}
+
+
+		&.vis-clip		// Increase specificity of vis-clip when added directly
+		{
+			@include extend(vis-clip);
+		}
+
+	}
+
+	.form--tight,
+	&.form--tight
+	{
+		.gfield
+		{
+			padding-left: $form-spacing/2;
+			margin-bottom: $form-spacing/2;
+		}
+	}
+
+
+	.gfield--one-half {	width: 50%; }
+
+
+
+	// Label
+
+	.gfield_label
+	{
+		@extend .field__label !optional;
+	}
+
+	.gfield_required
+	{
+		color: red;
+	}
+
+	.field--consent
+	{
+		.gfield_label
+		{
+			font-weight: normal;
+		}
+
+		.gfield_required
+		{
+			display: none;
+		}
+	}
+
+	.gravity-form--use-placeholders,
+	&.gravity-form--use-placeholders
+	{
+		.gfield--has-placeholder:not(.field--force-label),
+		.gfield--type--select:not(.field--force-label)
+		{
+			.gfield_label
+			{
+				display: none;
+			}
+		}
+	}
+
+	// Counter
+	.ginput_counter
+	{
+		@include extend(vis-clip);
+	}
+
+
+	// Messages
+
+	.gform_heading
+	{
+		margin-bottom: 1em;
+	}
+
+	.gform_confirmation_message
+	{
+		@extend .form__success !optional;
+		margin-bottom: 0;
+	}
+
+	.validation_error
+	{
+		@extend .form__error !optional;
+		display: none;
+
+		&--force
+		{
+			display: block;
+		}
+	}
+
+
+	.gfield_description.validation_message
+	{
+		@extend .field__errors !optional;
+		@extend .field__error !optional;
+	}
+
+
+
+	// Text fields
+	.gfield--type--text,
+	.gfield--type--email,
+	.gfield--type--password,
+	.gfield--type--name,
+	.gfield--type--number,
+	.gfield--type--phone,
+	.gfield--type--datepicker
+	{
+		.ginput_container
+		{
+			@extend %text-input-field-wrap !optional;
+		}
+
+		input
+		{
+			@extend %text-input-field !optional;
+		}
+
+		&.field--is-focus input,
+		input:focus,
+		input:active
+		{
+			@extend %text-input-field--focus !optional;
+		}
+
+		&.field--error input,
+		.gfield_error input
+		{
+			@extend %text-input-field--error !optional;
+		}
+
+		&.field--success input
+		{
+			@extend %text-input-field--success !optional;
+		}
+	}
+
+
+	// Textarea fields
+	.gfield--type--textarea
+	{
+		.ginput_container
+		{
+			@extend %textarea-field-wrap !optional;
+		}
+
+		textarea
+		{
+			@extend %textarea-field !optional;
+		}
+
+		&.field--is-focus textarea,
+		textarea:focus,
+		textarea:active
+		{
+			@extend %textarea-field--focus !optional;
+		}
+
+		&.field--error textarea,
+		.gfield_error textarea
+		{
+			@extend %textarea-field--error !optional;
+		}
+
+		&.field--success textarea
+		{
+			@extend %textarea-field--success !optional;
+		}
+	}
+
+
+
+	// Select fields
+	$subC: '.gfield--type--select';
+	#{$subC}
+	{
+		// .ginput_container
+		// {
+		// 	@extend %select-field-wrap !optional;
+		// }
+
+		// select
+		// {
+		// 	@extend %select-field !optional;
+		// }
+
+		.selectric { width: 100%; }
+	}
+
+
+	// Date fields - multi input
+	$subC: '.gfield--type--datedropdown';
+	#{$subC}
+	{
+		.clear-multi
+		{
+			@include unstyled-list;
+			margin-left: -10px;
+
+			label
+			{
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				margin-left: 0.5em;
+				pointer-events: none;
+				color: $field-placeholder-color;
+			}
+
+			input:focus,
+			input.field__element--empty
+			{
+				+ label
+				{
+					display: none;
+				}
+			}
+
+			// select
+			// {
+			// 	@extend %select-field;
+			// }
+
+			.selectric { width: 100%; min-width: auto; }
+		}
+
+		.gfield_date_day,
+		.gfield_date_dropdown_day,
+		.gfield_date_month,
+		.gfield_date_dropdown_month,
+		.gfield_date_year,
+		.gfield_date_dropdown_year
+		{
+			display: inline-block;
+			width: calc(30% - 10px);
+			margin-left: 10px;
+			vertical-align: top;
+			position: relative;
+		}
+
+		.gfield_date_year,
+		.gfield_date_dropdown_year
+		{
+			width: calc(40% - 10px);
+		}
+
+		// .gfield_date_dropdown_day,
+		// .gfield_date_dropdown_month,
+		// .gfield_date_dropdown_year
+		// {
+		// 	@extend %select-field-wrap;
+		// }
+	}
+
+
+
+	// Checkbox fields
+
+	.gfield--type--checkbox
+	{
+		text-align: left;
+
+		input
+		{
+			@extend %checkbox-field !optional;
+		}
+
+		.gfield_checkbox
+		{
+			@extend %list--unstyled !optional;
+
+			li + li
+			{
+				margin-top: 5px;
+			}
+		}
+
+		.ginput_container
+		{
+			label
+			{
+				@extend %checkbox-label !optional;
+			}
+
+			input:checked + label
+			{
+				@extend %checkbox-field--checked !optional;
+			}
+		}
+	}
+
+	.gravity-form--use-placeholders,
+	&.gravity-form--use-placeholders
+	{
+		.gfield--type--checkbox:not(.field--force-label)
+		{
+			.gfield_label
+			{
+				display: none;
+			}
+		}
+	}
+
+
+
+	// Radio fields
+
+	.gfield--type--radio
+	{
+		input
+		{
+			@extend %radio-field !optional;
+		}
+
+		.gfield_radio
+		{
+			@extend %list--unstyled !optional;
+			margin-left: -10px;
+
+			li
+			{
+				display: inline-block;
+				vertical-align: middle;
+				margin-left: 10px;
+			}
+		}
+
+		.ginput_container
+		{
+
+			label
+			{
+				@extend %radio-label !optional;
+			}
+
+			input:checked + label
+			{
+				@extend %radio-field--checked !optional;
+			}
+		}
+	}
+
+	.gravity-form--use-placeholders,
+	&.gravity-form--use-placeholders
+	{
+		.gfield--type--radio:not(.field--force-label)
+		{
+			.gfield_label
+			{
+				display: none;
+			}
+		}
+	}
+
+
+
+	// Submit fields
+
+	.gform_submit
+	{
+		@extend %submit-field !optional;
+
+		@include mq('md','max') {
+			span {
+				padding: 15px 30px;
+			}
+		}
+
+		.gform_button
+		{
+			text-transform: inherit;
+			white-space: normal;
+			background-color: transparent;
+			padding: 0;
+			border: 0;
+			margin: 0;
+			line-height: 1;
+		}
+
+		.gform_ajax_spinner
+		{
+			@include extend(hide);
+		}
+	}
+
+}
+
+
+
+// INSTANCES ====================
+
+
+
+$c: gravity-form--widget;
+.#{$c}
+{
+	margin: { left: auto; right: auto;}
+	max-width: 472px;
+	position: relative;
+	z-index: 400;
+	background-color: rgba(255,255,255,0.85);
+	box-shadow: 0px 0px 36px rgba(0,0,0,0.1);
+	border-radius: 3px;
+	padding: $form-spacing;
+
+	> *
+	{
+		margin: { left: auto; right: auto; }
+		max-width: 408px;
+	}
+
+	.gform_confirmation_message {
+		text-align: center;
+	}
+
+	.gform_heading {
+		text-align: center;
+	}
+
+	.gform_title,
+	.gravity-form__title {
+		text-align: center;
+		font-family: $header-font-family;
+		font-size: 35px;
+		margin-top: 0;
+		margin-bottom: 0.4em;
+
+		&:last-child
+		{
+			margin-bottom: 0;
+		}
+	}
+
+	.gform_footer
+	{
+		text-align: center;
+	}
+}
+
+
+
+$c: gravity-form--preselect-bar;
+.#{$c}
+{
+	.gfield--name--choose-your-revolucion-de-cuba
+	{
+		html.locationset &
+		{
+			display: none;
+		}
+	}
+}
+
+
+
+$c: gravity-form--footer_signup;
+.#{$c}
+{
+	color: #7C7C84;
+	a {
+		color: color(skyblue);
+	}
+
+	form {
+		position: relative;
+	}
+
+	.gform_description
+	{
+		font-size: 14px;
+	}
+
+	.validation_error
+	{
+		font-size: 14px;
+		border-width: 1px;
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+	}
+
+	.gform_confirmation_message {
+		border: 0;
+		border-radius: 0;
+		border-bottom: 1px solid color(skyblue);
+		font-size: 16px;
+		font-weight: 100;
+	}
+
+	.gfield--type--email {
+		.ginput_container_email {
+			background-color: transparent;
+			position: relative;
+
+			input {
+				padding-right: 40px;
+				border: 0;
+				border-radius: 0;
+				border-bottom: 1px solid color(skyblue);
+				color: color(white);
+			}
+
+
+		}
+	}
+
+	.selectric {
+		background: transparent;
+		border: 0;
+		border-radius: 0;
+		border-bottom: 1px solid color(skyblue);
+		color: #FFFFFF;
+		.label {
+			font-family: $body-font-family;
+			font-weight: 300;
+			color: color(white);
+			padding: 0 13px 0 10px;
+			letter-spacing: 0;
+
+			&:after {
+				color: color(skyblue);
+			}
+		}
+	}
+	.selectric-items {
+		border: 2px solid color(skyblue);
+
+		li.highlighted {
+			background: color(skyblue);
+		}
+	}
+
+	.gfield--type--checkbox
+	{
+		.ginput_container
+		{
+			li
+			{
+				margin-bottom: 5px;
+			}
+
+			label
+			{
+				&::before
+				{
+					border-color: color(skyblue);
+					background-color: transparent
+				}
+				&:hover::before
+				{
+					background-color: lighten(color(skyblue), 10%);
+				}
+			}
+
+			input
+			{
+				&:checked + label
+				{
+					&::before
+					{
+						background-color: color(skyblue);
+					}
+				}
+			}
+		}
+	}
+
+	.gform_footer {
+		// position: absolute;
+		//  	top: 0;
+		// right: 0;
+		// .button {
+		// 	border: 0;
+		// 	border-radius: 0;
+		// 	height: 54px;
+		// 	width: 40px;
+		// 	position: relative;
+		// 	background-color: transparent;
+		// 	&:after {
+		// 		font-family: 'de-cuba';
+		// 		font-size: 8px;
+		// 		@include pseudo;
+		// 		content: $icon-caret-down;
+		// 		right: 50%;
+		// 		top: 50%;
+		// 		transform: translateY(-50%)translateX(50%);
+		// 		color: color(skyblue);
+		// 	}	
+		// }
+		// opacity: 0;
+		// display: none;
+	}
+}
+
+
+// PAGE SPECIFIC
+.gravity-form
+{
+	// Blog article signup
+	.blog__forms &
+	{
+		.gform_confirmation_message
+		{
+			color: color(skyblue);
+		}
+	}
+
+	// AMIGO CARD
+	.page-amigo &
+	{
+		.gfield_required
+		{
+			display: none;
+		}
+	}
+
+	// CONTACT US
+	.page-contact &
+	{
+		.gform_confirmation_message
+		{
+			color: color(navy);
+
+			a { color: color(skyblue); }
+		}
+	}
+}

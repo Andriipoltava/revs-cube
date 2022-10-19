@@ -1,0 +1,38 @@
+<a href="{{ button.link }}"
+   class="blog-post {% if size %}{{ size }}{% else %}col-md-6 col-lg-4{% endif %} {{ topClasses }}">
+    <div class="blog-post__container ">
+
+        <img {% if lazy %}data-{% endif %}src="{{ image.url }}" alt="{{ image.alt }}"
+             class="blog-post__img rounded--too--3 {% if lazy %}owl-lazy{% endif %}" style="   height: 100%; width: 100%;
+    max-height: 400px;   object-fit: cover;">
+
+
+        {% if category %}
+            <div class="blog-post__popular">
+                {% include 'atoms/tag.twig' with {
+                    'flair': true,
+                    'flair_text': category,
+                    'theme': 'orange',
+                    'size': 'medium'
+                } %}
+            </div>
+        {% endif %}
+
+        <div class="blog-post__content">
+            <h5>{{ title }}</h5>
+
+            <div class="content">
+                {{ content|raw }}
+            </div>
+
+            {% include 'atoms/button.twig' with {
+                'flag': 'not-html-link',
+                'type': button.type,
+                'text': button.text,
+                'color': button.color,
+                'link_type': 'internal',
+                'internal_link': '',
+            } %}
+        </div>
+    </div>
+</a>

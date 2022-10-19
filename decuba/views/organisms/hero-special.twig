@@ -1,0 +1,146 @@
+{% set sliderItems = slider[0] %}
+<div class="hero hero--special bg--navy--pattern {{moduleClasses}}">
+	{% for slide in slider %}
+		<div
+			class="hero__slide {% if loop.index == '1' %}active{% endif %}" data-slide-color="{{slide.flair.flair__color.color}}">
+			{# 			<div class="hero--special__strip hero--special__strip--{{slide.flair.flair__color.color}}"></div>
+									 #}
+			<div class="hero__slide__image-container">
+				<div class="hero__slide__image-clip">
+					<div class="hero__slide__image {% if slide.image %}picturefill-background{% endif %}">
+						{% if slide.video %}
+							<video src="{{ slide.video }}" playsinline muted loop autoplay>
+								<source src="{{ slide.video }}" type="video/mp4">
+								Your browser does not support the video tag.
+							</video>
+						{% endif %}
+						{% if slide.image %}
+							<span data-src="{{slide.image}}"></span>
+						{% endif %}
+						{% if slide.image_mobile_crop %}
+							<span data-src="{{slide.image_mobile_crop}}" data-media="(max-width: 768px)"></span>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="hero__slide__content">
+				<div class="container">
+					<div class="row row--a-c row--j-fe">
+						<div class="hero__slide__content-container">
+							<h1 class="hero__slide__content__title color--white {% if slide.title__color_color %}color--{{slide.title__color_color}}{% endif %} {% if not slide.content %}no-content{% endif %} {% if slide.title__position == 'center' %}hero__slide__content__title--centered{% endif %}">
+								{% if slide.flair.has_flair %}
+									<span class="color--{{slide.flair.flair__color.color}}">{{slide.flair.flair__text}}</span>
+								{% endif %}
+								{{slide.title}}</h1>
+
+							{% if post.post_type == 'bar' %}
+								{% include 'atoms/button.twig' with {
+									'type': 'underline',
+									'text': 'Change venue',
+									'color': 'green',
+									'classes': 'js-locations-toggle'
+								}%}
+							{% endif %}
+
+							{% if slide.content %}
+								<div class="hero__slide__content__content text-mobil-m color--white {% if slide.content_color %}{{slide.content_color}} {% endif %} {% if not slide.has_button %}no-margin{% endif %}">
+									<div class="hide-md-max">
+										{{slide.content|raw}}
+									</div>
+									<div class="hide-md-min">
+										{{slide.content|excerpt(15)}}
+									</div>
+								</div>
+							{% endif %}
+
+
+							{% if slide.has_button %}
+								{% include 'atoms/button.twig' with {
+						    		'type': slide.button__type,
+						    		'text': slide.button__text,
+						    		'color': slide.button__color.color,
+						    		'link_type' : slide.button__link_type,
+						    		'external_link' : slide.button__external_link,
+						    		'internal_link' : slide.button__internal_link,
+						    		'file' : slide.button__file,
+						    		'classes': 'hero__slide__content__button',
+						    	}%}
+							{% endif %}
+
+							{% if slider|length > 1 %}
+								<div class="hero__slide__controls">
+									<div class="hero__slide__content__controls">
+										<div class="hero__slide__content__controls__arrow hero__slide__content__controls__arrow--prev">
+											<span class="icon-arrow-left-alt"></span>
+											<span class="icon-arrow-left-alt hidden"></span>
+										</div>
+										<div class="hero__slide__content__controls__arrow hero__slide__content__controls__arrow--next">
+											<span class="icon-arrow-right-alt"></span>
+											<span class="icon-arrow-right-alt hidden"></span>
+										</div>
+									</div>
+								</div>
+							{% endif %}
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{% if slide.title__position == 'center' %}
+				<div class="hero__slide__scroll">
+					{% include 'atoms/button.twig' with {
+						'type': 'circle',
+						'direction': 'down'
+					}%}
+				</div>
+			{% endif %}
+		</div>
+	{% endfor %}
+
+</div>
+
+{# <div class="stay-safe">
+	Hola amigos, unfortunately our bars in England are temporarily closed until 2nd December. You can still book a fiesta for after this period or for one of bars outside of England <a href="https://www.revoluciondecuba.com/book/">here</a>.
+
+	<style>
+		.stay-safe {
+			/*display: none;*/
+			width: 100%;
+			padding: 1rem;
+			font-size: 0.9rem;
+			color: #fff;
+			text-transform: uppercase;
+			text-align: center;
+			font-weight: bold;
+			position: relative;
+			z-index: 200;
+			margin-top: -60px;
+			background-color: #FFAE2D;
+			background-size: auto;
+			background-image: url('https://www.revoluciondecuba.com/wp-content/themes/decuba/app/img/patterns/main_texture.jpg');
+			background-repeat: repeat;
+			background-blend-mode: soft-light;
+			font-family: 'cubano';
+			align-items: center;
+			justify-content: center;
+		}
+
+		@media only screen and (min-width: 1024px) {
+			.stay-safe {
+				padding: 2rem;
+				font-size: 1.3rem;
+			}
+		}
+
+		.stay-safe a {
+			color: white;
+			display: inline-block;
+		}
+
+		.home .stay-safe {
+			;
+			/*display: flex;*/
+		}
+	</style>
+</div> #}

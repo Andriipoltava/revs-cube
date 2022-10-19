@@ -1,0 +1,10 @@
+<div class="field field--{{type}} {{class}}">
+	{% if label %}
+		<label class="field__label" for="{{name}}">{{label}}</label>
+	{% endif %}
+	<div class="field__element-wrap">
+		{% if type == 'search' %}<span class="field__element-button icon-search"></span>{% endif %}
+		<input class="field__element" type="{{type}}" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}">
+		
+	</div>
+</div>

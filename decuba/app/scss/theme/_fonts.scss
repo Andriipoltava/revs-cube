@@ -1,0 +1,318 @@
+$font-path: "../../app/fonts" !default;
+
+$icon-deliveroo-logo-white-outline: "\e922";
+$icon-deliveroo-logo-white-solid: "\e923";
+$icon-360: "\e921";
+$icon-takeover: "\e920";
+$icon-collapse: "\e91f";
+$icon-email: "\e91e";
+$icon-link: "\e91d";
+$icon-hanger: "\e91c";
+$icon-smiley: "\e91b";
+$icon-chat-icon: "\e91a";
+$icon-slack: "\e919";
+$icon-youtube: "\e917";
+$icon-whatsapp: "\e918";
+$icon-locate-me: "\e916";
+$icon-spotify: "\e900";
+$icon-twitter: "\e913";
+$icon-instagram: "\e914";
+$icon-facebook: "\e915";
+$icon-winky: "\e912";
+$icon-arrow-left-alt: "\e910";
+$icon-arrow-right-alt: "\e911";
+$icon-search: "\e90f";
+$icon-check: "\e90e";
+$icon-phone: "\e90d";
+$icon-disabled: "\e901";
+$icon-wifi: "\e902";
+$icon-dress-code: "\e903";
+$icon-hand-gesture: "\e904";
+$icon-all-locations: "\e905";
+$icon-expand: "\e906";
+$icon-share: "\e907";
+$icon-pin: "\e908";
+$icon-close: "\e909";
+$icon-arrow-left: "\e90a";
+$icon-arrow-right: "\e90b";
+$icon-caret-down: "\e90c";
+
+@font-face {
+  font-family: 'Brixton Wood Vector';
+  src: url('#{$font-path}/Brixton_Wood-Vector.woff2') format('woff2'),
+       url('#{$font-path}/Brixton_Wood-Vector.woff')  format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bygonest';
+  src: url('#{$font-path}/Bygonest-Regular.woff2') format('woff2'),
+       url('#{$font-path}/Bygonest-Regular.woff')  format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bygonest';
+  src: url('#{$font-path}/Bygonest-Bold.woff2') format('woff2'),
+       url('#{$font-path}/Bygonest-Bold.woff')  format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bygonest';
+  src: url('#{$font-path}/Bygonest-Thin.woff2') format('woff2'),
+       url('#{$font-path}/Bygonest-Thin.woff')  format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Primed Alt';
+  src: url('#{$font-path}/PrimedAlt.woff2') format('woff2'),
+       url('#{$font-path}/PrimedAlt.woff')  format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cubano';
+  src: url('#{$font-path}/cubano/Cubano-Regular.woff');
+  src: url('#{$font-path}/cubano/Cubano-Regular.woff') format('woff'),
+    url('#{$font-path}/cubano/Cubano-Regular.svg?oaxvjt#de-cuba') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+	font-family: 'hello_beautifulmarker';
+	src: url('#{$font-path}/hello-beautiful/hellobeautiful-marker-webfont.woff2') format('woff2'),
+		 url('#{$font-path}/hello-beautiful/hellobeautiful-marker-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'hello_beautifulswashes';
+	src: url('#{$font-path}/hello-beautiful/hellobeautiful-swashes-webfont.woff2') format('woff2'),
+		 url('#{$font-path}/hello-beautiful/hellobeautiful-swashes-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'hello_beautifulregular';
+	src: url('#{$font-path}/hello-beautiful/hellobeautiful-webfont.woff2') format('woff2'),
+		 url('#{$font-path}/hello-beautiful/hellobeautiful-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'de-cuba';
+	src:url('#{$font-path}/de-cuba/de-cuba.woff?oaxvjt');
+	src:url('#{$font-path}/de-cuba/de-cuba.woff?oaxvjt') format('woff'),
+		url('#{$font-path}/de-cuba/de-cuba.svg?oaxvjt#de-cuba') format('svg');
+			
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"], .iconfont {
+	/* use !important to prevent issues with browser extensions that change fonts */
+	font-family: 'de-cuba' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-deliveroo-logo-white-outline {
+  &:before {
+    content: $icon-deliveroo-logo-white-outline; 
+  }
+}
+.icon-deliveroo-logo-white-solid {
+  &:before {
+    content: $icon-deliveroo-logo-white-solid; 
+  }
+}
+.icon-360 {
+  &:before {
+    content: $icon-360;
+  }
+}
+.icon-takeover {
+  &:before {
+    content: $icon-takeover;
+  }
+}
+.icon-collapse {
+  &:before {
+    content: $icon-collapse;
+  }
+}
+.icon-email {
+  &:before {
+    content: $icon-email;
+  }
+}
+.icon-link {
+  &:before {
+    content: $icon-link;
+  }
+}
+.icon-hanger {
+  &:before {
+    content: $icon-hanger;
+  }
+}
+.icon-smiley {
+  &:before {
+    content: $icon-smiley;
+  }
+}
+.icon-chat-icon {
+  &:before {
+    content: $icon-chat-icon;
+  }
+}
+.icon-slack {
+  &:before {
+    content: $icon-slack;
+  }
+}
+.icon-youtube {
+  &:before {
+    content: $icon-youtube;
+  }
+}
+.icon-whatsapp {
+  &:before {
+    content: $icon-whatsapp;
+  }
+}
+.icon-locate-me {
+  &:before {
+    content: $icon-locate-me;
+  }
+}
+.icon-spotify {
+  &:before {
+    content: $icon-spotify;
+  }
+}
+.icon-twitter {
+  &:before {
+    content: $icon-twitter;
+  }
+}
+.icon-instagram {
+  &:before {
+    content: $icon-instagram;
+  }
+}
+.icon-facebook {
+  &:before {
+    content: $icon-facebook;
+  }
+}
+.icon-winky {
+  &:before {
+    content: $icon-winky;
+  }
+}
+.icon-arrow-left-alt {
+  &:before {
+    content: $icon-arrow-left-alt;
+  }
+}
+.icon-arrow-right-alt {
+  &:before {
+    content: $icon-arrow-right-alt;
+  }
+}
+.icon-search {
+  &:before {
+    content: $icon-search;
+  }
+}
+.icon-check {
+  &:before {
+    content: $icon-check;
+  }
+}
+.icon-phone {
+  &:before {
+    content: $icon-phone;
+  }
+}
+.icon-disabled {
+  &:before {
+    content: $icon-disabled;
+  }
+}
+.icon-wifi {
+  &:before {
+    content: $icon-wifi;
+  }
+}
+.icon-dress-code {
+  &:before {
+    content: $icon-dress-code;
+  }
+}
+.icon-hand-gesture {
+  &:before {
+    content: $icon-hand-gesture;
+  }
+}
+.icon-all-locations {
+  &:before {
+    content: $icon-all-locations;
+  }
+}
+.icon-expand {
+  &:before {
+    content: $icon-expand;
+  }
+}
+.icon-share {
+  &:before {
+    content: $icon-share;
+  }
+}
+.icon-pin {
+  &:before {
+    content: $icon-pin;
+  }
+}
+.icon-close {
+  &:before {
+    content: $icon-close;
+  }
+}
+.icon-arrow-left {
+  &:before {
+    content: $icon-arrow-left;
+  }
+}
+.icon-arrow-right {
+  &:before {
+    content: $icon-arrow-right;
+  }
+}
+.icon-caret-down {
+  &:before {
+    content: $icon-caret-down;
+  }
+}
+

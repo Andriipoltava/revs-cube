@@ -1,0 +1,44 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+
+<div class="bg--grey-light--pattern toplevel all-locations">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text--center">
+				<h1 class="all-locations__title"><span class="color--fuschia text--center">All</span>Locations</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 all-locations__container">
+				
+				{% if not locationsSearch %}
+					{% for venue in venues %}					
+						<a href="{{venue.link}}" class="locations_card" data-index="index" data-api-id="{{venue.api_id}}"> 
+							<div class="locations_card__inner"> 
+								<div class="locations_card__image"> 
+									{% set barImage = venue.get_field('hero__slides') %}
+									<img src="{{barImage[0].image_mobile_crop|resize(500, 500)}}" alt="" />
+									
+								</div>
+								<div class="locations_card__info"> 
+									<h4>{{venue.name}}</h4> 
+									<p class="locations_card__address"></p> 
+									<p class="locations_card__phone"></p> 
+								</div> 
+								<div class="locations_card__link"> 
+									<div class="button button--text"><span class="icon-arrow-right"></span></div>
+								</div> 
+							</div> 
+						</a>
+					{% endfor %}
+				{% endif %}
+
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+

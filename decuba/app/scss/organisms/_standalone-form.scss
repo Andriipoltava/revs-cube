@@ -1,0 +1,19 @@
+$c: '.standalone-form';
+
+#{$c} {
+	padding: 60px 0;
+
+	@include mq('md','min') {
+		padding: 120px 0;
+	}
+
+	.booking-form--widget
+	{
+		.booking-form__wrapper
+		{
+			background-color: transparent;
+			box-shadow: none;
+			border-radius: 0;
+		}
+	}
+}

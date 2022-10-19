@@ -1,0 +1,93 @@
+
+// AddThis - bottom gap fix ----------------
+#_atssh{
+	display:none;
+}
+
+
+// Google Conversion Frame - bottom gap fix ----------------
+iframe[name='google_conversion_frame'] {
+    height: 0 !important;
+    width: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    margin-top: -13px;
+    float: left;
+}
+
+
+// Live Chat - remove banner ---------------
+.LPMcontainer
+{
+	position: absolute !important;
+	overflow: hidden !important;
+	clip: rect(0 0 0 0) !important;
+	height: 1px !important;
+	width: 1px  !important;
+	left: -100% !important;
+	margin: -1px !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+
+
+// Select or Die ---------------
+.sod_select
+{
+	width: 100%;
+	font-size: 1em;
+	border-width: 0;
+	font-weight: normal;
+	text-transform: none;
+
+	.sod_list_wrapper
+	{
+		max-height: 200px;
+	  overflow: scroll;
+	  width: 100%;
+	  left: 3px;
+	  z-index: 1000;
+	}
+}
+
+
+// Grav Form -------------------
+[data-gform-script]
+{
+	@include extend(vis-clip);
+}
+
+
+// Wistia Links ---------------
+html.js:not(.js--ready)
+{
+	// Don't allow clicks until at least our
+	// first-party JS has bound events
+	[href*='fast.wistia.net'],
+	[class*='wistia-popover']
+	{
+		pointer-events: none;
+		cursor: default;
+	}
+}
+
+
+// Owl Carousel ------------
+
+// Allow vertical overflow but not horizontal
+.gallery--full, .conveyor__container {
+	.owl-carousel { padding: 1px; }
+	.owl-stage-outer { 
+		overflow: initial;
+		overflow-x: hidden;
+		// padding-bottom: 100vh;
+		// margin-bottom: -100vh;
+	}
+}
+
+
+// Instagram Embeds
+.instagram-media
+{
+	position: relative !important;	// Block random position:absolute
+}

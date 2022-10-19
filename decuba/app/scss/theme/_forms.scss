@@ -1,0 +1,523 @@
+
+/**
+ * Form styles
+ */
+
+
+$form-trans-speed: 0.2s !default;
+$form-spacing: 20px !default;
+$form-error-color: #F00 !default;
+$form-active-color: #00F !default;
+$form-warning-color: #FFA500 !default;
+$form-success-color: #0F0 !default;
+$field-font-size: 16 !default;
+$field-line-height: 1.2 !default;
+$field-height-in-px: 3px * $field-font-size !default;
+$field-height: 1em * ($field-height-in-px / ($field-font-size * 1px)) !default;
+$field-padding: 1em !default;
+$field-bg-color: #FFF !default;
+$field-font-color: #222 !default;
+$field-placeholder-color: #AAA !default;
+$field-border-width: 1px !default;
+$field-border-color: #CCC !default;
+$field-border-radius: rem(0) !default;
+$select-font-color: $field-font-color !default;
+$select-bg-color: $field-bg-color !default;
+$select-toggle-bg-color: transparent !default;
+$label-spacing: 0.25em !default;
+
+
+// Label
+%label-element
+{
+	display: inline-block;
+	margin-bottom: $label-spacing;
+}
+
+// Text Fields
+
+%text-input-field-wrap
+{
+  background-color: $field-bg-color;
+  border-radius: $field-border-radius;
+}
+
+
+%text-input-field
+{
+	font-family: inherit;
+	display: block;
+	width: 100%;
+	font-size: inherit;
+	line-height: $field-height;
+	height: $field-height;
+	padding: 0 $field-padding;
+	border: $field-border-width solid $field-border-color;
+  border-radius: $field-border-radius;
+  color: $field-font-color;
+  background-color: transparent;
+	transition: all $form-trans-speed;
+	outline: none;
+
+	@include placeholder() { color: $field-placeholder-color; }
+}
+
+
+// Textarea Fields
+
+%textarea-field-wrap
+{
+  background-color: $field-bg-color;
+  border-radius: $field-border-radius;
+}
+
+
+%textarea-field
+{
+	font-family: inherit;
+	display: block;
+	width: 100%;
+	height: 7em * $field-line-height;
+	border: $field-border-width solid $field-border-color;
+  border-radius: $field-border-radius;
+  color: $field-font-color;
+  background-color: transparent;
+  padding: $field-padding;
+	transition: all $form-trans-speed;
+	-webkit-appearance: none;		// iOS box shadow
+	appearance: none;
+	outline: none;
+
+	@include placeholder() { color: $field-placeholder-color; }
+}
+
+
+// Select Fields
+
+%select-field-wrap
+{
+	position: relative;
+	background-color: $select-bg-color;
+	color: $select-font-color;
+	height: $field-height;
+  border-radius: $field-border-radius;
+	z-index: 0;			// Create stacking context
+
+	&:before
+	{
+		content: "\25bc";
+		display: block;
+		position: absolute;
+		font-size: 1em;
+		text-align: center;
+		vertical-align: middle;
+		background-color: $select-toggle-bg-color;
+		color: $select-font-color;
+		border: $field-border-width solid $field-border-color;
+		border-radius: 0 $field-border-radius $field-border-radius 0;
+		top: 0;
+		right: 0;
+		z-index: 2;
+		pointer-events: none;
+
+
+		// Can't use rem's in psuedo-elements on IE11
+
+		width: $field-height-in-px;
+		height: $field-height-in-px;
+		line-height: $field-height-in-px;
+
+		@if variable-exists(font-reduce)
+		{
+			@each $reduction in $font-reduce
+			{
+				$name: nth($reduction, 1);
+				$ratio: nth($reduction, 2);
+
+				@include media($name)
+				{
+					width: $ratio * $field-height-in-px;
+					height: $ratio * $field-height-in-px;
+					line-height: $ratio * $field-height-in-px;
+				}
+			}
+		}
+
+	}
+}
+
+
+%select-field
+{
+	font-family: inherit;
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	color:inherit;
+	line-height: $field-height;
+	height: $field-height;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0 $field-height 0 $field-padding;
+  background-color: transparent;
+	border: $field-border-width solid $field-border-color;
+	border-radius: $field-border-radius;
+
+	&::-ms-expand
+	{
+	  display: none;
+	}
+
+	option
+	{
+		color: $field-font-color;
+	}
+}
+
+
+// Checkbox fields
+
+%checkbox-field
+{
+	@include extend(vis-clip);
+}
+
+%checkbox-label
+{
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 0;
+	margin-right: 0;
+	text-indent: -2em;
+	padding-left: 2em;
+	text-align: left;
+
+	&::before
+	{
+		user-select: none;
+		content: "";
+		display: inline-block;
+		font-size: 0.8em;
+		line-height: 1.25;
+		width: 1.25em;
+		height: 1.25em;
+		text-align: center;
+		text-indent: 0;
+		vertical-align: middle;
+		color: $field-font-color;
+		border: $field-border-width solid $field-border-color;
+		background-color: $field-bg-color;
+		margin-right: (1em/1.25);
+	}
+}
+
+%checkbox-field--checked
+{
+	&::before
+	{
+		content: "\2713";
+	}
+}
+
+
+
+
+// Radio fields
+
+%radio-field
+{
+	@include extend(vis-clip);
+}
+
+%radio-label
+{
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 0;
+	margin-right: 0;
+	text-indent: -2em;
+	padding-left: 2em;
+	text-align: left;
+
+	&::before
+	{
+		user-select: none;
+		content: "";
+		display: inline-block;
+		font-size: 1em;
+		line-height: 1;
+		width: 1em;
+		height: 1em;
+		text-align: center;
+		text-indent: 0;
+		vertical-align: middle;
+		color: $field-font-color;
+		box-shadow: inset 0px 0px 0px 1px $field-border-color;
+		border-radius: 50%;
+		background-color: $field-bg-color;
+		margin-right: 0.5em;
+	}
+}
+
+%radio-field--checked
+{
+	&::before
+	{
+		content: "\2022";
+	}
+}
+
+
+
+// Submit field
+
+%submit-field
+{
+	@include extend(btn);
+}
+
+
+
+// Form ----------------------------------
+
+$c: form;
+
+.#{$c}
+{
+	&__success
+	{
+		// border: 1px solid;
+		// padding: 0.5em;
+		margin-bottom: 1.5em;
+		color: $form-success-color;
+	}
+
+	&__error
+	{
+		border: 1px solid;
+		padding: 0.5em;
+		margin-bottom: 1.5em;
+		color: $form-error-color;
+	}
+}
+
+
+
+// Fields ---------------------------------
+
+$subc: field;
+
+.#{$subc}
+{
+	font-size: 1px * $field-font-size;
+	display: block;
+	span#{&} { display: inline-block; }
+
+	&__label
+	{
+		@extend %label-element !optional;
+	}
+
+	// Error messages
+	&__errors
+	{
+		color: $form-error-color;
+	}
+
+	&__error
+	{
+		display: block;
+		text-align:left;
+		padding-left: 1em;
+		text-indent: -1em;
+
+		&:before
+		{
+			text-indent: 0;
+			display: inline-block;
+			content: "-";
+			width: 1em;
+			vertical-align: top;
+		}
+	}
+
+
+	// Modifers --------------------
+
+	// Text-type inputs - text, email, password, ...
+
+	&--text,
+	&--email,
+	&--password,
+	&--search
+	{
+		.#{$subc}__element-wrap
+		{
+			@extend %text-input-field-wrap !optional;
+		}
+
+		.#{$subc}__element
+		{
+			@extend %text-input-field !optional;
+		}
+	}
+
+	&--search {
+		position: relative;
+
+		.field__element-wrap {
+			.field__element-button {
+				position: absolute;
+				top: 50%;
+				right: 15px;
+				transform: translateY(-50%);
+				color: color(black);
+			}
+		}
+		.field__element {
+			border-color: color(skyblue);
+			padding-right: 45px;
+		}
+	}
+
+
+
+	// Text-are inputs
+
+	&--textarea
+	{
+		.#{$subc}__element-wrap
+		{
+			@extend %textarea-field-wrap !optional;
+		}
+
+		.#{$subc}__element
+		{
+			@extend %textarea-field !optional;
+		}
+	}
+
+
+
+	// Select-type inputs
+
+	&--select
+	{
+		.#{$subc}__element-wrap
+		{
+			@extend %select-field-wrap !optional;
+		}
+
+		.#{$subc}__element
+		{
+			@extend %select-field !optional;
+		}
+	}
+
+
+
+	// Checkbox-type inputs
+
+	&--checkbox
+	{
+		.#{$subc}__label
+		{
+			display: block;
+		}
+
+		.#{$subc}__element-wrap:not(:last-child)
+		{
+			margin-right: 2em;
+		}
+
+		.#{$subc}__element
+		{
+			@extend %checkbox-field !optional;
+		}
+
+		.#{$subc}__sub-label
+		{
+			@extend %checkbox-label !optional;
+			padding-right: 10px;
+    		position: relative;
+    		text-indent: 0;
+    		&:before {
+    			position: absolute;
+			    left: 0;
+			    top: 0;
+    		}
+		}
+
+		.#{$subc}__element:checked + .#{$subc}__sub-label
+		{
+			@extend %checkbox-field--checked !optional;
+		}
+	}
+
+
+
+	// Radio-type inputs
+
+	&--radio
+	{
+		.#{$subc}__label
+		{
+			display: block;
+		}
+
+		.#{$subc}__element-wrap:not(:last-child)
+		{
+			margin-right: 2em;
+		}
+
+		.#{$subc}__element
+		{
+			@extend %radio-field !optional;
+		}
+
+		.#{$subc}__sub-label
+		{
+			@extend %radio-label !optional;
+		}
+
+		.#{$subc}__element:checked + .#{$subc}__sub-label
+		{
+			@extend %radio-field--checked !optional;
+		}
+	}
+
+
+
+
+	// Submit buttons
+
+	&--submit
+	{
+		button
+		{
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			background: none;
+			padding: 0;
+			border: 0;
+			margin: 0;
+		}
+
+		.#{$subc}__element
+		{
+			@extend %submit-field !optional;
+		}
+
+		button .#{$subc}__element
+		{
+			 width: 100%;
+		}
+	}
+}
+

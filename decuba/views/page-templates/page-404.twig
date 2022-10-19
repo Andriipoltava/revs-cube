@@ -1,0 +1,36 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+	{% set slides = [{
+		'image': site.theme.link~'/app/img/tmp/hero-4oh!4.jpg',
+		'image_position': 'right',
+		'flair_has_flair': false,
+		'title': '',
+		'title_weight': '2',
+		'title_color': '',
+		'content': '',
+		'content_color': '',
+		'has_button': false,
+	}] %}
+
+	{% include 'organisms/hero.twig' with {
+		'moduleClasses': 'hero--thin',
+		'slider': slides
+	}%}
+	
+	<div class="bg--grey-light--logo page-terms-conditions">
+		<div class="container">
+			<div class="row  page-tertiary ">
+				<div class="col-md-12 m--bottom--100  m--top--80">
+					<h1>4 Oh! 4</h1>
+					<p>We can’t find this page. We’re guessing it’s gone to the bar.</p>
+					<p>Don’t hang about waiting for it to come back with the drinks. Go browse the delicious dishes of our <a href="/menus/">Food menu</a> or <a href="/menus/">check out the cocktails</a>. You could always take a peek at <a href="/fiesta/">our fiesta party packages</a> or <a href="/blog/">immerse yourself in Havana’s heyday on the blog</a>.</p>
+					<p>In fact, what are you still doing here?</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+

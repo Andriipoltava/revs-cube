@@ -1,0 +1,308 @@
+{
+    "key": "group_5db6e1ebf2dfe",
+    "title": "Module -- Standalone Form",
+    "fields": [
+        {
+            "key": "field_5db6e23afa0ec",
+            "label": "Form Type",
+            "name": "form_type",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "booking": "Booking Form",
+                "grav": "Gravity Form"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "enquire",
+            "layout": "vertical",
+            "return_format": "value"
+        },
+        {
+            "key": "field_5db6e281fa0ed",
+            "label": "Form ID",
+            "name": "form_id",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5db6e28ffa0ee",
+            "label": "Form Title",
+            "name": "form_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5ec3f7204a508",
+            "label": "Form Description",
+            "name": "form_description",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5db6e6cf1ff21",
+            "label": "Booking Widget - Options",
+            "name": "booking_widget_options",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5db6e23afa0ec",
+                        "operator": "==",
+                        "value": "booking"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+<<<<<<< HEAD
+                    "key": "field_5e29b24fc07cf",
+                    "label": "Custom Occasions?",
+                    "name": "custom_occasions",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5db6e6e81ff22",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "field_5e29b2efc07cg",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "table",
+                    "button_label": "Add Occasion",
+                    "sub_fields": [
+                        {
+                            "key": "field_5e29b2efc07cg",
+                            "label": "Occasion",
+                            "name": "label",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_5e29b329c07d1",
+                            "label": "Occasion ID",
+                            "name": "value",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "min": "",
+                            "max": "",
+                            "step": ""
+                        }
+                    ]
+                },
+                {
+=======
+>>>>>>> d9e30144515848b01f1689c803cb11474673ae95
+                    "key": "field_5eb426b3f5869",
+                    "label": "Bar ID",
+                    "name": "bar_id",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": "",
+                    "max": "",
+                    "step": ""
+                },
+                {
+                    "key": "field_5db6e6e81ff22",
+                    "label": "Show occasion dropdown?",
+                    "name": "allow_dining",
+                    "type": "true_false",
+                    "instructions": "If unchecked, you should prepop the Party Type and Occasion",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_5db6e7061ff23",
+                    "label": "Party Type ID",
+                    "name": "party_type_id",
+                    "type": "radio",
+                    "instructions": "Prepop the Party ID",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "6": "Birthday",
+                        "2": "Christmas",
+                        "27": "Cocktail Masterclass",
+                        "5": "Corporate Events",
+                        "1": "Drinks with Friends",
+                        "11": "Hen Do",
+                        "12": "Stag Do",
+                        "19": "Other"
+                    },
+                    "allow_null": 1,
+                    "other_choice": 1,
+                    "save_other_choice": 0,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5db6e7491ff24",
+                    "label": "Occasion ID",
+                    "name": "occasion_id",
+                    "type": "radio",
+                    "instructions": "Prepop the Occasion ID",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "Birthday",
+                        "4": "Christmas Party",
+                        "9": "General Dining",
+                        "2": "Hen Party",
+                        "5": "Leaving Party",
+                        "7": "Lunch \/ Dinner",
+                        "8": "New Year Party",
+                        "6": "Night Out",
+                        "10": "Pre Theatre",
+                        "3": "Work Party"
+                    },
+                    "allow_null": 1,
+                    "other_choice": 1,
+                    "save_other_choice": 0,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "value"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 0,
+    "description": "",
+<<<<<<< HEAD
+    "modified": 1589901114
+=======
+    "modified": 1588864740
+>>>>>>> d9e30144515848b01f1689c803cb11474673ae95
+}

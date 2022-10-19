@@ -1,0 +1,808 @@
+{% set sliderItems = slider[0] %}
+<div class="hero js-hero-slider {{viewportHeight}} {{moduleClasses}} {% if hasForm or sliderItems.has_form %}hero--hasform hero--hasform--{{formType}}{% endif %}">
+	{% for slide in slider %}
+	{% if slide.page=="christmas-brunch" %}
+		<div class="brunch__banner__mobile">
+		 <img class="brunch-mobile-image" src="{{site.theme.link}}/app/img/brunch/rdc-brunch-foreground.jpg" alt="Brunch hero">
+		 <div class="brunch__banner__mobile__inner">
+			{% if slide.page=="christmas-brunch"%}
+				<div class="ch__brunch__header"></div>
+			{% endif %}
+			{% if slide.content %}
+				<div class="hero__slide__content__content color--white {% if slide.content_color %}{{slide.content_color}} {% endif %} {% if not slide.has_button %}no-margin{% endif %}{% if slide.page=="christmas-local" or slide.page=="christmas-global" %} hero__christmas__local--text {% endif %}{% if slide.page=="christmas-brunch" %} hero__christmas__br--text {% endif %}">
+					{{slide.content|raw}}
+				</div>
+			{% endif %}
+			</div>
+		</div>
+	{% endif %}
+	<div class="hero__slide {% if slide.page=="christmas-local" or slide.page=="christmas-global" %} hero__christmas__local--slide {% endif %}{% if slide.page=="christmas-brunch" %} hero__christmas__brunch--slide {% endif %}">
+		{% if slide.page=="christmas-brunch"%}
+			{# <div class="ch__brunch__bg__flower-left"></div>
+			<div class="ch__brunch__bg__leaf-left"></div>
+			<div class="ch__brunch__bg__flower-right"></div>
+			<div class="ch__brunch__bg__leaf-right"></div>
+			<div class="ch__brunch__bg__border"></div> #}
+			<div class="ch__brunch__bg__available"></div>
+		{% endif %}
+			<div class="hero__slide__bg__clip {% if slide.page=="christmas-brunch" %} hero__christmas__brunch-border {% endif %}" style="border: none !important;">
+				{% if slide.image_tint %}
+					<div class="hero__slide__bg__tint" style="background-color: rgba(0,0,0,{{slide.image_tint}});"></div>
+				{% endif %}
+				<div data-top="transform:translate3d(0px, 0px, 0px);" data-top-bottom="transform:translate3d(0px, 200px, 0px);" class="parallaxme hero__slide__bg {% if slide.image %} picturefill-background {% endif %}" style="{% if slide.image_position %} background-position:{{slide.image_position}};{% endif %}">
+					{% if slide.image %}<span data-src="{{slide.image}}"></span>{% endif %}
+					{% if slide.image_mobile_crop %}<span data-src="{{slide.image_mobile_crop}}" data-media="(max-width: 1366px)"></span>{% endif %}
+				</div>
+			</div>
+
+			<div class="hero__slide__content">
+				<div class="container">
+					<div class="row row--a-c">
+						<div class="col-md-7 {% if strictWidth %}col--no-grow{% endif %}">
+							<h{% if slide.title_weight %}{{slide.title_weight}}{% else %}1{% endif %} class="hero__slide__content__title color--white {% if slide.title__color_color %}color--{{slide.title__color_color}}{% endif %} {% if not slide.content %}no-content{% endif %} {% if slide.title__position == 'center' %}hero__slide__content__title--centered{% endif %} {% if slide.page=="christmas-local" or slide.page=="christmas-global" %} hero__christmas__local--title {% endif %}">
+								{% if slide.flair.has_flair %}
+									<span class="color--{{slide.flair.flair__color.color}}">{{slide.flair.flair__text}}</span>
+								{% endif %}{{slide.title}}
+								{% if slide.global_page_underline %}
+									<div class="tag--yellow--g"></div>
+								{% endif %}
+								{% if slide.underline %}
+									<div class="tag--yellow"></div>
+								{% endif %}
+								{% if slide.page=="christmas-brunch"%}
+									<div class="ch__brunch__header"></div>
+								{% endif %}
+							</h{% if slide.title_weight %}{{slide.title_weight}}{% else %}1{% endif %}>
+
+							{% if slide.content %}
+								<div class="hero__slide__content__content mobile-text-m color--white {% if slide.content_color %}{{slide.content_color}} {% endif %} {% if not slide.has_button %}no-margin{% endif %}{% if slide.page=="christmas-local" or slide.page=="christmas-global" %} hero__christmas__local--text {% endif %}{% if slide.page=="christmas-brunch" %} hero__christmas__br--text {% endif %}">
+									{{slide.content|raw}}
+								</div>
+							{% endif %}
+
+							{% if post.post_type == 'bar' and post.slug == 'christmas' %}
+								{% include 'atoms/button.twig' with {
+									'classes': 'button--nowrap',
+									'type': 'regular',
+									'text': 'Download Menu',
+									'color': 'skyblue',
+									'link_type' : 'external',
+									'external_link' : barMenu_Christmas.url,
+								}%}
+							{% endif %}
+
+							{% if slide.page == 'christmas-global' %}
+							<div class="christmas__global__button__container">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'View Menus',
+									'color': 'skyblue',
+									'link_type' : 'internal',
+									'internal_link' : 'https://www.revoluciondecuba.com/wp-content/uploads/2021/10/RDC_Christmas_2021_Menu.pdf',
+									'classes': 'hero__slide__content__button hero__info__button mr-5 christmas-button--menu',
+								}%}
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Find Bar',
+									'color': 'orange',
+									'classes': 'js-locations-toggle'
+								}%}
+								{% include 'atoms/button.twig' with {
+									'type': 'underline',
+									'text': 'View Allergens',
+									'color': 'orange',
+									'link_type' : 'internal',
+									'internal_link' : site.link ~ '/xmas-allergen-information.pdf',
+									'classes': 'button button--underline button--underline--orange',
+								}%}
+							</div>
+							{% endif %}
+
+							{% if post.post_type == 'bar' and post.slug != 'christmas' or post.slug == 'menus' or post.post_type == 'page' and post.slug != 'christmas' %}
+								{% if post.slug == 'menus' and post.post_type == 'page' %}
+									{% set buttonLabel = 'Select' %}
+									{% set buttonStyle = 'regular' %}
+									{% set buttonColour = 'green' %}
+									{% set pricesLabel = ' to see prices' %}
+									{% include 'atoms/button.twig' with {
+										'type': buttonStyle,
+										'text': buttonLabel ~ ' Location',
+										'color': buttonColour,
+										'classes': 'js-locations-toggle'
+									}%}
+								{% else %}
+									{% set buttonLabel = 'Change' %}
+									{% set buttonStyle = 'underline' %}
+									{% set buttonColour = 'sunshine' %}
+									{% include 'atoms/button.twig' with {
+										'type': buttonStyle,
+										'text': buttonLabel ~ ' Location' ~ pricesLabel,
+										'color': buttonColour,
+										'classes': 'js-locations-toggle m--top--10'
+									}%}
+									{# // This is the button for Local bar child pages. #}
+									{# {% if post.post_type != 'bar' or post.slug == 'christmas' or post.slug == 'menus' %}
+										<br style="display: block; padding: 10px;">
+										{% include 'atoms/button.twig' with {
+											'classes': 'm--top--50',
+											'type': 'regular',
+											'text': 'Download Menu',
+											'color': 'skyblue',
+											'link_type' : 'external',
+											'external_link' : barMenu_Cantina.url,
+										}%}
+									{% endif %} #}
+
+								{% endif %}
+
+							{% endif %}
+
+							{% if slide.show_location %}
+								{% include 'atoms/button.twig' with {
+									'type': 'underline',
+									'text': 'Find Your Location',
+									'color': 'green',
+									'classes': 'js-locations-toggle m--top--10',
+									'dataAttributes': 'data-stored-bar-state="hide"'
+								}%}
+								{% include 'atoms/button.twig' with {
+									'type': 'underline',
+									'text': 'Your Location is <span data-stored-bar-info="bar_name"></span>',
+									'color': 'green',
+									'link_type': 'dynamic',
+									'classes': ' m--top--10',
+									'dataAttributes': 'data-stored-bar-state="unhide"'
+								}%}
+							{% endif %}
+
+							{% if post.post_type == 'bar' and post.slug != 'christmas' and post.slug != 'menus' %}
+								{% if slide.has_button %}
+									<div class="hero__info">
+										{% if slide.button__text is empty %}
+											{% include 'atoms/button.twig' with {
+												'type': 'regular',
+												'text': 'View Menus',
+												'color': 'skyblue',
+												'link_type' : 'internal',
+												'internal_link' : post.link ~ 'menus/',
+												'classes': 'hero__slide__content__button hero__info__button mr-5',
+											}%}
+
+											{% if fixr_id is not empty %}
+												<section class="fixr-event-links">
+													{% include 'atoms/button.twig' with {
+														'type': 'regular',
+														'text': 'Events',
+														'color': 'skyblue',
+														'classes': 'hero__slide__content__button hero__info__button mr-5 js-fixr-toggle',
+													}%}
+												</section>
+
+											{% endif %}
+
+											{% if post.deliveroo_bar_url %}
+											<section class="delivery-links">
+												{# NEW ORDER ONLINE BUTTON #}
+												{% include 'atoms/button.twig' with {
+													'type': 'regular',
+													'text': 'Deliveroo',
+													'color': 'skyblue',
+													'link_type' : 'external',
+													'external_link' : post.deliveroo_bar_url,
+													'classes': 'hero__slide__content__button hero__info__button',
+												}%}
+											</section>
+											{% endif %}
+
+										{% else %}
+								    	{% include 'atoms/button.twig' with {
+								    		'type': slide.button__type,
+								    		'text': slide.button__text,
+								    		'color': slide.button__color.color,
+								    		'link_type' : slide.button__link_type,
+								    		'external_link' : slide.button__external_link,
+								    		'internal_link' : slide.button__internal_link,
+								    		'file' : slide.button__file,
+								    		'classes': 'hero__slide__content__button hero__info__button',
+								    	}%}
+										{% endif %}
+
+										<section class="hero__info__button-container">
+
+											<a href="#" class="hero__info__button hero__info__button--small phone"><span class="icon-phone"></span></a>
+											<a href="#" class="hero__info__button hero__info__button--small pin"><span class="icon-pin"></span></a>
+
+											{% if post.deliveroo_bar_url %}
+												<a href="#" class="hero__info__button hero__info__button--small deliveroo"
+												   target="_blank"><span class="icon-deliveroo-logo-white-outline"></span></a>
+											{% endif %}
+
+											{% if post.just_eat_bar_url %}
+												<a href="#" class="hero__info__button hero__info__button--small just-eat"
+												   target="_blank"><span class="icon-just-eat-logo"></span></a>
+											{% endif %}
+
+										</section>
+
+									</div>
+								{% endif %}
+							{% else %}
+							    {% if slide.has_button %}
+							    	{% include 'atoms/button.twig' with {
+							    		'type': slide.button__type,
+							    		'text': slide.button__text,
+							    		'color': slide.button__color.color,
+							    		'link_type' : slide.button__link_type,
+							    		'external_link' : slide.button__external_link,
+							    		'internal_link' : slide.button__internal_link,
+							    		'file' : slide.button__file,
+							    		'classes': 'hero__slide__content__button',
+							    	}%}
+							    {% endif %}
+							{% endif %}
+
+							{% if post.post_type == 'bar' and post.slug == 'menus' %}
+								<div class="hero__slide__content__content  color--white">
+									<p class="hero__slide__content__content__address color--white"></p>
+								</div>
+
+								{% if menus_local_data.deliveroo_page %}
+									<div class="hero__slide__content__content__deliveroo">
+										<a href="{{menus_local_data.deliveroo_page}}" target="_blank" class="button button--regular button--regular--skyblue button--regular--deliveroo">
+											<i class="icon-deliveroo-logo-white-solid"></i>
+											<span data-text="Find us on Deliveroo">
+												 Find us on Deliveroo
+											</span>
+										</a>
+									</div>
+								{% endif %}
+
+								{% if menus_local_data.just_eat_page %}
+									<div class="hero__slide__content__content__deliveroo">
+										<a href="{{menus_local_data.just_eat_page}}" target="_blank" class="button button--regular button--regular--pink button--regular--deliveroo">
+											<i class="icon-just-eat-logo"></i>
+											<span data-text="Now on Just Eat!">
+												Now on Just Eat!
+											</span>
+										</a>
+									</div>
+								{% endif %}
+							{% endif %}
+
+							{% if slider|length > 1 %}
+								<div class="hero__slide__content__controls">
+									<div class="hero__slide__content__controls__arrow hero__slide__content__controls__arrow--prev">
+										<span class="icon-arrow-left-alt"></span>
+										<span class="icon-arrow-left-alt hidden"></span>
+									</div>
+									<div class="hero__slide__content__controls__arrow hero__slide__content__controls__arrow--next">
+										<span class="icon-arrow-right-alt"></span>
+										<span class="icon-arrow-right-alt hidden"></span>
+									</div>
+								</div>
+							{% endif %}
+						</div>
+						{% if hasForm or slide.has_form %}
+							{% if slide.has_form %}
+								{% set localFormType = slide.has_form %}
+							{% elseif hasForm %}
+								{% set localFormType = formType %}
+							{% endif %}
+							<div id="bookingform" class="col-md-5 hero__form hero__form--{{localFormType}}">
+								{% if slide.form_type == 'grav' %}
+									{% include 'organisms/gravity-form.twig' with {
+										'form_id' : slide.form_id,
+										'form_title' : slide.form_title,
+										'display_title': true,
+										'is_widget' : true
+									} %}
+								{% else %}
+
+									{# {% include 'organisms/booking-form.twig' with {
+										'prepop' : {
+											'cube_form_id' : slide.form_id|abs,
+											'bar_id' : (slide.booking_widget_options.bar_id is iterable ? slide.booking_widget_options.bar_id[0]|abs : slide.booking_widget_options.bar_id|abs),
+											'party_type' : (slide.booking_widget_options.party_type_id is iterable ? slide.booking_widget_options.party_type_id[0] : slide.booking_widget_options.party_type_id),
+											'occasion' : (slide.booking_widget_options.occasion_id is iterable ? slide.booking_widget_options.occasion_id[0] : slide.booking_widget_options.occasion_id),
+										},
+										'settings' : {
+											'title' : slide.form_title,
+											'intro' : slide.form_description,
+											'minimum_booking_type_options' : slide.booking_widget_options.allow_dining is not defined or slide.booking_widget_options.allow_dining is same as(true),
+											'occasion_dropdown' : (slide.booking_widget_options.custom_occasions is iterable ? slide.booking_widget_options.custom_occasions : slide.booking_widget_options.custom_occasions),
+										},
+									} %} #}
+
+											{% include 'organisms/booking-form.twig' with {
+												'prepop' : {
+													'cube_form_id' : 29,
+													'party_type' : 18,
+													'bar_id' : post.api_id ? post.api_id : (currentVenue.api_id ? currentVenue.api_id : currentpostid)
+												},
+												settings : { 
+													'form_id' : 'book',
+													'form_name' : 'book',
+													'minimum_booking_type_options' : true,
+													'layout' : 'full',
+													'intro' : post.content,
+												},
+												'large': true
+											} %}
+
+								{% endif %}
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			{% if slide.title__position == 'center' %}
+				<div class="hero__slide__scroll">
+					{% include 'atoms/button.twig' with {
+						'type': 'circle',
+						'direction': 'down'
+					}%}
+				</div>
+			{% endif %}
+
+			{% if slide.underline %}
+				<div class="hero__slide__img__side">
+					<div class="hero__slide__image__hero"></div>
+					<div class="hero__slide__image__hero__overlay"></div>
+				</div>
+			{% endif %}
+			{% if slide.global_page_underline or slide.page == 'christmas-brunch' %}
+				<div class="hero__slide__img__side hero__slide__img__side__brunch">
+					<div class="{% if slide.global_page_underline %}rounded--3 hero__slide__image__hero--g{% endif %}{% if slide.page == 'christmas-brunch' %}hero__slide__image__hero--br {% endif %}"></div>
+					<div class="hero__slide__image__hero__overlay--g rounded--3"></div>
+				</div>
+			{% endif %}
+		</div>
+	{% endfor %}
+</div>
+{% if hasForm or sliderItems.has_form %}
+ 	{% include 'organisms/mobile-accordian.twig' with {
+		'moduleClasses': 'mobile-accordian--1366 mobile-accordian--red ' ~ (sliderItems.form_open_on_mobile ? 'open' : ''),
+		'data_accordian': 'hero-form',
+		'text': sliderItems.form_title is not empty ? sliderItems.form_title : (sliderItems.form_type == 'grav' ? function('get_grav_form_title', sliderItems.form_id) : 'Book Now')
+	}%}
+	<div data-mobile-accordian-target="hero-form" class="mobile-accordian--1366 {{formType}} {{sliderItems.form_open_on_mobile ? 'open' : ''}}" style="background: white;">
+		{% if hasForm or sliderItems.has_form %}
+			<div class="hero__form hero__form--{{sliderItems.form_type}}">
+				{% if sliderItems.form_type == 'grav' %}
+					{% include 'organisms/gravity-form.twig' with {
+						'form_id' : sliderItems.form_id,
+						'is_widget' : true,
+						'mobile': true
+					} %}
+				{% elseif sliderItems.form_type == 'booking' %}
+					{# {% include 'organisms/booking-form.twig' with {
+						'mobile': true,
+						'prepop' : {
+							'cube_form_id' : sliderItems.form_id,
+											'bar_id' : (sliderItems.booking_widget_options.bar_id is iterable ? sliderItems.booking_widget_options.bar_id[0]|abs : sliderItems.booking_widget_options.bar_id|abs),
+											'party_type' : (sliderItems.booking_widget_options.party_type_id is iterable ? sliderItems.booking_widget_options.party_type_id[0] : sliderItems.booking_widget_options.party_type_id),
+											'occasion' : (sliderItems.booking_widget_options.occasion_id is iterable ? sliderItems.booking_widget_options.occasion_id[0] : sliderItems.booking_widget_options.occasion_id),
+						},
+						'settings' : {
+							'title' : sliderItems.form_title,
+							'intro' : sliderItems.form_description,
+							'minimum_booking_type_options' : sliderItems.booking_widget_options.allow_dining is not defined or sliderItems.booking_widget_options.allow_dining is same as(true),
+							'occasion_dropdown' : (sliderItems.booking_widget_options.custom_occasions is iterable ? sliderItems.booking_widget_options.custom_occasions : sliderItems.booking_widget_options.custom_occasions),
+						},
+					} %} #}
+							{% include 'organisms/booking-form.twig' with {
+						'prepop' : {
+							'cube_form_id' : 29,
+							'party_type' : 18
+						},
+						settings : { 
+							'form_id' : 'book',
+							'form_name' : 'book',
+							'minimum_booking_type_options' : true,
+							'layout' : 'full',
+							'intro' : post.content,
+						},
+						'large': true
+					} %}
+				{% endif %}
+			</div>
+		{% endif %}
+	</div>
+{% endif %}
+
+<style>
+.brunch__banner__mobile {
+	/* background: url(../../wp-content/themes/decuba/app/img/brunch/brunch-hero-small.png) no-repeat center / cover !important; */
+	background: none!important;
+	height: auto;
+}
+
+@media only screen and (min-width: 700px) {
+	.brunch__banner__mobile {
+		display: block !important;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.brunch__banner__mobile {
+		display: none !important;
+	}
+}
+
+.brunch__banner__mobile > img {
+	object-fit: cover;
+    width: 100%;
+    height: fit-content;
+	object-position: center;
+	height: auto;
+}
+
+.brunch__banner__mobile__inner {
+	background: #F7BCBC;
+	border: none;
+	padding: 2rem;
+}
+
+.brunch__banner__mobile__inner .ch__brunch__header {
+	max-width: none;
+	width: auto;
+	background: url(../../wp-content/themes/decuba/app/img/brunch/bottomless-heading.svg) no-repeat center / contain;
+	width: auto;
+	height: 100px;
+	margin-bottom: 30px !important;
+}
+
+.brunch__banner__mobile__inner .hero__christmas__br--text {
+	max-width: none !important;
+}
+
+.hero__info .delivery-links {
+	display: none;
+}
+
+.hero__info .fixr-event-links {
+		display: flex;
+		width: 100%;
+		margin-top: 15px;
+	}
+
+.single-bar .hero__info {
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.single-bar .hero__info__button-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	width: 100%;
+}
+
+.hero__info .hero__info__button--small {
+	margin: 10px 10px 10px 0;
+}
+
+@media only screen and (max-width: 400px) {
+
+	.hero__info .hero__info__button--small {
+		margin: 10px 1%;
+	}
+
+}
+
+i.icon-just-eat-logo {
+	transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.26, 1.57), -webkit-transform 0.3s cubic-bezier(0.68, -0.55, 0.26, 1.57);
+	font-size: 28px;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	-webkit-transform-origin: center;
+	transform-origin: center;
+	-webkit-transform: translateY(-50%) scale(0);
+	transform: translateY(-50%) scale(0);
+	left: 12px;
+	color: #FFFFFF;
+}
+
+.icon-just-eat-logo {
+	width: 29px;
+	height: 29px;
+}
+
+.icon-just-eat-logo:before {
+	content: url("/wp-content/themes/decuba/app/img/svg/just-eat.svg");
+}
+
+@media only screen and (min-width: 768px) {
+	.hero__info {
+		flex-wrap: wrap;
+		margin-top: 10px;
+	}
+
+	.hero__info .delivery-links {
+		display: flex;
+		width: 100%;
+		margin-top: 15px;
+	}
+}
+
+.hero__form .booking-form--large {
+	display: block;
+}
+
+@media only screen and (min-width: 768px) {
+	.hero__form .booking-form--large {
+		display: none;
+	}
+}
+
+.hero__christmas__brunch--slide {
+	background: #F7BCBC;
+	position: relative;
+	min-height: 40rem;
+	display: none;
+	border: none !important;
+}
+
+@media only screen and (min-width: 768px) {
+	.hero__christmas__brunch--slide {
+		display: block;
+	}
+}
+
+@media only screen and (min-width: 1366px) {
+	.hero__christmas__brunch--slide {
+		background: #F7BCBC;
+		border: 20px solid #1D4B4A;
+		min-height: 768px;
+		display: block;
+	}
+}
+
+.hero__slide .ch__brunch__header {
+	background: url(../../wp-content/themes/decuba/app/img/brunch/bottomless-heading.svg) no-repeat left / contain;
+	width: 320px;
+	height: 100px;
+	margin-bottom: 30px !important;
+	max-width: 320px;
+}
+
+@media only screen and (min-width: 1366px) {
+	.hero__slide .ch__brunch__header {
+		background: url(../../wp-content/themes/decuba/app/img/brunch/bottomless-heading.svg) no-repeat center / cover;
+		width: 55rem;
+		height: 23rem;
+		max-width: none;
+		z-index: 350;
+		position: relative;
+	}
+}
+
+.hero__christmas__brunch--slide .hero__slide__content,
+.brunch__banner__mobile .hero__slide__content {
+	border: none;
+    position: absolute;
+	bottom: 0;
+	text-align: center;
+	width: 100%;
+}
+
+@media only screen and (min-width: 1366px) {
+	.hero__christmas__brunch--slide .hero__slide__content,
+	.brunch__banner__mobile .hero__slide__content {
+		border: none;
+		position: static;
+		bottom: 0;
+		text-align: left;
+		z-index: 350;
+		position: relative;
+	}
+}
+
+.ch__brunch__bg__flower-left {
+	display: none;
+}
+
+@media only screen and (min-width: 1366px) {
+	.ch__brunch__bg__flower-left {
+		background: url(../../wp-content/themes/decuba/app/img/brunch/flower-left.svg) no-repeat center / cover;
+		width: 395px;
+		height: 281px;
+		position: absolute;
+		top: -3px !important;
+		display: block;
+		z-index: 100;
+	}
+}
+
+.ch__brunch__bg__leaf-left {
+	display: none;
+}
+
+@media only screen and (min-width: 1366px) {
+	.ch__brunch__bg__leaf-left {
+		background: url(../../wp-content/themes/decuba/app/img/brunch/leaf-left.svg) no-repeat center / cover;
+		width: 209px;
+		height: 381px;
+		position: absolute;
+		top: 200px;
+		display: block;
+		left: -8px !important;
+		z-index: 200;
+	}
+}
+
+.ch__brunch__bg__flower-right {
+	display: none;
+}
+
+@media only screen and (min-width: 1366px) {
+	.ch__brunch__bg__flower-right {
+		background: url(../../wp-content/themes/decuba/app/img/brunch/flower-right.svg) no-repeat center / cover;
+		width: 347px;
+		height: 378px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: block;
+		z-index: 200 !important;
+	}
+}
+
+.ch__brunch__bg__leaf-right {
+	display: none;
+}
+
+@media only screen and (min-width: 1366px) {
+	.ch__brunch__bg__leaf-right {
+		background: url(../../wp-content/themes/decuba/app/img/brunch/leaf-right.svg) no-repeat center / cover;
+		width: 395px;
+		height: 281px;
+		position: absolute;
+		bottom: 0;
+		right: -5px !important;
+		display: block;
+		z-index: 200;
+	}
+}
+
+.ch__brunch__bg__border {
+	display: none;
+}
+
+@media only screen and (min-width: 1366px) {
+	.hero__slide .ch__brunch__bg__border {
+		background: url(../../wp-content/themes/decuba/app/img/brunch/border-left.svg) no-repeat center / cover;
+		width: 611px;
+		height: 114px;
+		position: absolute;
+		bottom: 50px;
+		left: 30px;
+		display: block;
+		bottom: 15px;
+		z-index: 200 !important;
+	}
+}
+
+.ch__brunch__bg__available {
+	display: none;
+}
+
+@media only screen and (min-width: 1366px) {
+	.ch__brunch__bg__available {
+		background: url(../../wp-content/themes/decuba/app/img/brunch/lockup.svg) no-repeat center / cover !important;
+		width: 256px;
+		height: 234px;
+		position: absolute;
+		bottom: 50px;
+		left: 50%;
+		z-index: 200 !important;
+		display: block;
+	}
+}
+
+.hero__slide__image__hero--br {
+	display: none;
+}
+
+@media only screen and (min-width: 1366px) {
+	.hero__slide__image__hero--br {
+		background: url(../../wp-content/themes/decuba/app/img/brunch/rdc-brunch-hero.jpg) no-repeat center / cover;
+		height: 100%;
+		display: block;
+	}
+}
+
+.hero__slide__img__side__brunch {
+	height: 400px;
+}
+
+@media only screen and (min-width: 1366px) {
+	.hero__slide__img__side__brunch {
+		height: 70%;
+	}
+}
+
+.hero__christmas__brunch--slide .hero__christmas__br--text {
+	max-width: 400px !important;
+	color: #fff;
+}
+
+@media only screen and (min-width: 768px) {
+	.hero__christmas__brunch--slide .hero__christmas__br--text {
+		max-width: 300px !important;
+		text-align: left;
+	}	
+}
+
+.hero__slide__img__side__brunch .hero__slide__image__hero__overlay--g {
+	display: block;
+	background: url(../../wp-content/themes/decuba/app/img/brunch/rdc-brunch-foreground.jpg) no-repeat center / cover;
+    position: static;
+    width: 100%;
+    bottom: 0;
+	left: 0;
+	height: 100%;
+}
+
+@media only screen and (min-width: 1366px) {
+	.hero__slide__img__side__brunch .hero__slide__image__hero__overlay--g {
+		height: auto;
+		position: absolute;
+		bottom: -50px;
+		left: 0px;
+		height: 600px;
+		width: 750px;
+	}
+}
+
+.christmas-local-about__block__brunch {
+	min-height: 600px;
+	padding-bottom: 0px !important;
+	padding-top: 0px !important;
+}
+
+.christmas-local-about__block__brunch .row {
+	justify-content: center;
+}
+
+@media only screen and (min-width: 1366px) {
+	.hero__slide__img__side__brunch .hero__slide__image__hero--g {
+		background-size: contain;
+		position: absolute;
+		width: 30rem;
+		background-repeat: no-repeat;
+		height: 100%;
+		left: 0;
+		z-index: 100;
+		top: 7rem;
+		left: -10rem;
+		opacity: 1;
+	}
+}
+
+.hero__christmas__brunch--slide .js-locations-toggle {
+	display: none;
+}
+
+.brunch-mobile-image {
+	max-height: 20rem;
+}
+
+@media only screen and (min-width: 1000px) {
+	.brunch-mobile-image {
+		max-height: none;
+	}
+}
+
+.brunch__banner__mobile__inner {
+	display: none;
+}
+
+@media only screen and (min-width: 1000px) {
+	.brunch__banner__mobile__inner {
+		display: block;
+	}
+}
+</style>

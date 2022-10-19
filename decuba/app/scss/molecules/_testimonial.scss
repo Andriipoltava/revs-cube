@@ -1,0 +1,106 @@
+$c: '.testimonial';
+
+#{$c} {
+	display: flex;
+	flex-direction: column;
+	width: 75vw;
+	background: color(white);
+	margin-right: 30px;
+	padding: 30px 11px;
+	border-radius: 2px;
+	box-shadow: 0 2px 9px 0 rgba(0, 0, 0, .12);
+
+	@include mq("479px", "max") {
+		padding: 20px;
+	}
+
+	@include mq('md','min') {
+		width: 100%;
+		max-width: 432px;
+		padding: 59px 52px 40px;
+		box-shadow: 0 2px 29px 0 rgba(0, 0, 0, .14);
+	}
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	&__wrapper {
+		@include mq('md','max') {
+			padding-bottom: 0;
+		}
+
+		.icon-hand-gesture {
+			color: color(black);
+			font-size: 40px;
+			display: block;
+			text-align: center;
+			padding: 25px 0;
+
+			@include mq('md','min') {
+				display: none;
+			}
+		}
+	}
+
+	&__container {
+		display: flex;
+		justify-content: center;
+
+		@include mq('md','max') {
+			padding-top: 25px;
+		}
+
+		@include mq('1400px','min') {
+			padding: 0 90px;
+		}
+
+		.owl-stage {
+			display: flex;
+			padding-left: 20px !important;
+
+			.owl-item {
+				display: flex;
+				flex: 0 0 auto;
+			}
+		}
+	}
+
+	&__content, &__name {
+		p {
+			margin: 0;
+		}
+	}
+
+	&__title {
+		@extend .single-bar__title;
+		@include mq('md','min') {
+			margin-bottom: 56px !important;
+		}
+	}
+
+	&__content {
+		font-style: italic;
+		font-size: 16px;
+		line-height: (22/14);
+		margin-bottom: 1em;
+
+		@include mq('md','min') {
+			font-size: 18px;
+			line-height: (31/18);
+			margin-bottom: 2em;
+		}
+	}
+
+	&__name {
+		margin-top: auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+
+		p {
+			font-weight: bold;
+			color: color(fuschia);
+		}
+	}
+}

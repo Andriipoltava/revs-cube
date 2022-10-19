@@ -1,0 +1,88 @@
+<footer class="footer">
+	{% block footer %}
+		<div class="container">
+			<div class="row footer__container">
+							
+				<div class="col-md-12 col-ipl-3">
+					<ul class="list list--stack">
+						{% for item in footer_nav.get_items %}
+							<li class="{{item.classes | join(' ')}}">
+								<a class="button button--text button--text--black" href="{{item.get_link}}" target="{{item.target}}">{{item.title}}</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+
+				<div class="col-md-3 col-ipl-3">
+					<h5 class="heading heading--black">Stay in the know</h5>
+					<p class="smallcopy smallcopy--grey">Sign-up to receive the latest offers and news from Revolución de Cuba direct to your inbox</p>
+					{% include 'organisms/gravity-form.twig' with {
+						'preselect_bar': true,
+						'footer_signup': true,
+						'form_id' : options.footer_signup_form_id,
+						'display_title': false,
+						'display_description': false,
+						'field_values': false,
+						'showboth': true,
+						'is_styled': true,
+						'ajax': true
+					} %}
+				</div>
+
+				<div class="col-md-3 col-ipl-3">
+					<h5 class="heading heading--black">Stay Connected</h5>
+					<ul class="list list--social">
+						{% if options.facebook_page %}
+							<li>
+								<a target="_blank" href="{{options.facebook_page}}"><span class="icon-facebook"></span></a>
+							</li>
+						{% endif %}
+						{% if options.twitter_page %}
+							<li>
+								<a target="_blank" href="{{options.twitter_page}}"><span class="icon-twitter"></span></a>
+							</li>
+						{% endif %}
+						{% if options.instagram_page %}
+							<li>
+								<a target="_blank" href="{{options.instagram_page}}"><span class="icon-instagram"></span></a>
+							</li>
+						{% endif %}
+						{% if options.spotify_page %}
+							<li>
+								<a target="_blank" href="{{options.spotify_page}}"><span class="icon-spotify"></span></a>
+							</li>
+						{% endif %}
+						{% if options.whatsapp_number %}
+							<li>
+								<a target="_blank" href="https://api.whatsapp.com/send?phone={{options.whatsapp_number}}"><span class="icon-whatsapp"></span></a>
+							</li>
+						{% endif %}
+					</ul>	
+					{% if options.footer_hotline_details %}
+						<br>
+						<h5 class="heading heading--white">Wanna book a party, amigo?</h5>
+						<div class="m--none copyright smallcopy">{{options.footer_hotline_details}}</div>
+					{% endif %}
+				</div>
+
+				<div class="col-md-3 col-ipl-3">
+					<h5 class="heading">About Revolución de Cuba</h5>
+					<p class="m--none smallcopy"><a href="/terms-conditions/">Terms &amp; Conditions</a> & <a href="/privacy-policy/">Privacy Policy</a>.</p>
+					<p class="copyright smallcopy">© Revolución de Cuba {{"now"|date("Y")}}. Created by Cube3</p>
+				</div>
+
+			</div>
+		</div>
+	{% endblock %}
+</footer>
+
+<section class="cookie-popup">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<p>By using our website you consent to the use of cookies. As mentioned in our <a href="/terms-conditions/">Terms &amp; Conditions</a></p>
+				<button class="button--regular" id="cookie-consent">Accept</button>
+			</div>
+		</div>
+	</div>
+</section>

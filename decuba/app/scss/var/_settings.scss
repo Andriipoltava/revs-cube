@@ -1,0 +1,133 @@
+$enable-flex: true !default;
+
+$grid-columns:           12;
+$grid-gutter-width-base: 30px;
+
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	ipl: 1025px,
+	xl: 1250px,
+) !default;
+
+$container-max-widths: (
+	xs: 100%,
+	sm: 90%,
+	md: 90%,
+	lg: 960px,
+	ipl: 90%,
+	xl: 90%
+) !default;
+
+$directions: (
+	top,
+	bottom,
+	left,
+	right
+) !default;
+
+$grid-size: 12 !default;
+$gutter: 50 !default;
+
+$header-font-family: 'Brixton Wood Vector', sans-serif;
+$body-font-family: 'Bygonest', sans-serif;
+$special-font-family: 'Primed Alt', sans-serif;
+$special-font-family-alt: $special-font-family;
+
+$default-easing: cubic-bezier(0.42,0,0.58,1);
+$default-timing: .15s;
+$cartoon-easing: cubic-bezier(.68,-0.55,.26,1.57);
+$cool-easing: cubic-bezier(.19,1,.22,1);
+
+$colors: (
+
+	// Viva Cuba 2022 colours
+	flamingo: #D41367,
+	mango-tango: #EA7600,
+	cuba-blue: #004A98,
+	midnight-blue: #12284C,
+	fiesta: #9C4877,
+	sunshine: #FFBF3C,
+	mojito-green: #40C1AC,
+	dusk: #2D2A26,
+	libre-red: #B12028,
+	varadero: #00A0AF,
+	jungle-green: #00615C,
+
+	default: #00A0AF, // varadero
+	font: #1D1D1B, // black
+
+	black: #1D1D1B,
+	white: #FFFFFF,
+
+	// Legacy variables
+	fuschia: #D41367, // flamingo
+	orange: #EA7600, // mango-tango
+	skyblue: #00A0AF, // varadero
+	green: #40C1AC, // mojito-green
+	navy: #12284C, // midnight-blue
+	red: #B12028, // libre-red
+	christmas-red: #B12028, // libre-red
+	christmas-green: #00615C, // jungle-green
+	coral: #9C4877, // fiesta,
+	mottle: #E8E6E1,
+	grey: (
+		lighter: #EEEEEE,
+		light: #F8F8F8,
+		regular: #D1D1D5,
+		dark: #333333,
+		darker: #1b1b1b,
+	),
+);
+
+
+// Forms ----
+$form-error-color: color(red);
+$form-active-color: color(orange);
+$form-warning-color: color(orange);
+$form-success-color: color(navy);
+$field-font-size: 16;
+$field-line-height: 1.2;
+$field-height-in-px: 54px;
+$field-font-color: color(black);
+$field-placeholder-color: #888;
+$field-border-width: 2px;
+$field-border-color: color(grey, regular);
+$field-border-radius: 2px;
+
+
+// Menu's
+$global-menu-spacing-mobile: 100px 30px 20px;
+
+
+// Animations
+
+$spinner-base-line-height: 24px;
+$spinner-duration: 1s;
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+// Custom variables
+
+$color-orange: #F09F3A;
+$color-pink: #EE1E91;
+$color-pink-light: #FF32A5;
+$color-price: #343233;
+$color-light-gray: #F7F7F7;
+$color-white: #fff;
+
+$section-border: 4px solid rgba(240, 159, 58, 0.6);
+
+// Media
+
+$screen-sm: 650px;
+$screen-md: 1366px;
+$screen-md-2: 1000px;

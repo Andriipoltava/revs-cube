@@ -1,0 +1,691 @@
+/* 
+ * Stylesheet for Revolution Booking widget
+ */
+
+/* Global - should be in the widget */
+
+body.decuba {
+  background-color: transparent;
+  color: black;
+	font-family: "PT Sans", sans-serif;
+}
+
+.step
+{
+  padding: 18px;
+}
+
+
+.field
+{
+  margin-bottom: 16px;
+}
+
+.header-container
+{
+  background-color: #252632;
+}
+
+.header-container .header-title
+{
+	font-family: 'cubano';
+	font-size: 20px;
+}
+
+
+/* Resets */
+
+*,
+*::before,
+*::after
+{
+  box-sizing: border-box;
+}
+
+body.decuba input,
+body.decuba select,
+body.decuba textarea,
+button
+{
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-indent: 0;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus
+{
+  outline: 0;
+  box-shadow: none;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled,
+button:disabled,
+input[disabled],
+select[disabled],
+textarea[disabled],
+button[disabled],
+input.disabled,
+select.disabled,
+textarea.disabled,
+button.disabled
+{
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* All Fields */
+
+.field {
+  font-size: 16px;
+}
+
+/* Text Fields */
+
+.field-text .field__element-wrap,
+.field--text .field__element-wrap,
+.field--email .field__element-wrap,
+.field--password .field__element-wrap,
+.field--date .field__element-wrap,
+.field--search .field__element-wrap {
+  background-color: white;
+  border-radius: 4px;
+}
+
+.field-text .field__element,
+.field--text .field__element,
+.field--email .field__element,
+.field--password .field__element,
+.field--date .field__element,
+.field--date .datepicker-input,
+.field--search .field__element {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  line-height: 50px;
+  height: 50px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 4px;
+  color: black;
+}
+
+.field-text .field__element.placeholder,
+.field--text .field__element.placeholder,
+.field--email .field__element.placeholder,
+.field--password .field__element.placeholder,
+.field--date .field__element.placeholder,
+.field--search .field__element.placeholder {
+  color: #CCC;
+}
+
+.field-text .field__element::-webkit-input-placeholder,
+.field--text .field__element::-webkit-input-placeholder,
+.field--email .field__element::-webkit-input-placeholder,
+.field--password .field__element::-webkit-input-placeholder,
+.field--date .field__element::-webkit-input-placeholder,
+.field--search .field__element::-webkit-input-placeholder {
+  color: #CCC;
+}
+
+.field--circular .field__element-wrap {
+  border-radius: 99999em;
+}
+
+.field--circular .field__element {
+  line-height: 32px;
+  height: 32px;
+  padding: 0;
+  text-align: center;
+  border-radius: 99999em;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+/* Textarea Fields */
+
+.field--textarea .field__element-wrap {
+  background-color: white;
+  border-radius: 4px;
+}
+
+.field--textarea .field__element {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  -webkit-appearance: none;
+  /* iOS box shadow */
+  appearance: none;
+  outline: none;
+  line-height: 1.2;
+  height: 6em;
+  padding: 15px 20px;
+  border: 0;
+  border-radius: 4px;
+  color: black;
+}
+
+.field--textarea .field__element.placeholder {
+  color: #CCC;
+}
+
+.field--textarea .field__element::-webkit-input-placeholder {
+  color: #CCC;
+}
+
+
+
+
+/* Select Fields */
+
+.field--select .field__element-wrap {
+  position: relative;
+  z-index: 0;
+  background-color: white;
+  color: black;
+  height: 50px;
+  border-radius: 4px;
+}
+
+.field--select .field__element-wrap:before {
+  display: block;
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  top: -1px;
+  right: -1px;
+  z-index: 2;
+  pointer-events: none;
+  background-clip: padding-box;
+  content: "\f078";
+  font-family: FontAwesome;
+  font-size: 10px;
+  border: 0;
+  border-radius: 0 4px 4px 0;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+
+
+.field--select .field__element {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* Needed by IE11 */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: inherit;
+  background-color: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0 50px 0 20px;
+  border: 0;
+  border-radius: 4px;
+}
+
+.field--select .field__element::-ms-expand {
+  display: none;
+}
+
+.field--select .field__element option {
+  color: black;
+}
+
+
+/* Checkbox & Radio Fields */
+
+.field--checkbox .field__element,
+.field--radio .field__element {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.field--checkbox .field__sub-label,
+.field--radio .field__sub-label {
+  cursor: pointer;
+  display: block;
+  vertical-align: middle;
+  margin-bottom: 0;
+  margin-right: 0;
+  text-align: left;
+  text-indent: -22px;
+  padding-left: 22px;
+}
+
+.field--checkbox .field__sub-label::before,
+.field--radio .field__sub-label::before {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  user-select: none;
+  content: "";
+  text-align: center;
+  text-indent: 0;
+  vertical-align: middle;
+  font-family: FontAwesome;
+  background-color: white;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  border: 0;
+}
+
+.field--checkbox .field__sub-label::before {
+  color: #0CC6C9;
+  font-size: 18px;
+  border-radius: 4px;
+  padding-left: 4px;
+  padding-bottom: 2px;
+}
+
+.field--radio .field__sub-label::before {
+  font-size: 10px;
+  border-radius: 9999em;
+}
+
+.field--checkbox .field__element:checked+.field__sub-label::before {
+  content: "\f00c";
+}
+
+.field--radio .field__element:checked+.field__sub-label::before {
+  content: "\f111";
+}
+
+.field--opt_in,
+.field--sms_opt_in,
+.field--phone_opt_in
+{
+  display: inline-block;
+  padding-right: 2em;
+}
+
+.field--error .field__element.placeholder
+{
+  color: #DE3226;
+}
+
+.field--error .field__element::-webkit-input-placeholder
+{
+  color: #DE3226;
+}
+
+.field__error
+{
+  font-size: 12px;
+  color: #DE3226;
+  margin-top: 0.25em;
+}
+
+
+/* Btn / Submit Fields */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 0;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 14px;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 0 13px;
+  border-radius: 2px;
+  border: 0;
+
+  font-family: 'cubano';
+  font-size: 18px;
+  text-transform: uppercase;
+  color: white;
+  background-color: #FF32A5;
+}
+
+.btn:before, 
+.btn:after 
+{
+	content: '';
+	display: block;
+	position: absolute;
+	width: 44px;
+	height: 200%;
+	background-color: #FFAE2D;
+	top: 0;
+	transition: 0.3s cubic-bezier(.68,-0.55,.26,1.57);
+}
+
+.btn:before {
+	left: -44px;
+	transform: translate(0px, -50%) rotate(45deg);
+	transform-origin: bottom right;
+}
+
+.btn:after {
+	right: -44px;
+	transform: rotate(45deg);
+	transform-origin: top left;
+}
+
+.btn:hover
+{
+  color: white;
+}
+
+.btn:hover:before {
+	transform: translate(0px, -50%) rotate(0deg);
+}
+.btn:hover:after {
+	transform: rotate(0deg);
+}
+
+.btn>* {
+  position: relative;
+  z-index: 2;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+}
+
+.btn>*:first-child {
+  padding-left: 0;
+}
+
+.btn--continue
+{
+  width: 100%;
+}
+
+.btn--circular
+{
+  min-width: 32px;
+  min-height: 32px;
+  font-size: 16px;
+  border-radius: 99999em;
+  padding: 0 2px;
+  background-color: #FFAE2D;
+}
+
+.btn--circular::before,
+.btn--circular::after
+{
+	display: none;
+}
+
+.btn--outline
+{
+  color: inherit;
+  border: 2px solid #FF32A5;
+  background-color: transparent;
+  background-image: none;
+}
+
+.btn--outline::before,
+.btn--outline::after
+{
+	display: none;
+}
+
+.btn--apple
+{
+  width: 100%;
+  background-image: none;
+  background-color: black;
+}
+
+.btn--apple::before,
+.btn--apple::after
+{
+	display: none;
+}
+
+.btn--google
+{
+  width: 100%;
+  background-image: none;
+  background-color: #FFC33A;
+  color: black;
+}
+
+.btn--google::before,
+.btn--google::after
+{
+	display: none;
+}
+
+.btn--social
+{
+  font-size: 32px;
+}
+
+.btn--social::before,
+.btn--social::after
+{
+	display: none;
+}
+
+.btn--whatsapp
+{
+  background-image: none;
+  background-color: #67C15E;
+}
+
+.btn--messenger
+{
+  background-image: none;
+  background-color: #007FFF;
+}
+
+.btn--link
+{
+  background-image: none;
+  background-color: #F66250;
+}
+
+
+/* Timeslots */
+
+.timeslot
+{
+  position: relative;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 0;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 14px;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 2px;
+  border: 0;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  color: white;
+  background-color: #0CC6C9;
+}
+
+.slot-holder .key-holder .key-holder__items .key.key--available .key--indicator
+{
+  background-color: #0CC6C9;
+}
+
+.timeslot:not(.timeslot--stacked)
+{
+  padding: 0 5px;
+}
+
+.timeslot::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: background-color 0.5s;
+}
+
+.timeslot>*,
+.timeslot>span {
+  position: relative;
+  z-index: 2;
+  padding: 2px 2px 2px 0px;
+}
+
+.timeslot>*::before {
+  content: "|";
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 2px;
+}
+
+.timeslot:not(.timeslot--stacked)>*:first-child,
+.timeslot:not(.timeslot--stacked)>span:first-child {
+  padding-left: 0;
+}
+
+.timeslot>*:first-child::before {
+  display: none;
+}
+
+.timeslot--inactive {
+  background-color: #DDD;
+  color: #9B9B9B;
+  text-decoration: strike-through;
+}
+
+.timeslot--stacked {
+  flex-wrap: wrap;
+  justify-content: stretch;
+}
+
+.timeslot--stacked > *,
+.timeslot--stacked > span {
+  width: 100%;
+  padding: 0 5px;
+  min-height: 27px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.timeslot--stacked > *::before,
+.timeslot--stacked > span::before {
+  display: none;
+}
+
+.timeslot--stacked > :nth-child(2) {
+  background-color: rgba(0,0,0,0.1);
+  font-weight: 500;
+  color: white;
+  min-height: 25px;
+}
+
+.timeslot--stacked.timeslot--inactive > :nth-child(2) {
+  text-decoration: none;
+}
+
+
+/* Notice */
+
+.notice {
+  padding: 20px 20px 24px;
+  border-radius: 4px;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  border: 0;
+}
+
+.notice--subtle
+{
+  border-width: 0;
+  background-color: #E8E8E8;
+}
+
+.notice--warning
+{
+  font-size: 12px;
+  border-color: #FF32A5;
+  background-color: rgba(255,50,165,.25);
+  padding-bottom: 20px;
+}
+
+.notice--suggestion
+{
+  font-size: 12px;
+  border-color: #FFAE2D;
+  background-color: rgba(255,174,45,.40);
+  padding-bottom: 20px;
+}
+
+.notice a
+{
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: underline;
+}
+
+
+/* Intro */
+
+.intro {
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.intro__title
+{
+  font-size: 20px;
+  font-weight: 700;
+  color: #151426;
+}
+
+.intro__title:not(:last-child)
+{
+  margin-bottom: 12px;
+}
+
+.intro--confirmation .intro__title
+{
+  font-size: 24px;
+  line-height: 1.16666;
+  margin-bottom: 16px;
+}

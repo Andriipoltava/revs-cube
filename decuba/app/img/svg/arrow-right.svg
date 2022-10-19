@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="8px" height="13px" viewBox="0 0 8 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="UI-KIT" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="RDC-UI-KIT" transform="translate(-1635.000000, -2916.000000)" fill="#FF32A5">
+            <g id="Location-Finder" transform="translate(738.000000, 2624.000000)">
+                <g id="Dropdown">
+                    <g id="Manchester" transform="translate(149.000000, 221.000000)">
+                        <path d="M744.863961,72.863961 L753.863961,72.863961 L753.863961,74.363961 L744.863961,74.363961 L744.863961,72.863961 Z M752.363961,81.863961 L752.363961,74.363961 L753.863961,74.363961 L753.863961,81.863961 L752.363961,81.863961 Z" id="Arrow" transform="translate(749.363961, 77.363961) rotate(-315.000000) translate(-749.363961, -77.363961) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

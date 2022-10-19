@@ -1,0 +1,71 @@
+{% if post.post_type == 'bar' %}
+
+	<section class="christmas__intro ">
+		<div class="container christmas__intro__container">
+			<div class="row">
+				<h3 class="christmas__intro__title">
+					{% if post.get_field('intro_text__flair_has_flair') %}
+						<span class="">{{post.get_field('intro_text__flair_flair__text')}}</span>
+					{% endif %}
+					
+					{{post.get_field('intro_text__title')}}
+				</h3>
+			</div>
+			<div class="row">
+				<div class="christmas__intro__left">
+
+					<div class="christmas__slider__wrap">
+						<div class="christmas__slider__container">
+							<div class="christmas__slider">
+								{% set images = post.get_field('gallery__images') %}
+								{% for image in images %}
+									<div class="christmas__slider__image">
+										<img class="owl-lazy" data-src="{{image.image.url}}" alt="Christmas party venue, Revolución de Cuba {{bar.post_title}} {{loop.index}}">
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+						
+						{% if images|length > 1 %}
+							<ul class="dots">
+								<li class="dots__arrow dots__arrow--prev"><span class="icon-arrow-left"></span></li>
+								{% for i in 1..(images|length) %}
+									<li class="dots__single {% if loop.first %}active{% endif %}" data-gallery-dot="{{loop.index0}}"></li>
+								{% endfor %}
+								<li class="dots__arrow dots__arrow--next"><span class="icon-arrow-right"></span></li>
+							</ul>
+
+							<div class="icon-hand-gesture"></div>
+						{% endif %}
+					</div>
+
+				</div>
+				<div class="christmas__intro__right">
+					{{post.get_field('intro_text__content')}}
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% else %}
+
+	<section class="christmas__intro ">
+		<div class="container christmas__intro__container">
+			<div class="row">
+				<div class="christmas__intro__left">
+					<h2 class="christmas__intro__title">
+						{% if post.get_field('intro_text__flair_has_flair') %}
+							<span class="">{{post.get_field('intro_text__flair_flair__text')}}</span><br />
+						{% endif %}
+						
+						{{post.get_field('intro_text__title')}}
+					</h2>
+				</div>
+				<div class="christmas__intro__right">
+					{{post.get_field('intro_text__content')}}
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endif %}

@@ -1,0 +1,41 @@
+<section class="packages packages--3 bg--christmas-green--pattern christmas__packages">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text--center christmas__packages__heading">
+				<h3 class="christmas__packages__title">
+					{{post.get_field('christmas__packages__title_header__title')}}
+					<span>{{post.get_field('christmas__packages__title_header__flair_flair__text')}}</span>
+				</h3>
+			</div>
+		</div>
+
+		<div class="packages__container christmas__packages__container">
+			{% for package in post.get_field('christmas__packages').packages %}
+			    {% include 'molecules/package.twig' with {
+			    	'popular': package.package__popular,
+			    	'image': {
+			    		'url': package.package__image.url,
+			    		'alt': (package.package__title|striptags) ~ ", Revolución de Cuba " ~ bar.post_title ~ " Christmas Party",
+			    	},
+			    	'tag': {
+			    		'text': package.package__tag.tag__text,
+			    		'theme': package.package__tag.color,
+			    		'size': package.package__tag.tag__size,
+			    		'flair': package.package__tag.has_flair,
+			    		'flair_text': package.package__tag.flair__text,
+			    		'price': package.package__tag.tag__is_price,
+			    	},
+			    	'title': package.package__title,
+			    	'content': package.package__content,
+			    	'button': {
+			    		'type': package.button__type,
+			    		'text': package.button__text,
+			    		'color': package.button__color.color,
+			    		'link_type': 'internal',
+			    		'internal_link': '#bookingform'
+			    	}
+			    } %}
+			{% endfor %}
+		</div>
+	</div>
+</section>

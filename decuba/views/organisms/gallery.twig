@@ -1,0 +1,449 @@
+{% if type == 'large' %}
+    <div class="gallery--large__container {% if images|length <= 1 %}gallery--large__container--single{% endif %}">
+
+        {% if post.type == 'bar' and post.get_field('intro_text__title') %}
+            <section class="single-bar__intro">
+                <div class="container single-bar__intro__container">
+                    <div class="row">
+                        <div class="single-bar__intro__left">
+                            <h2 class="single-bar__intro__title">
+                                {% if post.get_field('intro_text__flair_has_flair') %}
+                                    <span class="color--skyblue">{{ post.get_field('intro_text__flair_flair__text') }}</span>
+                                {% endif %}
+
+                                {{ post.get_field('intro_text__title') }}
+                            </h2>
+                        </div>
+                        <div class="single-bar__intro__right">
+                            {{ post.get_field('intro_text__content') }}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+
+        <div class="container">
+            {% if page=="christmas-local" %}
+                <div class="christmas__local__gallery__title">
+                    <h3 class="christmas__local__gallery__title">GALLERY</h3>
+                    <div class="christmas__local__gallery__underline"></div>
+                </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-md-12">
+                    {% if post.post_type == 'bar' %}
+                    <div class="gallery__sidebar__container">
+                        {% endif %}
+                        <div class="gallery gallery--large {% if page==" christmas-local" %}gallery--large-position{% endif %}">
+                            {% for image in images %}
+                                <div class="gallery--large__image">
+                                    <picture>
+                                        <source srcset="{{ image.image.url }}" media="(min-width: 768px)"/>
+                                        <img srcset="{% if image.image_mobile.url %}{{ image.image_mobile.url }}{% else %}{{ image.image.url }}{% endif %}"
+                                             alt="{{ image.image.alt }}"/>
+                                    </picture>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        {% if post.post_type == 'bar' %}
+                        <div class="gallery__sidebar">
+                            {% include 'molecules/sidebar.twig' with {
+                                'type': 'location',
+                            } %}
+
+                        </div>
+                    </div>
+                    <script>
+                        const blog = () => {
+                            document.querySelectorAll('.gallery .gallery--large__image img').forEach(function (item) {
+                                item.style.minHeight = document.querySelector('.gallery__sidebar').clientHeight + "px";
+                                ;                            })
+
+                        }
+                        document.addEventListener('DOMContentLoaded', function () {
+                            blog()
+                            if (window.jQuery) {
+                                jQuery(document).ajaxComplete(function (event, xhr, settings) {
+                                    blog()
+                                    setTimeout(function () {
+                                        blog()
+                                    }, 2000)
+                                });
+                            }
+                        });
+
+                        window.addEventListener('resize', blog, true);
+                    </script>
+                    {% endif %}
+                    {% if post.slug == 'christmas-local' %}
+                        <div id="counter"></div>
+                    {% endif %}
+                    {% if images|length > 1 %}
+                        <ul class="dots">
+                            <li class="dots__arrow dots__arrow--prev">
+                                <span class="icon-arrow-left"></span>
+                            </li>
+                            {% for i in 1..(images|length) %}
+                                <li class="dots__single {% if loop.first %}active{% endif %}"
+                                    data-gallery-dot="{{ loop.index0 }}"></li>
+                            {% endfor %}
+                            <li class="dots__arrow dots__arrow--next">
+                                <span class="icon-arrow-right"></span>
+                            </li>
+                        </ul>
+
+                        {#                        <div class="icon-hand-gesture"></div>
+                        #}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% elseif type == 'christmas-large' %}
+    <div class="gallery--large__container {% if images|length <= 1 %}gallery--large__container--single{% endif %}">
+        <div class="container christmas__local__gallery__wrapper">
+            <div class="christmas__local__gallery__title">
+                <h3 class="christmas__local__gallery__title">GALLERY</h3>
+                <div class="christmas__local__gallery__underline"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {% if post.post_type == 'bar' %}
+                    <div class="gallery__sidebar__container">
+                        {% endif %}
+                        <div class="gallery christmas-gallery--large">
+                            {% for image in images %}
+                                <div class="christmas-gallery--large__image">
+                                    <picture>
+                                        <source srcset="{{ image.image.url }}" media="(min-width: 768px)"/>
+                                        <img srcset="{% if image.image_mobile.url %}{{ image.image_mobile.url }}{% else %}{{ image.image.url }}{% endif %}"
+                                             alt="{{ image.image.alt }}"/>
+                                    </picture>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        {% if post.post_type == 'bar' %}
+                        <div class="gallery__sidebar">
+                            {% include 'molecules/sidebar.twig' with {
+                                'type': 'location',
+                            } %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if post.slug == 'christmas-local' %}
+                        <div id="counter"></div>
+                    {% endif %}
+                    {% if images|length > 1 %}
+                        <ul class="dots christmas-gallery-dots">
+                            <li class="dots__arrow dots__arrow--prev">
+                                <span class="icon-arrow-left"></span>
+                            </li>
+                            {% for i in 1..(images|length) %}
+                                <li class="dots__single {% if loop.first %}active{% endif %}"
+                                    data-gallery-dot="{{ loop.index0 }}"></li>
+                            {% endfor %}
+                            <li class="dots__arrow dots__arrow--next">
+                                <span class="icon-arrow-right"></span>
+                            </li>
+                        </ul>
+
+                        {#                        <div class="icon-hand-gesture"></div>
+                        #}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% elseif type == 'christmas-celebration-gallery-cuba' %}
+    <div class="christmas__celebration__gallery__bg">
+        <div class="container christmas__celebration__gallery__wrapper" style="margin: auto;">
+            <div class="christmas__celebration__gallery__title__wrapper">
+                <h3 class="christmas__celebration__gallery__title" style="color: #fff;">
+                    Fiesta Celebracions at home
+                    <div class="christmas__celebration__gallery__underline"></div>
+                </h3>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="gallery christmas-gallery--celebration">
+                        {% for image in images %}
+                            <div class="christmas-gallery--celebration__image" style="height: 35rem;">
+                                <div class="christmas-gallery--celebration__item">
+                                    <picture>
+                                        <source srcset="{{ image.image.url }}" media="(min-width: 768px)"/>
+                                        <img srcset="{% if image.image_mobile.url %}{{ image.image_mobile.url }}{% else %}{{ image.image.url }}{% endif %}"
+                                             alt="{{ image.image.alt }}" id="slider_item_img"/>
+                                    </picture>
+                                </div>
+                                <div class="christmas-gallery--celebration__text_container">
+                                    <div class="christmas-gallery--celebration__text_title">
+                                        {{ image.image.title }}
+                                    </div>
+                                    <div class="christmas-gallery--celebration__text {% if image.image.extra_class %}{{ image.image.extra_class }}{% else %} normal-slide {% endif %}">
+                                        {{ image.image.text }}
+                                    </div>
+                                    <div class="christmas-gallery--celebration__button" style="bottom: 10px;">
+                                        {% include 'atoms/button.twig' with {
+                                            'type': 'regular',
+                                            'text': image.image.cta_text,
+                                            'color': 'fuschia',
+                                            'link_type': 'internal',
+                                            'external_link': '',
+                                            'internal_link': image.image.cta_url,
+                                        } %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div id="slider_celebration_counter"></div>
+                    {% if images|length > 1 %}
+                        <ul class="dots christmas__celebration__gallery-dots">
+                            <li class="dots__arrow dots__arrow__ch--prev">
+                                <span class="icon-arrow-left"></span>
+                            </li>
+                            {% for i in 1..(images|length) %}
+                                <li class="dots__single {% if loop.first %}active{% endif %}"
+                                    data-gallery-dot="{{ loop.index0 }}"></li>
+                            {% endfor %}
+                            <li class="dots__arrow dots__arrow__ch--next">
+                                <span class="icon-arrow-right"></span>
+                            </li>
+                        </ul>
+
+                        {#                        <div class="icon-hand-gesture"></div>
+                        #}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% elseif type == 'christmas-celebration-gallery' %}
+    <div class="christmas__celebration__gallery__bg">
+        <div class="container christmas__celebration__gallery__wrapper" style="margin: auto;">
+            <div class="christmas__celebration__gallery__title__wrapper">
+                <h3 class="christmas__celebration__gallery__title" style="color: #fff;">
+                    FIESTA CELEBRATIONS
+                    <div class="christmas__celebration__gallery__underline"></div>
+                </h3>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="gallery christmas-gallery--celebration">
+                        {% for image in images %}
+                            <div class="christmas-gallery--celebration__image" style="height: 35rem;">
+                                <div class="christmas-gallery--celebration__item">
+                                    <picture>
+                                        <source srcset="{{ image.image.url }}" media="(min-width: 768px)"/>
+                                        <img srcset="{% if image.image_mobile.url %}{{ image.image_mobile.url }}{% else %}{{ image.image.url }}{% endif %}"
+                                             alt="{{ image.image.alt }}" id="slider_item_img"/>
+                                    </picture>
+                                </div>
+                                <div class="christmas-gallery--celebration__text_container"
+                                     style="max-height: none; height: auto; overflow: visible;">
+                                    <div class="christmas-gallery--celebration__text_title">
+                                        {{ image.image.title }}
+                                    </div>
+                                    <div class="christmas-gallery--celebration__text">
+                                        {{ image.image.text }}
+                                    </div>
+                                    <div class="christmas-gallery--celebration__button" style="bottom: 10px;">
+                                        {% include 'atoms/button.twig' with {
+                                            'type': 'regular',
+                                            'text': 'Book',
+                                            'color': 'fuschia',
+                                            'link_type': 'internal',
+                                            'external_link': '',
+                                            'internal_link': post.slug=='brunch'?site.link ~ '/brunch/':site.link ~ '/book/',
+                                        } %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div id="slider_celebration_counter"></div>
+                    {% if images|length > 1 %}
+                        <ul class="dots christmas__celebration__gallery-dots">
+                            <li class="dots__arrow dots__arrow__ch--prev">
+                                <span class="icon-arrow-left"></span>
+                            </li>
+                            {% for i in 1..(images|length) %}
+                                <li class="dots__single {% if loop.first %}active{% endif %}"
+                                    data-gallery-dot="{{ loop.index0 }}"></li>
+                            {% endfor %}
+                            <li class="dots__arrow dots__arrow__ch--next">
+                                <span class="icon-arrow-right"></span>
+                            </li>
+                        </ul>
+
+                        {#                        <div class="icon-hand-gesture"></div>
+                        #}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% elseif type == 'christmas-small' %}
+    <div class="bg--christmas bg--christmas-green--pattern">
+        <div class="container christmas__small__gallery__wrapper" style="margin: auto;">
+            <div class="christmas__small__gallery__title__wrapper">
+                <h3 class="christmas__small__gallery__title">
+                    CUBANO BRUNCH
+                    <div class="christmas__small__gallery__underline"></div>
+                </h3>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {% if post.post_type == 'bar' %}
+                    <div class="gallery__sidebar__container">
+                        {% endif %}
+                        <div class="gallery christmas-gallery--small">
+                            {% for image in images %}
+                                <div class="christmas-gallery--small__image"
+                                     style="margin-top: {{ image.image.margin }}">
+                                    <picture>
+                                        <source srcset="{{ image.image.url }}" media="(min-width: 768px)"/>
+                                        <img srcset="{% if image.image_mobile.url %}{{ image.image_mobile.url }}{% else %}{{ image.image.url }}{% endif %}"
+                                             alt="{{ image.image.alt }}"/>
+                                    </picture>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        {% if post.post_type == 'bar' %}
+                        <div class="gallery__sidebar">
+                            {% include 'molecules/sidebar.twig' with {
+                                'type': 'location',
+                            } %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div id="slider_counter"></div>
+                    {% if images|length > 1 %}
+                        <ul class="dots christmas__small__gallery-dots">
+                            <li class="dots__arrow dots__arrow--prev">
+                                <span class="icon-arrow-left"></span>
+                            </li>
+                            {% for i in 1..(images|length) %}
+                                <li class="dots__single {% if loop.first %}active{% endif %}"
+                                    data-gallery-dot="{{ loop.index0 }}"></li>
+                            {% endfor %}
+                            <li class="dots__arrow dots__arrow--next">
+                                <span class="icon-arrow-right"></span>
+                            </li>
+                        </ul>
+
+                        {#                        <div class="icon-hand-gesture"></div>
+                        #}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% elseif type == 'thumb' %}
+    <div class="gallery--thumbs__container {% if post.slug =='cocktail-masterclass' %} hide-md-max {% endif %}">
+        <div class="gallery gallery--thumbs">
+            {% for image in images %}
+
+                <div class="gallery--thumbs__image">
+                    {{ fn('wp_get_attachment_image', image.image.id, 'medium') }}
+
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="gallery--thumbs__nav">
+            <div class="gallery--thumbs__nav__prev">
+                <span class="icon-arrow-left"></span>
+            </div>
+            <div class="gallery--thumbs__nav__center"></div>
+            <div class="gallery--thumbs__nav__next">
+                <span class="icon-arrow-right"></span>
+            </div>
+        </div>
+        {#        <div class="icon-hand-gesture"></div>
+        #}
+    </div>
+{% elseif type == 'full' %}
+    <div class="gallery gallery--full">
+        <div class="gallery--full__contascreen">
+            {% for image in images %}
+                <div class="gallery--full__image">
+                    <img class="owl-lazy" data-src="{{ image.url }}" alt="{{ image.alt }}">
+
+                    <div class="gallery--full__product-menu-item">
+                        {% include 'molecules/product-menu-item.twig' with {
+                            'title': 'Cheeseburger Tacos',
+                            'description': "Our handmade burger mix topped with melting Manchego cheese, served in 3 soft corn tacos. Indulgent and oh so tempting. ",
+                            'price': '£6',
+                        } %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="gallery--full__arrow gallery--full__arrow--prev">
+            {% include 'atoms/button.twig' with {
+                'type': 'circle',
+                'direction': 'left'
+            } %}
+        </div>
+        <div class="gallery--full__arrow gallery--full__arrow--next">
+            {% include 'atoms/button.twig' with {
+                'type': 'circle',
+            } %}
+        </div>
+    </div>
+{% elseif type == 'fullscreen' %}
+    <div class="gallery gallery--fullscreen">
+        <div class="gallery--fullscreen__container">
+            {% for image in images %}
+                <div
+                        class="gallery--fullscreen__image" style="background-image: url({{ image.image.url }})">{# <picture>
+										    <source srcset="{{image.image.url}}" media="(min-width: 768px)" />
+											    <img srcset="{% if image.image_mobile.url %}{{image.image_mobile.url}}{% else %}{{image.image.url}}{% endif %}" alt="{{image.image.alt}}" />
+										</picture> #}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="gallery--fullscreen__arrow gallery--fullscreen__arrow--prev">
+            {% include 'atoms/button.twig' with {
+                'type': 'circle',
+                'direction': 'left'
+            } %}
+        </div>
+        <div class="gallery--fullscreen__arrow gallery--fullscreen__arrow--next">
+            {% include 'atoms/button.twig' with {
+                'type': 'circle',
+            } %}
+        </div>
+
+    </div>
+{% endif %}
+
+<style>
+    .christmas__celebration__gallery__title {
+        font-size: 48px;
+        line-height: 1;
+        width: 100% !important;
+    }
+
+    @media (min-width: 768px) {
+        .christmas__celebration__gallery__title {
+            font-size: 80px;
+            width: 35rem !important;
+        }
+    }
+
+    .christmas-gallery--celebration__text_container {
+        top: 45%;
+    }
+
+    @media (min-width: 681px) {
+        .christmas-gallery--celebration__text_container {
+            top: 8%;
+        }
+    }
+</style>

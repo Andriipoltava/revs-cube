@@ -1,0 +1,57 @@
+<div class="js-modal menu" data-modal="menu">
+	<div class="menu__container">
+		<div class="menu__main">
+			<div class="menu__main__nav">
+				{% for item in primary_nav.get_items %}
+					<li class="{{item.classes | join(' ')}}">
+						<a href="{{item.get_link}}" target="{{item.target}}">{{item.title}}</a>
+					</li>
+				{% endfor %}
+			</div>
+			<div class="menu__main__venues">
+				<h3>Our Locations</h3>
+				<div class="menu__main__venues--container">
+					<ul>					
+						{% for venue in venues %}
+						    <li><a href="{{venue.link}}" class="menu__main__venues__item {% if currentURL == venue.link %}active{% endif %}">
+						    	{% if venue.bar_is_new %}
+						    		<img class="menu__main__venues__newtag" src="{{site.theme.link}}/views/svg/tag--new-bar.svg" />
+						    	{% endif %}
+						    	{{venue.name}}
+						    </a></li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="menu__social">
+			<h3>Stay Connected</h3>
+
+			<ul>
+				<li>
+					<a href="{{options.facebook_page}}" target="_blank">
+						{% include 'svg/social/facebook.svg' %}
+					</a>
+				</li>
+				<li>
+					<a href="{{options.instagram_page}}" target="_blank">
+						{% include 'svg/social/instagram.svg' %}
+					</a>
+				</li>
+				<li>
+					<a href="{{options.twitter_page}}" target="_blank">
+						{% include 'svg/social/twitter.svg' %}
+					</a>
+				</li>
+				{% if options.whatsapp_number %}
+					<li class="menu__social--whatsapp">
+						<a href="https://api.whatsapp.com/send?phone={{options.whatsapp_number}}" target="_blank">
+							{% include 'svg/social/whatsapp.svg' %}
+						</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+</div>

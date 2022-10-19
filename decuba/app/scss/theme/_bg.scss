@@ -1,0 +1,190 @@
+$c: '.bg';
+
+#{$c} {
+	padding-top: $gutter/2 + px;
+	padding-bottom: $gutter/2 + px;
+	@include mq('md','min') {
+		padding-top: $gutter + px;
+		padding-bottom: $gutter + px;
+	}
+	
+	&--mottle {
+
+		&--color {
+			background-color: color(mottle);
+		}
+
+		&--pattern {
+			background-color: color(mottle);
+			background-size: auto;
+			background-image: url(../../app/img/patterns/main_texture.jpg);
+			background-repeat: repeat;
+			.no-backgroundblendmode &,
+			.safari.ipad &,
+			.iphone & {
+				background-size: contain;
+				background-repeat: repeat;
+				background-image: url(../../app/img/bg/mottle-texture.jpg);
+			}
+		}
+	}
+	
+	&--grey-light, &--default {
+
+		&--color {
+			background-color: color(grey, lighter);
+		}
+
+		&--pattern {
+			background-color: #e8e7e4;
+			background-size: auto;
+			background-image: url(../../app/img/patterns/main_texture.jpg);
+			background-repeat: repeat;
+		}
+
+		&--logo {
+			background-image: url(../../app/img/bg/logo.png);
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+
+			@include mq('md','min') {
+				background-position: center;
+				background-size: auto 90%;
+			}
+		}
+	}
+
+	&--yellow, &--orange {
+
+		&--color {
+			background-color: color(orange);
+		}
+
+		&--pattern {
+			background-color: color(orange);
+		}
+	}
+
+	&--green {
+
+		&--color {
+			background-color: color(green);
+		}
+
+		&--pattern {
+			background-color:  color(green);
+		}
+	}
+
+	&--christmas-green {
+
+		&--color {
+			background-color: color(christmas-green);
+		}
+
+		&--pattern {
+			background-color: color(christmas-green);
+		}
+	}
+
+	&--navy {
+
+		&--color {
+			background-color: color(navy);
+		}
+
+		&--pattern {
+			background-color: color(navy);
+		}
+	}
+
+	&--skyblue {
+
+		&--color {
+			background-color: color(skyblue);
+		}
+
+		&--pattern {
+			background-color: color(skyblue);
+		}
+	}
+
+	&--coral {
+
+		&--color {
+			background-color: color(coral);
+		}
+
+		&--pattern {
+			background-color: color(coral);
+		}
+	}
+	&--texture {
+		&--01, &-01--pattern {
+			background-image: url(/./wp-content/themes/decuba/app/img/bg/texture-01.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		&--02, &-02--pattern {
+			background-image: url(/./wp-content/themes/decuba/app/img/bg/texture-02.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		&--03, &-03--pattern {
+			background-image: url(/./wp-content/themes/decuba/app/img/bg/texture-03.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		&--04, &-04--pattern {
+			background-image: url(/./wp-content/themes/decuba/app/img/bg/texture-04.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		&--05, &-05--pattern {
+			background-image: url(/./wp-content/themes/decuba/app/img/bg/texture-05.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		&--06, &-06--pattern {
+			background-image: url(/./wp-content/themes/decuba/app/img/bg/texture-06.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		&--07, &-07--pattern {
+			background-image: url(/./wp-content/themes/decuba/app/img/bg/texture-07.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		&--08, &-08--pattern {
+			background-image: url(/./wp-content/themes/decuba/app/img/bg/texture-08.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		&--09, &-09--pattern {
+			background-image: url(/./wp-content/themes/decuba/app/img/bg/texture-09.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		&--10, &-10--pattern {
+			background-image: url(/./wp-content/themes/decuba/app/img/bg/texture-10.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		&--11, &-11--pattern {
+			background-image: url(/./wp-content/themes/decuba/app/img/bg/texture-11.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		&--12, &-12--pattern {
+			background-image: url(/./wp-content/themes/decuba/app/img/bg/texture-12.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+	}
+	&--alt--texture {
+		background-image: url(/./wp-content/themes/decuba/app/img/bg/bg-alt-texture.jpg);
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+}

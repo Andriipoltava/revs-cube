@@ -1,0 +1,376 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+	
+	{% set slides = [{
+		'image': site.theme.link~'/app/img/tmp/hero-party.jpg',
+		'image_position': 'right',
+		'flair_has_flair': true,
+		'flair_flair__text': 'Party',
+		'flair_flair__color': {
+			'color': 'skyblue',
+		},
+		'title': 'Fiesta<br>Cubana',
+		'title_weight': '1',
+		'title_color': '',
+		'content': '',
+		'content_color': '',
+		'has_button': false,
+		'show_location': true
+	}] %}
+
+	{% include 'organisms/hero.twig' with {
+		'moduleClasses': 'hero--mob-bg-center',
+		'slider': slides,
+		'hasForm': true,		
+	} %}
+	
+<div class="page-party__small">
+	<div class="page-party__small__section page-party__small__section--black">
+		<h4><a href="#">Large Groups</a></h4>
+		<span class="icon-arrow-right"></span>
+	</div>
+	<div class="page-party__small__section page-party__small__section--blue">
+		<h4><a href="#">Corporate Events</a></h4>
+		<span class="icon-arrow-right"></span>
+	</div>
+	<div class="page-party__small__section page-party__small__section--orange">
+		<h4><a href="#">Masterclass</a></h4>
+		<span class="icon-arrow-right"></span>
+	</div>
+	<div class="page-party__small__section page-party__small__section--green">
+		<h4><a href="#">Christmas</a></h4>
+		<span class="icon-arrow-right"></span>
+	</div>
+	<div class="page-party__small__section page-party__small__section--pink">
+		<h4><a href="#">New Year's Eve</a></h4>
+		<span class="icon-arrow-right"></span>
+	</div>
+	<div class="page-party__small__section page-party__small__section--black">
+		<h4><a href="#">Hen Do</a></h4>
+		<span class="icon-arrow-right"></span>
+	</div>
+	<div class="page-party__small__section page-party__small__section--blue">
+		<h4><a href="#">Stag Do</a></h4>
+		<span class="icon-arrow-right"></span>
+	</div>
+	<div class="page-party__small__section page-party__small__section--orange">
+		<h4><a href="#">Birthday</a></h4>
+		<span class="icon-arrow-right"></span>
+	</div>
+</div>
+
+<div class="page-party__large">
+	<div class="featured-cta__container bg bg--navy--pattern">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="featured-cta">
+						<div class="featured-cta__sidebar">
+							<div class="sidebar sidebar--text">
+								<div class="sidebar__title">
+									<h4>Large<br>Groups</h4>
+								</div>
+
+								<div class="sidebar__description">
+									<p>We know that parties are all about the people but, if you’ve got more amigos than you know what to do with, don’t worry. Our flexible party venue and fiesta packages for large groups bring everyone together. It’s the Cuban way.</p>
+								</div>
+
+								<div class="sidebar__button">
+									{% include 'atoms/button.twig' with {
+										'type': 'regular',
+										'text': 'View Menu',
+										'color': 'skyblue',
+										'link_type': 'internal',
+										'external_link': '',
+										'internal_link': '#',
+										'file': '',
+									}%}
+								</div>
+							</div>
+						</div>
+
+						<div class="featured-cta__image" style="background-image: url(https://revoluciondecuba.teamcube.co.uk/wp-content/uploads/2017/10/featured-cta-largegroups.jpg);">
+							<img src="https://revoluciondecuba.teamcube.co.uk/wp-content/uploads/2017/10/featured-cta-largegroups.jpg" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="featured-cta__container featured-cta--right bg bg--default--pattern">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="featured-cta">
+						<div class="featured-cta__sidebar">
+							<div class="sidebar sidebar--text">
+								<div class="sidebar__title">
+									<h4>Corporate<br>Events</h4>
+								</div>
+
+								<div class="sidebar__description">
+									<p>Ever sat in a meeting and thought ‘this would be so much better if it was in Havana’? Because you know it would be. Professional conference facilities, breakout spaces, dedicated cantina menus and rum. Plus that feeling you just could be...</p>
+								</div>
+
+								<div class="sidebar__button">
+									{% include 'atoms/button.twig' with {
+										'type': 'regular',
+										'text': 'View Packages',
+										'color': 'fuschia',
+										'link_type': 'internal',
+										'external_link': '',
+										'internal_link': '#',
+										'file': '',
+									}%}
+								</div>
+							</div>
+						</div>
+
+						<div class="featured-cta__image" style="background-image: url(https://revoluciondecuba.teamcube.co.uk/wp-content/uploads/2017/10/featured-cta-corporateevents.jpg);">
+							<img src="https://revoluciondecuba.teamcube.co.uk/wp-content/uploads/2017/10/featured-cta-corporateevents.jpg" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="featured-cta__container bg bg--navy--pattern">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="featured-cta">
+						<div class="featured-cta__sidebar">
+							<div class="sidebar sidebar--text">
+								<div class="sidebar__title">
+									<h4>Cocktail<br>masterclass</h4>
+								</div>
+
+								<div class="sidebar__description">
+									<p>Many of our drinks have stories to tell. Taste them, learn how to make them and leave loving rum the way it should be loved. Whether that's sipped, stirred or mixed in a Mojito, make it like a Maestro and book a cocktail making party.</p>
+								</div>
+
+								<div class="sidebar__button">
+									{% include 'atoms/button.twig' with {
+										'type': 'regular',
+										'text': 'View Packages',
+										'color': 'skyblue',
+										'link_type': 'internal',
+										'external_link': '',
+										'internal_link': '#',
+										'file': '',
+									}%}
+								</div>
+							</div>
+						</div>
+
+						<div class="featured-cta__image" style="background-image: url(https://revoluciondecuba.teamcube.co.uk/wp-content/uploads/2017/10/featured-cta-cocktailmasterclass.jpg);">
+							<img src="https://revoluciondecuba.teamcube.co.uk/wp-content/uploads/2017/10/featured-cta-cocktailmasterclass.jpg" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="packages packages--2 bg--default--pattern">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text--center">
+					<h3 class="packages__title"><span class="color--fuschia">Celebracións</span>Time to party</h3>
+				</div>
+			</div>
+
+			<div class="packages__container">
+				<div class="package">
+					<div class="package__image">
+						<img src="{{site.theme.link}}/app/img/tmp/party/xmas.jpg">
+
+						{#<div class="package__tag">
+							{% include 'atoms/tag.twig' with {
+								'text': '£24.95',
+								'theme': 'fuschia',
+								'link': '',
+								'size': 'medium',
+								'flair': true,
+								'flair_text': 'from',
+								'price': true
+							}%}
+						</div>#}
+					</div>
+
+					<div class="package__content">
+						<h3>Christmas</h3>
+
+						<p>It's hard to believe, but Christmas was banned in Cuba from 1968 to 1997. Which means we've got 29 years of missed partying to make up for. Find a party venue and book a Cuban party for Christmas.</p>
+
+						<div class="sidebar__button">
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'View Packages',
+								'color': 'fuschia',
+								'link_type': 'internal',
+								'external_link': '',
+								'internal_link': '#',
+								'file': '',
+							}%}
+						</div>
+					</div>
+				</div>
+				<div class="package">
+					<div class="package__image">
+						<img src="{{site.theme.link}}/app/img/tmp/party/nye.jpg">
+
+						{#<div class="package__tag">
+							{% include 'atoms/tag.twig' with {
+								'text': '£24.95',
+								'theme': 'fuschia',
+								'link': '',
+								'size': 'medium',
+								'flair': true,
+								'flair_text': 'from',
+								'price': true
+							}%}
+						</div>#}
+					</div>
+
+					<div class="package__content">
+						<h3>New year’s eve</h3>
+
+						<p>"Not an average night out for not an average night out. New Year's Eve is an excuse to party for an island that doesn't need any excuses. Join us, we'll be making Havana proud in the party venue with as much fiesta as Cuba itself."</p>
+
+						<div class="sidebar__button">
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Enquire Now',
+								'color': 'fuschia',
+								'link_type': 'internal',
+								'external_link': '',
+								'internal_link': '#',
+								'file': '',
+							}%}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="packages packages--3 bg--skyblue--pattern">
+		<div class="container">
+			<div class="packages__container">
+				<div class="package ">
+					<div class="package__image">
+						<img src="{{site.theme.link}}/app/img/tmp/party/hen-do.jpg" alt="">
+
+						<div class="package__tag">
+							{% include 'atoms/tag.twig' with {
+								'text': '£24.95',
+								'theme': 'green',
+								'link': '',
+								'size': 'medium',
+								'flair': true,
+								'flair_text': 'from',
+								'price': true
+							}%}
+						</div>
+					</div>
+
+					<div class="package__content">
+						<h3>Hen Do</h3>
+
+						<p>Girls just want to have rum. From Daiquiris to Zombies, take it from day to night with masterclass packages, cantina menus, cocktails and the finest fiesta vibes. Book a party night with extra Cuban style.</p>
+						
+						<div class="sidebar__button">
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Enquire now',
+								'color': 'skyblue',
+								'link_type': 'internal',
+								'external_link': '',
+								'internal_link': '#',
+								'file': '',
+							}%}
+						</div>
+					</div>
+				</div>													
+				
+				<div class="package ">
+					<div class="package__image">
+						<img src="{{site.theme.link}}/app/img/tmp/party/stag-do.jpg" alt="">
+
+						<div class="package__tag">
+							{% include 'atoms/tag.twig' with {
+								'text': '£24.95',
+								'theme': 'green',
+								'link': '',
+								'size': 'medium',
+								'flair': true,
+								'flair_text': 'from',
+								'price': true
+							}%}
+						</div>
+					</div>
+
+					<div class="package__content">
+						<h3>Stag Do</h3>
+
+						<p>Face it, it's going to be a big night. So party right with iconic and classic rum cocktails, live music, food and dancing 'til dawn. Send him off in style, without the long haul.</p>
+						
+						<div class="sidebar__button">
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Enquire now',
+								'color': 'skyblue',
+								'link_type': 'internal',
+								'external_link': '',
+								'internal_link': '#',
+								'file': '',
+							}%}
+						</div>
+					</div>
+				</div>													
+				
+				<div class="package ">
+					<div class="package__image">
+						<img src="{{site.theme.link}}/app/img/tmp/party/birthday.jpg" alt="">
+						
+						<div class="package__tag">
+							{% include 'atoms/tag.twig' with {
+								'text': '£24.95',
+								'theme': 'green',
+								'link': '',
+								'size': 'medium',
+								'flair': true,
+								'flair_text': 'from',
+								'price': true
+							}%}
+						</div>
+					</div>
+
+					<div class="package__content">
+						<h3>Birthday</h3>
+
+						<p>Live music, cocktails, sharing food and bespoke packages, let our party people and perfect party venues make your birthday a proper Cuban celebración.</p>
+
+						<div class="sidebar__button">
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'View Packages',
+								'color': 'skyblue',
+								'link_type': 'internal',
+								'external_link': '',
+								'internal_link': '#',
+								'file': '',
+							}%}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

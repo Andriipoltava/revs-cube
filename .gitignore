@@ -1,0 +1,14 @@
+decuba/node_modules/*
+
+.history
+
+plugins/*
+!plugins/.gitkeep
+
+uploads/*
+!uploads/.gitkeep
+
+db/*
+!db/.gitkeep
+
+.dccache

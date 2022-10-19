@@ -1,0 +1,268 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+
+	{# Section -- Pinned Post #}
+	{% if pinnedPost %}
+		{# Gets Pinned Post set in ACF Options Pages #}
+		{% set slides = [{
+			'image': TimberImage(blogHeroBG?:pinnedPost.banner_image),
+			'image_position': 'right',
+			'image_tint': pinnedPostTint,
+			'flair': {
+				'has_flair': true,
+				'flair__text': 'Featured',
+				'flair__color': {
+					'color': 'skyblue',
+				}
+			},
+			'title': pinnedPost.title,
+			'title_weight': '2',
+			'title_color': '',
+			'content': '',
+			'content_color': '',
+			'has_button': true,
+			'button__type': 'text',
+			'button__text': 'Read More',
+			'button__color': {
+				'color': 'green'
+			},
+			'button__link_type': 'internal',
+			'button__internal_link': pinnedPost.link
+		}] %}
+{{dump(post.ID)}}
+		{% include 'organisms/hero.twig' with {
+			'moduleClasses': 'hero--featured',
+			'strictWidth': true,
+			'slider': slides
+		}%}
+
+	{% endif %}
+
+	{% include 'organisms/mobile-accordian.twig' with {
+		'moduleClasses': '',
+		'data_accordian': 'blog-menu',
+		'text': 'Blog Menu'
+	}%}
+
+	{# Section -- Listing Filters #}
+	{% include 'organisms/post-filters.twig' with {
+		'categories': blogCategories
+	} %}
+
+	{% if allPosts and not filter_active %}
+	<div class="bg bg--mottle--pattern">
+
+		{% include 'organisms/heading.twig' with {
+			'classes': 'heading--center--mobile',
+			'has_flair': true,
+			'flair__text': 'The',
+			'flair__color': {
+				'color': 'green',
+			},
+			'title': 'Latest',
+			'title_weight': '3',
+			'title_color': 'black'
+		}%}
+
+		<div class="container">
+			<div class="row">
+
+				{# Section -- Featured Post #}
+				{% for post in allPosts|slice(0, 3) %}
+					{% set post = TimberPost(post.ID) %}
+
+					{# Gets Featured Post set in ACF Options Pages #}
+					{% include 'molecules/blog-post.twig' with {
+						'size': 'col-md-6 col-lg-4',
+						'image': {
+							'url': TimberImage(post.overview_image),
+							'alt': 'Package 1',
+						},
+						'title':  post.blog_mini_title ? post.blog_mini_title : post.title,
+						'content':  post.overview_synopsis ? post.overview_synopsis : post.content|excerpt(10),
+						'category': post.terms('category') | join(', '),
+						'button': {
+							'type': 'text',
+							'text': 'Read More',
+							'color': 'skyblue',
+							'link': post.link
+						}
+					} %}
+				{% endfor %}
+
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="bg bg--texture--05">
+
+		{% include 'organisms/heading.twig' with {
+			'classes': 'heading--center--mobile',
+			'has_flair': true,
+			'flair__text': 'Trending',
+			'flair__color': {
+				'color': 'fuschia',
+			},
+			'title': 'Posts',
+			'title_weight': '3',
+			'title_color': 'white'
+		}%}
+
+		<div class="container">
+			<div class="row">
+
+				{# Section -- Trending Post #}
+				{% for post in allPosts|slice(3, 2) %}
+					{# Gets Treading Post set in ACF Options Pages #}
+					{% set post = TimberPost(post.ID) %}
+
+					{% include 'molecules/blog-post.twig' with {
+						'classes': loop.index == 1 ? 'blog-post--twocol' : '',
+						'size': loop.index == 1 ? 'col-md-6 col-lg-8' : 'col-md-6 col-lg-4',
+						'image': {
+							'url': loop.index == 1 ? TimberImage(post.banner_image) : TimberImage(post.overview_image),
+							'alt': 'Package 1',
+						},
+						'image_position': loop.index == 1 ? 'right' : null,
+						'title':  post.blog_mini_title ? post.blog_mini_title : post.title,
+						'content':  post.overview_synopsis ? post.overview_synopsis : post.content|excerpt(10),
+						'category': post.terms('category') | join(', '),
+						'button': {
+							'type': 'text',
+							'text': 'Read More',
+							'color': 'skyblue',
+							'link': post.link
+						}
+					} %}
+				{% endfor %}
+
+			</div>
+		</div>
+
+	</div>
+	{% endif %}
+
+	{% if allPosts %}
+	<div class="bg bg--mottle--pattern">
+
+		{% include 'organisms/heading.twig' with {
+			'classes': 'heading--center--mobile',
+			'has_flair': true,
+			'flair__text': filter_active ? 'Filtering' : 'All',
+			'flair__color': {
+				'color': 'green',
+			},
+			'title': filter_active ? filter_name : 'Posts',
+			'title_weight': '3',
+			'title_color': 'black'
+		}%}
+
+		<div class="container">
+			<div class="row blog__listing_allposts">
+
+				{# Section -- All Post #}
+			{% if filter_active %}
+				{% set remainingPosts = allPosts %}
+			{% else %}
+				{% set remainingPosts = allPosts|slice(5) %}
+			{% endif %}
+			{% for post in remainingPosts %}
+
+					{% include 'molecules/blog-post.twig' with {
+						'size': 'col-md-6 col-lg-4',
+						'image': {
+							'url': TimberImage(post.overview_image),
+							'alt': 'Package 1',
+						},
+						'title':  post.blog_mini_title ? post.blog_mini_title : post.title,
+						'content':  post.overview_synopsis ? post.overview_synopsis : post.content|excerpt(10),
+						'category': post.terms('category') | join(', '),
+						'button': {
+							'type': 'text',
+							'text': 'Read More',
+							'color': 'skyblue',
+							'link': post.link
+						}
+					} %}
+				{% endfor %}
+
+			</div>
+			{% if not filter_active %}
+				<div class="row">
+					<div class="spacer"></div>
+				</div>
+				<div class="row row--j-c">
+					{% include 'atoms/button.twig' with {
+						'type': 'regular',
+						'text': 'Load More',
+						'color': 'pink',
+						'link_type' : '',
+						'internal_link' : '#',
+						'classes': 'js-click-loadmore',
+						'dataAttributes': 'data-loadmore-offset-start="' ~ allPosts|length ~ '" data-loadmore-exclude="' ~ pinnedPost.id ~ '"'
+					}%}
+				</div>
+			{% endif %}
+			<div class="row">
+				<div class="spacer"></div>
+			</div>
+			<div class="row row--j-c">
+				<ul class="list list--social list--social--nowidth">
+					{% if options.facebook_page %}
+						<li>
+							<a href="{{options.facebook_page}}" target="_blank" class=""><img src="{{site.theme.link}}/app/img/svg/social-facebook.svg"></a>
+						</li>
+					{% endif %}
+					{% if options.twitter_page %}
+						<li>
+							<a href="{{options.twitter_page}}" target="_blank" class=""><img src="{{site.theme.link}}/app/img/svg/social-twitter.svg"></a>
+						</li>
+					{% endif %}
+					{% if options.instagram_page %}
+						<li>
+							<a href="{{options.instagram_page}}" target="_blank" class=""><img src="{{site.theme.link}}/app/img/svg/social-instagram.svg"></a>
+						</li>
+					{% endif %}
+					{% if options.youtube_page %}
+						<li>
+							<a href="{{options.youtube_page}}" target="_blank" class=""><img src="{{site.theme.link}}/app/img/svg/social-youtube.svg"></a>
+						</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+		<script>
+
+                const blog = () => {
+
+                    document.querySelectorAll('body >div.bg').forEach(function (item) {
+
+                        if (item.querySelectorAll('.blog-post__content')) {
+                            let h = 0;
+                            item.querySelectorAll('.blog-post__content').forEach(function (value) {
+                                value.style.minHeight = 'auto';
+                                value.style.overflow = 'unset';
+
+                                h = value.clientHeight > h ? value.clientHeight : h;
+                            })
+                            item.querySelectorAll('.blog-post__content').forEach(function (value) {
+                                value.style.minHeight = h + "px";
+                            })
+                        }
+                    })
+
+                }
+                document.addEventListener('DOMContentLoaded', blog);
+                window.addEventListener('resize', blog, true);
+
+
+		</script>
+	</div>
+	{% endif %}
+
+
+{% endblock %}

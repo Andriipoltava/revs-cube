@@ -1,0 +1,173 @@
+body {
+  font-size: 16px;
+  font-family: $body-font-family;
+
+  @include mq('md', 'min') {
+    font-size: 18px;
+  }
+}
+
+//div, h1, h2, h3, h4, h5, h6, p, span, a, li {
+@each $color, $value in $colors {
+  &.color--#{$color} {
+    color: #{$value};
+  }
+}
+
+//}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-font-family;
+  line-height: 1;
+  font-weight: 400;
+  // clears user stylesheet settings
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+
+  span {
+    display: block;
+    font-family: $special-font-family;
+    font-weight: 100;
+    margin-top: -0.8em;
+    pointer-events: none;
+    user-select: none;
+    text-align: left;
+    font-size: 0.8em;
+
+    &.bottom {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+      transform-origin: top left;
+      margin-top: -0.5rem;
+      white-space: nowrap;
+
+      &.right {
+        transform: translate(0, 0);
+        left: auto;
+        right: 0;
+      }
+    }
+  }
+}
+
+h1, .h1-size {
+  font-size: 40px;
+
+  @include mq('380px', 'min') {
+    font-size: 55px;
+  }
+
+  @include mq('436px', 'min') {
+    font-size: 65px;
+  }
+
+  @include mq('500px', 'min') {
+    font-size: 75px;
+  }
+
+  @include mq('660px', 'min') {
+    font-size: 90px;
+  }
+
+  @include mq('md', 'min') {
+    font-size: 3.4rem;
+  }
+
+  @include mq('1024px', 'min') {
+    font-size: 4.875rem;
+  }
+
+  @include mq('1400px', 'min') {
+    font-size: 6.375rem;
+    > span {
+      font-size: 5.938rem;
+    }
+  }
+}
+
+h2, .h2-size {
+  font-size: 2.5rem;
+}
+
+h3, .h3-size {
+  font-size: 2.188rem;
+  @include mq('md', 'min') {
+    font-size: 2.525rem;
+  }
+  @include mq('1024px', 'min') {
+    font-size: 3.125rem;
+  }
+}
+
+h4, .h4-size {
+  font-size: 1.75rem;
+  @include mq('md', 'min') {
+    font-size: 2.188rem;
+  }
+}
+
+h5, .h5-size {
+  font-size: 1.75rem;
+}
+
+h6, .h6-size {
+  font-size: 1.25rem;
+}
+
+.text {
+  &--left {
+    text-align: left;
+  }
+
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  &--justify {
+    text-align: justify;
+  }
+
+  &--base-lh {
+    line-height: 26px;
+  }
+
+  &--nowrap {
+    white-space: nowrap;
+  }
+
+  &--ib {
+    display: inline-block;
+  }
+}
+
+@include mq('767px', 'max') {
+  .mobile-text {
+    &-s {
+      font-size: 16px !important;
+      line-height: 24px !important;
+    }
+
+    &-m {
+      font-size: 18px !important;
+      line-height: 26px!important;
+    }
+
+    &-l {
+      font-size: 20px;
+    }
+
+    &-xl {
+      font-size: 22px;
+    }
+
+    &-xxl {
+      font-size: 24px;
+    }
+  }
+}

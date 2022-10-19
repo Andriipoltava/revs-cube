@@ -1,0 +1,476 @@
+.rdc-modal, .modal360, .locations, .video-modal, .useful-info, .cookie-popup, .single-bar__news, .gallery--thumbs__container, .bg--grey-light--pattern, .christmas__intro, .christmas__info, .bg--default--pattern, .gallery--thumbs__container, .rdc-fixr-modal {
+  background-size: cover;
+}
+
+.masthead__container {
+  background: #fff;
+}
+
+.cookie-popup {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.cookie-popup p {
+  margin-bottom: 0.5rem;
+}
+
+.page-home .single-bar__news .container {
+  display: none;
+}
+
+.page-home .single-bar__news {
+  padding-top: 0;
+  margin-top: -6rem;
+}
+
+body.page-terms-conditions, body.page-privacy-policy {
+  background-image: url(/./wp-content/themes/decuba/app/img/patterns/main_texture.jpg) !important;
+  background-size: cover;
+}
+
+.bar-template-default .menu__sharing {
+  background-image: linear-gradient(to right, #00000059, #0000009c), url(/./wp-content/themes/decuba/app/img/bg/bg-form-pattern-old.jpg) !important;
+  background-size: cover;
+}
+
+.blog-post:hover.inview .blog-post__container {
+  box-shadow: inherit;
+}
+
+.owl-item .blog-post__content .content {
+  width: 100%;
+  max-width: 100%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.rounded--3 {
+  border-radius: 3px;
+}
+
+.rounded--too--3 {
+  border-radius: 3px 3px 0 0;
+}
+
+.menu {
+  background: url(/./wp-content/themes/decuba/app/img/bg/menu-bg-1.png) bottom right;
+  background-repeat: no-repeat;
+  background-size: 50% auto;
+
+}
+
+.gravity-form--footer_signup .gfield--type--email .ginput_container_email input {
+  color: #1D1D1B;
+}
+
+.form__success, .gravity-form--styled .gform_confirmation_message {
+  margin-top: 1rem;
+  color: #1D1D1B;
+
+}
+
+/* -- */
+
+/* Custom CSS */
+
+.rdc-modal, .modal360, .locations, .video-modal, .useful-info, .cookie-popup, .single-bar__news, .gallery--thumbs__container, .bg--grey-light--pattern, .christmas__intro, .christmas__info, .bg--default--pattern, .gallery--thumbs__container, .rdc-fixr-modal {
+  background-size: cover;
+}
+
+.masthead__container {
+  background: #fff;
+}
+
+.cookie-popup {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.cookie-popup p {
+  margin-bottom: 0.5rem;
+}
+
+.page-home .single-bar__news .container {
+  display: none;
+}
+
+.page-home .single-bar__news {
+  padding-top: 0;
+  margin-top: -6rem;
+}
+
+body.page-terms-conditions, body.page-privacy-policy {
+  background-image: url(/./wp-content/themes/decuba/app/img/patterns/main_texture.jpg) !important;
+  background-size: cover;
+}
+
+
+.blog-post:hover.inview .blog-post__container {
+  box-shadow: inherit;
+}
+
+.owl-item .blog-post__content .content {
+  width: 100%;
+  max-width: 100%;
+}
+
+.menu {
+  background: url(/./wp-content/themes/decuba/app/img/bg/menu-bg-1.png) bottom right;
+  background-repeat: no-repeat;
+  background-size: 50% auto;
+
+}
+
+.gravity-form--footer_signup .gfield--type--email .ginput_container_email input {
+  color: #1D1D1B;
+}
+
+.form__success, .gravity-form--styled .gform_confirmation_message {
+  margin-top: 1rem;
+  color: #1D1D1B;
+
+}
+
+.menu__main .menu__main__venues h3 {
+  background: url(/./wp-content/themes/decuba/app/img/tags/tag--pink.png) left center no-repeat;
+  line-height: 1.5;
+  color: #fff;
+  padding-left: 1rem;
+  margin-left: -1rem;
+}
+
+.menu__main__venues--container ul li:hover a {
+  color: #00A0AF;
+}
+
+.menu__main__nav li:before, .menu__main__venues ul li:before {
+  background: rgba(156, 72, 119, 0.7);
+}
+
+.menu__main__nav li:hover:before, .menu__main__venues ul li:hover:before {
+  background: rgba(156, 72, 119, 1);
+}
+
+.menu__main__nav li:hover a {
+  color: #00A0AF;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .menu__main .menu__main__venues h3 {
+    background: url(/./wp-content/themes/decuba/app/img/tags/tag--pink.png) center no-repeat;
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
+
+/* Fixing BG */
+#test-id .page-about__block__content--bg {
+  background: url(/./wp-content/themes/decuba/app/img/bg/custom-bg.png) center no-repeat;
+  background-size: 100% 100%;
+  color: #fff;
+}
+
+#test-id .page-about__block__content--bg h3, #test-id .page-about__block__content--bg h3 span, #test-id .page-about__block__content--bg p, #test-id .button--text--orange {
+  color: #fff;
+}
+
+#test-id .page-about__block__content--bg h3 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+#test-id .page-about__block__content--bg a:hover {
+  border-bottom: 1px solid #fff;
+}
+
+@media only screen and (max-width: 991px) {
+  #test-id .page-about__block__content--bg {
+    padding: 4rem
+  }
+  #test-id .page-about__block__content--bg h3 {
+    font-size: 3.5rem;
+  }
+
+}
+
+/* Updates from May 3, 2022 */
+
+@media only screen and (min-width: 992px) {
+  .full-gallery.gallery--full .owl-item {
+    max-height: 98vh;
+  }
+  .full-gallery .gallery {
+    min-width: 300px;
+    max-width: 600px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .full-gallery.gallery--full {
+    max-width: 400px;
+  }
+  .full-gallery.gallery--full .owl-item {
+    max-width: 400px;
+  }
+}
+
+.menu__sharing .button__group {
+  margin-top: 1.5rem;
+}
+
+.page-terms-conditions .page-tertiary a, .page-privacy-policy .page-tertiary a {
+  color: #00A0AF;
+}
+
+body.error404 {
+  background-image: url(/./wp-content/themes/decuba/app/img/patterns/main_texture.jpg) !important;
+  background-size: cover;
+}
+
+.packages__heading.text--center h3.packages__title span {
+  text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .gravity-form--styled .gform_submit span {
+    padding: 15px 24px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .page-amigo .hero__slide__content {
+    padding-top: 80px;
+  }
+}
+
+/* Fixing Owl Carousel BG position */
+.owl-item .blog-post__container.owl-lazy {
+  background-position: center 100%;
+}
+
+.blog-post__content .content {
+  max-width: 100% !important;
+}
+
+.tag {
+  background-size: 85% 60%;
+}
+
+.tag--orange .tag--flair {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+@media only screen and (min-width: 992px) {
+  .blog-post__popular .tag--medium .tag--flair {
+    font-size: 30px;
+  }
+}
+
+.hero__slide__content__title--centered {
+  text-align: center;
+}
+
+// Corporate Events Page
+.page-corporate-events .hero__slide:after {
+  position: absolute;
+  display: block;
+  background: rgba(0, 0, 0, 0.7);
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  content: '';
+  z-index: 1;
+}
+
+.page-corporate-events .hero__slide .hero__slide__content {
+  z-index: 3;
+  position: relative;
+}
+
+.page-corporate-events .bg--skyblue--pattern {
+  background-image: url(/./wp-content/themes/decuba/app/img/bg/bg-form-pattern.jpg) !important;
+  background-size: cover;
+}
+
+.page-corporate-events .full-width-content .text--center .full-width-content__title span {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+.page-corporate-events .full-width-content h3.full-width-content__title {
+  background-image: url(/./wp-content/themes/decuba/app/img/tags/tag--orange.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #000;
+  padding: 8px 20px 0 20px;
+}
+
+// Christmass Page - Mobile fixes
+
+@media only screen and (max-width: 991px) {
+  .page-christmas {
+    .hero__slide__img__side {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .page-christmas .hero .hero__slide__content__title {
+    font-size: 60px;
+  }
+  .hero__christmas__local--title span {
+    font-size: 40px;
+  }
+}
+
+// Derby Bar temporary fix
+@media only screen and (max-width: 767px) {
+  .bar-derby .single-bar__intro__container {
+    padding-top: 3rem;
+  }
+}
+
+.page-cocktail-masterclass .owl-stage-outer .owl-item .package__image img {
+  max-height: 189px;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 767px) {
+  .page-cocktail-masterclass .owl-stage-outer .owl-item .package__content {
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 767px) and (max-width: 567px) {
+  .page-cocktail-masterclass .full-width-content__content p {
+    margin-bottom: 0;
+  }
+
+  .page-cocktail-masterclass .full-width-content iframe {
+    height: 300px;
+  }
+}
+
+@media only screen and (max-width: 566px) {
+  .page-cocktail-masterclass .full-width-content iframe {
+    height: 200px;
+  }
+}
+
+@media only screen and (min-width: 767px) {
+  .page-corporate-events .featured-cta__container .featured-cta {
+    min-height: 480px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .page-corporate-events .featured-cta__container--alternate--full-width .featured-cta__image {
+    height: 100%;
+  }
+}
+
+.page-book .booking-form__wrapper iframe {
+  background-color: #1a5f5a;
+}
+
+.page-cocktail-masterclass .hero.js-hero-slider .hero__slide__bg__clip {
+  z-index: 10;
+}
+
+.page-cocktail-masterclass .hero.js-hero-slider .hero__slide__content {
+  z-index: 13;
+  position: relative;
+}
+
+.page-cocktail-masterclass .hero.js-hero-slider .hero__slide:before {
+  content: '';
+  position: absolute;
+  z-index: 11;
+  width: 100%;
+  height: 100%;
+  background-color: #00000085;
+  left: 0;
+  top: 0;
+}
+
+.page-brunch, .page-christmas {
+  .hero__slide__bg:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #00000085;
+  }
+
+  #christmas__menu-g {
+    background-image: url('../../app/img/bg/menu-bg.jpg');
+    background-size: contain;
+    background-repeat: repeat;
+
+    & > .packages-content {
+      background-color: transparent;
+    }
+  }
+}
+
+.page-christmas {
+  .christmas__celebration__gallery__bg {
+    background-image: linear-gradient(to right, #00000059, #0000009c), url('../../app/img/bg/bg-Christmas-Fiesta-Celebrations-Section.jpeg') !important;
+  }
+
+  .bg--christmas.bg--christmas-green--pattern {
+    background-color: #B12028;
+  }
+
+  .hero__slide__img__side__brunch .hero__slide__image__hero--g {
+    border-radius: 3px;
+    max-width: 299px;
+  }
+
+  .christmas-local-about__img__gb {
+    max-width: 351px;
+    border-radius: 3px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .hero__slide__content__content  {
+      line-height: 28px;
+    }
+  }
+
+}
+
+.page-brunch {
+  .christmas__celebration__gallery__bg {
+    background-image: linear-gradient(to right, #00000059, #0000009c), url('../../app/img/bg/bg-form-pattern-old-min.jpg') !important;
+  }
+
+  .christmas__celebration__gallery__bg .button--regular--fuschia {
+    background: #00A0AF;
+  }
+
+  .bg--christmas.bg--christmas-green--pattern {
+    background-color: #12284C;
+  }
+
+}
+
+.page-events .featured-cta__image img,
+.page-events .package__image img {
+  border-radius: 3px;
+}
+.page-amigo{
+  .packages__small_print {
+    font-size: 16px;
+    line-height: 28px;
+  }
+}

@@ -1,0 +1,187 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+
+{% block html_head_css %}
+	{{ parent() }}
+	<style>
+
+		.masthead__navigation-item--menus
+		{
+			display: none !important;
+		}
+
+		.single-bar__intro__title span
+		{
+			transform: translate(0em, 0.25em) rotate(-2deg);
+		}
+		.gallery__sidebar .sidebar--text
+		{
+			padding-top: 40px;
+			padding-bottom: 40px;
+		}
+		.gallery__sidebar .sidebar__description
+		{
+			margin-top: 0px;
+			margin-bottom: 1em;
+		}
+		.event-date__day_month
+		{
+			display: none;
+		}
+		.whats-on__info__content .button
+		{
+			display: none;
+		}
+
+		@media only screen and (max-width: 767px)
+		{
+			.gallery--large__container
+			{
+				padding-top: 30px;
+				padding-bottom: 30px;
+			}
+			.single-bar__intro
+			{
+				padding-bottom: 0;
+			}
+			
+			.single-bar__intro, .gallery--large {
+				-webkit-order: 0;
+				-ms-flex-order: 0;
+				order: 0;
+				top: 0;
+				margin-bottom: 0;
+			}
+
+			.gallery__sidebar .sidebar--text
+			{
+				text-align: center;
+				font-size: 1.5em;
+			}
+
+			.gallery__sidebar .sidebar--text p
+			{
+				margin-bottom: 0.2em;
+			}
+
+			.gallery__sidebar .sidebar__description
+			{
+				margin-bottom: 0;
+			}
+
+			.gallery__sidebar .sidebar__button
+			{
+				display: none;
+			}
+		}
+		@media only screen and (min-width: 1400px)
+		{
+			.single-bar__intro {
+				padding-top: 60px;
+			}
+		}
+	</style>
+{% endblock %}
+
+
+
+
+{% block content %}
+
+	{% include 'organisms/hero.twig' with {
+		'slider': post.get_field('hero__slides'),
+	}%}
+
+
+	<div class="gallery--large__container gallery--large__container--single">
+		
+		{% if post.get_field('intro_text__title') %}
+			<section class="single-bar__intro">
+				<div class="container single-bar__intro__container">
+					<div class="row">
+						<div class="single-bar__intro__left">
+							<h2 class="single-bar__intro__title">
+								{% if post.get_field('intro_text__flair_has_flair') %}
+									<span class="color--skyblue">{{post.get_field('intro_text__flair_flair__text')}}</span>
+								{% endif %}
+
+								{{post.get_field('intro_text__title')}}
+							</h2>
+						</div>
+						<div class="single-bar__intro__right">
+							{{post.get_field('intro_text__content')}}
+						</div>
+					</div>
+				</div>
+			</section>
+		{% endif %}
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="gallery__sidebar__container">
+
+						<div class="gallery gallery--large">
+							<div class="map single-bar__map" data-bar-map="{{post.get_field('api_id')}}"></div>
+						</div>
+
+						<div class="gallery__sidebar">
+							{% include 'molecules/sidebar.twig' with {
+								'type': 'custom',
+								'description': '<p><strong>South Central, 11 Peter Street<br /> M2 5QR</strong></p><p>0800 6300 860</p>',
+								'button': {
+									'type': 'regular',
+									'link_type': 'share',
+									'text': 'Share Location',
+									'color': 'pink',
+								}
+							} %}
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="single-bar__news">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text--center">
+					<h3 class="single-bar__title"><span class="color--skyblue">Latest</span>News</h3>
+				</div>
+			</div>
+		</div>
+		
+
+		{% set latestPostsSlides = {} %}
+		{% set tweet_index = 0 %}
+
+		{% for post in related_venue_posts %}
+			{% if post.blog_mini_title %}
+				{% set title = post.blog_mini_title %}
+			{% else %}
+			    {% set title = post.title %}
+			{% endif %}
+
+			{% set itemObject = {
+				'type': 'post',
+				'title': title,
+				'content': post.content|excerpt(10),
+				'link': post.link,
+				'overview_image': post.overview_image,
+				'category': post.terms('category')[0],
+			} %}
+
+			{% set latestPostsSlides = latestPostsSlides|merge([itemObject]) %}
+		{% endfor %}
+
+		{% include 'organisms/conveyor.twig' with {
+			'slides': latestPostsSlides
+		} %}
+	</div>
+
+
+	{% include 'organisms/feedback.twig' %}
+{% endblock %}

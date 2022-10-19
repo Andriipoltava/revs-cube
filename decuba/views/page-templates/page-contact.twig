@@ -1,0 +1,97 @@
+
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+{% block content %}
+	<div class="bg bg--grey-light--pattern page-contact__wrapper">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text--center">
+					<h1 class="text--center h3-size">Contact us</h1>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row row--j-c">
+				<div class="col-md-7 col--no-grow">
+					{% include 'organisms/gravity-form.twig' with {
+						'form_id' : '1',
+						'showboth': true
+					} %}
+
+
+				</div>
+
+				<div class="col-md-1" data-stored-bar-state="unhide"></div>
+				<div class="col-md-4" data-stored-bar-state="unhide">
+					{% include 'molecules/sidebar.twig' with {
+						'type': 'book',
+						'style': 'orange',
+						'hide_info': false
+					} %}
+				</div>
+			</div>
+
+			
+
+		</div>
+
+	</div>
+
+{% endblock %}
+
+
+{% block html_footer_container %}
+	{{ parent() }}
+	<script defer>
+		$(function()
+		{
+			"use strict";
+			var self = this;
+			var bookingBarSlug = '';
+			_.extend(self, APP.Mediator);
+
+			function _updateSidebar(apiId)
+			{
+				if(!apiId || apiId.length === 0) { return; }
+
+				$(".page-contact__wrapper [data-stored-bar-state='unhide']").addClass("unhide");
+				$('.sidebar--book').addClass('loading');
+
+				self.query("barInfo", apiId).then(function(data) 
+				{
+					var address = (data.address + '<br>' + data.postcode);
+
+					bookingBarSlug = data.slug;
+
+					barInfo._address(address);
+					barInfo._phone(data.phone);
+					barInfo._location(data.bar_name, data.latitude, data.longitude);
+					barInfo._updateUsefulInfo(apiId);
+					barInfo._ajaxOpentimes(apiId);
+					
+				});
+			}
+
+			var storedBar = self.query("storedBar");
+			if(storedBar && storedBar.hasOwnProperty('api_id'))
+			{
+				_updateSidebar(storedBar.api_id);
+			}
+
+			$('.contact-form .p2pp--bar_id select').on('change', function () {
+				let locationString = this.value;
+				if(locationString.length === 0) { return; }
+
+				let locationValue = locationString.match(/(\bp2pp--\S+\b)/ig);
+				if(locationValue.length === 0) { return; }
+
+				let locationApiId = locationValue[0].split("--")[1];
+				if(locationApiId.length === 0) { return; }
+
+				_updateSidebar(locationApiId);
+			});
+		});
+	</script>
+{% endblock %}

@@ -1,0 +1,16 @@
+$c: '.christmas';
+
+#{$c} {
+	&__map {
+		width: 100%;
+		position: relative;
+		padding-top: 62.25%;
+
+		@include mq('md', 'max')
+		{
+			width: calc(100% + 50px);
+			margin: { left:-25px; }
+			padding-top: 80%;
+		}
+	}
+}		

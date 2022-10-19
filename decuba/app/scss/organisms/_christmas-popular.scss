@@ -1,0 +1,61 @@
+$c: '.christmas';
+
+#{$c} {
+	&__popular {
+		order: 4;
+		padding: { top: 50px; bottom: 50px; };
+
+		p:first-child { margin-top: 0; }
+		p:last-child { margin-bottom: 0; }
+
+		&__heading
+		{
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+
+		&__title
+		{
+			display: inline-block;
+
+			span
+			{
+				transform: translateX(-50%);
+				left: 100%;
+				margin-top: -0.25em;
+			}
+		}
+
+		&__buttons-wrap
+		{
+			@include mq('md','max') 
+			{
+				max-width: 300px;
+				margin-left: auto; 
+				margin-right: auto;
+			}
+		}
+
+		&__buttons
+		{
+			margin-left: -2em;
+			margin-bottom: -1em;
+
+			@include mq('md','max') 
+			{
+				text-align: left;
+			}
+
+			> * 
+			{ 
+				display: inline-block;
+				padding-left: 2em;
+				margin-bottom: 1em; 
+
+				@include mq('md','max') {
+					width: calc(50% - 4px);
+				}
+			}
+		}
+	}
+}

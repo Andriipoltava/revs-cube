@@ -1,0 +1,386 @@
+$c: '.menu-block';
+
+#{$c} {
+	float: left;
+    margin: 0 15px;
+    width: calc(50% - 30px);
+	padding: 20px;
+	background-color: color(white);
+	border-radius: 2px;
+	margin-bottom: 35px;
+	display:table;
+	visibility: visible;
+
+	transform: translateY(40px)translateX(40px);
+	opacity: 0;
+	transition: transform 400ms $cool-easing, opacity 300ms $cool-easing, box-shadow 300ms $cool-easing;
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
+
+	@include mq('992px','max') {
+		float: none;
+		width: 100%;
+		margin: 0 0 0px;
+		border-bottom: 1px solid #D3D4D6;
+		position: static !important;		// Undo packery
+	}
+
+	.active & {
+		transform: translateY(0px)translateX(0px);
+		opacity: 1;
+		transition: transform 400ms $cool-easing, opacity 300ms $cool-easing 50ms, box-shadow 350ms $cool-easing 50ms;
+		box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.1);
+
+		@for $i from 0 to 10 {
+		 &:nth-child(#{$i}) {
+			transition: transform 400ms $cool-easing 0ms + (100ms * $i), opacity 300ms $cool-easing 50ms + (100ms * $i), box-shadow 350ms $cool-easing 50ms + (100ms * $i);
+		  }
+		}
+	}
+	.green & {
+		&.menuopen {
+			#{$c} {
+				&__inner {
+					border: 2px solid rgba(color(green), .4);
+				}
+			}
+		} 
+		#{$c} {
+			
+			&__toggle {
+				&:after {
+					color: color(green);
+				}
+			}
+			&__inner {
+				border: 2px solid rgba(color(green), .4);
+				@include mq('768px','max') {
+					border-bottom: 0;
+				    border-right: 0;
+				    border-left: 0;
+					&:after {
+						color: color(green);
+					}
+				}
+			}
+			&__header {
+				h4 {
+					&:after {
+						background-image: url(../../app/img/svg/border-zig-zag-green.svg);
+					}
+				}
+			}
+			&__subheader {
+				&:before {
+					background-color: color(green);
+				}
+			}
+		}
+	}
+
+	.blue & {
+		&.menuopen {
+			#{$c} {
+				&__inner {
+					border: 2px solid rgba(color(skyblue), .4);
+				}
+			}
+		} 
+		#{$c} {
+			&__toggle {
+				&:after {
+					color: color(skyblue);
+				}
+			}
+			&__inner {
+				border: 2px solid rgba(color(skyblue), .4);
+				@include mq('768px','max') {
+					border-bottom: 0;
+				    border-right: 0;
+				    border-left: 0;
+					&:after {
+						color: color(skyblue);
+					}
+				}
+			}
+			&__header {
+				h4 {
+					&:after {
+						background-image: url(../../app/img/svg/border-zig-zag-blue.svg);
+					}
+				}
+			}
+			&__subheader {
+				&:before {
+					background-color: color(skyblue);
+				}
+			}
+		}
+	}
+
+	// MENU SPECIFIC 
+	// &[data-menu-name] {
+	// 	&:before,
+	// 	&:after  {
+	// 		position: absolute;
+	// 		@include mq('992px','max') {
+	// 			transform: scale(0.8);
+	// 		}
+	// 		@include mq('768px','max') {
+	// 			display: none;
+	// 		}
+	// 	}
+	// 	&.menuopen {
+	// 		&:before,
+	// 		&:after  {
+	// 			@include mq('768px','max') {
+	// 				display: block;
+	// 			}
+	// 		}
+	// 	}
+	// 	&:before {
+	// 		bottom: 10%;
+	// 		right: -35px;
+	// 		@include mq('992px','max') {
+	// 			right: -50px;
+	// 		}
+	// 	}
+	// 	&:after {
+	// 		top: 20%;
+	// 		left: -35px;
+	// 		@include mq('992px','max') {
+	// 			left: -55px;
+	// 		}
+	// 	}
+	// }
+	// &[data-menu-name="mojitos"] {
+	// 	&:before {
+	// 		content: url(../../app/img/tmp/menu/drink/mojitos/2.png);
+	// 	}
+	// 	&:after {
+	// 		content: url(../../app/img/tmp/menu/drink/mojitos/1.png);
+	// 	}
+	// }
+	// &[data-menu-name="the-icons"] {
+	// 	&:after {
+	// 		content: url(../../app/img/tmp/menu/drink/the-icons/1.png);
+	// 	}
+	// }
+	// &[data-menu-name="on-the-beach"] {
+	// 	&:before {
+	// 		content: url(../../app/img/tmp/menu/drink/on-the-beach/1.png);
+	// 	}
+	// }
+	// &[data-menu-name="daiquiris"] {
+	// 	&:before {
+	// 		content: url(../../app/img/tmp/menu/drink/daiquiris/1.png);
+	// 	}
+	// }
+	// &[data-menu-name="cantinero's-choice"] {
+	// 	&:before {
+	// 		content: url(../../app/img/tmp/menu/drink/cantineros-choice/2.png);
+	// 	}
+	// 	&:after {
+	// 		content: url(../../app/img/tmp/menu/drink/cantineros-choice/1.png);
+	// 	}
+	// }
+	// &[data-menu-name="tea-pots"] {
+	// 	&:after {
+	// 		content: url(../../app/img/tmp/menu/drink/tea-pots/1.png);
+	// 	}
+	// }
+
+	&--image {
+		padding: 0;
+		position: relative;
+		cursor: pointer;
+
+		img {
+			display: flex;
+		}
+
+		&__icon {
+			position: absolute;
+			bottom: 20px;
+			right: 20px;
+			background-color: color(fuschia);
+			border-radius: 100%;
+			padding: 20px;
+			font-size: 35px;
+			color: color(white);
+		}
+	}
+
+	&__toggle {
+		position: absolute;
+		bottom: 10px;
+		left: 50%;
+		transform-origin: center;
+		transform: translateX(-50%);
+		display: none;
+		@include mq('768px','max') {
+			display: block;
+		}
+		&:after {
+	    	font-family: 'de-cuba' !important;
+			speak: none;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+			text-transform: none;
+			line-height: 1;
+			/* Better Font Rendering =========== */
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+
+
+			content: $icon-expand;
+			font-size: 27px;
+			color: color(orange);
+		}
+		.menuopen & {
+			bottom: 30px;
+			&:after {
+				content: $icon-collapse;
+			}
+		}
+	}
+
+	&__inner {
+		border: 2px solid rgba(color(orange), .4);
+		border-radius: 2px;
+		padding: 0 50px 20px;
+		@include mq('1300px','max') {
+			padding: 0 20px 20px;
+		}
+		@include mq('768px','max') {
+
+			border-bottom: 0;
+		    border-right: 0;
+		    border-left: 0;
+		    padding: 0;
+
+
+			#{$c} {
+				&__description,
+				&__subheader,
+				&__items {
+					display: none;
+				}
+			}
+
+			.menuopen & {
+				border: 2px solid rgba(color(orange), .4);
+				padding: 0 20px 50px;
+
+				#{$c} {
+					&__description,
+					&__subheader {
+						display: block;
+					}
+					&__items {
+						display: flex;
+					}
+				}
+			}
+
+		}
+	}
+
+	&__header {
+		text-align: center;
+		margin-bottom: 20px;
+
+		h4 {
+			display: inline-block;
+			margin: 0;
+			background-color: #fff;
+			position: relative;
+			top: -15px;
+			padding: 0 30px;
+
+			&:after {
+				@include pseudo;
+				width: calc(100% - 60px);
+				height: 6px;
+				bottom: -8px;
+				left: 50%;
+				transform: translateX(-50%);
+				background-image: url(../../app/img/svg/border-zig-zag.svg);
+			}
+		}
+	}
+
+	&__description {
+		text-align: center;
+		max-width: 80%;
+		margin: 0 auto;
+		padding: 5px 0 20px;
+		h3 {
+			font-family: $body-font-family;
+			font-weight: bold;
+			text-transform: uppercase;
+			font-size: 20px;
+			margin-bottom: 10px;
+		}
+		p {
+			margin: 0;
+			color: color(font);
+			font-size: 15px;
+			margin-top: 10px;
+			line-height: 21px;
+		}
+	}
+
+	&__subheader {
+		text-align: center;
+		position: relative;
+		padding: 20px 0;
+
+		&:before {
+			@include pseudo;
+			width: 75%;
+			height: 2px;
+			top: 50%;
+			left: 50%;
+			background-color: color(orange);
+			z-index: 1;
+			transform: translateX(-50%);
+		}
+
+		h5 {
+			display: inline-block;
+			margin: 0;
+			padding: 0 20px;
+			background-color: #fff;
+			font-size: 22px;
+			position: relative;
+			z-index: 2;
+		}
+	}
+
+	&__items {
+		display: flex;
+		flex-flow: row wrap;
+
+		@include mq('992px','min') {
+			margin-top: -24px;
+			// .product-menu-item {
+			// 	&:nth-child(1),
+			// 	&:nth-child(2) {
+			// 		.product-menu-item__meta {
+			// 			margin-top: 0px;
+			// 		}
+			// 	}
+			// }
+		}
+	}
+
+	&__special {
+		text-align: center;
+
+		p {
+			margin-bottom: 0;
+			font-family: $header-font-family;
+		}
+	}
+}

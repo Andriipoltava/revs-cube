@@ -1,0 +1,162 @@
+$c: '.featured-event';
+
+#{$c} {
+	position: relative;
+	flex-direction: column;
+	display: flex;
+	@include mq('1023px','max') {
+		align-items: center;
+	}
+	
+	.event-date {
+		padding: 0;
+		flex-direction: column-reverse;
+		align-items: flex-start;
+		@include mq('1023px','max') {
+			justify-content: center;
+			&:after {
+				display: none;
+			}
+		}
+		&__info {
+			width: 100%;
+    		text-align: center;
+		}
+		&__date {
+			width: 100%;
+			padding: 0;
+			font-size: 38px;
+			margin-right: 0px;
+			position: relative;
+			@include mq('1024px','min') {
+				margin-bottom: 10px;
+				font-size: 50px;
+			}
+			span {
+				display: inline;
+				font-size: inherit;
+				padding-left: 10px;
+			}
+		}
+		&:after {
+			display: none !important;
+		}
+	}
+
+    @include mq('1024px','min') {
+    	display: block;
+		padding-top: 50px;
+		padding-bottom: 50px;
+    }
+
+    .sidebar__title,
+    .sidebar__description {
+    	text-align: center;
+    }
+
+    .sidebar__title {
+    	margin-bottom: 0px;
+    }
+
+	&__sidebar {
+		order: 2;
+		padding: 0 25px;
+		position: relative;
+		top: -50px;
+		margin-bottom: -50px;
+
+		@include mq('1023px','max') 
+		{
+			text-align: left;
+		}
+
+		@include mq('1024px','min') {
+			margin-bottom: 0px;
+			padding: 0;
+			position: absolute;
+			top: 50%;
+			transform: translate(0, -50%);
+			z-index: 1;
+			order: 1;
+		}
+
+		.sidebar--text {
+			@include mq('1023px','max') {
+				margin-bottom: 0;
+				top: 0;
+				padding-top: 20px;
+				padding-bottom: 20px;
+				.event-date__info,
+				.event-date__date,
+				.sidebar__title,
+				.sidebar__description,
+				{
+
+					text-align: left;
+				}
+				.sidebar__description {
+					margin: 20px 0;
+				}
+				.event-date {
+					justify-content: flex-start;
+					padding: 0;
+
+				}
+				.sidebar__button {
+					justify-content: flex-start;
+				}
+				.button {
+					 max-width: 320px;
+				}
+			}
+		}
+	}
+
+	&__image {
+		order: 1;
+		overflow: hidden;
+		width: 100%;
+		height: 300px;
+		min-height: 50vh;
+		background-size: cover;
+		background-position: 50%;
+		background-repeat: no-repeat;
+
+		@include mq('1024px','min') {
+			height: 600px;
+			min-height: 0;
+			background-position: 100px 50%;
+			order: 2;
+		}
+	}
+
+	&__tag {
+		position: absolute;
+		top: -40px;
+		right: auto;
+		z-index: 1;
+		left: 50%;
+		transform: translateX(-50%);
+
+		@include mq('1024px','min') {
+			top: 0;
+			right: 50px;
+			left: auto;
+			transform: none;
+		}
+	}
+
+	&--right {
+		#{$c} {
+			&__sidebar {
+				right: 0;
+			}
+			&__image {
+				img {
+					left: -50px;
+					right: auto;
+				}
+			}
+		}
+	}
+}

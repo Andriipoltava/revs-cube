@@ -1,0 +1,53 @@
+input[type="checkbox"] {
+	position: absolute;
+	opacity: 0;
+
+	& + label {
+		display: flex;
+		position: relative;
+		cursor: pointer;
+		padding: 0;
+	}
+
+	& + label:before {
+		content: '';
+		margin-right: 10px;
+		display: inline-block;
+		vertical-align: text-top;
+		min-width: 20px;
+		max-width: 20px;
+		min-height: 20px;
+		max-height: 20px;
+		background-color: color(white);
+		border-radius: 3px;
+		border: 1px solid color(fuschia);
+	}
+
+	&:hover + label:before {
+		background: lighten(color(fuschia), 10%);
+	}
+
+	&:checked + label:before {
+		background-color: color(fuschia);
+	}
+
+	&:disabled + label {
+		color: color(grey, regular);
+		cursor: auto;
+	}
+
+	&:disabled + label:before {
+		box-shadow: none;
+		background-color: color(grey, regular);
+	}
+
+	&:checked + label:after {
+		font-family: 'de-cuba';
+		content: $icon-check;
+		color: color(white);
+		position: absolute;
+		top: 5px;
+		left: 5px;
+		font-size: 12px;
+	}
+}

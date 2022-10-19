@@ -1,0 +1,153 @@
+<div class="conveyor__container">
+	<div class="conveyor">
+		{% if slides %}
+			{% for slide in slides %}
+				{% if slide.type == 'campaign' %}
+					{% include 'molecules/conveyor-item.twig' with {
+						'background': site.theme.link~'/app/img/tmp/conveyor-bg-1.jpg',	
+						'foreground': {
+							'url': site.theme.link~'/app/img/tmp/conveyor-main-1.png',
+							'alt': 'Example foreground image',
+						},
+						'button': {
+							'type': 'regular',
+							'text': 'Book Now',
+							'color': 'blue'
+						}
+					}%}
+				{% elseif slide.type == 'post' %}
+					{% include 'molecules/blog-post.twig' with {
+						'topClasses': 'blog-post--noanim inview blog-post--lazy',
+						'lazy': true,
+						'size': '',
+						'image': {
+							'url': TimberImage(slide.overview_image),
+							'alt': 'Package 1',
+						},
+						'title':  slide.blog_mini_title ? slide.blog_mini_title : slide.title,
+						'content':  slide.overview_synopsis ? slide.overview_synopsis : slide.content|excerpt(10),
+						'category': slide.category,
+						'button': {
+							'type': 'text',
+							'text': 'Read More',
+							'color': 'white',
+							'link': slide.link
+						}
+					} %}
+				{% elseif slide.type == 'tweet' %}
+					<div class="{% if size %}{{size}}{% else %}col-md-6 col-lg-4{% endif %} tweet  {% if not slide.media %}tweet--single{% endif %}">
+						<div class="icon-twitter"></div>
+						<div class="tweet__container {% if not slide.media %}tweet__container--single{% endif %}">
+							<div class="tweet__header">
+								<div class="tweet__header__image">
+									<img src="{{slide.user.image}}" alt="">
+								</div>
+								<div class="tweet__header__content">
+									<div class="tweet__header__meta">
+										<p class="tweet__header__meta--name">{{slide.user.name}}</p>
+										<p class="tweet__header__meta--handle">@{{slide.user.handle}}</p>
+										<p class="tweet__header__meta--time">{{slide.created_at}}</p>
+									</div>
+
+									{% if slide.media %}
+										<div class="tweet__header__tweet">
+											{{slide.text}}
+										</div>
+									{% endif %}
+								</div>
+							</div>
+							{% if slide.media %}
+								<div class="tweet__media">
+									<img src="{{slide.media.url}}">
+								</div>
+							{% else %}
+								<div class="tweet__header__tweet tweet__header__tweet--large">
+									{{slide.text}}
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				{% elseif slide.type == 'spotify' %}
+					<div class="{% if size %}{{size}}{% else %}col-md-6 col-lg-4{% endif %} spotify">
+						{{slide.embedURL}}
+					</div>
+				{% endif %}
+			{% endfor %}
+		{% else %}
+			{% for offer in options.offers %}
+				{% if offer.bar_filter_type == 'exclude' %}
+					{% if post.id not in offer.bar_filter_list %}
+						{% include 'molecules/conveyor-item.twig' with {
+							'background': offer.background.url,	
+							'foreground': {
+								'url': offer.overlay.url,
+								'alt': offer.overlay.alt,
+							},
+							'button': {
+								'type': offer.button__type,
+								'text': offer.button__text,
+								'color': offer.button__color.color,
+								'link_type' : offer.button__link_type,
+								'external_link' : offer.button__external_link,
+								'internal_link' : offer.button__internal_link,
+								'file' : offer.button__file,
+								'classes': offer.button__classes,
+							}
+						}%}
+					{% endif %}
+				{% elseif offer.bar_filter_type == 'include' %}
+					{% if post.id in offer.bar_filter_list %}
+						{% include 'molecules/conveyor-item.twig' with {
+							'background': offer.background.url,	
+							'foreground': {
+								'url': offer.overlay.url,
+								'alt': offer.overlay.alt,
+							},
+							'button': {
+								'type': offer.button__type,
+								'text': offer.button__text,
+								'color': offer.button__color.color,
+								'link_type' : offer.button__link_type,
+								'external_link' : offer.button__external_link,
+								'internal_link' : offer.button__internal_link,
+								'file' : offer.button__file,
+								'classes': offer.button__classes,
+							}
+						}%}
+					{% endif %}
+				{% else %}
+					{% include 'molecules/conveyor-item.twig' with {
+						'background': offer.background.url,	
+						'foreground': {
+							'url': offer.overlay.url,
+							'alt': offer.overlay.alt,
+						},
+						'button': {
+							'type': offer.button__type,
+							'text': offer.button__text,
+							'color': offer.button__color.color,
+							'link_type' : offer.button__link_type,
+							'external_link' : offer.button__external_link,
+							'internal_link' : offer.button__internal_link,
+							'file' : offer.button__file,
+							'classes': offer.button__classes,
+						}
+					}%}
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</div>
+
+	<div class="conveyor__nav">
+		<div class="conveyor__nav__prev"><span class="icon-arrow-left"></span></div>
+		<div class="conveyor__nav__center"></div>
+		<div class="conveyor__nav__next"><span class="icon-arrow-right"></span></div>
+
+	</div>
+
+
+
+
+
+{# 	<span class="icon-hand-gesture"></span>
+ #}</div>

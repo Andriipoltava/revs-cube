@@ -1,0 +1,101 @@
+<div class="menu-filter">
+	<div class="menu-filter__tab">
+		<span class="label">Dietary Filter</span>
+	</div>
+	<div class="menu-filter__options">
+		<div class="menu-filter__options__section">
+			<p class="menu-filter__options__label">Show me dishes that are:</p>
+
+			<div>
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'vegetarian','text': 'Vegetarian'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'vegan','text': 'Vegan'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'gluten-free','text': 'Gluten Free'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'calories','text': 'Less than 600 Cal'} %}
+				</div>
+			</div>
+		</div>
+		
+		<div class="menu-filter__options__section">
+			<p class="menu-filter__options__label">Show me dishes that don’t contain these ingredients:</p>
+			
+			<div>
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'eggs','text': 'Eggs'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'fish','text': 'Fish'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'milk','text': 'Milk'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'peanuts','text': 'Peanuts'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'nuts','text': 'Nuts'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'mustard','text': 'Mustard'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'celery','text': 'Celery'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'sesame-seeds','text': 'Sesame Seeds'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'soya','text': 'Soya'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'lupin','text': 'Lupin'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'cashew','text': 'Cashew'} %}
+				</div>
+
+				<div class="menu-filter__options__option">
+					{% include 'atoms/checkbox.twig' with { 'name': 'crustaceans','text': 'Crustaceans'} %}
+				</div>
+			</div>
+		</div>
+
+		<div class="menu-filter__buttons">
+			<div class="menu-filter__button">
+				{% include 'atoms/button.twig' with {
+					'type': 'regular',
+					'text': 'Apply Filters',
+					'classes': 'menu-filter__apply'
+				}%}
+			</div>
+			
+			<div class="menu-filter__button">
+				{% include 'atoms/button.twig' with {
+					'type': 'underline',
+					'text': 'Reset Filters',
+					'color': 'fuschia',
+					'classes': 'menu-filter__reset'
+				}%}
+			</div>
+		</div>
+	</div>
+</div>

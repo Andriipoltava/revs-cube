@@ -1,0 +1,31 @@
+$c: '.all-locations';
+
+#{$c} {
+	&__title {
+		display: inline-block;
+		font-size: 2.5rem;
+		margin-bottom: 0px;
+
+		@include mq('md','min') {
+			line-height: 4.063rem;
+			font-size: 4.375rem;
+			> span {
+				font-size: 5.938rem;
+				letter-spacing: 7.21px;
+			}
+		}
+
+		@include mq('908px','min') {
+			margin-bottom: 76px;
+		}
+	}
+
+	&__container {
+		display: block;
+		@include mq('1100px','min') {
+		    display: flex;
+		    flex-wrap: wrap;
+			justify-content: center;
+		}
+	}
+}

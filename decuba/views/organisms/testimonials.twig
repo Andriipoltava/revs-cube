@@ -1,0 +1,29 @@
+<section class="bg--christmas bg--christmas-green--pattern">
+    <div class="container testimonials__wrapper" style="margin: auto;">
+        <div class="testimonials__title__wrapper">
+            <h3 class="testimonials__title">
+                REVIEWS
+                <div class="testimonials__underline"></div>
+            </h3>
+            <p class="testimonials__subtitle">Hear from our previous guests</p>
+        </div>
+        <div class="row">
+            <div class="col-md-12 testimonial__container">
+
+                {% for post in options.christmas_testimonials %}
+
+                    <div class="testimonial">
+                        <div class="testimonial__content">
+                            {{post.content}}
+                        </div>
+                        <div class="testimonial__name">
+                            <p>{{post.name}}</p>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>

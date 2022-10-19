@@ -1,0 +1,16 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+	{% include 'organisms/hero.twig' with {
+		'slider': post.get_field('hero__slides')
+	} %}
+
+	{% include 'organisms/gallery.twig' with {
+		'type': post.get_field('gallery__type'),
+		'images': post.get_field('gallery__images'),
+		'has_sidebar': true,
+		'sidebar_type': 'location'
+	} %}
+{% endblock %}
+

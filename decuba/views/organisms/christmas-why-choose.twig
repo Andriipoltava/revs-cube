@@ -1,0 +1,19 @@
+<section class="christmas__why-choose {% if post.parent.title == 'Bristol' %}christmas__why-choose--no-christmas-menus{% endif %} christmas__why-choose--no-christmas-menus">
+	<div class="container christmas__why-choose__container">
+		<div class="row">
+			<div class="christmas__why-choose__left">
+				<h3 class="christmas__why-choose__title">
+					{% if post.get_field('why_choose_text__flair') %}
+						<span class="color--orange">{{post.get_field('why_choose_text__flair')}}</span>
+					{% endif %}
+
+					{{post.get_field('why_choose_text__title')}}
+				</h3>
+				{{post.get_field('why_choose_text__content')}}
+			</div>
+			<div class="christmas__why-choose__right">
+				{{post.get_field('why_choose_map_embed_link')}}
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,16 @@
+<div class="conveyor-item">
+	<div class="conveyor-item__container owl-lazy" data-src="{{background ?:foreground.url}}">
+		<img class="conveyor-item__foreground owl-lazy" data-src="{{foreground.url}}" alt="{{foreground.alt}}">
+
+		{% include 'atoms/button.twig' with {
+			'classes': button.classes,
+			'type': button.type,
+			'text': button.text,
+			'color': button.color,
+			'link_type': button.link_type,
+			'external_link': button.external_link,
+			'internal_link': button.internal_link,
+			'file': button.file,
+		}%}
+	</div>
+</div>

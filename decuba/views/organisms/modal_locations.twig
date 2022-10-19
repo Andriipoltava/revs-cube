@@ -1,0 +1,28 @@
+<div class="js-modal locations" data-modal="locations">
+	<form action="#" class="locations__form">
+		<h4 class="color--dark locations__title">Find your Revolución de Cuba</h4>
+
+		<div class="locations__options text--center">
+			<div class="locations__options__option locations__options__option--find-me">
+				<p class="button button--location">Use my location
+					<span class="icon-locate-me"></span>
+				</p>
+			</div>
+
+			<div class="locations__options__option locations__options__option--view-all">
+				<p>
+					<strong>Or pick a location from the list below:</strong>
+				</p>
+				<div class="locations__options__option__venues">
+					<ul>
+						{% for venue in venues %}
+							<li>
+								<a href="{{venue.link}}" class="js-save-location {% if currentURL == venue.link %}active{% endif %}" data-url="/bar/{{venue.slug}}" data-cms-id="{{venue.id}}" data-api-id="{{venue.api_id}}" data-name="{{venue.post_title}}">{{venue.name}}</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

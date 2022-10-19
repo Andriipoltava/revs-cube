@@ -1,0 +1,31 @@
+.circle {
+	width: 0;
+	height: 0;
+	border-radius: 50%;
+	position: fixed;
+	opacity: 1;
+	z-index: 401;
+	animation: rippleOff .6s $default-easing forwards;
+}
+
+.circleEffect {
+	animation: rippleOn .6s $default-easing forwards;
+}
+
+@keyframes rippleOn {
+	0% {
+		transform: translate(-50%, -50%) scale(0);
+	}
+	100% {
+		transform: translate(-50%, -50%) scale(2);
+	}
+}
+
+@keyframes rippleOff {
+	0% {
+		transform: translate(-50%, -50%) scale(2);
+	}
+	100% {
+		transform: translate(-50%, -50%) scale(0);
+	}
+}

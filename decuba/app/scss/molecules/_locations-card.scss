@@ -1,0 +1,181 @@
+$c: '.locations_card';
+
+#{$c} {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: color(black);
+	text-decoration: none;
+	box-shadow: 0px 0px 0px 0px rgba(0,0,0,.28);
+	transition: box-shadow 250ms ease-in-out;
+	margin-bottom: 20px;
+
+	@include mq('908px','min') {
+		display: block;
+	}
+
+	@include mq('1100px','min') {
+	    margin: 20px;
+	    flex: 1 100%;
+	    width: 100%;
+	    max-width: 80%;
+	}
+
+	&__image {
+		line-height: 0;
+		display: none;
+		@include mq('768px','min') {
+			display: block;
+		}
+		img {
+		    max-width: 300px;
+		}
+	}
+
+	&__inner {
+		background: color(white);
+		box-shadow: 0px 2px 3px 0px rgba(0,0,0,.25);
+		display: flex;
+		overflow: hidden;
+		transform: translateZ(0);
+		border-radius: 2px;
+		padding: 0px;
+		max-width: 100%;
+		justify-content: space-between;
+		flex-direction: row;
+		align-items: stretch;
+		position: relative;
+		width: 100%;
+
+		@include mq('650px','min') {
+			max-width: 100%;
+		}
+
+	}
+
+	&__info {
+		flex: 1 auto;
+		padding: 15px 20px;
+		@include mq('650px','min') {
+			padding: 15px 0px 15px 45px;
+		}
+
+		p {
+			@include mq('1200px','min') {
+				font-size: 1.3125rem;
+			}
+		}
+	}
+
+	&__times {
+		flex: 1;
+
+		p {
+			display: flex;
+			justify-content: space-between;
+
+			&:first-child {
+				text-transform: uppercase;
+				font-size: .8125rem;
+			}
+
+			.days {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+
+				&:after {
+					content: '.........................';
+					padding: 0 5px;
+				}
+			}
+
+			.hours {
+				flex-shrink: 0;
+			}
+		}
+	}
+
+	&__social {
+		list-style: none;
+
+		&__icon {
+			border: 1px solid color(orange);
+			line-height: 0;
+			border-radius: 100%;
+			margin-right: 10px;
+			display: inline-block;
+			width: 38px;
+			height: 38px;
+
+			@include mq('1200px','min') {
+				width: 44px;
+				height: 44px;
+			}
+
+			a {
+				color: inherit;
+				text-decoration: none;
+				line-height: 0;
+				width: 100%;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				span {
+					@include mq('1200px','min') {
+						font-size: 1.5rem;
+					}
+
+					&.icon-twitter {
+						@include mq('1200px','min') {
+							font-size: 1.25rem;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&__link {
+		flex: 0;
+	    background: color(fuschia);
+	    display: flex;
+	    min-width: 50px;
+
+		.button {
+			text-decoration: none;
+			color: color(fuschia);
+
+			display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    padding: 10px 20px;
+
+			&:hover,
+			&:focus {
+				color: color(black);
+			}
+
+			span {
+				color: color(white);
+			}
+		}
+	}
+
+	&__distance {
+		color: color(fuschia);
+		font-weight: bold;
+		i {
+			color: color(grey, dark);
+		    font-size: 30px;
+			padding-right: 10px;
+		}
+	}
+
+	&:hover {
+		box-shadow: 0px 10px 26px 0px rgba(0,0,0,.28);
+	}
+}

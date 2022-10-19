@@ -1,0 +1,149 @@
+$c: '.tag';
+
+#{$c} {
+	color: color(white);
+	text-align: center;
+	font-family: $header-font-family;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 219px;
+	height: 74px;
+	font-size: 29px;
+	text-decoration: none;
+	background-size: contain;
+	background-position: center center;
+	background-repeat: no-repeat;
+	position: relative;
+	@include mq('768px','min') {
+		font-size: 40px;
+	}
+
+	&--small {
+		// font-family: $body-font-family;
+		font-weight: bold;
+		width: 73px;
+		height: 32px;
+		font-size: 13px;
+	}
+
+	&--medium {
+		// font-family: $body-font-family;
+		font-weight: bold;
+		width: 154px;
+		height: 52px;
+		font-size: 28px;
+	}
+
+	&--flair {
+		display: block;
+		font-family: $special-font-family;
+		font-weight: 100;
+		transform-origin: top left;
+		position: absolute;
+		top: -15px;
+		left: 11px;
+		font-size: 43px;
+		color: color(orange);
+
+		&--orange {
+			color: color(orange);		
+		}
+		&--skyblue {
+			color: color(skyblue);		
+		}
+		&--fuschia {
+			color: color(fuschia);		
+		}
+		&--green {
+			color: color(green);		
+		}
+		&--navy {
+			color: color(navy);		
+		}
+		&--black {
+			color: color(black);
+		}
+	}
+
+	&--price {
+		font-family: $body-font-family;
+	}
+
+	&--green {
+		background-image: url(../../app/img/tags/tag--green.png);
+	}
+
+	&--orange {
+		background-image: url(../../app/img/tags/tag--orange.png);
+	}
+
+	&--blue, &--skyblue {
+		background-image: url(../../app/img/tags/tag--blue.png);
+	}
+
+	&--black {
+		background-image: url(../../app/img/tags/tag--black.png);
+	}
+
+	&--pink, &--fuschia {
+		background-image: url(../../app/img/tags/tag--pink.png);
+	}
+
+	&--yellow {
+		background-image: url(../../app/img/tags/Underlinee.svg);
+		height: 100px;
+		background-repeat: no-repeat;
+		margin: -36px;
+		max-width: 50%;
+		min-width: 700px;
+		background-size: contain;
+		@include mq('1366px','max') {
+			min-width: 550px;
+		}
+		@include mq('1125px','max') {
+			min-width: 374px;
+			max-width: 41%;
+		}
+		@include mq('834px','max') {
+			min-width: 384px;
+			margin: -32px;
+    		max-width: 43%;
+		}
+		@include mq('700px','max') {
+			position: absolute;
+			left: 10vw;
+		}
+		@include mq('447px','max') {
+			min-width: 96vw;
+			left: 4vw;
+		}
+	  }
+
+	  &--yellow--g {
+		background-image: url(../../app/img/tags/christmas_underline_small.png);
+		height: 100px;
+		background-repeat: no-repeat;
+		max-width: 25%;
+		min-width: 255px;
+		width: 322px;
+		background-size: contain;
+		position: absolute;
+		bottom: -73px;
+    	left: -12px;
+    	z-index: -1;
+		@include mq('1400px','max') {
+			width: 234px;
+			min-width: 234px;
+			max-width: 20%;
+		}
+		@include mq('1125px','max') {
+			width: 175px;
+			min-width: 175px;
+			bottom: -81px;
+		}
+		@include mq('700px','max') {
+			left: unset;
+		}
+	  }
+}

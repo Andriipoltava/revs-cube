@@ -1,0 +1,10 @@
+$c: '.page-contact';
+
+#{$c} {
+
+	&__wrapper
+	{
+		padding-top: 150px;
+		flex-grow: 1;
+	}
+}

@@ -1,0 +1,66 @@
+<div class="christmas__info">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="christmas__slider__container">
+					<div class="christmas__slider">
+						{% for image in images %}
+							<div class="christmas__slider__image">
+								<img class="owl-lazy" data-src="{{image.image.url}}" alt="{{image.image.alt}}">
+							</div>
+						{% endfor %}
+					</div>
+
+					{% if post.post_type == 'bar' %}
+						<div class="christmas__sidebar__container">
+							{% include 'molecules/sidebar.twig' with {
+								'type': 'location',
+							} %}
+						</div>
+					{% endif %}
+					
+				</div>
+				
+				{% if images|length > 1 %}
+					<ul class="dots">
+						<li class="dots__arrow dots__arrow--prev"><span class="icon-arrow-left"></span></li>
+						{% for i in 1..(images|length) %}
+							<li class="dots__single {% if loop.first %}active{% endif %}" data-gallery-dot="{{loop.index0}}"></li>
+						{% endfor %}
+						<li class="dots__arrow dots__arrow--next"><span class="icon-arrow-right"></span></li>
+					</ul>
+
+					<div class="icon-hand-gesture"></div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	
+	{% if post.post_type == 'bar' %}
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 christmas__map__decorations">
+					<div class="christmas__map__container">
+						<div id="map" class="christmas__map"></div>
+
+						<div class="christmas__sidebar__container">
+							<div class="sidebar christmas__sidebar">
+								<div class="christmas__sidebar__address__container">
+									<div class="christmas__sidebar__address"></div>
+									<div class="christmas__sidebar__share">
+										{% include 'atoms/button.twig' with {
+											'type': 'regular',
+											'text': 'Share',
+											'color': 'pink',
+											'link_type' : 'share'
+										}%}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+</div>

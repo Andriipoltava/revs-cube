@@ -1,0 +1,27 @@
+<div class="bg--navy--pattern christmas__timetables">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text--center christmas__timetables__heading">
+				<h3 class="christmas__timetables__title"><span class="color--christmas-red">{{post.get_field('christmas__fiesta__title_header__flair_flair__text')}}</span>{{post.get_field('christmas__fiesta__title_header__title')}}</h3>
+			</div>
+		</div>
+
+		<div class="col-md-12 christmas__timetables__content">
+			{{post.get_field('christmas__fiesta__content')}}
+		</div>
+
+		<div class="christmas__timetables__container">
+			<div class="christmas__timetables__tables">
+				{% for table in post.get_field('christmas__fiesta__tables') %}
+				    {% if table.title %}
+							<h5>{{table.title}}</h5>
+						{% endif %}
+				    <div class="christmas__timetables__tables__img christmas__timetables__tables__img--1">
+				    	<img src="{{table.image.url}}" alt="">
+				    </div>
+				    <div class="icon-hand-gesture"></div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>

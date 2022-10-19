@@ -1,0 +1,111 @@
+$c: '.christmas';
+
+#{$c} {
+	&__timetables {		
+		order: 3;
+		padding: 50px 0;
+		color: white;
+
+		p:first-child { margin-top: 0; }
+		p:last-child { margin-bottom: 0; }
+
+		// > .container {
+		// 	@include mq('md','max') {
+		// 		padding: 0;
+		// 	}
+		// }
+
+		&__container {
+			align-items: center;
+			overflow: visible;
+			text-align: center;
+		}
+
+		&__title
+		{
+			position: relative;
+			display: inline-block;
+			margin-top: 0.75em;
+			margin-bottom: 0;
+
+			span
+			{
+				position: absolute;
+				margin-top: -0.1em;
+				display: inline-block;
+				white-space: nowrap;
+				left: 0;
+				bottom: 100%;
+				transform: translate(-25%, 50%);
+
+				@include mq('md', 'max')
+				{
+					transform: translate(-15px, 50%);
+				}
+			}
+		}
+
+		&__content
+		{
+			text-align: center;
+			max-width: 1000px;
+			margin: {left: auto; right: auto; }
+		}
+
+		&__tables {
+
+			&__img {
+				overflow-x: scroll;
+				overflow-y: hidden;
+
+				@include mq('md','min') {
+					overflow-x: auto;
+				}
+
+				img {
+					max-width: none;
+
+					@include mq('md','min') {
+						max-width: 100%;
+					}
+				}
+
+				&--1 {
+					img {
+						width: 688px;
+					}
+				}
+
+				&--2 {
+					img {
+						width: 687px;
+					}
+				}
+			}
+
+			.icon-hand-gesture {
+				color: color(white);
+				font-size: 40px;
+				display: block;
+				text-align: center;
+				padding: 20px 0;
+
+				@include mq('md','min') {
+					display: none;
+				}
+			}
+		}
+
+		&__book
+		{
+			@include mq('md','max') {
+				padding: 0;
+			}
+
+			.booking-form
+			{
+				max-width: 450px; 
+			}
+		}
+	}
+}

@@ -1,0 +1,20 @@
+
+/**
+ * Map
+ */
+
+
+$c: ".map";
+#{$c}
+{
+	width: 100%;
+	min-height: 300px;
+	@include mq('sm','min') { min-height: 500px; }
+
+	// Google Map fix
+	img
+	{
+		max-width: none;
+		width: auto;
+	}
+}

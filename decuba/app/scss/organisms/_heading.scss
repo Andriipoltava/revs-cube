@@ -1,0 +1,34 @@
+$c: '.heading';
+
+#{$c} {
+	
+	&--center {
+		margin: 0 auto 2rem;
+    	display: table;
+			text-align: center;
+    	&--mobile {
+    		@include mq('md','max') {
+				margin: 0 auto 2rem;
+	    		display: table;
+	    	}
+    	}
+	}
+
+	@each $color, $value in $colors {
+		@if type-of($value) == 'color' {
+			&--#{$color} {
+				color: #{$value};
+			}
+		} @else if type-of($value) == 'map' {
+			@each $col, $val in $value {
+				@if type-of($val) == 'color' {
+					&--#{$color}--#{$col}  {
+						color: #{$val};
+
+					}
+				}
+			}
+		}
+	}
+
+}

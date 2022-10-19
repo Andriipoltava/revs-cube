@@ -1,0 +1,107 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+{% block content %}
+
+{% include 'organisms/hero.twig' with {
+	'slider': post.get_field('hero__slides')
+}%}
+
+<div class="page-about">
+	<section class="page-about__intro bg--grey-light--logo">
+		<div class="container page-about__intro__container">
+			<div class="row">
+				<div class="page-about__intro__left">
+					<h2 class="page-about__intro__title"><span class="color--skyblue">Discover</span> Our stories</h2>
+				</div>
+				<div class="page-about__intro__right">
+					<p><strong>This is not the tale of one person. Or one bar. Or one spirit.</strong></p>
+
+					<p>It is the story of team of rum lovers, who knew that taking on this spirit meant capturing it. And that doing so would lead to discovering the food, drink and culture that makes up one of the world’s most exciting and intriguing places.</p>
+
+					<p>The island of Cuba.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="page-about__block" style="background-image: url('{{site.theme.link}}/app/img/tmp/about-1.jpg');">
+		<div class="container">
+			<div class="row">
+				<div class="page-about__block__content page-about__block__content--bg">
+					<h3><span class="color--skyblue">But first</span>rum would take them all over the world</h3>
+					<p><strong>To Africa and the Caribbean to North America and beyond. Learning, tasting, testing, sharing stories, recipes and blends.</strong></p>
+					<p>The most diverse spirit category in the world was overflowing with flavour profiles, manufacturing processes and tales of the people who created it. Handed down through generations and tumultuous histories.</p>
+					<p>It was intoxicating.</p>
+				</div>
+				<div class="page-about__block__video">
+					{% include 'atoms/button.twig' with {
+						'type': 'circle',
+						'direction': 'down',
+						'icon': 'play',
+					}%}
+
+					<p>Play video</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="page-about__block" style="background-image: url('{{site.theme.link}}/app/img/tmp/bg--blue.jpg');">
+		<div class="container">
+			<div class="row">
+				<div class="page-about__block__content">
+					<h3><span class="color--fuschia">And it is where</span>Revolución de Cuba began.</h3>
+					<p><strong>Back in the North of England, a rum bar emerged that wasn’t like other bars. It wasn’t even like other rum bars. It started as an experiment.</strong></p>
+					<p>Could the spirit of the island of Cuba really be brought to life in food, music, cocktails and people here? It felt like a beginning. A new way to party, a new expectation of what it meant to have a night out, to go for lunch, to celebrate every normal Tuesday.</p>
+				</div>
+				<div class="page-about__block__image">
+					<div>
+						<img src="{{site.theme.link}}/app/img/tmp/about-2.jpg" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="page-about__block" style="background-image: url('{{site.theme.link}}/app/img/tmp/about-4.jpg');">
+		<div class="container">
+			<div class="row">
+				<div class="page-about__block__content page-about__block__content--bg">
+					<h3><span class="color--skyblue">Now</span>We have 15 bars across the uk</h3>
+					<p><strong>Now we have fifteen bars across the UK, and a team of rum ambassadors, committed to spreading the word of this complex spirit..</strong></p>
+					<p>We stay true to the rums we sell and the histories behind them. And, like rum lovers for centuries before us, we continue to experiment, to play with the most diverse and mysterious category of them all.</p>
+					<p>We invite you to explore it with us.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="bg bg--yellow--pattern">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					{% include 'organisms/featured-cta.twig' with {
+						'title': 'JOIN US',
+						'content': '<p>Want to be part of the next generation of rum lovers? Want to learn about and share in the biggest fiesta of your life?</p>',
+						'has_button': true,
+						'button': {
+							'type': 'regular',
+							'text': 'View Careers',
+							'color': {
+								'color': 'fuschia'
+							},
+							'link_type' : 'external',
+							'external_link' : 'https://www.google.com',
+							'internal_link' : '',
+							'file' : '',
+							'classes': '',
+						},
+						'image': site.theme.link~'/app/img/tmp/about-5.jpg',
+						'direction': ''
+					} %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

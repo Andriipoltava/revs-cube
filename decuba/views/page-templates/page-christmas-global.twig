@@ -1,0 +1,150 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+    {% set slides = [{
+		'image': site.theme.link~'/app/img/bg/bg-CHRISTMAS.jpeg',
+		'image_position': 'center',
+		'flair': {
+			'has_flair': true,
+			'flair__text': 'Have yourself a',
+			'flair__color': {
+				'color': 'white',
+			},
+		},
+		'title': 'CUBAN<br>CHRISTMAS<br>PARTY',
+		'title_weight': '1',
+		'title_color': '',
+		'content': 'It’s time to celebrate Christmas the Cuban way. Each of our venues offers a unique, exotic and tropical escape this festive season. Find your perfect festive package below.',
+		'content_color': '',
+		'underline': false,
+        'global_page_underline': true,
+		'page': 'christmas-global',
+	}] %}
+
+	{% include 'organisms/hero.twig' with {
+		'moduleClasses': 'hero--mob-bg-center',
+		'slider': slides,		
+	} %}
+
+	<div class="christmas-local-about__block">
+		<div class="christmas-local-about__bg  bg--christmas-green--color">
+		</div>
+		<div class="christmas-local-about__img__gb">
+		</div>
+		<div class="container" style="margin: auto; max-width: 1440px;">
+			<div class="row">
+				<div class="christmas-local-about__left">
+					<h2 class="christmas-local-about__title">
+						<span class="">Your reasons to</span><br>
+						CELEBRATE</br>CHRISTMAS</br>WITH US
+						<div class="christmas-local-about__underline__large">
+						</div>
+					</h2>
+				</div>
+				<div class="christmas-local-about__right mobile-text-l">
+				
+					<p>Did you know that in Cuba, between 1969 and 1997, Christmas was not publicly celebrated. Those that did celebrate did so privately and often secretly. Here at Revolucion de Cuba, we’re all about the fiesta so we’re taking the holiday season to a whole new level and here is why you should too.</p><br>
+					<p>We’ll sort the dining, the drinks AND the dance floor. All you need to do is make sure you’re ready to fiesta like you’ve never fiesta’d before.</p><br>
+					<p>Want to know more about our exclusive Christmas celebrations? Click the link below to explore our handy blog OR scroll down to explore packages and see prices.</p>
+
+					<div class="christmas-local-about__buttons">
+						{% include 'atoms/button.twig' with {
+							'type': 'regular',
+							'text': 'View Menus',
+							'color': 'skyblue',
+							'link_type' : 'internal',
+							'internal_link' : 'https://www.revoluciondecuba.com/wp-content/uploads/2021/10/RDC_Christmas_2021_Menu.pdf',
+							'classes': 'button button--regular button--regular--skyblue hero__info__button m--right--20 m--bottom--10',
+						}%}
+
+						{% include 'atoms/button.twig' with {
+							'type': 'regular',
+							'text': 'Book',
+							'color': 'fuschia',
+							'link_type' : 'internal',
+							'internal_link' : site.link ~ '/book/',
+							'classes': 'button button--regular button--regular--orange m--right--20  js-locations-toggle js-circle-1946 m--bottom--10 hero__info__button',
+						}%}
+						<div class="w-100">
+						{% include 'atoms/button.twig' with {
+							'type': 'underline',
+							'text': 'View Allergens',
+							'color': 'orange',
+							'link_type' : 'internal',
+							'internal_link' : site.link ~ '/xmas-allergen-information.pdf',
+							'classes': 'button button--underline button--underline--orange',
+						}%}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% include 'organisms/christmas-global-packages.twig' %}
+
+	<section>
+		{% set gallery_slides = [{
+			'image' : {
+				'url': site.theme.link~'/app/img/xmas/c-1.jpg',
+				'alt': 'Image 1',
+				'title': 'Virtual Cocktail Masterclass',
+				'text': 'Experience our iconic cocktail masterclass from the comfort of your own home, or office space. Ideal for corporate events or those not quite ready to return to the bar.	The perfect way to bring your team together during the festive period.',
+				'cta_url': 'https://www.revoluciondecuba.com/corporate-events/',
+				'cta_text': 'More Info'
+			},
+		},{
+			'image' : {
+				'url': site.theme.link~'/app/img/xmas/bacardi-aventura.jpg',
+				'alt': 'revs de cuba bacardi aventura',
+				'title': 'Cuba at Home',
+				'extra_class': 'small-slide-text',
+				'text': 'Change the copy on the Bacardi to say “In collaboration with Bacardi, we have created our very own signature rum that you can enjoy at home. Bacardi Aventura is a blend of tropically aged dark rums matured for a minimum of three years in American oak barrels and infused with notes of tropical fruit...',
+				'cta_url': 'https://shop.revoluciondecuba.com/',
+				'cta_text': 'Shop Now'
+			},
+		}] %}
+		<div>
+			{% include 'organisms/gallery.twig' with {
+				'type': 'christmas-celebration-gallery-cuba',
+				'images': gallery_slides,
+				'page': 'christmas-global',
+			}%}
+		</div>
+	</section>
+
+	<script type="text/javascript">
+		const christmaslider = () => {
+			if (document.querySelectorAll('.christmas-gallery--celebration  .christmas-gallery--celebration__text_container')) {
+				var h = 0;
+				document.querySelectorAll('.christmas-gallery--celebration  .christmas-gallery--celebration__text_container').forEach(function (value) {
+					value.style.minHeight = 'auto';
+					value.style.overflow = 'unset';
+					value.style.height = 'auto';
+					h = value.clientHeight +50 > h ? value.clientHeight +50 : h;
+				})
+				document.querySelectorAll('.christmas-gallery--celebration  .christmas-gallery--celebration__text_container').forEach(function (value) {
+					value.style.minHeight = h + "px";
+				})
+				setTimeout(function () {
+					var h = 0;
+					document.querySelectorAll('.christmas-gallery--celebration  .christmas-gallery--celebration__text_container').forEach(function (value) {
+						value.style.minHeight = 'auto';
+						value.style.height = 'auto';
+						value.style.overflow = 'unset';
+						h = value.clientHeight +50 > h ? value.clientHeight +50 : h;
+					})
+					document.querySelectorAll('.christmas-gallery--celebration  .christmas-gallery--celebration__text_container').forEach(function (value) {
+						value.style.minHeight = h + "px";
+					})
+				},1500)
+			}
+		}
+		document.addEventListener('DOMContentLoaded', christmaslider);
+		window.addEventListener('resize', christmaslider, true);
+	</script>
+
+	{% include 'organisms/testimonials.twig' %}
+		
+{% endblock %}

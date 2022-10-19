@@ -1,0 +1,495 @@
+
+/**
+ * Form styles
+ * - extends theme/forms.scss base styles
+ * - defines form & field element classes
+ */
+
+
+// Label
+%label-element
+{
+	font-weight: bold;
+}
+
+
+// Text Fields
+
+%text-input-field-wrap
+{
+}
+
+%text-input-field
+{
+	@include placeholder() 
+	{ 
+		font-style: italic;
+	}
+}
+
+%text-input-field--focus
+{
+	border-color: color(orange);
+}
+
+%text-input-field--error
+{
+	border-color: color(red);
+}
+
+%text-input-field--success
+{
+	border-color: color(navy);
+}
+
+
+// Textarea Fields
+
+%textarea-field-wrap
+{
+}
+
+%textarea-field
+{
+	@include placeholder() 
+	{ 
+		font-style: italic;
+	}
+}
+
+%textarea-field--focus
+{
+	border-color: color(orange);
+}
+
+%textarea-field--error
+{
+	border-color: color(red);
+}
+
+%textarea-field--success
+{
+	border-color: color(navy);
+}
+
+
+// Select Fields
+
+%select-field-wrap
+{
+	&:before
+	{
+		border-width: 0;
+		font-family: 'de-cuba';
+		content: $icon-caret-down;
+		color: color(fuschia);
+		font-size: 0.5em;
+	}
+}
+
+
+%select-field
+{
+}
+
+
+// Checkbox fields
+
+%checkbox-field
+{
+}
+
+%checkbox-label
+{
+	&::before
+	{
+		font-size: 1em;
+		background-color: color(white);
+		border-radius: 3px;
+		border: 1px solid color(fuschia);
+	}
+
+	&:hover::before 
+	{
+		background: lighten(color(fuschia), 10%);
+	}
+
+	:disabled + &::before
+	{
+		color: color(grey, regular);
+		background-color: color(grey, regular);
+		cursor: auto;
+	}
+}
+
+%checkbox-field--checked
+{
+	&::before
+	{
+		font-family: 'de-cuba';
+		content: $icon-check;
+		color: color(white);
+		background-color: color(fuschia);
+	}
+}
+
+
+
+// Radio fields
+
+%radio-field
+{
+}
+
+%radio-label
+{
+	&::before
+	{
+		font-size: 1em;
+		background-color: color(white);
+		border: 1px solid color(fuschia);
+	}
+
+	&:hover::before 
+	{
+		background: lighten(color(fuschia), 20%);
+	}
+
+	:disabled + &::before
+	{
+		color: color(grey, regular);
+		background-color: color(grey, regular);
+		cursor: auto;
+	}
+}
+
+%radio-field--checked
+{
+	&::before
+	{
+		content: "";
+		color: color(white);
+		background-color: color(fuschia);
+	}
+}
+
+
+
+// Submit field
+
+%submit-field
+{
+	border: 0;
+	@extend .button;
+	@extend .button--regular;
+	@extend .button--regular--skyblue;
+}
+
+
+
+// Form ----------------------------------
+
+$c: form;
+
+.#{$c}
+{
+	&__success
+	{
+		// font-weight: bold;
+		// color: color(skyblue);
+		line-height: 1.5;
+	}
+
+	&__error
+	{
+		color: color(red);
+		border-width: 2px;
+	}
+}
+
+
+
+// Fields ---------------------------------
+
+$subc: field;
+
+.#{$subc}
+{
+	&__label
+	{
+	}
+
+	// Error messages
+	&__errors
+	{
+		color: color(red);
+		font-style: italic;
+		font-size: 14px;
+		margin-top: 0.25em;
+		text-align: left;
+	}
+
+	&__error
+	{
+		&:before
+		{
+		}
+	}
+
+
+	// Modifers --------------------
+
+	// Text-type inputs - text, email, password, ...
+
+	&--text
+	{
+		&.#{$subc}--is-focus .#{$subc}__element,
+		.#{$subc}__element:focus,
+		.#{$subc}__element:active
+		{
+			@extend %text-input-field--focus !optional;
+		}
+
+		&.#{$subc}--error .#{$subc}__element
+		{
+			@extend %text-input-field--error !optional;
+		}
+
+		&.#{$subc}--success .#{$subc}__element
+		{
+			@extend %text-input-field--success !optional;
+		}
+
+		.#{$subc}__element
+		{
+		}
+	}
+
+
+
+	// Text-are inputs
+
+	&--textarea
+	{
+		&.#{$subc}--is-focus .#{$subc}__element,
+		.#{$subc}__element:focus,
+		.#{$subc}__element:active
+		{
+			@extend %textarea-field--focus !optional;
+		}
+
+		&.#{$subc}--error .#{$subc}__element
+		{
+			@extend %textarea-field--error !optional;
+		}
+
+		&.#{$subc}--success .#{$subc}__element
+		{
+			@extend %textarea-field--success !optional;
+		}
+
+		.#{$subc}__element
+		{
+		}
+	}
+
+
+
+	// Select-type inputs
+
+	&--select
+	{
+		.#{$subc}__element-wrap
+		{
+		}
+
+		.#{$subc}__element
+		{
+		}
+	}
+
+
+
+	// Checkbox-type inputs
+
+	&--checkbox
+	{
+		.#{$subc}__label
+		{
+		}
+
+		.#{$subc}__element-wrap:not(:last-child)
+		{
+		}
+
+		.#{$subc}__element
+		{
+		}
+
+		.#{$subc}__sub-label
+		{
+		}
+
+		.#{$subc}__element:checked + .#{$subc}__sub-label
+		{
+		}
+	}
+
+
+
+	// Radio-type inputs
+
+	&--radio
+	{
+		.#{$subc}__label
+		{
+		}
+
+		.#{$subc}__element-wrap:not(:last-child)
+		{
+		}
+
+		.#{$subc}__element
+		{
+		}
+
+		.#{$subc}__sub-label
+		{
+		}
+
+		.#{$subc}__element:checked + .#{$subc}__sub-label
+		{
+		}
+	}
+
+
+	// Submit buttons
+
+	&--submit
+	{
+		.#{$subc}__element
+		{
+		}
+	}
+
+
+
+	// Styles
+
+	&--minimal {
+	
+		.#{$subc}__element-wrap
+		{
+			background-color: transparent;
+			position: relative;
+			
+			&:after {
+				font-family: 'de-cuba';
+				font-size: 8px;
+				@include pseudo;
+				content: $icon-caret-down;
+				right: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				color: color(skyblue);
+			}	
+			.#{$subc}__element
+			{
+				border: 0;
+				border-radius: 0;
+				border-bottom: 1px solid color(skyblue);
+			}	
+		}
+
+	}
+
+}
+
+
+#ui-datepicker-div { 
+	background: #FFF;
+	border: 1px solid #ddd;
+	border-radius:4px; 
+	box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.75);
+	display:none;
+	padding:20px;
+	width:300px; 
+ 
+  .ui-icon {
+  	color: transparent; 
+  	cursor: pointer; 
+  	font-size: 0px; 
+  }
+  .ui-icon:before {
+  	color: color(navy); 
+  	font-family:'de-cuba'; 
+  	font-size: 18px;
+  }
+ 
+  .ui-datepicker-prev {
+  	float: left; 
+  	width: 10%;
+
+    .ui-icon:before {
+    	content:$icon-arrow-left-alt; 
+    }
+    &.ui-state-disabled {
+    	display:none; 
+    }
+  }
+  .ui-datepicker-next {
+  	float: right; 
+  	width: 10%;
+
+    .ui-icon:before {
+    	content:$icon-arrow-right-alt; 
+    	float: right; 
+    }
+    &.ui-state-disabled {
+    	display:none; 
+    }
+  }
+ 
+  .ui-datepicker-title {
+    select { 
+    	float: left;  
+    	width: 70%;
+    }
+ 
+    .ui-datepicker-month    { 
+    	margin: 0px 5% 6px; 
+    }
+    .ui-datepicker-year     { 
+    	margin: 0px 15% 6px; 
+    }
+  }
+ 
+  .ui-datepicker-today      { 
+  	background-color: color(skyblue); 
+  	border-radius: 4px;
+    a                       { 
+    	color: #FFF; 
+    }
+  }
+ 
+  table                     { 
+  	width: 100%; 
+    td, th                  { 
+    	text-align: center; 
+    }
+    td                      {  
+      a                     { 
+      	border-radius: 4px;
+      	display: block; 
+      	padding: 5px; 
+      	color: color(black);
+      	text-decoration: none;
+      	&:hover {
+      		background-color: color(skyblue);
+      		color: color(white);
+      	}
+      }
+    }
+  } 
+ 
+}

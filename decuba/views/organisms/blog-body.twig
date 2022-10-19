@@ -1,0 +1,51 @@
+<div class="flex">
+	<div class="col-xs-9 blog__title">
+		<h1 class="blog__title__header {% if title_weight %}h{{title_weight}}-size{% endif %} color--{% if title_color %}{{title_color}}{% else %}white{% endif %} {% if not content %}m--none{% endif %}">{% if has_flair %}<span class="color--{{flair__color.color}}">{{flair__text}}</span>{% endif %}{{title}}</h1>
+	</div>
+	<div class="col-xs-3 blog__share has-tooltip">
+		<div class="button button--text button--text--black flex flex--a-c flex--j-fe"><span class="hide-md-max">SHARE</span> <img class="p--left--10" src="{{site.theme.link}}/app/img/svg/share.svg" alt=""></div>
+		<div class="tooltip__content tooltip__content--blog">
+			<div class="tooltip__text">
+				<div class="share__container">
+					<ul class="share__list active">
+						<li class="share__item share__item--facebook">
+							<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{currentURL}}"><span class="icon-facebook"></span></a>
+						</li>
+						<li class="share__item share__item--twitter">
+							<a target="_blank" href="https://twitter.com/intent/tweet?url={{currentURL}}"><span class="icon-twitter"></span></a>
+						</li>
+						<li class="share__item share__item--whatsapp">
+							<a target="_blank" href="whatsapp://send?text={{currentURL}}"><span class="icon-whatsapp"></span></a>
+						</li>
+						<li class="share__item share__item--email">
+							<a href="mailto:?&body={{currentURL}}"><span class="icon-email"></span></a>
+						</li>
+						<li class="share__item share__item--link js-copy">
+							<a class="tooltip" href="#">
+								<span class="icon-link"></span>
+								<div class="tooltip__content">
+									<div class="tooltip__text">
+										<div class="tooltip__inner">Link copied to clipboard</div>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="flex">
+	<div class="col-sm-12 blog__info">
+		<p class="m--none"><strong>Reading Time: {{function('reading_time', post.id)}}</strong></p>
+		<p class="m--none"><small><i>Posted on the {{post.post_date_gmt|date("d F y")}}</i></small></p>
+	</div>
+</div>
+<div class="flex">
+	<div class="col-sm-12">
+		<div class="content">
+			{{post.content|raw}}
+		</div>
+	</div>
+</div>

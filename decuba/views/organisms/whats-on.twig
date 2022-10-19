@@ -1,0 +1,36 @@
+<div class="whats-on">
+	<div class="whats-on__slider">
+		<div class="whats-on__prev">
+			{% include 'atoms/button.twig' with {
+				'type': 'circle',
+				'direction': 'left'
+			}%}
+		</div>
+		<div class="whats-on__next">
+			{% include 'atoms/button.twig' with {
+				'type': 'circle',
+			}%}
+		</div>
+
+		<div class="whats-on__slider__container"></div>
+	</div>
+	<div class="whats-on__items">
+		
+	</div>
+	{#<div data-info="0" class="active">
+		<div class="whats-on__info">
+			<h3 class="whats-on__info__title">Taco Tuesday</h3>
+			<div class="whats-on__info__description">
+				<p>All Day, every Tuesday we have serious deals for taco lovers. Four of a kind for £5. Build your own for £8. Taco board &amp; a drink for £10. Choose from Pulled Chicken, Slow-cooked Beef of Mushroom, Bean &amp; Spinach. Taco 'bout a party... </p>
+				{% include 'atoms/button.twig' with {
+					'type': 'regular',
+					'text': 'Book Now',
+					'color': 'skyblue'
+				} %}
+			</div>
+		</div>
+		<div class="whats-on__info__image">
+			<img src="{{site.theme.link}}/app/img/tmp/whats-on-1.jpg" alt="">
+		</div>
+	</div>#}
+</div>

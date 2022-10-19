@@ -1,0 +1,480 @@
+$c: ".christmas-local-about";
+
+#{$c} {
+  &__block {
+    position: relative;
+    display: flex;
+    align-items: center;
+    -ms-flex-pack: center;
+    background-size: cover;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    overflow: hidden;
+    min-height: 860px;
+    &[class*="--pattern"] {
+      background-size: auto;
+    }
+    @include mq("md", "max") {
+      align-items: flex-start;
+    }
+
+    @include mq("md", "min") {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+    @include mq("768px", "max") {
+      min-height: 417px;
+    }
+  }
+  &__bg {
+    position: absolute;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-position: center center;
+  }
+
+  &__img {
+    background-image: url(../../app/img/tmp/christmas_intro_img.jpg);
+    width: 26%;
+    height: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 88px;
+    @include mq("768px", "max") {
+      display: none;
+    }
+  }
+
+  &__img__gb {
+    background-image: url(../../app/img/tmp/ready-for-our.jpg);
+    width: 26%;
+    height: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 88px;
+    opacity: 0.7;
+    @include mq("768px", "max") {
+      display: none;
+    }
+  }
+
+  &__img__br {
+    background-image: url(../../app/img/tmp/brunch_da_loca.jpg);
+    width: 26%;
+    height: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 88px;
+    @include mq("768px", "max") {
+      display: none;
+    }
+  }
+
+  .mr-top {
+    top: 124px;
+  }
+
+  &__left {
+    flex-basis: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+    @include mq("768px", "max") {
+      flex-basis: 100%;
+      justify-content: flex-start;
+      width: 100%;
+      .christmas-local-about__underline__large {
+        width: 75%;
+      }
+    }
+  }
+
+  &__title {
+    text-align: left;
+    margin-top: 0;
+    font-size: 110px;
+    line-height: 100px;
+    letter-spacing: -2px;
+    z-index: 1;
+    color: #ffffff;
+    position: relative;
+    z-index: 1;
+    @include mq("1366px", "max") {
+      font-size: 90px;
+      line-height: 90px;
+    }
+    @include mq("1125px", "max") {
+      font-size: 50px;
+      line-height: 52px;
+    }
+    span {
+      display: inline-block;
+      color: #ffffff;
+      text-align: left;
+      -webkit-transform: translate(0em, 0.2em);
+      transform: translate(0em, 0.2em);
+      margin-bottom: 20px;
+      font-size: 73px;
+      @include mq("1125px", "max") {
+        margin-bottom: 9px;
+        font-size: 48px;
+      }
+    }
+  }
+
+  &__underline {
+    background-image: url(../../app/img/tags/christmas_underline_small.png);
+    width: 59%;
+    height: 35px;
+    position: absolute;
+    left: 106px;
+    bottom: -12px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: -1;
+    @include mq("1366px", "max") {
+      left: 86px;
+    }
+    @include mq("1105px", "max") {
+      width: 43%;
+      left: 38px;
+      bottom: -18px;
+    }
+    @include mq("764px", "max") {
+      width: 57%;
+      left: 46px;
+      bottom: -19px;
+    }
+  }
+
+  &__underline__large {
+    background-image: url(../../app/img/tags/Underlinee.svg);
+    width: 99%;
+    height: 35px;
+    position: absolute;
+    left: -23px;
+    top: 191px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: -1;
+    @include mq("1366px", "max") {
+      top: 166px;
+    }
+    @include mq("1125px", "max") {
+      top: 99px;
+    }
+    @include mq("767px", "max") {
+      top: 108px;
+      left: -8px;
+    }
+  }
+
+  &__underline__brunch {
+    background-image: url(../../app/img/tags/Underlinee.svg);
+    width: 116%;
+    height: 35px;
+    position: absolute;
+    left: -23px;
+    top: 195px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: -1;
+    @include mq("1366px", "max") {
+      width: 95%;
+      top: 170px;
+    }
+    @include mq("1125px", "max") {
+      width: 65%;
+      top: 100px;
+    }
+    @include mq("767px", "max") {
+      width: 97%;
+      top: 108px;
+      left: -8px;
+    }
+  }
+
+  &__right {
+    flex-basis: 50%;
+    max-width: 650px;
+    line-height: (33/18);
+
+    @include mq("768px", "max") {
+      flex-basis: 100%;
+      justify-content: center;
+
+      margin: 0 auto;
+    }
+
+    .text-fuschia {
+      color: #FF32A5;
+
+    }
+
+    p:first-child {
+      margin-top: 0;
+    }
+
+    p {
+      position: relative;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 32px;
+      letter-spacing: -1px;
+      color: #ffffff;
+      @include mq("1125px", "max") {
+        font-size: 20px;
+        line-height: 28px;
+      }
+      @include mq("893px", "max") {
+        font-size: 18px;
+        line-height: 20px;
+      }
+    }
+
+    ul {
+      margin-top: 48px;
+      padding-left: 0;
+      position: relative;
+      @include mq("893px", "max") {
+        margin-top: 28px;
+      }
+    }
+
+    li {
+      list-style: none;
+      margin-bottom: 0.5em;
+      text-indent: -2em;
+      padding-left: 2em;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 25px;
+      letter-spacing: -1px;
+      color: #ffffff;
+      @include mq("1125px", "max") {
+        font-size: 20px;
+        line-height: 28px;
+      }
+      @include mq("893px", "max") {
+        font-size: 14px;
+        line-height: 15px;
+      }
+
+      &:before {
+        content: "•";
+        display: inline-block;
+        width: 0.5em;
+        margin-right: 0.5em;
+        color: color(orange);
+        text-indent: initial;
+        font-size: 1.3em;
+        line-height: 0;
+        text-align: center;
+        vertical-align: sub;
+      }
+    }
+  }
+  &__buttons {
+    max-width: 88%;
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+
+    @include mq("1366px", "max") {
+      max-width: 100%;
+    }
+    @include mq("1125px", "max") {
+      max-width: 375px;
+    }
+
+    @include mq("678px", "max") {
+      margin-top: 45px;
+    }
+    .christmas-button--book {
+      @include mq("1366px", "max") {
+        max-width: 249px;
+        width: 249px;
+      }
+      @include mq("1125px", "max") {
+        min-width: 142px;
+        width: 142px;
+        height: 42px;
+        font-size: 12px;
+        &:hover {
+          @include mq("1125px", "max") {
+            span {
+              top: -27px;
+            }
+          }
+        }
+      }
+      @include mq("325px", "max") {
+        min-width: 132px;
+        width: 132px;
+      }
+      span {
+        @include mq("1125px", "max") {
+          padding: 15px 0;
+        }
+      }
+    }
+    .christmas-button--menu {
+      max-width: 273px;
+      width: 273px;
+      margin-right: 20px;
+      @include mq("1366px", "max") {
+        max-width: 249px;
+        width: 249px;
+      }
+      @include mq("1125px", "max") {
+        max-width: 132px;
+        min-width: 132px;
+        width: 132px;
+        height: 43px;
+        font-size: 12px;
+        &:hover {
+          span {
+            top: -26px !important;
+          }
+        }
+      }
+      span {
+        @include mq("1125px", "max") {
+          padding: 15px 25px;
+        }
+      }
+    }
+    .button--underline {
+      margin-top: 15px;
+
+      @include mq("1366px", "max") {
+        max-width: 249px;
+      }
+
+    }
+  }
+}
+
+.christmas {
+  &__local__why-choose__left {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    -ms-flex-pack: center;
+    -ms-flex-preferred-size: 60%;
+    flex-basis: 60%;
+    width: 60%;
+    @include mq("1366px", "max") {
+      width: 100%;
+    }
+    ul {
+      padding-left: 0;
+      li {
+        font-family: "PT Sans";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 28px;
+        line-height: 50px;
+        letter-spacing: -1px;
+        color: #ffffff;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        @include mq("1366px", "max") {
+          font-size: 24px;
+          line-height: 40px;
+        }
+        @include mq("523px", "max") {
+          font-size: 14px;
+          line-height: 20px;
+        }
+        &::before {
+          content: "•";
+          display: inline-block;
+          width: 0.5em;
+          margin-right: 0.5em;
+          color: color(orange);
+          text-indent: initial;
+          font-size: 1.3em;
+          line-height: 0;
+          text-align: center;
+          vertical-align: sub;
+        }
+      }
+    }
+  }
+  &__local__why-choose__title {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+    position: relative;
+    z-index: 1;
+    @include mq("759px", "max") {
+      margin-top: 42px;
+    }
+  }
+  &__local__title__underline {
+    background-image: url(../../app/img/tags/packages__underline.png);
+    width: 109%;
+    height: 20px;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+    bottom: 26px;
+    left: -20px;
+    z-index: -1;
+    transform: translate(0em, 0.5em) rotate(0deg);
+    @include mq("759px", "max") {
+      bottom: 14px;
+      left: -15px;
+    }
+  }
+  &__local__why-choose__text {
+    max-width: 598px;
+    font-family: "PT Sans";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 42px;
+    letter-spacing: -1px;
+    color: #ffffff;
+    @include mq("1366px", "max") {
+      font-size: 24px;
+      line-height: 40px;
+    }
+    @include mq("523px", "max") {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+  &__why-choose__right {
+    padding-left: 30px;
+
+    @include mq("768px", "max") {
+      padding-left: 0;
+    }
+
+    iframe {
+      max-width: 100%;
+
+      @include mq("768px", "max") {
+        max-height: 450px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+.mobile__slider {
+  display: none;
+  @include mq("768px", "max") {
+    display: block;
+  }
+}

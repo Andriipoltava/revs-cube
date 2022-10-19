@@ -1,0 +1,74 @@
+$c: '.event-date';
+
+#{$c} {
+	display: flex;
+	align-items: flex-start;
+	padding: 0 20px;
+
+	@include mq('756px', 'max') {
+		justify-content: center;
+	}
+
+	&:after {
+		@include mq('md','min') {
+			@include pseudo;
+			height: 100%;
+			right: 0;
+			width: 1px;
+			background-color: rgba(color(black), .25);
+		}
+	}
+
+	&__date {
+		font-family: $header-font-family;
+		font-size: 42px;
+		margin-right: 20px;
+		text-align: center;
+		line-height: 1;
+
+		// @include mq('450px','min') {
+		// 	font-size: 3.5rem;
+		// }
+
+		// @include mq('1250px','min') {
+		// 	font-size: 4.375rem;
+		// }
+
+		span {
+			display: block;
+			font-size: 30px;
+		}
+	}
+
+	&__info {
+		&__day {
+			text-transform: uppercase;
+			font-size: 26px;
+		}
+
+		&__event {
+			display: flex;
+			align-items: center;
+			font-size: 16px;
+			cursor: pointer;
+			margin: 5px 0;
+
+			&:before {
+				@include pseudo;
+				position: relative;
+				width: 5px;
+				height: 5px;
+				border-radius: 5px;
+				background-color: color(orange);
+				margin-right: 5px;
+			}
+
+			.icon-caret-down {
+				margin-top: 3px;
+				margin-left: 5px;
+				color: color(orange);
+				font-size: 10px;
+			}
+		}
+	}
+}

@@ -1,0 +1,41 @@
+- pipeline: "RDC - Master"
+  trigger_mode: "MANUAL"
+  ref_name: "master"
+  ref_type: "BRANCH"
+  fail_on_prepare_env_warning: true
+  do_not_create_commit_status: true
+  trigger_condition: "ALWAYS"
+  actions:
+  - action: "Build Assets"
+    type: "BUILD"
+    working_directory: "/buddy/revs-de-cuba"
+    docker_image_name: "library/node"
+    docker_image_tag: "8.16.0"
+    execute_commands:
+    - "npm install"
+    - "gulp build"
+    setup_commands:
+    - "npm install -g gulp-cli"
+    volume_mappings:
+    - "/:/buddy/revs-de-cuba"
+    trigger_condition: "ALWAYS"
+    shell: "BASH"
+  - action: "Upload Files"
+    type: "SFTP"
+    input_type: "BUILD_ARTIFACTS"
+    remote_path: "/home/forge/${PROJECT_NAME}/public/wp-content/themes/decuba"
+    login: "${SERVER_USER}"
+    host: "${SERVER_IP}"
+    port: "22"
+    authentication_mode: "PUBLIC_KEY"
+    deployment_excludes:
+    - "/node_modules/"
+  variables:
+  - key: "PROJECT_NAME"
+    value: "www.revoluciondecuba.com"
+  - key: "SERVER_IP"
+    value: "secure!i93XqiJGOhijOUc1HeWMJg==.jGLMF2gqJpaXvffEH2iO9g=="
+    encrypted: true
+  - key: "SERVER_USER"
+    value: "secure!3bi7mzxYQiHIp/Q7Fkt9Wg==.D0x+Cxs7FGfRZLPjR+UKrw=="
+    encrypted: true

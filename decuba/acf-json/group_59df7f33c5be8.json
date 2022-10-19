@@ -1,0 +1,83 @@
+{
+    "key": "group_59df7f33c5be8",
+    "title": "Theme -- Bar Filter",
+    "fields": [
+        {
+            "key": "field_59df7f4072623",
+            "label": "Filter Type",
+            "name": "bar_filter_type",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None",
+                "include": "Only applies to...",
+                "exclude": "Applies everywhere except..."
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "none",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
+            "key": "field_59df7f7a72624",
+            "label": "Filter List",
+            "name": "bar_filter_list",
+            "type": "relationship",
+            "instructions": "For bars, choosing the top-level bar post will apply to all sub-pages too",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59df7f4072623",
+                        "operator": "!=",
+                        "value": "none"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "bar"
+            ],
+            "taxonomy": [],
+            "filters": [
+                "search",
+                "post_type"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "id"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 0,
+    "description": "",
+    "modified": 1507820412
+}

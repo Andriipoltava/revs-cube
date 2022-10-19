@@ -1,0 +1,170 @@
+body {
+	background: color(grey, dark);
+}
+
+.ui {
+	min-height: 100%;
+	padding-top: 154px;
+
+	@include mq('700px','min') {
+		padding-top: 106px;
+	}
+
+	&__typography {
+		color: color(white);
+	}
+
+	&__buttons {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+
+		> div {
+			margin-top: 20px;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+
+			.button {
+				margin-top: 20px;
+
+				@include mq('768px','min') {
+					margin-right: 20px;
+
+					&:last-child {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+
+		&--dark {
+			background-color: color(navy);
+			padding: 0 20px 20px 20px;
+			margin-top: 20px;
+		}
+
+		&--tags {
+			margin-top: 20px;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+		}
+	}
+
+	&__form {
+		color: color(white);
+
+		form {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-between;
+		}
+
+		&__section {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+			width: 100%;
+
+			@include mq('768px','min') {
+				width: auto;
+				justify-content: flex-end;
+			}
+
+			&:last-child {
+				flex-grow: 1;
+			}
+
+			.selectric-wrapper {
+//				width: 100%;
+			}
+
+			.selectric {
+				width: 100%;
+
+				@include mq('768px','min') {
+					margin-left: 40px;
+				}
+			}
+
+			.selectric-items {
+				@include mq('768px','min') {
+					margin-left: 40px;
+				}
+			}
+
+			> * {
+				margin-bottom: 20px;
+
+				@include mq('768px','min') {
+					margin-right: 10px;
+//					margin-bottom: 0;
+
+					&:last-child {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+	}
+
+	&__menu {
+		display: flex;
+		padding: 25px 0;
+		flex-flow: row wrap;
+
+		@include mq('768px','min') {
+			flex-flow: row nowrap;
+		}
+
+		.product-menu-item {
+			padding: 15px 25px;
+			background-color: color(white);
+			margin-bottom: 20px;
+
+			@include mq('768px','min') {
+				flex-basis: 33%;
+				margin-right: 15px;
+				margin-bottom: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+	&__sidebar {
+		.sidebar {
+			position: static;
+		}
+	}
+
+	&__packages {
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-start;
+	}
+
+	&__whats-on {
+		background-color: color(navy);
+
+		@include mq('700px','min') {
+			padding: 100px 0;
+		}
+	}
+
+	&__fiesta {
+		&__container {
+			display: flex;
+			justify-content: center;
+			flex-flow: row wrap;
+
+			@include mq('1024px','min') {
+				flex-flow: row nowrap;
+				justify-content: space-between;
+			}
+		}
+	}
+}

@@ -1,0 +1,28 @@
+<div class="product-menu-item" {% for requirement in dietary %}data-{{requirement}}="true"{% endfor %}>
+	<div class="product-menu-item__meta">
+		<p><strong>{{title}}</strong></p>
+
+		{% for requirement in dietary %}
+			{% include 'svg/dietary/'~requirement~'.svg' %}
+		{% endfor %}
+		
+		{% if tag %}
+			{% include 'atoms/tag.twig' with {
+				'text': tag.text,
+				'theme': tag.theme,
+				'link': tag.link,
+				'size': tag.size,
+				'flair': tag.flair,
+				'flair_text': tag.flair_text
+			}%}
+		{% endif %}
+
+		<div class="product-menu-item__price">
+			<p><strong>{{price}}</strong></p>
+		</div>
+	</div>
+	
+	{% if description %}
+		<p>{{description}}</p>
+	{% endif %}
+</div>

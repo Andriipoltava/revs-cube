@@ -1,0 +1,36 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+	{% include 'organisms/hero.twig' with {
+		'slider': post.get_field('hero__slides'),
+	}%}
+	<div class="christmas christmas--{{post.post_type}}">
+
+		{% include 'organisms/christmas-intro.twig' %}
+
+		{% include 'organisms/christmas-packages.twig' %}
+		
+		{% if post.post_type == 'bar' %}
+			{% include 'organisms/christmas-why-choose.twig' %}
+		{% endif %}
+		
+		{# Exclude in these bars #}
+		{% if post.parent.title != 'Bristol' %}
+			{% include 'organisms/christmas-menus.twig' %}
+		{% endif %}
+		
+		{% include 'organisms/christmas-menus-mobile.twig' %}
+		{# Exclude in these bars #}
+		{% if post.post_type == 'bar' and post.parent.title != 'Bristol' %}
+			{% include 'organisms/christmas-timetables.twig' %}
+		{% endif %}
+
+		{% if post.post_type == 'page' %}
+			{% include 'organisms/christmas-popular.twig' %}
+		{% endif %}
+	
+	</div>
+
+{% endblock %}
+

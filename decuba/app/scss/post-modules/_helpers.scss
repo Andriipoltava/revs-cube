@@ -1,0 +1,342 @@
+/**
+ * Helper classes to add additional properties
+ * to modules and elements.
+ */
+
+
+@include cross-media-extends()
+{
+	// Position
+	@include define-extend(pr) { position: relative; }
+	@include define-extend(pa) { position: absolute; }
+	@include define-extend(ps) { position: static; }
+	@include define-extend(pf) { position: fixed; }
+
+
+	// Display
+	@include define-extend(db) { display: block; }
+	@include define-extend(dib) { display: inline-block; }
+	@include define-extend(di) { display: inline; }
+	@include define-extend(dt) { display: table; }
+	@include define-extend(dtc) { display: table-cell; }
+	@include define-extend(df) { display: flex; }
+	@include define-extend(no-d) { display: none; }
+
+		// 	- aliases
+		@include define-extend(hide) { display: none !important; }
+		@include define-extend(show) { display: block !important; }
+
+
+	// Oveflow
+	@include define-extend(ova) {overflow: auto;}
+	@include define-extend(ovh) {overflow: hidden;}
+	@include define-extend(ovs) {overflow: scroll;}
+	@include define-extend(ovv) {overflow: visible;}
+
+
+	// Text Transforms
+	@include define-extend(ttu) { text-transform: uppercase; }
+	@include define-extend(ttl) { text-transform: lowercase; }
+	@include define-extend(no-tt) { text-transform: none; }
+
+
+	// Text Decoration
+	@include define-extend(tdu) { text-decoration: underline; }
+	@include define-extend(no-td) { text-decoration: none; }
+
+
+	// Visibility
+	@include define-extend(vis-hid) { visibility: hidden; }
+	@include define-extend(vis-vis) { visibility: visible; }
+	@include define-extend(vis-clip) {
+		border: 0;
+		clip: rect(0 0 0 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	}
+
+
+	// Background Images
+	@include define-extend(bg-fill)
+	{
+		background-size: cover;
+		background-position: center center;
+	}
+	@include define-extend(bg-lt) { background-position: left top; }
+	@include define-extend(bg-lc) { background-position: left center; }
+	@include define-extend(bg-lb) { background-position: left right; }
+	@include define-extend(bg-ct) { background-position: center top; }
+	@include define-extend(bg-cc) { background-position: center center; }
+	@include define-extend(bg-cb) { background-position: center bottom; }
+	@include define-extend(bg-rt) { background-position: right top; }
+	@include define-extend(bg-rc) { background-position: right center; }
+	@include define-extend(bg-rb) { background-position: right bottom; }
+
+	@include define-extend(no-bgi) { background-image: none; }
+	@include define-extend(no-bgc) { background-color: transparent; }
+
+
+
+	// Font Helpers
+	@if variable-exists(font-light) {
+		@include define-extend(font--light) { font-family: $font-light; }
+	}
+	@if variable-exists(font-reg) {
+		@include define-extend(font--reg) { font-family: $font-reg; }
+	}
+	@if variable-exists(font-med) {
+		@include define-extend(font--med) { font-family: $font-med; }
+	}
+	@if variable-exists(font-book) {
+		@include define-extend(font--book) { font-family: $font-book; }
+	}
+	@if variable-exists(font-bold) {
+		@include define-extend(font--bold) { font-family: $font-bold; }
+	}
+
+	@if variable-exists(font-color) {
+		@include define-extend(font--color) { color: $font-color; }
+	}
+	@if variable-exists(font-alt) {
+		@include define-extend(font--alt) { color: $font-alt; }
+	}
+
+	@include define-extend(font--inherit)
+	{
+		font-size: inherit;
+		font-family: inherit;
+		font-weight: inherit;
+		color: inherit;
+	}
+
+	@include define-extend(font--nowrap)
+	{
+		white-space: nowrap;
+	}
+
+
+	// Link Helpers
+	@include define-extend(link--unstyled)
+	{
+		@include all-link-states()
+		{
+			@include extend(font--inherit);
+			@include extend(no-td);
+	 	}
+	}
+	@include define-extend(unstyled-link)
+	{
+		@include all-link-states()
+		{
+		  color: inherit;
+		  text-decoration: none;
+	 	}
+	}
+	@include define-extend(unstyled-links)
+	{
+		a { @include _(unstyled-link); }
+	}
+
+
+
+	// Browser-based (requires Modernizr)
+	@include define-extend(hide--no-js)
+	{
+		html.no-js &
+		{
+			@include extend(no-d);
+		}
+	}
+
+
+
+	// List helper
+	// @extenders
+	@include define-extend(list--unstyled) {
+	  @include unstyled-list;
+	}
+	@include define-extend(unstyled-list) {
+	  @include extend(list--unstyled);
+	}
+	@include define-extend(unstyled-lists)
+	{
+		ul, ol { @include _(unstyled-list); }
+	}
+
+
+	// For clearing floats like a boss h5bp.com/q
+	// @extenders
+	@include define-extend(clearfix) {
+		*zoom: 1;
+		.lt-ie9 & { overflow: hidden; }
+		&:before,
+		&:after {
+			content: "";
+			display: table;
+		}
+		&:after {
+			clear: both;
+		}
+	}
+
+	// Alignments
+	@include define-extend(fl) { float: left; }
+	@include define-extend(fr) { float: right; }
+	@include define-extend(no-f) { float: none; }
+
+	@include define-extend(hl) { text-align: left; }
+	@include define-extend(hr) { text-align: right; }
+	@include define-extend(hc) { text-align: center; }
+	@include define-extend(vt) { vertical-align: top; }
+	@include define-extend(vm) { vertical-align: middle; }
+	@include define-extend(vb) { vertical-align: bottom; }
+	@include define-extend(fxs) { align-items: flex-start; }
+	@include define-extend(fxc) { align-items: center; }
+	@include define-extend(fxe) { align-items: flex-end; }
+
+	@include define-extend(block-center)
+	{
+		margin: {left: auto; right: auto;};
+	}
+
+	@include define-extend(block-right)
+	{
+		margin: {left: auto; right: 0;};
+	}
+
+	@include define-extend(absolute-center)
+	{
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	@include define-extend(absolute-fill)
+	{
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		right: 0px;
+		bottom: 0px;
+		width: 100%;
+		height: 100%;
+	}
+
+	@include define-extend(vertical-center)
+	{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+
+		// This fallback requires an internal wrapper div
+		html.no-flexbox.no-flexboxlegacy &
+		{
+			display: table;
+			table-layout: fixed;
+			width: 100%;
+
+			& > *
+			{
+				display: table-cell;
+				vertical-align: middle;
+			}
+		}
+	}
+
+
+	@include define-extend(vertical-bottom)
+	{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+
+		// This fallback requires an internal wrapper div
+		html.no-flexbox.no-flexboxlegacy &
+		{
+			display: table;
+			table-layout: fixed;
+			width: 100%;
+
+			& > *
+			{
+				display: table-cell;
+				vertical-align: bottom;
+			}
+		}
+	}
+
+
+	// Image Helper
+	@include define-extend(block-img)
+	{
+		display: block;
+		max-width: 100%;
+	}
+
+
+	// Common Effects
+	@include define-extend(overlay)
+	{
+		content: "";
+		position: absolute;
+		display: block;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+
+
+	// Formatting
+	@include define-extend(ellipsis)
+	{
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+
+
+	// Cursors
+	@include define-extend(cur--pointer)
+	{
+		cursor: pointer;
+	}
+
+
+	// Effects
+	@include define-extend(blur)
+	{
+		filter: blur(2px);
+	}
+
+}
+
+
+// IE10 & 11
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
+{
+	.hide--ie10-11
+	{
+		display:none;
+	}
+}
+
+
+
+/**
+ * Helper Builder based on grunt-attractions
+ */
+
+@each $selector in $attract{
+	.#{$selector} {
+		@include add-helper($selector);
+	}
+}
+
+

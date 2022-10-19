@@ -1,0 +1,77 @@
+$c: '.full-gallery';
+
+#{$c} {
+	min-height: calc(100vh - 136px);
+	width: 100vw;
+	transform: scaleY(1);
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	transform-origin: top;
+	visibility: hidden;
+	overflow: auto;
+	padding: 0 20px;
+	margin-top: 0;
+	z-index: 12;
+	justify-content: flex-start;
+	opacity: 0;
+	pointer-events: none;
+	background-color: color(navy);
+	background-size: auto;
+	background-image: url(../../app/img/patterns/main_texture.jpg);
+	background-repeat: repeat;
+	.no-backgroundblendmode &,
+	.safari.ipad &,
+	.iphone & {
+		background-size: contain;
+		background-repeat: repeat;
+		background-image: url(../../app/img/bg/blue-dark-texture.jpg);
+	}
+
+	&.active {
+		pointer-events: auto;
+		visibility: visible;
+		opacity: 1;
+		transition: 1s $default-easing;
+		transition-delay: .3s;
+		z-index: 401;
+	}
+
+	.gallery {
+		max-width: 100%;
+		width: 100%;
+		@include mq('768px','min') {
+			width: 50vw;
+			min-width: 600px;
+
+		}
+		.owl-stage-outer {
+			overflow: hidden;
+		}
+		&--full {
+			&__arrow {
+				@include mq('768px','max') {
+					transform: translate(20%, -50%);
+				}
+
+				&--next {
+					@include mq('768px','max') {
+						transform: translate(-20%, -50%);
+					}
+				}
+			}
+			.owl-item {
+				@include mq('768px','min') {
+					padding-bottom: 120px;
+				}
+				overflow: hidden;
+			}
+		}
+	}
+
+	.product-menu-item__meta {
+		color: #fff;
+	}
+}

@@ -1,0 +1,156 @@
+{% if type == 'location' or type == 'book' %}
+
+	<div class="sidebar sidebar--location sidebar--{{style}} {% if type == 'book' %}sidebar--book{% endif %} {% if small %}sidebar--small{% endif %}">
+
+		<div class="sidebar--location__block1">
+			<div class="sidebar--location__address"></div>
+			<div class="sidebar--location__phone"></div>
+			<div class="sidebar--location__pin"></div>
+			<div class="sidebar--location__deliveroo"></div>
+			<hr>
+		</div>
+
+		<div class="sidebar--location__block2">
+			<div class="sidebar--location__times__today"></div>
+			
+			{% set barData = post.parent %}
+			{% if barData %}
+				{% set openTimes = barData.get_field('open_times') %}
+				{% set socialChannel_facebook = barData.get_field('facebook_page_url') %}
+				{% set socialChannel_instagram = barData.get_field('instagram_page_url') %}
+				{% set socialChannel_spotify = barData.get_field('spotify_playlist_url') %}
+			{% else %}
+				{% set openTimes = post.get_field('open_times') %}
+				{% set socialChannel_facebook = post.get_field('facebook_page_url') %}
+				{% set socialChannel_instagram = post.get_field('instagram_page_url') %}
+				{% set socialChannel_spotify = post.get_field('spotify_playlist_url') %}
+			{% endif %}
+
+			<div class="sidebar--location__times {% if not openTimes %}use_PP_fallback{% endif %}">
+				{% if openTimes %}
+					{% for timetype in openTimes %}
+						{% if timetype.acf_fc_layout == 'opening_times' %}
+							<div class="sidebar--location__times__section sidebar--location__times__section--opening">
+								<p class="title">Opening times:</p>
+								{% for item in timetype.rows %}
+									<p><span class="days">{{item.days}}</span><span class="hours">{{item.hours}}</span></p>
+								{% endfor %}
+							</div>
+						{% elseif timetype.acf_fc_layout == 'food_serving'%}
+							<div class="sidebar--location__times__section  sidebar--location__times__section--food">
+								<p class="title">Food serving times:</p>
+								{% for item in timetype.rows %}
+									<p><span class="days">{{item.days}}</span><span class="hours">{{item.hours}}</span></p>
+								{% endfor %}
+							</div>
+						{% elseif timetype.acf_fc_layout == 'happy_hours'%}
+							<div class="sidebar--location__times__section  sidebar--location__times__section--happy">
+								<p class="title">Happy Hours:</p>
+								{% for item in timetype.rows %}
+									<p><span class="days">{{item.days}}</span><span class="hours">{{item.hours}}</span></p>
+								{% endfor %}
+							</div>
+						{% endif %}
+					{% endfor %}
+				{% else %}
+					<div class="sidebar--location__times__section sidebar--location__times__section--opening">
+						<p class="title">Opening times:</p>
+					</div>
+					<div class="sidebar--location__times__section  sidebar--location__times__section--food">
+						<p class="title">Food serving times:</p>
+					</div>
+					<div class="sidebar--location__times__section  sidebar--location__times__section--happy">
+						<p class="title">Happy Hours:</p>
+					</div>
+				{% endif %}
+				
+			</div>
+			{% if not hide_info %}
+			<hr>
+			{% endif %}
+		</div>
+
+		{% if post.slug == 'contact' or post.slug == 'book' and options.contact_bar_hotline_details %}
+			<div class="sidebar--location__block3">
+				<div class="sidebar--location__info">
+					<div class="sidebar--location__info__hotline">
+						{{options.contact_bar_hotline_details}}
+					</div>
+				</div>
+				<hr>
+			</div>
+		{% endif %}
+
+		{% if not hide_info %}
+			<div class="sidebar--location__block3">
+				<div class="sidebar--location__info">
+					<p>Useful information</p>
+
+					<div class="sidebar--location__info__icons {% if post.bar_360_code %}sidebar--location__info__icons--4{% endif %}">
+						<p class="sidebar--location__info__icons__icon" data-useful-info="wifi"><span class="icon-wifi"></span>Wifi</p>
+						<p class="sidebar--location__info__icons__icon" data-useful-info="disabled"><span class="icon-disabled"></span>Disabled Access</p>
+						<p class="sidebar--location__info__icons__icon" data-useful-info="dress"><span class="icon-hanger"></span>Dress Code</p>
+						{% if post.bar_360_code %}
+							<p class="sidebar--location__info__icons__icon" data-modal="360"><span class="icon-360"></span>See the bar</p>
+						{% endif %}
+					</div>
+				</div>
+				
+				{% if socialChannel_facebook  or socialChannel_instagram or socialChannel_spotify %}
+					<hr>
+
+					<div class="sidebar--location__social">
+						{% if socialChannel_facebook %}
+							<li class="sidebar--location__social__icon"><a target="_blank" href="{{socialChannel_facebook}}"><span class="icon-facebook"></span></a></li>
+						{% endif %}
+						{% if socialChannel_instagram %}
+							<li class="sidebar--location__social__icon"><a target="_blank" href="{{socialChannel_instagram}}"><span class="icon-instagram"></span></a></li>
+						{% endif %}
+						{% if socialChannel_spotify %}
+							<li class="sidebar--location__social__icon"><a target="_blank" href="{{socialChannel_spotify}}"><span class="icon-spotify"></span></a></li>
+						{% endif %}
+					</div>
+				{% endif %}
+		</div>
+		{% endif %}
+	</div>
+{% else %}
+	<div class="sidebar sidebar--text {% if small %}sidebar--small{% endif %}">
+		{% if event %}
+			<div class="sidebar__event">
+				{% include 'atoms/event-date.twig' with {
+					'attr': event.attr,
+					'date': event.date,
+					'day': event.day,
+					'event': event.event,
+				} %}
+			</div>
+		{% endif %}
+
+		{% if title %}
+			<div class="sidebar__title">
+				<h4 class="color--black">{% if has_flair %}<span class="color--{{flair.color}}">{{flair.text}}</span>{% endif %}{{title}}</h4>
+			</div>
+		{% endif %}
+
+		{% if description %}
+			<div class="sidebar__description">
+				{{description}}
+			</div>
+		{% endif %}
+
+		{% if button and button.has_button %}
+			<div class="sidebar__button">
+				{% include 'atoms/button.twig' with {
+					'type': button.type,
+					'text': button.text,
+					'color': button.color,
+					'link_type': button.link_type,
+					'external_link': button.external_link,
+					'internal_link': button.internal_link,
+					'file': button.file,
+				}%}
+			</div>
+		{% endif %}
+	</div>
+{% endif %}

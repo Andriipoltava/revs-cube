@@ -1,0 +1,25 @@
+$c: '.widgetbar';
+
+#{$c} {
+	padding-top: $gutter/2 + px;
+
+	@include mq('md', 'min') {
+		padding-top: $gutter/2 + px;
+	}
+
+	@include mq('lg', 'min') {
+		padding-top: $gutter/3 + px;
+	}
+	&__widget {
+		margin-bottom: 20px;
+		&--panel {
+			padding: 15px 25px;
+			border-radius: 2px;
+			background-color: color(white);
+			@include mq('md', 'min') {
+				padding: 15px 45px;
+			}
+		}
+	}	
+
+}

@@ -1,0 +1,20 @@
+<div class="feedback">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 feedback__container">
+				<div class="feedback__title">
+					<h4 class="color--black">Your Feedback Matters <i class="icon-smiley"></i></h4>
+				</div>
+				<div class="feedback__link">
+					{% include 'atoms/button.twig' with {
+						'type': 'underline',
+						'text': 'Submit Yours Now >',
+						'color': 'black',
+						'link_type': 'internal',
+						'internal_link': '/contact/'
+					}%}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

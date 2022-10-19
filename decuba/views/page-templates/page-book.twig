@@ -1,0 +1,165 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+	<div class="bg bg--texture--03 page-book__wrapper">
+
+		<div class="container">
+			<div class="row row--j-c">
+				<div class="col-md-6 col-lg-6 col--no-grow">
+
+				<div style="margin-bottom: 35px; color: #ffffff;">
+					{{post.content}}
+				</div>
+
+					{% include 'organisms/booking-form.twig' with {
+						'prepop' : {
+							'cube_form_id' : 29,
+							'party_type' : 18
+						},
+						settings : { 
+							'form_id' : 'book',
+							'form_name' : 'book',
+							'minimum_booking_type_options' : true,
+							'layout' : 'full',
+							'intro' : post.content,
+						},
+						'large': true
+					} %}
+
+					<div data-show-on-complete class="text--center flex flex--j-c flex--a-fs">
+						{% include 'atoms/button.twig' with {
+							'type': 'regular',
+							'text': 'Share',
+							'color': 'fuschia',
+							'link_type' : 'share',
+							'data': 'data-book-share'
+						}%}
+
+						{% include 'atoms/button.twig' with {
+							'type': 'regular',
+							'text': 'View Menus',
+							'color': 'skyblue',
+							'link_type' : 'internal',
+							'internal_link': '',
+							'dataAttributes': 'data-menu-pdf'
+						}%}
+					</div>
+
+				</div>
+
+				<div class="col-md-1" data-stored-bar-state="unhide"></div>
+				<div class="col-md-6 col-lg-5" data-stored-bar-state="unhide">
+					{% include 'molecules/sidebar.twig' with {
+						'type': 'book',
+						'style': 'orange',
+						'hide_info': false
+					} %}
+				</div>
+			</div>
+
+			
+
+		</div>
+
+	</div>
+
+{% endblock %}
+
+
+
+{% block html_footer_container %}
+	{{ parent() }}
+	<script defer>
+		$(function()
+		{
+			"use strict";
+			var self = this;
+			var bookingBarSlug = '';
+			_.extend(this, APP.Mediator);
+
+			function _updateSidebar(apiId)
+			{
+				if(!apiId || apiId.length === 0) { return; }
+
+				$(".page-book__wrapper [data-stored-bar-state='unhide']").addClass("unhide");
+				$('.sidebar--book').addClass('loading');
+
+				self.query("barInfo", apiId).then(function(data) 
+				{
+					var address = (data.address + '<br>' + data.postcode);
+
+					bookingBarSlug = data.slug;
+
+					barInfo._address(address);
+					barInfo._phone(data.phone);
+					barInfo._location(data.bar_name, data.latitude, data.longitude);
+					barInfo._updateUsefulInfo(apiId);
+					barInfo._ajaxOpentimes(apiId);
+					
+				});
+			}
+
+			$("[data-show-on-complete]").hide();
+
+			self.subscribe('bookingWidgetLoaded', function(domNode, settings, prepop)
+			{
+				var currentBookingBar = prepop.bar_id;
+
+				_updateSidebar(currentBookingBar);
+
+				self.query("barInfo", currentBookingBar).then(function(data) 
+				{
+					bookingBarSlug = data.slug;
+				});
+
+				domNode.addEventListener('revs-booking-update', function(data)
+				{
+					if(_.has(data.detail, 'booking.bar.data.bar_id'))
+					{
+						var newBarAPIID = data.detail.booking.bar.data.bar_id;
+
+						// Checks old value against new bar id
+						if (currentBookingBar != newBarAPIID) {
+
+							_updateSidebar(newBarAPIID)
+
+							// Updates with new Bars ID
+							currentBookingBar = newBarAPIID;
+						}
+					}
+					
+				});
+
+				domNode.addEventListener('revs-booking-complete', function(data)
+				{	
+					var bar = data.detail.booking.bar.data || data.detail.booking.bar;
+
+					var shareString = '',
+							bookDate 	= moment(data.detail.booking.date).format('MMMM Do YYYY'),
+							bookTime 	= data.detail.booking.time,
+							bookVenue 	= bar.bar_name,
+							venuePhone	= bar.phone;
+
+					shareString = "I've just booked at " + bookVenue + " - on " + bookDate + " at " + bookTime + ".";
+					var shareStringFormatted = encodeURI(shareString);
+
+					$(".button[data-menu-pdf]").attr('href', document.location.origin + '/bar/' + bookingBarSlug + '/menus');
+					$("[data-book-share] a").each(function() {
+						var $this = $(this);       
+						var _href = $this.attr("href"); 
+
+						if ($this.hasClass('tooltip')) {
+							$this.attr("href", _href + shareString);
+						} else {
+							$this.attr("href", _href + shareStringFormatted);
+						}
+					});
+					$("[data-show-on-complete]").show();
+					
+				});
+
+			});
+		});
+	</script>
+{% endblock %}

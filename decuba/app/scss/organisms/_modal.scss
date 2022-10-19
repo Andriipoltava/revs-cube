@@ -1,0 +1,42 @@
+$c: '.rdc-modal';
+
+#{$c} {
+	min-height: calc(100vh - 136px);
+	width: 100vw;
+	transform: scaleY(1);
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: -1;
+	transform-origin: top;
+	visibility: hidden;
+	overflow: auto;
+	// Old Texture
+	// background-image: url(../../app/img/bg/transparent-texture.png);
+	background-image: url(../../app/img/patterns/main_texture.jpg);
+	background-repeat: repeat;
+	opacity: 0;
+	pointer-events: none;
+
+	//.no-backgroundblendmode &,
+	//.safari.ipad &,
+	//.iphone & {
+	//	background-size: contain;
+	//	background-repeat: repeat;
+	//	background-image: url(../../app/img/bg/transparent-texture.png);
+	//}
+
+	@media (min-width: 768px) {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	> * {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+}

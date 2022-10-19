@@ -1,0 +1,271 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+    {% set slides = [{
+        'image': site.theme.link~'/app/img/bg/bg-brunch-page.jpg',
+        'image_position': 'center',
+        'title_weight': '1',
+        'title_color': '',
+        'content': 'In 2022, any day is a brunch day – El Jefe said so.<br><br>Fiesta like the Cubans do, by starting the party early with a totally tropical bottomless brunch.<br><br><small>*Some venues offer one mimosa and four drinks due to licencing. Select your favourite Cuban bar below to discover the menu and price per head.</small>',
+        'content_color': '',
+        'underline': false,
+        'global_page_underline': true,
+        'page': 'christmas-brunch',
+    }] %}
+
+    {% include 'organisms/hero.twig' with {
+        'moduleClasses': 'hero--mob-bg-center',
+        'slider': slides,
+    } %}
+
+    <script>
+      $(document).ready(function () {
+        $('.open-menu').click(function () {
+          var menu = $('.packages-item-menu')
+          menu.addClass('show')
+          menu.parent().addClass('opened-section')
+        })
+      })
+    </script>
+
+    <div class="christmas-local-about__block christmas-local-about__block__brunch">
+		<div class="christmas-local-about__bg christmas-local-about__bg__brunch  bg--navy--pattern"></div>
+		<div class="christmas-local-about__img__br mr-top"></div>
+		<div class="container" style="margin: auto; max-width: 720px;">
+            {% include 'organisms/booking-form.twig' with {
+                'prepop' : {
+                    'cube_form_id' : 29,
+                    'party_type' : 91
+                },
+                settings : {
+                    'title': 'Book Now',
+                    'form_id' : 'book',
+                    'form_name' : 'book',
+                    'minimum_booking_type_options' : true,
+                    'layout' : 'full'
+                },
+                'large': true
+            } %}
+		</div>
+	</div>
+
+    {# <div class="christmas-local-about__block christmas-local-about__block__brunch">
+		<div class="christmas-local-about__bg christmas-local-about__bg__brunch  bg--christmas-green--pattern"></div>
+		<div class="christmas-local-about__img__br mr-top"></div>
+		<div class="container" style="margin: auto; max-width: 1440px;">
+			<div class="row">
+				<div class="christmas-local-about__left">
+					<h2 class="christmas-local-about__title">Brunch the Revolucion de Cuba way</h2>
+				</div>
+				<div class="christmas-local-about__right" style="align-items: center; display: flex; flex-wrap: wrap;">
+					<p>
+					Escape to the tropics with our Bottomless Brunch, available every day from 11am till 2pm.</br/><br/>
+Start with a mimosa and bruschettas before feasting on one of our brunch dishes and 90 minutes of bottomless selected drinks.*<br/><br/>
+Whatever kind of experience you’re having, all we ask is that you enjoy yourself responsibly so you can carry on the fiesta afterwards!<br /><br />
+						<span style="font-size: 16px; line-height: 1;">*Due to licensing restrictions, bottomless drinks are not available in Belfast and Scotland. In these bars, the offer is replaced with 3 drinks over the 90 minute period.</span>
+					</p>
+					<div class="christmas-local-about__buttons" style="justify-content: flex-start; width: 100%; margin: 1.5rem 0 0 0;">
+					<a href="#christmas__menu-g" class="button button--regular button--regular--skyblue  hero__slide__content__button hero__info__button mr-5 christmas-button--menu open-menu" target="">
+								<span data-text="View Menus">View Menus</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> #}
+
+    {% include 'organisms/christmas-brunch-packages.twig' %}
+
+    <section class="">
+        {% set gallery_slides = [{
+            'image' : {
+                'url': site.theme.link~'/app/img/brunch/mojito.jpg',
+                'alt': 'Image 1',
+                'title': 'Virtual Cocktail Masterclass',
+                'text': 'Let our cantineros teach you the incredible stories of rum and how to make some tasty classic cocktails, all done online from the comfort of your own home.',
+            },
+        },{
+            'image' : {
+                'url': site.theme.link~'/app/img/brunch/zombie.jpg',
+                'alt': 'Image 2',
+                'title': 'At Table Masterclass',
+                'text': 'Learn how to make some of our classic cocktails in a COVID-safe version of our famous Cocktail Masterclass, done at your table.',
+            },
+        }] %}
+        <div>
+            {% include 'organisms/gallery.twig' with {
+                'type': 'christmas-celebration-gallery',
+                'images': gallery_slides,
+                'page': 'christmas-global',
+            } %}
+        </div>
+    </section>
+    <section>
+        {% set gallery_large_images = [{
+            'image' : {
+                'url': site.theme.link~'/app/img/tmp/gallery/brunch-1.jpg',
+                'alt': 'Image 1',
+                'margin': '0',
+            },
+        },{
+            'image' : {
+                'url': site.theme.link~'/app/img/tmp/gallery/brunch-2.jpg',
+                'alt': 'Image 2',
+                'margin': '0',
+            },
+        },{
+            'image' : {
+                'url': site.theme.link~'/app/img/tmp/gallery/brunch-3.jpg',
+                'alt': 'Image 3',
+                'margin': '0',
+            },
+        },{
+            'image' : {
+                'url': site.theme.link~'/app/img/tmp/gallery/brunch-4.jpg',
+                'alt': 'Image 4',
+                'margin': '0',
+            },
+        }] %}
+        <div>
+            {% include 'organisms/gallery.twig' with {
+                'type': 'christmas-small',
+                'images': gallery_large_images,
+                'page': 'christmas-global',
+            } %}
+        </div>
+    </section>
+
+    <style>
+        .owl-carousel .owl-item img {
+            height: 20rem;
+            object-fit: cover;
+        }
+
+        @media only screen and (min-width: 768px) {
+            .owl-carousel .owl-item img {
+                height: 35rem;
+            }
+        }
+
+        .christmas-local-about__left {
+            justify-content: left;
+            flex-basis: 35%;
+        }
+
+        .christmas-local-about__left .christmas-local-about__title {
+            background: url(../../wp-content/themes/decuba/app/img/brunch/bottomless-heading.svg) no-repeat left / contain;
+            width: 320px;
+            height: 100px;
+            margin-bottom: 30px !important;
+            max-width: 320px;
+            text-indent: -9999px;
+        }
+
+        @media only screen and (min-width: 1000px) {
+            .christmas-local-about__left .christmas-local-about__title {
+                background: url(../../app/themes/decuba/app/img/brunch/underline.svg) no-repeat center / contain;
+                background: none;
+                font-size: 4rem;
+                width: auto;
+                height: auto;
+                margin-bottom: 0 !important;
+                max-width: none;
+                text-indent: 0;
+            }
+        }
+
+        .christmas-local-about__right {
+            padding-top: 1rem;
+        }
+
+        .christmas-local-about__right p {
+            font-size: 20px !important;
+        }
+
+        .brunch-info-bg {
+            background: url(../../app/themes/decuba/app/img/brunch/brunch-info-bg.png) no-repeat left / contain;
+            width: 247px;
+            height: 614px;
+            z-index: 50;
+        }
+
+        .christmas-local-about__img__br {
+            display: none;
+        }
+
+        @media only screen and (min-width: 1000px) {
+            .christmas-local-about__img__br {
+                background-image: url(../../wp-content/themes/decuba/app/img/tmp/brunch_da_loca.jpg);
+                width: 26%;
+                height: 100%;
+                position: absolute;
+                background-repeat: no-repeat;
+                top: 88px;
+            }
+        }
+
+        .christmas-local-about__img__br {
+            background-image: url(../../wp-content/themes/decuba/app/img/tmp/brunch_da_loca.jpg);
+            width: 26%;
+            height: 100%;
+            position: absolute;
+            background-repeat: no-repeat;
+            top: 88px;
+        }
+
+        .page-template-page-christmas-brunch .packages-item-info-subsection {
+            flex-basis: 80%;
+        }
+
+        .page-template-page-christmas-brunch .packages-item-info-buttons {
+            justify-content: flex-start;
+        }
+
+        @media only screen and (min-width: 1000px) {
+            .page-template-page-christmas-brunch .packages-item-info-buttons {
+                justify-content: flex-start;
+            }
+        }
+
+        .page-template-page-christmas-brunch .packages-item-info-buttons .button {
+            font-size: 14px;
+            min-width: 150px !important;
+        }
+
+        @media only screen and (min-width: 1000px) {
+            .page-template-page-christmas-brunch .packages-item-info-buttons .button {
+                font-size: 16px;
+            }
+        }
+    </style>
+
+    <script type="text/javascript">
+        const branchSlider = () => {
+            if (document.querySelectorAll('.christmas-gallery--celebration  .christmas-gallery--celebration__text_container')) {
+                var h = 0;
+                document.querySelectorAll('.christmas-gallery--celebration  .christmas-gallery--celebration__text_container').forEach(function (value) {
+                    value.style.minHeight = 'auto';
+                    value.style.overflow = 'unset';
+                    h = value.clientHeight +50 > h ? value.clientHeight +50 : h;
+                })
+                document.querySelectorAll('.christmas-gallery--celebration  .christmas-gallery--celebration__text_container').forEach(function (value) {
+                    value.style.minHeight = h + "px";
+                })
+                setTimeout(function () {
+                    var h = 0;
+                    document.querySelectorAll('.christmas-gallery--celebration  .christmas-gallery--celebration__text_container').forEach(function (value) {
+                        value.style.minHeight = 'auto';
+                        value.style.overflow = 'unset';
+                        h = value.clientHeight +50 > h ? value.clientHeight +50 : h;                    })
+                    document.querySelectorAll('.christmas-gallery--celebration  .christmas-gallery--celebration__text_container').forEach(function (value) {
+                        value.style.minHeight = h + "px";
+                    })
+                },500)
+            }
+        }
+        document.addEventListener('DOMContentLoaded', branchSlider);
+        window.addEventListener('resize', branchSlider, true);
+    </script>
+
+{% endblock %}

@@ -1,0 +1,301 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+    {% include 'organisms/hero.twig' with {
+        'slider': post.get_field('hero__slides'),
+        'fixr_id': post.get_field('fixr_id')
+    } %}
+
+    {% include 'organisms/modal_fixr.twig' with {
+        'fixr_id': post.get_field('fixr_id')
+    } %}
+
+    {% include 'organisms/gallery.twig' with {
+        'type': post.get_field('gallery__type'),
+        'images': post.get_field('gallery__images'),
+        'has_sidebar': true,
+        'sidebar_type': 'location'
+    } %}
+
+    {% if post.get_field('show_christmas') %}
+        {% for media_item in post.get_field('page_sections_christmas') %}
+            {% if media_item.acf_fc_layout == 'featured_cta' %}
+                {% if media_item.alternate_mobile_style %}
+                    {% set alternatestyle = 'featured-cta__container--alternate' %}
+                {% elseif media_item.full_width_mobile_style %}
+                    {% set alternatestyle = 'featured-cta__container--alternate featured-cta__container--alternate--full-width' %}
+                {% endif %}
+
+                <div class="featured-cta__container bg bg--{{ media_item.module_theme.color }}--pattern {% if alternatestyle %}{{ alternatestyle }}{% endif %}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {% include 'organisms/featured-cta.twig' with {
+                                    'alternate': media_item.alternate_mobile_style,
+                                    'title': media_item.title,
+                                    'content': media_item.content,
+                                    'has_button': media_item.has_button,
+                                    'button': {
+                                        'type': media_item.button__type,
+                                        'text': media_item.button__text,
+                                        'color': {
+                                            'color': media_item.button__color.color
+                                        },
+                                        'link_type' : media_item.button__link_type,
+                                        'external_link' : media_item.button__external_link,
+                                        'internal_link' : media_item.button__internal_link,
+                                        'file' : media_item.button__file,
+                                        'classes': '',
+                                    },
+                                    'image': media_item.image.url,
+                                    'image_mob': media_item.image_mob.url,
+                                    'direction': media_item.direction,
+                                    'tag': media_item.featured_cta__tag
+                                } %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <div class="single-bar__whatson bg--navy--pattern loading">
+        <div class="container">
+            <div class="row padded-row ">
+                <div class="col-md-12 text--center">
+                    <h3 class="single-bar__title single-bar__title--top color--white"><span class="color--skyblue top">What's on in</span>{{ post.title }}
+                    </h3>
+                </div>
+            </div>
+            <div class="row padded-row ">
+                <div class="col-md-12">
+                    {% include 'organisms/whats-on.twig' %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 featured-event__container"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="single-bar__conveyor">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text--center">
+                    <h3 class="single-bar__title single-bar__title--top"><span class="color--fuschia top text--center">Offers</span>{{ post.title }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        {% include 'organisms/conveyor.twig' %}
+    </div>
+
+    <div class="single-bar__fiesta bg--skyblue--pattern">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text--center">
+                    <h3 class="single-bar__title single-bar__title--top color--white">
+						<span class="color--{{ options.celebrations__title__flair.flair__color.color }} top text--center">
+							{{ options.celebrations__title }}
+						</span>
+                        {% if options.celebrations__title__flair.has_flair %}
+                            {{ options.celebrations__title__flair.flair__text }}
+                        {% endif %}
+                    </h3>
+                </div>
+                <div class="col-md-12 single-bar__fiesta__container">
+                    {% for celebration in options.celebrations %}
+                        {% if celebration.bar_filter_type == 'exclude' %}
+                            {% if post.id not in celebration.bar_filter_list %}
+                                {% include 'molecules/fiesta.twig' with {
+                                    'sidebar': {
+                                        'small': true,
+                                        'type': 'text',
+                                        'has_flair': celebration.has_flair,
+                                        'flair': {
+                                            'color': celebration.flair__color.color,
+                                            'text': celebration.flair__text
+                                        },
+                                        'title': celebration.title,
+                                        'description': celebration.content,
+                                        'button': {
+                                            'type': celebration.button__type,
+                                            'text': celebration.button__text,
+                                            'color': celebration.button__color.color,
+                                            'link_type': celebration.button__link_type,
+                                            'external_link': celebration.button__external_link,
+                                            'internal_link': celebration.button__internal_link,
+                                            'file': celebration.button__file,
+                                        }
+                                    },
+                                    'image': {
+                                        'url': celebration.image.url,
+                                        'alt': celebration.image.alt
+                                    }
+                                } %}
+                            {% endif %}
+                        {% elseif celebration.bar_filter_type == 'include' %}
+                            {% if post.id in celebration.bar_filter_list %}
+                                {% include 'molecules/fiesta.twig' with {
+                                    'sidebar': {
+                                        'small': true,
+                                        'type': 'text',
+                                        'has_flair': celebration.has_flair,
+                                        'flair': {
+                                            'color': celebration.flair__color.color,
+                                            'text': celebration.flair__text
+                                        },
+                                        'title': celebration.title,
+                                        'description': celebration.content,
+                                        'button': {
+                                            'type': celebration.button__type,
+                                            'text': celebration.button__text,
+                                            'color': celebration.button__color.color,
+                                            'link_type': celebration.button__link_type,
+                                            'external_link': celebration.button__external_link,
+                                            'internal_link': celebration.button__internal_link,
+                                            'file': celebration.button__file,
+                                        }
+                                    },
+                                    'image': {
+                                        'url': celebration.image.url,
+                                        'alt': celebration.image.alt
+                                    }
+                                } %}
+                            {% endif %}
+                        {% else %}
+                            {% include 'molecules/fiesta.twig' with {
+                                'sidebar': {
+                                    'small': true,
+                                    'type': 'text',
+                                    'has_flair': celebration.has_flair,
+                                    'flair': {
+                                        'color': celebration.flair__color.color,
+                                        'text': celebration.flair__text
+                                    },
+                                    'title': celebration.title,
+                                    'description': celebration.content,
+                                    'button': {
+                                        'type': celebration.button__type,
+                                        'text': celebration.button__text,
+                                        'color': celebration.button__color.color,
+                                        'link_type': celebration.button__link_type,
+                                        'external_link': celebration.button__external_link,
+                                        'internal_link': celebration.button__internal_link,
+                                        'file': celebration.button__file,
+                                    }
+                                },
+                                'image': {
+                                    'url': celebration.image.url,
+                                    'alt': celebration.image.alt
+                                }
+                            } %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="single-bar__news">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text--center">
+                    <h3 class="single-bar__title"><span class="color--skyblue">Latest</span>News</h3>
+                </div>
+            </div>
+        </div>
+
+
+        {% set latestPostsSlides = {} %}
+        {% set tweet_index = 0 %}
+
+        {% for post in related_venue_posts %}
+            {% if post.blog_mini_title %}
+                {% set title = post.blog_mini_title %}
+            {% else %}
+                {% set title = post.title %}
+            {% endif %}
+
+            {% set itemObject = {
+                'type': 'post',
+                'title': title,
+                'content': post.content|excerpt(10),
+                'link': post.link,
+                'overview_image': post.overview_image,
+                'category': post.terms('category')[0],
+            } %}
+
+            {% set latestPostsSlides = latestPostsSlides|merge([itemObject]) %}
+        {% endfor %}
+
+        {% include 'organisms/conveyor.twig' with {
+            'slides': latestPostsSlides
+        } %}
+    </div>
+    <script type="text/javascript">
+        const singleBar = () => {
+                if (document.querySelectorAll('.conveyor .blog-post__content')) {
+                    var h = 0;
+                    document.querySelectorAll('.conveyor .blog-post__content').forEach(function (value) {
+                        value.style.minHeight = 'auto';
+                        value.style.overflow = 'unset';
+                        h = value.clientHeight > h ? value.clientHeight : h;
+                    })
+                    document.querySelectorAll('.conveyor .blog-post__content').forEach(function (value) {
+                        value.style.minHeight = h + "px";
+                    })
+                    setTimeout(function () {
+                        document.querySelectorAll('.conveyor .blog-post__content').forEach(function (value) {
+                            value.style.minHeight = 'auto';
+                            value.style.overflow = 'unset';
+                            h = value.clientHeight > h ? value.clientHeight : h;
+                        })
+                        document.querySelectorAll('.conveyor .blog-post__content').forEach(function (value) {
+                            value.style.minHeight = h + "px";
+                        })
+                    },300)
+
+                }
+
+            if (document.querySelectorAll('.single-bar__fiesta  .fiesta__sidebar').length) {
+                if (window.innerWidth < 1025) {
+                    document.querySelectorAll('.single-bar__fiesta  .fiesta__sidebar').forEach(function (value) {
+                        value.querySelector('.sidebar.sidebar--text').style.minHeight = 'auto';
+                    })
+                }else {
+                    let h = 0;
+                    document.querySelectorAll('.single-bar__fiesta  .fiesta__sidebar').forEach(function (value) {
+                        value.querySelector('.sidebar.sidebar--text').style.minHeight = 'auto';
+                        h = value.querySelector('.sidebar.sidebar--text').clientHeight > h ? value.querySelector('.sidebar.sidebar--text').clientHeight : h;
+                    })
+                    document.querySelectorAll('.single-bar__fiesta  .fiesta__sidebar').forEach(function (value) {
+                        value.querySelector('.sidebar.sidebar--text').style.minHeight = h + "px";
+                    })
+                }
+            }
+            if (document.querySelectorAll('.single-bar__news .blog-post__content')) {
+
+                    let h = 0;
+                    document.querySelectorAll('.single-bar__news .blog-post__content').forEach(function (value) {
+                        value.style.minHeight = 'auto';
+                        value.style.overflow = 'unset';
+
+                        h = value.clientHeight > h ? value.clientHeight : h;
+                    })
+                    document.querySelectorAll('.single-bar__news .blog-post__content').forEach(function (value) {
+                        value.style.minHeight = h + "px";
+                    })
+
+            }
+        }
+        document.addEventListener('DOMContentLoaded', singleBar);
+        window.addEventListener('resize', singleBar, true);
+    </script>
+
+    {% include 'organisms/feedback.twig' %}
+{% endblock %}

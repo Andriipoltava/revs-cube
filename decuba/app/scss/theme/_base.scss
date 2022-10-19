@@ -1,0 +1,147 @@
+* {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+*, :before, :after {
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+	// height: auto;
+	// min-height: 100%;
+	position: relative;
+	color: color(font);
+
+	&.sticky-footer {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&.disable-scroll {
+		overflow: hidden;
+	}
+}
+
+img, svg {
+	max-width: 100%;
+}
+
+.toplevel {
+	padding-top: 159px;
+
+	@include mq('992px','min') {
+		padding-top: 136px;
+	}
+
+	@include mq('992px','min') {
+		padding-top: 106px;
+	}
+}
+
+.m--none {
+	margin: 0;
+}
+
+.hide {
+	display: none !important;
+}
+
+.hide-sm-max {
+	@include mq('sm','max') {
+		display: none !important;
+	}
+}
+
+.hide-sm-min {
+	@include mq('sm','min') {
+		display: none !important;
+	}
+}
+
+.hide-md-max {
+	@include mq('md','max') {
+		display: none !important;
+	}
+}
+
+.hide-md-min {
+	@include mq('md','min') {
+		display: none !important;
+	}
+}
+
+.hide-lg-max {
+	@include mq('lg','max') {
+		display: none !important;
+	}
+}
+
+.hide-lg-min {
+	@include mq('lg','min') {
+		display: none !important;
+	}
+}
+
+.hide-ipl-max {
+	@include mq('ipl','max') {
+		display: none !important;
+	}
+}
+
+.hide-ipl-min {
+	@include mq('ipl','min') {
+		display: none !important;
+	}
+}
+
+.hide-xl-max {
+	@include mq('xl','max') {
+		display: none !important;
+	}
+}
+
+.hide-xl-min {
+	@include mq('xl','min') {
+		display: none !important;
+	}
+}
+
+// Toggling based on bar cookie being set/unset
+[data-stored-bar-state="unhide"]:not(.unhide),
+[data-stored-bar-state="hide"].hide,
+[data-no-stored-bar-state="unhide"]:not(.unhide),
+[data-no-stored-bar-state="hide"].hide,
+{
+	display: none !important;
+}
+
+
+@each $direction, $value in $directions {
+	@for $i from 0 through 10 {
+		@if $i == 0 {
+			.m--#{$direction}--#{$i} {
+				margin-#{$direction}: #{$i}px;
+			}
+		} @else {
+			.m--#{$direction}--#{$i}0 {
+				margin-#{$direction}: #{$i}0px;
+			}
+		}
+	}
+}
+
+@each $direction, $value in $directions {
+	@for $i from 0 through 10 {
+		@if $i == 0 {
+			.p--#{$direction}--#{$i} {
+				padding-#{$direction}: #{$i}px;
+			}
+		} @else {
+			.p--#{$direction}--#{$i}0 {
+				padding-#{$direction}: #{$i}0px;
+			}
+		}
+	}
+}

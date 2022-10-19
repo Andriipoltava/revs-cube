@@ -1,0 +1,120 @@
+.container__title {
+  color: #000000;
+  font-size: 80px;
+  line-height: 65px;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  @include mq("1000px", "max") {
+    line-height: 45px;
+  }
+
+  @include mq("522px", "max") {
+    line-height: 36px;
+    font-size: 28px;
+  }
+
+  h3 {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.christmas__local__packages__wrapper {
+  @include mq("1000px", "max") {
+    overflow: scroll;
+  }
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.christmas__local__packages__container {
+  .package__content__title {
+    margin: 21px 0 0;
+    @include mq("522px", "max") {
+      font-size: 20px;
+    }
+  }
+
+  .christmas__package {
+    display: flex;
+    justify-content: space-between!important;
+  }
+
+  .text__fuchsia {
+    color: #ff32a5;
+  }
+  @include mq("1000px", "max") {
+    width: 934px;
+  }
+
+  p {
+    @include mq("804px", "max") {
+      font-size: 11px;
+      line-height: 15px;
+    }
+  }
+}
+
+.christmas__local__packages__underline {
+  background-image: url(../../app/img/tags/packages__underline.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 566px;
+  height: 30px;
+  bottom: 26px;
+  z-index: 0;
+  @include mq("1000px", "max") {
+    max-width: 415px;
+    width: 78vw;
+    bottom: 19px;
+  }
+  @include mq("522px", "max") {
+    max-width: 382px;
+    width: 111vw;
+    bottom: 12px;
+  }
+  @include mq("366px", "max") {
+    max-width: 238px;
+    width: 111vw;
+    bottom: 10px;
+  }
+}
+
+.package__price__container {
+  .package__price__title {
+    margin-bottom: 12px;
+    font-family: "PT Sans", sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 21px;
+    color: #ffae2d;
+    @include mq("804px", "max") {
+      font-size: 12px;
+      margin-bottom: 1px;
+    }
+  }
+
+  .package__price {
+    font-family: "PT Sans";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 21px;
+    letter-spacing: -1px;
+    color: #343233;
+    @include mq("804px", "max") {
+      font-size: 19px;
+    }
+  }
+  .package__content {
+    justify-content: space-between;
+  }
+}
+

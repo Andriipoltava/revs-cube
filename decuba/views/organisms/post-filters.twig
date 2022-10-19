@@ -1,0 +1,30 @@
+<div data-mobile-accordian-target="blog-menu" class="post-filters">
+	<div class="container">
+		<div class="row">
+			
+			<div class="col-md-8">
+				<ul>
+					{% for category in blogCategories %}
+						<li>
+							<p class="m--none">
+								<a class="button button--paragraph" href="{{site.link}}/blog/?filter={{category.slug}}">{{category.name}}</a>
+							</p>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="col-md-4 post-filters__search">
+				<form action="{{site.link}}/blog">
+					{% include 'atoms/input.twig' with {
+						type:"search", 
+						placeholder: filter_active ? 'Searching for '~ filter_name : 'Search the blog',
+						name: 'search'
+					}	%}
+				</form>
+				{% if filter_active %}
+					<p class="post-filters__clear"><a href="{{site.link}}/blog/" class="button button--paragraph">Clear filters</a></p>
+				{% endif %}
+			</div>
+		</div>	
+	</div>
+</div>

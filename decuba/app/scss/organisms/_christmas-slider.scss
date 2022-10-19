@@ -1,0 +1,46 @@
+$c: '.christmas';
+
+#{$c} {
+	&__slider {
+//		@extend .gallery--large;
+
+		&__image {
+//			@extend .gallery--large__image;
+		}
+
+		&__container {
+			width: 100%;
+//			@extend .gallery__sidebar__container;
+	
+			@include mq('md', 'max')
+			{
+				width: calc(100% + 50px);
+				margin: { left:-25px; }
+			}
+		}
+
+		&__wrap {
+			width: 100%;
+			
+			.dots
+			{
+				@include mq('md', 'max')
+				{
+					display: none;
+				}
+			}
+
+			.icon-hand-gesture {
+				color: color(black);
+				font-size: 40px;
+				display: block;
+				text-align: center;
+				padding: 20px 0;
+
+				@include mq('1024px','min') {
+					display: none;
+				}
+			}
+		}
+	}
+}

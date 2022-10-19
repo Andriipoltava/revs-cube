@@ -1,0 +1,87 @@
+<div class="bg--default--pattern christmas__menus">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text--center">
+				<h3 class="christmas__menus__title">
+					<span class="color--christmas-red">{{post.get_field('christmas__menu__title_header__flair_flair__text')}}</span>
+					{{post.get_field('christmas__menu__title_header__title')}}
+				</h3>
+			</div>
+
+			<div class="col-md-12 text--center packages__body">
+				<p>Make this festive season an unforgettable one.</p>
+				{# <p>Menu and prices vary seasonally. Items shown may change in 2019.</p> #}
+			</div>
+		</div>
+
+		<div class="christmas__menus__container">
+			<div class="christmas__menus__tabs">
+				<div class="christmas__menus__tabs__tab active" data-christmas-button='1'><h4 class="christmas__menus__tabs__tab__title">Tapas feasting</h4></div>
+				<div class="christmas__menus__tabs__tab" data-christmas-button='2'><h4 class="christmas__menus__tabs__tab__title">2/3 course dining</h4></div>
+				<div class="christmas__menus__tabs__tab" data-christmas-button='3'><h4 class="christmas__menus__tabs__tab__title">Mostrador</h4></div>
+				<div class="christmas__menus__tabs__tab" data-christmas-button='4'><h4 class="christmas__menus__tabs__tab__title">Drinks</h4></div>
+			</div>
+
+			{% include 'organisms/christmas-menu-tapas.twig' with {
+				'id': 1,
+				'title': 'Available for groups of 6 people',
+				'active': true
+			}%}
+
+			{% include 'organisms/christmas-menu-3course.twig' with {
+				'id': 2,
+				'title': '2/3 Course Dining',
+				'active': false
+			}%}
+
+			{% include 'organisms/christmas-menu-mostrador.twig' with {
+				'id': 3,
+				'title': 'A selection of our favourite tapas dishes served atop our custom-made Mostrador. Suitable for groups of 10 or more',
+				'active': false
+			}%}
+
+			{% include 'organisms/christmas-menu-drinks.twig' with {
+				'id': 4,
+				'title': 'Drinks Packages',
+				'active': false
+			}%}
+		</div>
+
+		<div class="christmas__menus__buttons">
+			{% include 'atoms/button.twig' with {
+				'type': 'regular',
+				'text': 'Share Menu',
+				'color': 'fuschia',
+				'link_type' : 'share',
+				'share_uselink': true,
+				'internal_link' : barMenu_Christmas.url,
+			}%}
+			{% include 'atoms/button.twig' with {
+				'type': 'regular',
+				'text': 'Download Menu',
+				'color': 'skyblue',
+				'link_type' : 'external',
+				'external_link' : barMenu_Christmas.url,
+			}%}
+		</div>
+		{% if post.post_type == 'page' %}
+			<div class="christmas__menus__buttons christmas__menus__buttons--after">
+				{% include 'atoms/button.twig' with {
+					'type': 'underline',
+					'text': 'Select Location to See Prices.',
+					'color': 'orange',
+					'classes': 'js-locations-toggle'
+				}%}
+			</div>
+		{% endif %}
+		<div class="christmas__menus__buttons christmas__menus__buttons--after">
+			{% include 'atoms/button.twig' with {
+				'type': 'underline',
+				'text': 'Download Allergen Information',
+				'color': 'orange',
+				'link_type' : 'external',	
+				'external_link' : '/food-allergen-information.pdf',
+			}%}
+		</div>
+	</div>
+</div>

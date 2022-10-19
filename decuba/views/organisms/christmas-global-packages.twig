@@ -1,0 +1,1608 @@
+<script>
+	$(document).ready(function () {
+		$(".view-menu").click(function () {
+			var menu = $(this).parent().parent().parent().parent().parent().find(".packages-item-menu");
+			menu.addClass("show");
+			menu.parent().addClass("opened-section");
+
+		})
+
+		$(".close-menu").click(function () {
+			var menu = $(this).parent().parent();
+			menu.parent().removeClass("opened-section");
+			menu.removeClass("show");
+		})
+
+// ----------------Tabs-----------------
+
+		$('.tab-label').click(function () {
+			var tab_id = $(this).attr('data-tab');
+			console.log(tab_id);
+			$(this).parent().find(".tab-label").removeClass('active');
+			$(this).addClass('active');
+			$(this).parent().parent().parent().find(".menu-list").removeClass("active");
+			$(this).parent().parent().parent().find("." + tab_id).addClass('active');
+		})
+
+// ----------------Update price with bar selector---------------
+// 3 course.
+		$('#3-course-select').on('change', function () {
+			var selectedBar = this.value;
+
+			if (selectedBar == 'cardiff' || selectedBar == 'derby' || selectedBar == 'glasgow' || selectedBar == 'harrogate' || selectedBar == 'huddersfield' || selectedBar == 'newcastle' || selectedBar == 'norwich' || selectedBar == 'sheffield') { // LOW.
+				$('#3-course-price').text('£20.95 pp');
+			} else if (selectedBar == 'aberdeen' || selectedBar == 'bristol' || selectedBar == 'leeds' || selectedBar == 'liverpool' || selectedBar == 'milton_keynes' || selectedBar == 'nottingham' || selectedBar == 'reading' || selectedBar == 'southampton') { // MEDIUM.
+				$('#3-course-price').text('£23.95 pp');
+			} else if (selectedBar == 'belfast' || selectedBar == 'birmingham' || selectedBar == 'manchester') { // HIGH.
+				$('#3-course-price').text('£25.95 pp');
+			}
+		});
+
+// Tapas.
+		$('#tapas-select').on('change', function () {
+			var selectedBar = this.value;
+
+			if (selectedBar == 'cardiff' || selectedBar == 'derby' || selectedBar == 'glasgow' || selectedBar == 'harrogate' || selectedBar == 'huddersfield' || selectedBar == 'newcastle' || selectedBar == 'norwich' || selectedBar == 'sheffield') { // LOW.
+				$('#tapas-price').text('£16.95 pp');
+			} else if (selectedBar == 'aberdeen' || selectedBar == 'bristol' || selectedBar == 'leeds' || selectedBar == 'liverpool' || selectedBar == 'milton_keynes' || selectedBar == 'nottingham' || selectedBar == 'reading' || selectedBar == 'southampton') { // MEDIUM.
+				$('#tapas-price').text('£19.95 pp');
+			} else if (selectedBar == 'belfast' || selectedBar == 'birmingham' || selectedBar == 'manchester') { // HIGH.
+				$('#tapas-price').text('£21.95 pp');
+			}
+		});
+
+// Mostrador.
+		$('#mostrador-select').on('change', function () {
+			var selectedBar = this.value;
+
+			if (selectedBar == 'cardiff' || selectedBar == 'derby' || selectedBar == 'glasgow' || selectedBar == 'harrogate' || selectedBar == 'huddersfield' || selectedBar == 'newcastle' || selectedBar == 'norwich' || selectedBar == 'sheffield') { // LOW.
+				$('#mostrador-price').text('£17.95 pp');
+			} else if (selectedBar == 'aberdeen' || selectedBar == 'bristol' || selectedBar == 'leeds' || selectedBar == 'liverpool' || selectedBar == 'milton_keynes' || selectedBar == 'nottingham' || selectedBar == 'reading' || selectedBar == 'southampton') { // MEDIUM.
+				$('#mostrador-price').text('£20.95 pp');
+			} else if (selectedBar == 'belfast' || selectedBar == 'birmingham' || selectedBar == 'manchester') { // HIGH.
+				$('#mostrador-price').text('£22.95 pp');
+			}
+		});
+
+// Festive.
+		$('#festive-select').on('change', function () {
+			var selectedBar = this.value;
+
+			if (selectedBar == 'aberdeen' || selectedBar == 'belfast' || selectedBar == 'glasgow' || selectedBar == 'birmingham' || selectedBar == 'bristol' || selectedBar == 'liverpool' || selectedBar == 'milton_keynes' || selectedBar == 'reading' || selectedBar == 'southampton' || selectedBar == 'cardiff' || selectedBar == 'derby' || selectedBar == 'harrogate' || selectedBar == 'huddersfield' || selectedBar == 'newcastle' || selectedBar == 'sheffield') { // LOW.
+				$('#festive-price').text('£25.00 pp');
+			} else if (selectedBar == 'leeds' || selectedBar == 'manchester' || selectedBar == 'nottingham' ) { // MEDIUM.
+				$('#festive-price').text('£27.00 pp');
+			} else if (selectedBar == 'norwich') { // HIGH.
+				$('#festive-price').text('£35.00 pp');
+			}
+
+			if (selectedBar == 'aberdeen' || selectedBar == 'belfast' || selectedBar == 'glasgow') {
+				$('#drinks-standard').hide();
+				$('#drinks-fiesta').show();
+				$('#brunch-notes').text('Choose one Brunch dish and enjoy three drinks from the Drinks section');
+			} else if (selectedBar == 'birmingham' || selectedBar == 'manchester' || selectedBar == 'bristol' || selectedBar == 'leeds' || selectedBar == 'liverpool' || selectedBar == 'milton_keynes' || selectedBar == 'nottingham' || selectedBar == 'reading' || selectedBar == 'southampton' || selectedBar == 'cardiff' || selectedBar == 'derby' || selectedBar == 'harrogate' || selectedBar == 'huddersfield' || selectedBar == 'newcastle' || selectedBar == 'norwich' || selectedBar == 'sheffield') {
+				$('#drinks-standard').show();
+				$('#drinks-fiesta').hide();
+				$('#brunch-notes').text('Choose one Brunch dish and enjoy 90 minutes of bottomless fun from the Drinks section');
+			}
+		});
+
+// Student.
+		$('#student-select').on('change', function () {
+			var selectedBar = this.value;
+
+			if (selectedBar == 'cardiff' || selectedBar == 'derby' || selectedBar == 'glasgow' || selectedBar == 'harrogate' || selectedBar == 'huddersfield' || selectedBar == 'newcastle' || selectedBar == 'norwich' || selectedBar == 'sheffield') { // LOW.
+				$('#student-price').text('£18.95 pp');
+			} else if (selectedBar == 'aberdeen' || selectedBar == 'bristol' || selectedBar == 'leeds' || selectedBar == 'liverpool' || selectedBar == 'milton_keynes' || selectedBar == 'nottingham' || selectedBar == 'reading' || selectedBar == 'southampton') { // MEDIUM.
+				$('#student-price').text('£21.95 pp');
+			} else if (selectedBar == 'belfast' || selectedBar == 'birmingham' || selectedBar == 'manchester') { // HIGH.
+				$('#student-price').text('£22.95 pp');
+			}
+		});
+
+	});
+</script>
+
+
+<section class="packages" id="christmas__menu-g">
+	<div class="packages-title">
+		<h3>Our packages</h3>
+		<p><strong>We’re looking forward to partying with you!</strong></p></br>
+		<p class="mobile-text-m">Explore everything available and find the perfect Cuban Christmas celebracion for you. Prices will vary depending on the day you book, so please check our pricing matrix below before booking. We’re looking forward to partying with you!</p>
+	</div>
+	<div class="packages-content">
+		<!-- 3 Course -->
+		<div class="packages-wrapper">
+			<div class="packages-item">
+				<div class="packages-item-info">
+					<div class="packages-item-info-section">
+						<div class="packages-item-info-subsection">
+							<h3 class="packages-item-info-title">2 and 3 course Christmas Dining</h3>
+							<p class="packages-item-info-descr">Introducing our stunning set menu. Enjoy either 2 or 3 courses with a Cuban flair. Our take on the traditional Christmas dinner, but bursting with with Latin-American flavours. Our best seller.</p>
+							<div class="packages-item-info-wrapper">
+								<span class="label">From just</span>
+								<span class="cost">£20.95 pp</span>
+							</div>
+						</div>
+						<div class="packages-item-info-buttons">
+							<div class="button view-menu hero__slide__content__button mr-5 christmas-button--menu">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'View Menus',
+									'color': 'skyblue',
+									'classes': 'hero__slide__content__button mr-5 christmas-button--menu',
+									'flag':'not-html-link',
+								}%}
+							</div>
+							<div class="button">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Book',
+									'color': 'fuschia',
+									'link_type' : 'internal',
+									'internal_link' : site.link ~ '/book/',
+									'classes': 'button button--regular button--regular--green js-circle-2893, christmas-button--book',
+								}%}
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+				<div class="packages-item-img">
+					<img src="{{site.theme.link}}/app/img/xmas/ChristmasDining.jpg" alt="course">
+				</div>
+			</div>
+			<div class="packages-item-menu">
+				<div class="packages-item-menu-header" style="margin: auto; background-size: cover;">
+					<div class="tab-header">
+						<div class="select-wrapper">
+							<select id="3-course-select">
+								<option>Select a venue</option>
+								<option value="aberdeen">Aberdeen</option>
+								<option value="belfast">Belfast</option>
+								<option value="birmingham">Birmingham</option>
+								<option value="bristol">Bristol</option>
+								<option value="cardiff">Cardiff</option>
+								<option value="derby">Derby</option>
+								<option value="glasgow">Glasgow</option>
+								<option value="harrogate">Harrogate</option>
+								<option value="huddersfield">Huddersfield</option>
+								<option value="leeds">Leeds</option>
+								<option value="liverpool">Liverpool</option>
+								<option value="manchester">Manchester</option>
+								<option value="milton_keynes">Milton Keynes</option>
+								<option value="newcastle">Newcastle</option>
+								<option value="norwich">Norwich</option>
+								<option value="nottingham">Nottingham</option>
+								<option value="reading">Reading</option>
+								<option value="sheffield">Sheffield</option>
+								<option value="southampton">Southampton</option>
+							</select>
+						</div>
+						<div class="tab-label active" data-tab="tab-1">2/3 Course Dining</div>
+						<div class="tab-label" data-tab="tab-2">Drinks</div>
+					</div>
+					<div class="close-menu">
+						<img src="{{site.theme.link}}/app/img/tmp/сlose_button.svg" alt="close">
+					</div>
+				</div>
+				<div class="packages-item-menu-content">
+					<div style="display: flex; flex-direction: row-reverse; width: 100%;">
+						<div class="menu-buttons">
+							<div class="button">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Share Menu',
+									'color': 'fuschia',
+									'link_type' : 'share',
+									'share_uselink': true,
+									'internal_link' : barMenu_Christmas.url,
+									'classes': 'ch-button-share',
+								}%}
+							</div>
+							<div class="button button-download">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Download',
+									'color': 'skyblue',
+									'link_type' : 'external',
+									'external_link' : site.theme.link ~ '/app/pdf/xmas-menu.pdf'
+								}%}
+							</div>
+						</div>
+						<div class="menu-section">
+							<div class="price-section" style="display: flex; flex-wrap: wrap; flex-flow: column;" id="3-course-price">
+								<span style="font-size: 16px; margin-bottom: -10px;">From</span>
+								<span>£20.95 pp</span>
+							</div>
+							<div class="menu-notes">2 Course Option includes a Starter and a Main Dish</div>
+						</div>
+					</div>
+					<div class="menu-list tab-1 active">
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Starters</h3>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Tropical Chicken Skewers</span>
+									</div>
+									<span class="ingredients">with mojo marinade, pineapple pico de gallo, rum mayo slaw.</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Sweet Potato & Harissa Soup</span>
+										<div class="tags">
+											<div class="tags-item tag-green">Ve</div>
+										</div>
+									</div>
+									<span class="ingredients">With coconut cream and served with cuban bread.</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Spicy Paella Bon Bon</span>
+									</div>
+									<span class="ingredients">Spicy pork wrapped in paella rice and breadcrumbs, served with baby spinach, aioli and pickled onions.</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Aubergine Gratin</span>
+										<div class="tags">
+											<span class="tags-item tag-green">V</span>
+										</div>
+									</div>
+									<span class="ingredients">With spicy tomato sauce, grated mozzarella, Manchego cheese sauce and spiced black beans. </span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Chorizo Vino Tinto</span>
+									</div>
+									<span class="ingredients">Mini chorizo sauteed in red wine, served with Cuban bread</span>
+								</div>
+							</div>
+						</div>
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Mains</h3>
+								<p>All mains served with red onion, courgette, sweet potato and red pepper, all roasted in olive oil and caramelised brown sugar</p>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Short Rib of Beef</span>
+									</div>
+									<span class="ingredients">Slow cooked in a sticky red wine sauce and served with creole mashed potatoes</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cajun Roasted Chicken Supreme</span>
+									</div>
+									<span class="ingredients">With creole mashed potatoes and a sweet and smoky tomato sauce</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Baked Sea Bass</span>
+									</div>
+									<span class="ingredients">With chimichurri, peppers and onions and crispy patatas.</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Mexican Bean Enchilada</span>
+										<div class="tags">
+											<span class="tags-item tag-green">Ve</span>
+										</div>
+									</div>
+									<span class="ingredients">Tortilla stuffed with onions, peppers, spiced black beans,
+										mushrooms, canellini beans and baby spinach. Topped with a spicy tomato sauce and served with crispy patatas.</span>
+								</div>
+							</div>
+						</div>
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Desserts</h3>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Vegan Salted Caramel Squares</span>
+										<div class="tags">
+											<span class="tags-item tag-green">Ve</span>
+										</div>
+									</div>
+									<span class="ingredients">With strawberry sauce</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Warm Chocolate Brownie</span>
+										<div class="tags">
+											<div class="tags-item tag-blue">V</div>
+										</div>
+									</div>
+									<span class="ingredients">With rum caramel sauce, vanilla ice cream and fresh strawberry</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Banana & Lime Eton Mess</span>
+										<div class="tags">
+											<div class="tags-item tag-blue">V</div>
+										</div>
+									</div>
+									<span class="ingredients">Bananas, whipped cream, meringue and lime</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Pina Colada Cheesecake</span>
+										<div class="tags">
+											<div class="tags-item tag-blue">V</div>
+										</div>
+									</div>
+									<span class="ingredients">With coconut, lime and pineapple 'pina colada' sauce</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="menu-list tab-2">
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Drinks Packages</h3>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cocktail Tree</span>
+									</div>
+									<span class="ingredients">10 of our cocktails, served beautifully on intricate branches.
+										Choose from either our Caribbean Cosmo or our Festive G&Tree. Cameras at the ready!</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cocktail Voucher</span>
+									</div>
+									<span class="ingredients">Choose from any cocktail, double house spirit and mixer, bottled or draught beer and cider, large glass of wine or soft drink</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Bottles of Wine</span>
+									</div>
+									<span class="ingredients">Wines that are available include:
+									Los Romeros, Chardonnay, Chile
+									Altoritas, Merlot, Chile
+									Lavender Hill, White Zinfandel, USA</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cocktail Wristbands</span>
+									</div>
+									<span class="ingredients">Can’t decide? Swap the 3 tabs on your wristband for drinks at the bar! Wristbands include cocktails,
+																				                                            bottled or draught beer and cider, large glasses of wine and large spirits and mixers</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Bottles of Prosecco</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Fiesta Packages</h3>
+								<p>We’ve done the work so you don’t have to. Choose from one of our fantastic packages to kick start your night.</p>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Carnival</span>
+									</div>
+									<span class="ingredients">Choose a bottle of house spirit and we’ll serve it to your table, with mixers included. We’ll also include 12 of our famous Strawberry Margarita shots to get the fiesta started</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Full On Fiesta</span>
+									</div>
+									<span class="ingredients">Make it a night to remember. Choose a premium bottle of spirit and one of our Cocktail Trees and we’ll serve it to your table along with 12 Strawberry Margarita shots.</span>
+								</div>
+							</div>
+						</div>
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Beer Buckets</h3>
+								<p>10 bottles of the good stuff, chilled to perfection</p>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Peroni</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Corona</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Bottle to table</h3>
+								<p>(For Groups of 4-6) A bottle of our house spirit served straight to your table with a choice of complimentary mixers</p>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Ketel One Vodka</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Beefeater Gin</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Sailor Jerry Rum</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Havana Club 3 Year Old</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- TAPAS. -->
+		<div class="packages-wrapper">
+			<div class="packages-item">
+				<div class="packages-item-info">
+					<div class="packages-item-info-section">
+						<div class="packages-item-info-subsection">
+							<h3 class="packages-item-info-title">Tapas Feasting</h3>
+							<p class="packages-item-info-descr">Made for sociable, family-style dining. Choose this option to enjoy an easy going banquet of delicious tapas dishes made to fire up the fiesta and delight your taste buds. Perfect for parties of 6. <br /><br /><strong>Also available to Students!</strong></p>
+							<div class="packages-item-info-wrapper">
+								<span class="label">From just</span>
+								<span class="cost">£16.95 pp</span>
+							</div>
+						</div>
+						<div class="packages-item-info-buttons">
+							<div class="button view-menu">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'View Menus',
+									'color': 'skyblue',
+									'link_type' : 'internal',
+									'classes': 'hero__slide__content__button mr-5 christmas-button--menu',
+									'flag':'not-html-link',
+								}%}
+							</div>
+							<div class="button">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Book',
+									'color': 'fuschia',
+									'link_type' : 'internal',
+									'internal_link' : site.link ~ '/book/',
+									'classes': 'button button--regular button--regular--green js-circle-2893, christmas-button--book',
+								}%}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="packages-item-img">
+					<img src="{{site.theme.link}}/app/img/tmp/festive_tapas.jpg" alt="festive_tapas">
+				</div>
+			</div>
+			<div class="packages-item-menu">
+				<div class="packages-item-menu-header" style="margin: auto; background-size: cover;">
+					<div class="tab-header">
+						<div class="select-wrapper">
+							<select id="tapas-select">
+								<option>Select a venue</option>
+								<option value="aberdeen">Aberdeen</option>
+								<option value="belfast">Belfast</option>
+								<option value="birmingham">Birmingham</option>
+								<option value="bristol">Bristol</option>
+								<option value="cardiff">Cardiff</option>
+								<option value="derby">Derby</option>
+								<option value="glasgow">Glasgow</option>
+								<option value="harrogate">Harrogate</option>
+								<option value="huddersfield">Huddersfield</option>
+								<option value="leeds">Leeds</option>
+								<option value="liverpool">Liverpool</option>
+								<option value="manchester">Manchester</option>
+								<option value="milton_keynes">Milton Keynes</option>
+								<option value="newcastle">Newcastle</option>
+								<option value="norwich">Norwich</option>
+								<option value="nottingham">Nottingham</option>
+								<option value="reading">Reading</option>
+								<option value="sheffield">Sheffield</option>
+								<option value="southampton">Southampton</option>
+							</select>
+						</div>
+						<div class="tab-label active" data-tab="tab-1">Tapas</div>
+						<div class="tab-label" data-tab="tab-2">Drinks</div>
+					</div>
+					<div class="close-menu">
+						<img src="{{site.theme.link}}/app/img/tmp/сlose_button.svg" alt="close">
+					</div>
+				</div>
+				<div class="packages-item-menu-content">
+					<div style="display: flex; flex-direction: row-reverse; width: 100%;">
+						<div class="menu-buttons">
+							<div class="button">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Share Menu',
+									'color': 'fuschia',
+									'link_type' : 'share',
+									'share_uselink': true,
+									'internal_link' : barMenu_Christmas.url,
+									'classes': 'ch-button-share',
+								}%}
+							</div>
+							<div class="button button-download">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Download',
+									'color': 'skyblue',
+									'link_type' : 'external',
+									'internal_link' : barMenu_Christmas.url,
+									'classes': 'button--share',
+								}%}
+							</div>
+						</div>
+						<div class="menu-section">
+							<div class="price-section" id="tapas-price">£16.95 pp</div>
+							<div class="menu-notes">Available for groups of 6 people</div>
+						</div>
+					</div>
+					<div class="menu-list tab-1 active">
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Tapas</h3>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Homemade Guacamole</span>
+										<div class="tags">
+											<div class="tags-item tag-green">Ve</div>
+										</div>
+									</div>
+									<span class="ingredients">With crunchy tortilla chips</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Paella Vegano</span>
+										<div class="tags">
+											<div class="tags-item tag-green">Ve</div>
+										</div>
+									</div>
+									<span class="ingredients">A hearty vegetable paella made with paella rice, tenderstem broccoli, courgette, mushroom and mixed peppers, served with zesty pico de gallo</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Beef Ropa Vieja</span>
+									</div>
+									<span class="ingredients">Slow-cooked shredded beef with charred onions and mixed peppers, in a spicy tomato sauce.</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Lambondigas</span>
+										<div class="tags">
+											<span class="tags-item tag-blue">G</span>
+										</div>
+									</div>
+									<span class="ingredients">Lamb meatballs served in a Cuban-style tomato sauce</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cajun Cream Mushrooms</span>
+										<div class="tags">
+											<span class="tags-item tag-green">V</span>
+										</div>
+									</div>
+									<span class="ingredients">Sautéed mushrooms in a gorgeously rich cajun cream sauce</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Festive Patatas Bravas</span>
+										<div class="tags">
+											<span class="tags-item tag-green">V</span>
+										</div>
+									</div>
+									<span class="ingredients">Crispy patatas with spicy tomato sauce, stuffing balls and aioli.</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Charred Halloumi & Veg</span>
+										<div class="tags">
+											<span class="tags-item tag-green">V</span>
+										</div>
+									</div>
+									<span class="ingredients">Grilled halloumi with butternut squash, courgette and sweet chilli jam</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Garlic & Chilli Gambas</span>
+									</div>
+									<span class="ingredients">King prawns sauteed in garlic butter, chilli and smoked paprika.</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Zesty Rice</span>
+										<div class="tags">
+											<span class="tags-item tag-green">Ve</span>
+										</div>
+									</div>
+									<span class="ingredients">Coriander and lemon rice</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Crusty Bread</span>
+										<div class="tags">
+											<span class="tags-item tag-green">V</span>
+										</div>
+									</div>
+									<span class="ingredients">Served with creole butter</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="menu-list tab-2">
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Drinks Packages</h3>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cocktail Tree</span>
+									</div>
+									<span class="ingredients">10 of our cocktails, served beautifully on intricate branches.
+																				                                            Choose from either our Caribbean Cosmo or our Festive G&Tree. Cameras at the ready!</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cocktail Voucher</span>
+									</div>
+									<span class="ingredients">Choose from any cocktail, double house spirit and mixer, bottled or draught beer and cider, large glass of wine or soft drink</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Bottles of Wine</span>
+									</div>
+									<span class="ingredients">Wines that are available include:
+																				                                            Los Romeros, Chardonnay, Chile
+																				                                            Altoritas, Merlot, Chile
+																				                                            Lavender Hill, White Zinfandel, USA</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cocktail Wristbands</span>
+									</div>
+									<span class="ingredients">Can’t decide? Swap the 3 tabs on your wristband for drinks at the bar! Wristbands include cocktails,
+																				                                            bottled or draught beer and cider, large glasses of wine and large spirits and mixers</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Bottles of Prosecco</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Fiesta Packages</h3>
+								<p>We’ve done the work so you don’t have to. Choose from one of our fantastic packages to kick start your night.</p>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Carnival</span>
+									</div>
+									<span class="ingredients">Choose a bottle of house spirit and we’ll serve it to your table, with mixers included. We’ll also include 12 of our famous Strawberry Margarita shots to get the fiesta started</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Full On Fiesta</span>
+									</div>
+									<span class="ingredients">Make it a night to remember. Choose a premium bottle of spirit and one of our Cocktail Trees and we’ll serve it to your table along with 12 Strawberry Margarita shots.</span>
+								</div>
+							</div>
+						</div>
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Beer Buckets</h3>
+								<p>10 bottles of the good stuff, chilled to perfection</p>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Peroni</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Corona</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Bottle to table</h3>
+								<p>(For Groups of 4-6) A bottle of our house spirit served straight to your table with a choice of complimentary mixers</p>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Ketel One Vodka</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Beefeater Gin</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Sailor Jerry Rum</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Havana Club 3 Year Old</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Festive Brunch -->
+		<div class="packages-wrapper">
+			<div class="packages-item">
+				<div class="packages-item-info">
+					<div class="packages-item-info-section">
+						<div class="packages-item-info-subsection">
+							<h3 class="packages-item-info-title">Festive brunch</h3>
+							<p class="packages-item-info-descr">Think your favourite Bottomless Brunch, but with a fantastic Cuban twist. Perfect for team building, and groups of friends looking to celebrate with a little festive fiesta.</p>
+							<div class="packages-item-info-wrapper">
+								<span class="label">From just</span>
+								<span class="cost">£25.00 pp</span>
+							</div>
+						</div>
+						<div class="packages-item-info-buttons">
+							<div class="button view-menu">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'View Menus',
+									'color': 'skyblue',
+									'link_type' : 'internal',
+									'classes': 'hero__slide__content__button mr-5 christmas-button--menu',
+									'flag':'not-html-link',
+								}%}
+							</div>
+							<div class="button">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Book',
+									'color': 'fuschia',
+									'link_type' : 'internal',
+									'internal_link' : site.link ~ '/book/',
+									'classes': 'button button--regular button--regular--green js-circle-2893, christmas-button--book',
+								}%}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="packages-item-img">
+					<img src="{{site.theme.link}}/app/img/tmp/students.jpg" alt="festive_tapas">
+				</div>
+			</div>
+			<div class="packages-item-menu">
+				<div class="packages-item-menu-header" style="margin: auto; background-size: cover;">
+					<div class="tab-header">
+						<div class="select-wrapper">
+							<select id="festive-select">
+								<option>Select a venue</option>
+								<option value="aberdeen">Aberdeen</option>
+								<option value="belfast">Belfast</option>
+								<option value="birmingham">Birmingham</option>
+								<option value="bristol">Bristol</option>
+								<option value="cardiff">Cardiff</option>
+								<option value="derby">Derby</option>
+								<option value="glasgow">Glasgow</option>
+								<option value="harrogate">Harrogate</option>
+								<option value="huddersfield">Huddersfield</option>
+								<option value="leeds">Leeds</option>
+								<option value="liverpool">Liverpool</option>
+								<option value="manchester">Manchester</option>
+								<option value="milton_keynes">Milton Keynes</option>
+								<option value="newcastle">Newcastle</option>
+								<option value="norwich">Norwich</option>
+								<option value="nottingham">Nottingham</option>
+								<option value="reading">Reading</option>
+								<option value="sheffield">Sheffield</option>
+								<option value="southampton">Southampton</option>
+							</select>
+						</div>
+						<div class="tab-label active" data-tab="tab-1">Brunch</div>
+						<div class="tab-label" data-tab="tab-2">Drinks</div>
+					</div>
+					<div class="close-menu">
+						<img src="{{site.theme.link}}/app/img/tmp/сlose_button.svg" alt="close">
+					</div>
+				</div>
+				<div class="packages-item-menu-content">
+					<div style="display: flex; flex-direction: row-reverse; width: 100%;">
+						<div class="menu-buttons">
+							<div class="button">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Share Menu',
+									'color': 'fuschia',
+									'link_type' : 'share',
+									'share_uselink': true,
+									'internal_link' : barMenu_Christmas.url,
+									'classes': 'ch-button-share',
+								}%}
+							</div>
+							<div class="button button-download">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Download',
+									'color': 'skyblue',
+									'link_type' : 'external',
+									'external_link' : site.theme.link ~ '/app/pdf/brunch-menu.pdf'
+								}%}
+							</div>
+						</div>
+						<div class="menu-section">
+							<div class="price-section" style="display: flex; flex-wrap: wrap; flex-flow: column;" id="festive-price">
+								<span style="font-size: 16px; margin-bottom: -10px;">From</span>
+								<span>£25.00 pp</span>
+							</div>
+							<div class="menu-notes" id="brunch-notes"></div>
+						</div>
+					</div>
+					<div class="menu-list tab-1 active">
+						<div class="menu-list-section">
+							<div class="menu-list-section-content">
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Christmas Burrito</span>
+									</div>
+									<span class="ingredients">A soft flour tortilla filled with shredded ginger beer can chicken, sage & onion stuffing, cranberry, cheese, smoky tomato sauce & fresh red cabbage, all served with a pig in blanket, pico de gallo, tortilla chips & guacamole</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Avocado Brunch</span>
+									</div>
+									<span class="ingredients">Artisan sourdough toast topped with homemade guacamole, mango salsa and diced plum tomato, with a drizzle of olive oil and cracked black pepper.</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Chorizo Hash</span>
+									</div>
+									<span class="ingredients">Crispy patatas, chorizo, peppers and Manchego cheese sauce. Topped with a fried egg and spring onions.</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Chorizo Hash</span>
+									</div>
+									<span class="ingredients">Crispy patatas, chorizo, peppers and Manchego cheese sauce. Topped with a fried egg and spring onions.</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cubano Benedict</span>
+									</div>
+									<span class="ingredients">Toasted sourdough with a light and zingy mustard spread, topped with pulled pork, a poached egg, hollandaise sauce and sweet smoky paprika.</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Breakfast Burrito</span>
+									</div>
+									<span class="ingredients">A soft flour tortilla stuffed with smoky sausage, bacon, omelette, chorizo, mozzarella and spicy tomato sauce. Served with homemade guacamole.</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Full Grilled Breakfast</span>
+									</div>
+									<span class="ingredients">Smoked sausage, bacon, grilled tomato, mushrooms and a perfectly fried egg. The winning way to start your day, served with toast.</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Sweetcorn Fritters</span>
+									</div>
+									<span class="ingredients">Homemade sweetcorn fritters, served with guacamole, mango & chilli dressing and topped with a fried egg.</span>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-list tab-2">
+						<div class="menu-list-section-title">
+							<h3>Drinks Packages</h3>
+						</div>
+						<div class="menu-list-section" id="drinks-standard">
+							<div class="menu-list-section-content">
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Love Daiq-tually</span>
+									</div>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Strawberry Daiquiri</span>
+									</div>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Glass of Prosecco</span>
+									</div>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Aperol Spritz</span>
+									</div>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Bloody Mary</span>
+									</div>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Pint of Mahou Spanish Shandy</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="menu-list-section" id="drinks-fiesta" style="display: none;">
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Any Cocktail Glass of Prosecco</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Pint of Mahou</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Mostrador -->
+		<div class="packages-wrapper">
+			<div class="packages-item">
+				<div class="packages-item-info">
+					<div class="packages-item-info-section">
+						<div class="packages-item-info-subsection">
+							<h3 class="packages-item-info-title">Mostrador</h3>
+							<p class="packages-item-info-descr">A selection of our favourite tapas dishes served atop our custom-made Mostrador. Suitable for groups of 10 or more.</p>
+							<div class="packages-item-info-wrapper">
+								<span class="label">From just</span>
+								<span class="cost">£17.95 pp</span>
+							</div>
+						</div>
+						<div class="packages-item-info-buttons">
+							<div class="button view-menu">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'View Menus',
+									'color': 'skyblue',
+									'link_type' : 'internal',
+									'classes': 'hero__slide__content__button mr-5 christmas-button--menu',
+									'flag':'not-html-link',
+								}%}
+							</div>
+							<div class="button">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Book',
+									'color': 'fuschia',
+									'link_type' : 'internal',
+									'internal_link' : site.link ~ '/book/',
+									'classes': 'button button--regular button--regular--green js-circle-2893, christmas-button--book',
+								}%}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="packages-item-img">
+					<img src="{{site.theme.link}}/app/img/tmp/mostrador.jpg" alt="festive_tapas">
+				</div>
+			</div>
+			<div class="packages-item-menu">
+				<div class="packages-item-menu-header" style="margin: auto; background-size: cover;">
+					<div class="tab-header">
+						<div class="select-wrapper">
+							<select id="mostrador-select">
+								<option>Select a venue</option>
+								<option value="aberdeen">Aberdeen</option>
+								<option value="belfast">Belfast</option>
+								<option value="birmingham">Birmingham</option>
+								<option value="bristol">Bristol</option>
+								<option value="cardiff">Cardiff</option>
+								<option value="derby">Derby</option>
+								<option value="glasgow">Glasgow</option>
+								<option value="harrogate">Harrogate</option>
+								<option value="huddersfield">Huddersfield</option>
+								<option value="leeds">Leeds</option>
+								<option value="liverpool">Liverpool</option>
+								<option value="manchester">Manchester</option>
+								<option value="milton_keynes">Milton Keynes</option>
+								<option value="newcastle">Newcastle</option>
+								<option value="norwich">Norwich</option>
+								<option value="nottingham">Nottingham</option>
+								<option value="reading">Reading</option>
+								<option value="sheffield">Sheffield</option>
+								<option value="southampton">Southampton</option>
+							</select>
+						</div>
+						<div class="tab-label active" data-tab="tab-1">Brunch</div>
+						<div class="tab-label" data-tab="tab-2">Drinks</div>
+					</div>
+					<div class="close-menu">
+						<img src="{{site.theme.link}}/app/img/tmp/сlose_button.svg" alt="close">
+					</div>
+				</div>
+				<div class="packages-item-menu-content">
+					<div style="display: flex; flex-direction: row-reverse; width: 100%;">
+						<div class="menu-buttons">
+							<div class="button">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Share Menu',
+									'color': 'fuschia',
+									'link_type' : 'share',
+									'share_uselink': true,
+									'internal_link' : barMenu_Christmas.url,
+									'classes': 'ch-button-share',
+								}%}
+							</div>
+							<div class="button button-download">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Download',
+									'color': 'skyblue',
+									'link_type' : 'external',
+									'external_link' : site.theme.link ~ '/app/pdf/brunch-menu.pdf'
+								}%}
+							</div>
+						</div>
+						<div class="menu-section">
+							<div class="price-section" style="display: flex; flex-wrap: wrap; flex-flow: column;" id="mostrador-price">
+								<span style="font-size: 16px; margin-bottom: -10px;">From</span>
+								<span>£17.95 pp</span>
+							</div>
+							<div class="menu-notes" id="brunch-notes"></div>
+						</div>
+					</div>
+					<div class="menu-list tab-1 active">
+						<div class="menu-list-section">
+
+							<div class="menu-list-section-title">
+								<h3>Mains (choose from)</h3>
+							</div>
+
+							<div class="menu-list-section-content">
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Short Rib of Beef</span>
+									</div>
+									<span class="ingredients">Slow cooked in a sticky red wine sauce</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cajun Chicken Supreme</span>
+									</div>
+									<span class="ingredients">Served in a sweet and smoky tomato sauce</span>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="menu-list-section">
+
+							<div class="menu-list-section-title">
+								<h3>Served with</h3>
+							</div>
+
+							<div class="menu-list-section-content">
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Zesty Rice</span>
+										<div class="tags">
+											<span class="tags-item tag-green">Ve</span>
+										</div>
+									</div>
+									<span class="ingredients">Coriander & lime rice</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cuban Bread</span>
+										<div class="tags">
+											<span class="tags-item tag-green">V</span>
+										</div>
+									</div>
+									<span class="ingredients">With garlic butter</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Tropical Chicken Skewers</span>
+									</div>
+									<span class="ingredients">In mojo marinade with pineapple pico de gallo</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Chimichurri Corn</span>
+										<div class="tags">
+											<span class="tags-item tag-green">V</span>
+										</div>
+									</div>
+									<span class="ingredients">In garlic butter, feta cheese and chimmichurri</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Pigs in Blankets</span>
+									</div>
+									<span class="ingredients">In a red wine and honey sauce</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Vegetable Enchilada</span>
+										<div class="tags">
+											<span class="tags-item tag-green">Ve</span>
+										</div>
+									</div>
+									<span class="ingredients">Mushrooms, courgette, onions, mixed peppers, refried beans,
+										smoky salsa and vegan mozzarella, wrapped in a soft flour tortilla with white bean puree and spicy tomato sauce.</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cajun Cream Mushrooms</span>
+										<div class="tags">
+											<span class="tags-item tag-green">V</span>
+										</div>
+									</div>
+									<span class="ingredients">Sauteed mushrooms in a gorgeously rich cajun cream sauce</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Calamari</span>
+									</div>
+									<span class="ingredients">Lightly dusted calamari, fried and served with garlic aioili.</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cuban Salad</span>
+										<div class="tags">
+											<span class="tags-item tag-green">Ve</span>
+										</div>
+									</div>
+									<span class="ingredients">Roasted cauliflower, sweet potato and tenderstem broccoli,
+										sweetcorn, tomato, roasted red pepper, cucumber, dressed in a pineapple chilli mojo dressing.</span>
+								</div>
+
+							</div>
+						</div>
+
+
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Add ons</h3>
+							</div>
+							<div class="menu-list-section-content">
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Giant Paella Vegano</span>
+										<div class="tags">
+											<span class="tags-item tag-green">Ve</span>
+										</div>
+									</div>
+									<span class="ingredients">A hearty vegetable paella made with paella rice, tenderstem
+										broccoli, courgette, mushroom and mixed peppers, served with zesty pico de gallo.</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Beef Fillet Skewer</span>
+									</div>
+									<span class="ingredients">With charred mixed peppers and red onion, coated in chilli jam</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Marinated Chicken Skewer</span>
+									</div>
+									<span class="ingredients">With charred mixed peppers and red onion, coated in chilli jam</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Brownie Bites</span>
+										<div class="tags">
+											<span class="tags-item tag-green">V</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Salted Caramel Squares</span>
+										<div class="tags">
+											<span class="tags-item tag-green">Ve</span>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-list tab-2">
+						<div class="menu-list-section-title">
+							<h3>Drinks Packages</h3>
+						</div>
+						<div class="menu-list-section" id="drinks-standard">
+							<div class="menu-list-section-content">
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Love Daiq-tually</span>
+									</div>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Strawberry Daiquiri</span>
+									</div>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Glass of Prosecco</span>
+									</div>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Aperol Spritz</span>
+									</div>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Bloody Mary</span>
+									</div>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Pint of Mahou Spanish Shandy</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="menu-list-section" id="drinks-fiesta" style="display: none;">
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Any Cocktail Glass of Prosecco</span>
+									</div>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Pint of Mahou</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Student -->
+		<div class="packages-wrapper">
+			<div class="packages-item">
+				<div class="packages-item-info">
+					<div class="packages-item-info-section">
+						<div class="packages-item-info-subsection">
+							<h3 class="packages-item-info-title">Students</h3>
+							<p class="packages-item-info-descr">We’ve curated a delicious 3 course set menu, perfect for celebrating the festive season on a budget. Explore the menu below, and share with your amigos.</p>
+							<div class="packages-item-info-wrapper">
+								<span class="label">From just</span>
+								<span class="cost">£14.95 pp</span>
+							</div>
+						</div>
+						<div class="packages-item-info-buttons">
+							<div class="button view-menu">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'View Menus',
+									'color': 'skyblue',
+									'link_type' : 'internal',
+									'classes': 'hero__slide__content__button mr-5 christmas-button--menu',
+									'flag':'not-html-link',
+								}%}
+							</div>
+							<div class="button">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Book',
+									'color': 'fuschia',
+									'link_type' : 'internal',
+									'internal_link' : site.link ~ '/book/',
+									'classes': 'button button--regular button--regular--green  js-circle-2893, christmas-button--book',
+								}%}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="packages-item-img">
+					<img src="{{site.theme.link}}/app/img/xmas/students.jpg" alt="festive_tapas">
+				</div>
+			</div>
+			<div class="packages-item-menu">
+				<div class="packages-item-menu-header" style="margin: auto; background-size: cover;">
+					<div class="tab-header">
+						<div class="select-wrapper">
+							<select id="student-select">
+								<option>Select a venue</option>
+								<option value="aberdeen">Aberdeen</option>
+								<option value="belfast">Belfast</option>
+								<option value="birmingham">Birmingham</option>
+								<option value="bristol">Bristol</option>
+								<option value="cardiff">Cardiff</option>
+								<option value="derby">Derby</option>
+								<option value="glasgow">Glasgow</option>
+								<option value="harrogate">Harrogate</option>
+								<option value="huddersfield">Huddersfield</option>
+								<option value="leeds">Leeds</option>
+								<option value="liverpool">Liverpool</option>
+								<option value="manchester">Manchester</option>
+								<option value="milton_keynes">Milton Keynes</option>
+								<option value="newcastle">Newcastle</option>
+								<option value="norwich">Norwich</option>
+								<option value="nottingham">Nottingham</option>
+								<option value="reading">Reading</option>
+								<option value="sheffield">Sheffield</option>
+								<option value="southampton">Southampton</option>
+							</select>
+						</div>
+						<div class="tab-label active" data-tab="tab-1">3 Course</div>
+						<div class="tab-label" data-tab="tab-2">Drinks</div>
+					</div>
+					<div class="close-menu">
+						<img src="{{site.theme.link}}/app/img/tmp/сlose_button.svg" alt="close">
+					</div>
+				</div>
+				<div class="packages-item-menu-content">
+					<div style="display: flex; flex-direction: row-reverse; width: 100%;">
+						<div class="menu-buttons">
+							<div class="button">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Share Menu',
+									'color': 'fuschia',
+									'link_type' : 'share',
+									'share_uselink': true,
+									'internal_link' : barMenu_Christmas.url,
+									'classes': 'ch-button-share',
+								}%}
+							</div>
+
+							<div class="button button-download">
+								{% include 'atoms/button.twig' with {
+									'type': 'regular',
+									'text': 'Download',
+									'color': 'skyblue',
+									'link_type' : 'external',
+									'external_link' : site.theme.link ~ '/app/pdf/student-menu.pdf'
+								}%}
+							</div>
+						</div>
+						<div class="menu-section">
+							<div class="price-section" id="student-price">£14.95 pp</div>
+						</div>
+					</div>
+					<div class="menu-list tab-1 active">
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Starters</h3>
+							</div>
+							<div class="menu-list-section-content">
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Tropical Chicken Skewers</span>
+									</div>
+									<span class="ingredients">With mojo marinade, pineapple pico de gallo, rum mayo slaw.</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Sweet Potato & Harissa Soup</span>
+										<div class="tags">
+											<div class="tags-item tag-green">Ve</div>
+										</div>
+									</div>
+									<span class="ingredients">With coconut cream and served with cuban bread.</span>
+								</div>
+
+							</div>
+						</div>
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Mains</h3>
+								<p>All mains served with red onion, courgette, sweet potato and red pepper, all roasted in olive oil and caramelised brown sugar</p>
+							</div>
+							<div class="menu-list-section-content">
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cajun Roasted Chicken Supreme</span>
+										<div class="tags">
+											<div class="tags-item tag-blue">G</div>
+										</div>
+									</div>
+									<span class="ingredients">With creole mashed potatoes and a sweet and smoky tomato sauce</span>
+								</div>
+
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Mexican Bean Enchilada</span>
+										<div class="tags">
+											<div class="tags-item tag-green">Ve</div>
+										</div>
+									</div>
+									<span class="ingredients">Tortilla stuffed with onions, peppers, spiced black beans,
+										mushrooms, canellini beans and baby spinach. Topped with a spicy tomato sauce and served with crispy patatas.</span>
+								</div>
+							</div>
+						</div>
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Desserts</h3>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Vegan Salted Caramel Squares</span>
+										<div class="tags">
+											<div class="tags-item tag-green">Ve</div>
+										</div>
+									</div>
+									<span class="ingredients">With strawberry sauce</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Warm Chocolate Brownie</span>
+										<div class="tags">
+											<div class="tags-item tag-green">V</div>
+										</div>
+									</div>
+									<span class="ingredients">With rum caramel sauce, vanilla ice cream and fresh strawberry</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Banana & Lime Eton Mess</span>
+										<div class="tags">
+											<div class="tags-item tag-green">V</div>
+										</div>
+									</div>
+									<span class="ingredients">Bananas, whipped cream, meringue and lime</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="menu-list tab-2">
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Drinks Packages</h3>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cocktail Tree</span>
+									</div>
+									<span class="ingredients">10 of our cocktails, served beautifully on intricate branches. 
+																				                                            Choose from either our Caribbean Cosmo or our Festive G&Tree. Cameras at the ready!</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cocktail Voucher</span>
+									</div>
+									<span class="ingredients">Choose from any cocktail, double house spirit and mixer, bottled or draught beer and cider, large glass of wine or soft drink</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Bottles of Wine</span>
+									</div>
+									<span class="ingredients">Wines that are available include:
+																				                                            Los Romeros, Chardonnay, Chile
+																				                                            Altoritas, Merlot, Chile
+																				                                            Lavender Hill, White Zinfandel, USA</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Cocktail Wristbands</span>
+									</div>
+									<span class="ingredients">Can’t decide? Swap the 3 tabs on your wristband for drinks at the bar! Wristbands include cocktails, 
+																				                                            bottled or draught beer and cider, large glasses of wine and large spirits and mixers</span>
+								</div>
+							</div>
+						</div>
+						<div class="menu-list-section">
+							<div class="menu-list-section-title">
+								<h3>Fiesta Packages</h3>
+								<p>We’ve done the work so you don’t have to. Choose from one of our fantastic packages to kick start your night.</p>
+							</div>
+							<div class="menu-list-section-content">
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Carnival</span>
+									</div>
+									<span class="ingredients">Choose a bottle of house spirit and we’ll serve it to your table, with mixers included. We’ll also include 12 of our famous Strawberry Margarita shots to get the fiesta started</span>
+								</div>
+								<div class="menu-list-section-item">
+									<div class="title">
+										<span class="name">Full On Fiesta</span>
+									</div>
+									<span class="ingredients">Make it a night to remember. Choose a premium bottle of spirit and one of our Cocktail Trees and we’ll serve it to your table along with 12 Strawberry Margarita shots.</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>

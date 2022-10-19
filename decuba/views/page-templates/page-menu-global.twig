@@ -1,0 +1,28 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+	
+	{% set slides = [{
+		'image': site.theme.link~'/app/img/tmp/hero-menu.jpg',
+		'image_position': 'center',
+		'flair_has_flair': true,
+		'flair_flair__text': 'Menus',
+		'flair_flair__color': {
+			'color': 'orange',
+		},
+		'title': post.post_title,
+		'title_weight': '1',
+		'title_color': '',
+		'content': '<p>To view the menus, first select your local bar below.</p>',
+		'content_color': '',
+		'has_button': false,
+	}] %}
+	{% include 'organisms/hero.twig' with {
+		'moduleClasses': 'hero--fullheight',
+		'slider': slides,
+	} %}
+
+	
+
+{% endblock %}

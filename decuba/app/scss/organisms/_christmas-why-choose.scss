@@ -1,0 +1,112 @@
+$c: '.christmas';
+
+#{$c} {
+	&__why-choose {
+		order: 4;
+		@extend .bg--christmas-green--pattern;
+		color: white;
+		background-position: bottom center;
+
+		display: flex;
+		align-items: center;
+
+		@include mq('768px','min') {
+			padding-top: 20vh;
+			order: 4;
+		}
+
+		&__container
+		{
+			> .row
+			{
+				@include mq('md','max') {
+					display: block;
+				}
+			}
+		}
+
+		&__right {
+
+			@include mq('md','min') 
+			{
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				align-content: center;
+				justify-content: center;
+				flex-basis: 60%;
+				width: 60%;
+			}
+
+			@include mq('md','max') 
+			{
+				display: block;
+				width: 100%;
+			}
+		}
+
+		&__left {
+			flex-basis: 40%;
+			max-width: 650px;
+			line-height: (33/18);
+			
+			@include mq('md','min') {
+				padding-left: 60px;
+			}
+
+			p:first-child {	margin-top: 0; }
+
+			ul
+			{
+				margin-top: 15px;
+				padding-left: 0;
+			}
+
+			li {
+				list-style: none;
+				margin-bottom: 0.5em;
+				text-indent: -2em;
+				padding-left: 2em;
+
+				&:before
+				{
+					content: "✓";
+					display: inline-block;
+					width: 0.5em;
+					margin-right: 0.5em;
+					color: color(orange);
+					text-indent: initial;
+					font-size: 2em;
+					line-height: 0;
+					text-align: center;
+					vertical-align: sub;
+				}
+			}
+		}
+
+		&__title {
+			text-align: center;
+			max-width: 650px;
+			margin: { left: auto; right: auto; }
+
+			@include mq('md', 'max')
+			{
+				margin-top: 2em;
+			}
+
+			span {
+				position: absolute;
+				display: inline-block;
+				left: 50%;
+				transform: translate(-50%, 0.25em);
+			}
+		}
+
+		&--no-christmas-menus {
+			@include mq('768px','min') {
+				padding-top: 20vh;
+				padding-bottom: 20vh;
+			}
+		}
+	}
+}

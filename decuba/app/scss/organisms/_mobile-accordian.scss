@@ -1,0 +1,96 @@
+$c: '.mobile-accordian';
+$d: '[data-mobile-accordian]';
+$e: '[data-mobile-accordian-target]';
+
+#{$c} {
+	display: flex;
+	padding: 20px;
+	background-color: color(navy);
+	align-items: center;
+	@include mq('lg','min') {
+		display: none;
+	}
+	h4 {
+		color: color(white);
+		flex-grow: 1;
+		margin: 0;
+	}
+	span {
+		color: color(skyblue);
+		&:before {
+			display: inline-block;
+		}
+	}
+	&.open {
+		span {
+			&:before {
+				transform: rotate(180deg);
+			}
+		}
+	}
+	&--768 {
+		@include mq('md','min') {
+			display: none !important;
+		}
+	}
+	&--red {
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-image: url(../../app/img/bg/booknow/book-bg-red.jpg);
+		span {
+			color: color(white);
+		}
+	}
+}
+
+#{$d} {
+	cursor: pointer;
+}
+
+#{$e} {
+	
+	@include mq('lg','max') {
+		transition: opacity 200ms ease, top 200ms ease;
+		height: 0;
+		visibility: hidden;
+		opacity: 0;
+		top: 20px;
+		position: relative;
+	}
+	&.open {
+		@include mq('lg','max') {
+			display: block;
+			visibility: visible;
+			opacity: 1;
+			top: 0px;
+			height: auto;
+		}
+	}
+}
+
+[data-mobile-accordian-target="book-now"] {
+	// Next Section padding for Form overlap
+	+ * {
+		@include mq('768px','min') {
+			padding-top: 75px !important;
+		}
+		@include mq('1024px','min') {
+			padding-top: 100px !important;
+		}
+		@include mq('1150px','min') {
+			padding-top: 45px !important;
+		}
+		@include mq('1300px','min') {
+			padding-top: 115px !important;
+		}
+	}
+	&.nofloat {
+		+ * {
+			@include mq('768px','min') {
+				padding-top: 0 !important;
+			}
+		}
+	}
+}
+
+

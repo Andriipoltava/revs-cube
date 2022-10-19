@@ -1,0 +1,94 @@
+.selectric-wrapper {
+	display: flex;
+}
+
+.selectric {
+	min-width: 250px;
+	border: 2px solid color(orange);
+	border-radius: 2px;
+	background: color(white);
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding: 15px 0;
+
+	.selectric-hover &, .selectric-focus & {
+		border: 2px solid lighten(color(orange), 10%);
+	}
+
+	.selectric-below.selectric-open & {
+		border-bottom: none;
+	}
+
+	.selectric-above.selectric-open & {
+		border-top: none;
+	}
+
+	.label {
+		font-family: $header-font-family;
+		line-height: 1;
+		color: color(black);
+		height: auto;
+		display: flex;
+		align-items: center;
+		margin: 0;
+		padding: 0 10px;
+		justify-content: space-between;
+		width: 100%;
+		letter-spacing: 1.37px;
+		
+		.hero__form--grav & {
+			@include mq('md','max') {
+				font-size: 14px;
+				letter-spacing: 1.37px;
+			}
+
+			@include mq('413px','max') {
+				letter-spacing: normal;
+			}
+
+			@include mq('374px','max') {
+				font-size: 12px;
+			}
+		}
+
+		&:after {
+			font-family: 'de-cuba';
+			content: $icon-caret-down;
+			color: color(orange);
+			font-size: 8px;
+			margin-left: 10px;
+		}
+	}
+
+	.button {
+		display: none;
+	}
+}
+
+.selectric-items {
+	border: 2px solid color(orange);
+	background: color(white);
+
+	.selectric-below & {
+		border-top: none;
+		margin-top: -1px;
+	}
+
+	.selectric-above & {
+		border-bottom: none;
+		margin-bottom: -1px;
+	}
+
+	li {
+		font-family: $body-font-family;
+		line-height: 1;
+		font-size: .9rem;
+		color: color(black);
+
+		&.selected, &.highlighted {
+			background: color(orange);
+			color: color(white);
+		}
+	}
+}

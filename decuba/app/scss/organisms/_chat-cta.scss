@@ -1,0 +1,46 @@
+$c: '.chat-cta';
+
+#{$c} {
+	padding: 15px 0;
+	background-image: url(../../app/img/bg/orange-texture-dark.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	@include mq('md','min') {
+		display: none;
+	}
+
+	> .container {
+		padding: 0 17px;
+	}
+
+	&__icon {
+		display: flex;
+		align-items: center;
+
+		span {
+			color: color(white);
+			font-size: 45px;
+		}
+	}
+
+	&__content {
+		padding-left: 12px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		p {
+			color: color(white);
+			margin: 0 0 2px 0;
+			font-family: $header-font-family;
+		}
+
+		.sub {
+			color: color(orange);
+			font-size: 12px;
+			font-family: $header-font-family;
+			text-decoration: none;
+		}
+	}
+}

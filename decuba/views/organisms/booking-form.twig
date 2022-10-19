@@ -1,0 +1,46 @@
+{% set unq = function('umod') %}
+
+{% if prepop is not defined %}
+	{% set prepop = {} %}
+{% endif %}
+
+{% if settings is not defined %}
+	{% set settings = {} %}
+{% endif %}
+
+{% set prepopDefaults = function('null_filter', { 
+ 	'date' : (prepop.occasion == 8) ? ("now"|date("Y")) ~ '-12-31' : '',
+	'cube_form_id' : ''
+}) %}
+
+{% if post.api_id %}
+	{% set prepopDefaults = function('null_filter', { 
+		'bar_id' : post.api_id|abs,
+	})|merge(prepopDefaults) %}
+{% endif %}
+
+{% set prepop = prepopDefaults|merge(function('null_filter', prepop)) %}
+
+{% set settings = function('null_filter', { 
+	'form_id' : 'rdc-book--' ~ slug,
+	'form_name' : 'rdc-book--' ~ slug,
+	'title': 'Book Now',
+	'endpoint_url': function('admin_url', 'admin-ajax.php'),
+	'layout' : 'widget',
+	'minimum_booking_type_options' : true,
+	'company_name' : 'Revolución de Cuba',
+	'hide_occasion' : true,
+	'hide_party_type' : true,
+ 	'intro' : '',
+})|merge(function('null_filter', settings)) %}
+{% if prepop.bar_id == 231 %}
+	{% set settings = function('null_filter', { 
+		'relax_bar_validation' : true,
+	})|merge(settings) %}
+{% endif %}
+
+{% set settings = function('sanitizeSettings', settings) %}
+
+<div id="{{id}}" class="booking-form {% if not showboth %}{% if mobile %}booking-form--mobile {% else %}booking-form--desktop {% endif %}{% endif %} {% if large %}booking-form--large {% endif %} {% if settings.layout == 'widget' %}booking-form--widget {% endif %}">
+	<div class="booking-form__wrapper" data-booking-widget {# data-booking-settings='{{ settings|json_encode() }}' #} data-booking-prepop='{{ prepop|json_encode() }}'></div>
+</div>

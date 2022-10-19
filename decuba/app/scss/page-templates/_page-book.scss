@@ -1,0 +1,62 @@
+$c: '.page-book';
+
+#{$c} {
+
+	&__wrapper
+	{
+		padding-top: 150px;
+		flex-grow: 1;
+	}
+
+	.rev-booking__notice, .rev-booking__header {
+		// display: none;
+	}
+
+	.rev-booking__body {
+		padding-top: 40px;
+	}
+
+	.sidebar {
+		// height: 100%;
+	}
+
+	[data-show-on-complete] {
+		> * {
+			margin: 5px;
+		}
+	}
+
+	.col-md-1 {
+		@include mq('lg','max') {
+			display: none;
+		}
+	}
+
+	.col-md-8 {
+		@include mq('md','min') {
+			max-width: 65.66667%;
+		}
+	}
+
+	h1 {
+		font-size: 2.188rem;
+		line-height: 2.188rem;
+		margin-top: 0;
+		margin-bottom: 20px;
+
+		@include mq('md','min') {
+			font-size: 2.525rem;
+			line-height: 2.525rem;
+		}
+		@include mq('1024px','min') {
+			font-size: 3.125rem;
+			line-height: 3.125rem;
+		}
+	}
+}
+
+.rev-booking__notice-description {
+	font-family: "PT Sans", sans-serif;
+	font-size: 18px;
+	text-align: center;
+}

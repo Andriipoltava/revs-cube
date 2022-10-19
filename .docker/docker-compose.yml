@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+
+  node:
+    container_name: rdc-node
+    image: node:8
+    restart: always
+    command: "sleep infinity"
+    working_dir: /app
+    volumes: 
+      - ../decuba:/app
+
+  wordpress:
+    container_name: rdc-wordpress
+    depends_on:
+      - mysql
+    image: wordpress:5.9.2
+    ports:
+      - '8080:80'
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: rdc-mysql:3306
+      WORDPRESS_DB_USER: 'root'
+      WORDPRESS_DB_PASSWORD: 'dev'
+      WORDPRESS_DB_NAME: 'wordpress'
+      WORDPRESS_TABLE_PREFIX: 'wp_'
+      # WORDPRESS_DEBUG: 1
+    volumes:
+      - ../decuba:/var/www/html/wp-content/themes/decuba
+      - ../plugins:/var/www/html/wp-content/plugins
+      - ../uploads:/var/www/html/wp-content/uploads:rw
+      - wordpress:/var/www/html
+  
+  mysql:
+    container_name: rdc-mysql
+    image: mysql:5.7
+    platform: linux/amd64
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'wordpress'
+      MYSQL_ROOT_PASSWORD: 'dev'
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    ports:
+      - '3306:3306'
+
+  wpcli:
+    container_name: rdc-wordpress-cli
+    user: "33:33"
+    depends_on:
+      - wordpress
+    image: wordpress:cli
+    command: tail -f /dev/null
+    volumes:
+      - wordpress:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: rdc-mysql:3306
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: dev
+      WORDPRESS_DB_NAME: wordpress
+      HOME: /tmp
+
+volumes:
+  wordpress:

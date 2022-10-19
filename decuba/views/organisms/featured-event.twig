@@ -1,0 +1,30 @@
+<div class="featured-event">
+	<div class="featured-event__sidebar">
+		{% include 'molecules/sidebar.twig' with {
+			'type': 'text',
+			'event': {
+				'date': '21',
+				'day': 'Saturday',
+				'event': 'Dana Ali Band'
+			},
+			'description': '<p><strong>FREE</strong> Salsa Classes with professionals MK and Rodger from 6:30pm-7pm. £4 for classes after! Stay until 9pm for our weekly Salsa Social with resident  DJ and show of your newly learnt moves! No need to book just come on down!</p>',
+			'button': {
+				'type': 'regular',
+				'text': 'Book Your Space',
+				'color': 'pink'
+			}
+		} %}
+	</div>
+
+	<div class="featured-event__image">
+		<img src="{{site.theme.link}}/app/img/tmp/featured-event-1.jpg" alt="">
+	</div>
+
+	<div class="featured-event__tag">
+		{% include 'atoms/tag.twig' with {
+			'text': 'Unmissable!',
+			'theme': 'pink',
+			'link': '#',
+		} %}
+	</div>
+</div>

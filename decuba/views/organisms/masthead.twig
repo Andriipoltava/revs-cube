@@ -1,0 +1,70 @@
+<header class="masthead">
+	{% block header %}
+		<div class="container">
+			<div class="row masthead__container">
+				<a href="/" class="masthead__logo">
+					<img class="masthead__logo--inner masthead__logo--inner--mob" src="{{site.theme.link}}/views/svg/logo-shield.svg" />
+					<img class="masthead__logo--inner masthead__logo--inner--desk" src="{{site.theme.link}}/views/svg/logo-white.svg" />
+				</a>
+				<nav class="masthead__navigation">
+					{# Uncomment after the christmas season #}
+					{#	<li class="masthead__navigation-item masthead__navigation-item--menus">#}
+					{#		<a href="https://shop.revoluciondecuba.com/">Shop</a>#}
+					{#	</li>#}
+
+					{% if currentVenue.slug and 'menus' in currentVenue.subpages %}
+						<li class="masthead__navigation-item masthead__navigation-item--menus">
+							<a href="{{site.link}}{{currentVenue.slug}}/menus/">Menus</a>
+						</li>
+					{% else %}
+						<li class="masthead__navigation-item masthead__navigation-item--menus" data-no-stored-bar-state="unhide">
+						    <a href="{{site.link}}/menus/">Menus</a>
+						</li>
+						<li class="masthead__navigation-item masthead__navigation-item--menus" data-stored-bar-state="unhide" data-stored-bar-condition="subpages|menus">
+							<a href="menus" data-stored-bar-info="link">Menus</a>
+						</li>
+					{% endif %}
+
+					{% if currentVenue.slug %}
+						<li class="{% if currentVenue.slug %}has-tooltip {% else %}js-locations-toggle{% endif %}">
+							<p>
+								<a href="{{site.link}}{{currentVenue.slug}}/">{{currentVenue.name}}</a>
+								<div class="tooltip__content tooltip__content--location js-locations-toggle">
+									<div class="tooltip__text">
+										<div class="tooltip__location">Your location is: {{currentVenue.name}}</div>
+										<div class="tooltip__inner">Change your location</div>
+									</div>
+								</div>
+							</p>
+						</li>
+					{% else %}
+						<li class="js-locations-toggle" data-no-stored-bar-state="unhide">
+					    <p>Choose Location</p>
+						</li>
+						<li class="has-tooltip" data-stored-bar-state="unhide">
+							<p>
+								<a href="" data-stored-bar-info="link"><span data-stored-bar-info="bar_name"></span></a>
+								<div class="tooltip__content tooltip__content--location js-locations-toggle">
+									<div class="tooltip__text">
+										<div class="tooltip__location">Your location is: <spa data-stored-bar-info="bar_name"></spa></div>
+										<div class="tooltip__inner">Change your location</div>
+									</div>
+								</div>
+							</p>
+						</li>
+					{% endif %}
+					<li>
+						<a href="/book/">Book</a>
+					</li>
+				</nav>
+
+				<div class="masthead__menu">
+					{% include 'atoms/button.twig' with {
+						'type': 'menu',
+						'color': 'orange'
+					}%}
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+</header>

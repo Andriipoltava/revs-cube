@@ -1,0 +1,72 @@
+$c: '.conveyor';
+
+#{$c} {
+	padding-top: $gutter/2 + px;
+
+	@include mq('md', 'min') {
+		padding-top: $gutter/2 + px;
+	}
+
+	@include mq('lg', 'min') {
+		padding-top: $gutter/3 + px;
+	}
+
+	.owl-stage {
+		display: flex;
+		padding-top: 25px;
+		padding-bottom: 25px;
+		
+		@include mq('md', 'max') {
+			padding-left: 0 !important;
+		}
+
+		.owl-item {
+			display: flex;
+			flex: 0 0 auto;
+		}
+	}
+
+	&__container {
+		.icon-hand-gesture {
+			color: color(black);
+			font-size: 40px;
+			display: block;
+			text-align: center;
+			padding: 20px 0;
+
+			@include mq('md','min') {
+				display: none;
+			}
+		}
+	}
+
+	&__nav {
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 20px 0 38px;
+
+		@include mq('md','min') {
+			padding: 50px 0;
+			display: flex;
+		}
+
+		&__prev, &__next {
+			cursor: pointer;
+
+			span {
+				display: flex;
+				color: color(black);
+			}
+		}
+
+		&__center {
+			cursor: pointer;
+			background-color: color(black);
+			width: 12px;
+			height: 12px;
+			border-radius: 100%;
+			margin: 0 12px;
+		}
+	}
+}

@@ -1,0 +1,429 @@
+{% extends "base.twig" %}
+{% use "html-head.twig" %}
+
+{% block content %}
+	{% for media_item in post.get_field('page_sections') %}
+		{% if media_item.acf_fc_layout == 'hero' %}
+			{% if post.slug == 'home' %}
+				{% include 'organisms/hero-special.twig' with {
+					'moduleClasses': media_item.hero_module_classes,
+					'slider': media_item.hero__slides
+				}%}
+			{% else %}
+				{% include 'organisms/hero.twig' with {
+					'moduleClasses': media_item.hero_module_classes,
+					'viewportHeight': media_item.full_viewport_height ? 'hero--fullheight' : '',
+					'slider': media_item.hero__slides
+				}%}
+			{% endif %}
+			
+		{% elseif media_item.acf_fc_layout == 'gallery'%}
+			{% include 'organisms/gallery.twig' with {
+				'type': media_item.gallery__type,
+				'images': media_item.gallery__images,
+				'has_sidebar': true,
+				'sidebar_type': 'location'
+			}%}
+		{% elseif media_item.acf_fc_layout == 'packages'%}
+			<div class="packages packages--{{media_item.packages|length}} {% if media_item.packages|length > 4 %}packages--more--4{% endif %} {% if media_item.packages__theme_color %}bg--{{media_item.packages__theme_color}}--pattern{% else %}bg--default--pattern{% endif %}">
+				<div class="container">
+					{% if media_item.title %}
+						<div class="row">
+							<div class="col-md-12 text--center packages__heading">
+
+								{% if media_item.flair.flair__position == 'bottom' %}
+									<h3 class="packages__title {% if media_item.packages__theme_color == 'navy' %}color--white{% endif %}">{{media_item.title}}<span class="color--{{media_item.flair.flair__color.color}} bottom text--center">{{media_item.flair.flair__text}}</span></h3>
+								{% else %}
+								    <h3 class="packages__title {% if media_item.packages__theme_color == 'navy' %}color--white{% endif %}"><span class="color--{{media_item.flair.flair__color.color}}">{{media_item.flair.flair__text}}</span>{{media_item.title}}</h3>
+								{% endif %}
+							</div>
+						</div>
+					{% endif %}
+
+					<div class="packages__container">
+						{% for package in media_item.packages %}				
+						    {% include 'molecules/package.twig' with {
+						    	'class': '',
+						    	'popular': package.package__popular,
+						    	'image': package.package__image,
+						    	'tag': {
+						    		'text': package.package__tag.tag__text,
+						    		'theme': package.package__tag.color,
+						    		'link': '#',
+						    		'size': package.package__tag.tag__size,
+						    		'flair': true,
+						    		'flair_text': package.package__tag.flair__text,
+						    		'flair_color': package.package__tag.flair__color.color,
+						    		'price': package.package__tag.tag__is_price,
+									'pb2text': package.package__tag.tag__pb2text,
+						    	},
+						    	'title': package.package__title,
+						    	'content': package.package__content,
+						    	'button': {
+						    		'type': package.button__type,
+						    		'text': package.button__text,
+						    		'color': package.button__color.color,
+						    		'link_type': package.button__link_type,
+						    		'external_link': package.button__external_link,
+						    		'internal_link': package.button__internal_link,
+						    		'file': package.button__file,
+						    	}
+						    } %}
+						{% endfor %}
+					</div>
+
+					<div class="packages__nav">
+						<div class="packages__nav__prev"><span class="icon-arrow-left"></span></div>
+						<div class="packages__nav__center"></div>
+						<div class="packages__nav__next"><span class="icon-arrow-right"></span></div>
+					</div>
+					{% if  media_item.pb1download %}
+						<div class="packages__download" style="display: flex; justify-content: center;margin-top: 1em;">
+							{% include 'atoms/button.twig' with {
+								'type': 'regular',
+								'text': 'Download',
+								'color': 'skyblue',
+								'link_type' : 'file',
+								'file' : media_item.pb1download,
+								'classes': 'packages__download',
+								'dataAttributes': 'data-pb2-url=' ~ media_item.pb2download ~ '"'
+							}%}
+						</div>
+					{% endif%}
+					{% if media_item.packages_button_has_button %}
+						<div class="packages__button">
+							{% include 'atoms/button.twig' with {
+								'type': media_item.packages_button_button__type,
+								'text': media_item.packages_button_button__text,
+								'color': media_item.packages_button_button__color.color,
+								'link_type' : media_item.packages_button_button__link_type,
+								'external_link' : media_item.packages_button_button__external_link,
+								'internal_link' : media_item.packages_button_button__internal_link,
+								'file' : media_item.packages_button_button__file,
+							}%}
+						</div>
+					{% endif %}
+
+					{% if media_item.packages_small_print %}
+						<div class="packages__small_print mobile-text-s text--center">
+							{{media_item.packages_small_print}}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		{% elseif media_item.acf_fc_layout == 'featured_cta'%}
+			{% if media_item.alternate_mobile_style %}
+				{% set alternatestyle = 'featured-cta__container--alternate' %}
+			{% elseif media_item.full_width_mobile_style %}
+			    {% set alternatestyle = 'featured-cta__container--alternate featured-cta__container--alternate--full-width' %}
+			{% endif %}
+			<div class="featured-cta__container bg bg--{{media_item.module_theme.color}}--pattern {% if alternatestyle %}{{alternatestyle}}{% endif %}">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							{% include 'organisms/featured-cta.twig' with {
+								'alternate': media_item.alternate_mobile_style, 
+								'title': media_item.title,
+								'content': media_item.content,
+								'has_button': media_item.has_button,
+								'button': {
+									'type': media_item.button__type,
+									'text': media_item.button__text,
+									'color': {
+										'color': media_item.button__color.color
+									},
+									'link_type' : media_item.button__link_type,
+									'external_link' : media_item.button__external_link,
+									'internal_link' : media_item.button__internal_link,
+									'file' : media_item.button__file,
+									'classes': '',
+								},
+								'image': media_item.image.url,
+								'image_mob': media_item.image_mob.url,
+								'direction': media_item.direction,
+								'tag': media_item.featured_cta__tag
+							} %}
+						</div>
+					</div>
+				</div>
+			</div>
+		{% elseif media_item.acf_fc_layout == 'intro_text'%}
+			<section class="page-about__intro">
+				<div class="container page-about__intro__container">
+					<div class="row">
+						<div class="page-about__intro__left">
+							<h2 class="page-about__intro__title">
+								{% if media_item.intro_text__flair_has_flair %}
+									<span class="color--{{media_item.intro_text__flair_flair__color.color}}">{{media_item.intro_text__flair_flair__text}}</span>
+								{% endif %}
+								{{media_item.intro_text__title}}
+							</h2>
+						</div>
+						<div class="page-about__intro__right">
+							{{media_item.intro_text__content}}
+						</div>
+					</div>
+				</div>
+			</section>
+		{% elseif media_item.acf_fc_layout == 'offer_block'%}
+			<div class="bg--{{media_item.offer_block__theme_color}}--color bg--{{media_item.offer_block__theme_color}}--pattern">
+				<div class="container offer-block__container">
+					<div class="row row--j-c">
+						{% include 'organisms/offer-block.twig' with {
+							'tag': media_item.offer_block__tag,
+							'image': media_item.offer_block__image.url,
+							'title': media_item.offer_block__title,
+							'content': media_item.offer_block__content,
+							'content': media_item.offer_block__content,
+							'small_print': media_item.offer_block__small_print,
+						} %}
+					</div>
+				</div>
+			</div>
+		{% elseif media_item.acf_fc_layout == 'testimonials'%}
+			<div class="bg bg--default--pattern testimonial__wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text--center">
+							<h3 class="testimonial__title {% if media_item.module_theme.color == 'navy' %}color--white{% endif %}"><span class="color--{{media_item.flair.flair__color.color}}">{{media_item.flair.flair__text}}</span>{{media_item.title}}</h3>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-12 testimonial__container">
+
+					{% for post in media_item.testimonials %}
+						{% set post = TimberPost(post.testimonial) %}
+
+					    <div class="testimonial">
+					    	<div class="testimonial__content">
+					    		{{post.content}}
+					    	</div>
+					    	<div class="testimonial__name">
+					    		<p>{{post.title}}</p>
+					    	</div>
+					    </div>
+					{% endfor %}
+
+				</div>
+
+				{# <div class="icon-hand-gesture"></div> #}
+			</div>
+		{% elseif media_item.acf_fc_layout == 'full_width_content'%}
+			<div class="bg bg--{{media_item.module_theme.color}}--pattern full-width-content">
+				{% if media_item.flair.flair__text %}
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text--center">
+							<h3 class="full-width-content__title {% if media_item.module_theme.color == 'navy' or media_item.module_theme.color == 'skyblue' %}color--white{% endif %}">{{media_item.title}}<span class="color--{{media_item.flair.flair__color.color}} bottom right">{{media_item.flair.flair__text}}</span></h3>
+						</div>
+					</div>
+				</div>
+				{% endif %}
+				<div class="container">
+					<div class="row row--j-c">
+						<div class="col-md-12 full-width-content__content">
+							<p>{{ media_item.content }}</p>
+
+							{% if media_item.button.has_button %}
+								{% include 'atoms/button.twig' with {
+									'type': media_item.button.button__type,
+									'text': media_item.button.button__text,
+									'color': media_item.button.button__color.color,
+									'link_type' : media_item.button.button__link_type,
+									'external_link' : media_item.button.button__external_link,
+									'internal_link' : media_item.button.button__internal_link,
+									'file' : media_item.button.button__file,
+								}%}
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		{% elseif media_item.acf_fc_layout == 'two_columns'%}
+			<section id="{{ media_item.two_col__id }}" class="page-about__block">
+				<div {% if media_item.add_parallax %}data-bottom-top="transform:translate3d(0px, -200px, 0px);" data-top-bottom="transform:translate3d(0px, 200px, 0px);"{% endif %} class="{% if media_item.add_parallax %}parallaxme{% endif %} page-about__bg {% if media_item.use_background_pattern == 0 and media_item.two_col__background_image.url %}picturefill-background{% endif %} {% if media_item.use_background_pattern == 1 and media_item.background_pattern %}bg--{{media_item.background_pattern}}--pattern{% endif %}">
+					{% if not media_item.use_background_pattern and media_item.two_col__background_image.url %}<span data-src="{{media_item.two_col__background_image.url}}"></span>{% endif %}
+					{% if not media_item.use_background_pattern and media_item.two_col__background_image_mobile_crop.url %}<span data-src="{{media_item.two_col__background_image_mobile_crop.url}}" data-media="(max-width: 768px)"></span>{% endif %}
+				</div>
+				
+				<div class="container">
+					<div class="row">
+						{% if media_item.two_col__left_type == 'text' %}
+							{% if not media_item.two_col__left_title == '' %}
+								<h3 class='two_col__left_title'>{{media_item.two_col__left_title}}</h3>
+							{% endif %}
+							<div class="page-about__block__content page-about__block__content--left {% if media_item.two_col__left_has_background %}page-about__block__content--bg{% endif %}">
+								{{media_item.two_col__left_content}}
+							</div>
+						{% endif %}
+						{% if media_item.two_col__right_type == 'text' and media_item.two_col__right_content %}
+							<div class="page-about__block__content page-about__block__content--right {% if media_item.two_col__right_has_background %}page-about__block__content--bg{% endif %}">
+								{{media_item.two_col__right_content}}
+							</div>
+						{% endif %}
+						
+						{% if media_item.two_col__left_type == 'video' %}
+							<div class="page-about__block__video">
+								{% include 'atoms/button.twig' with {
+									'type': 'circle',
+									'direction': 'down',
+									'icon': 'play',
+									'classes': 'wistia-id-'~media_item.two_col__left_video_id
+								}%}
+
+								<p>Play video</p>
+							</div>
+						{% endif %}
+						{% if media_item.two_col__right_type == 'video' %}
+							<div class="page-about__block__video">
+								{% include 'atoms/button.twig' with {
+									'type': 'circle',
+									'direction': 'down',
+									'icon': 'play',
+									'video': media_item.two_col__right_video_id
+								}%}
+
+								<p>Play video</p>
+							</div>
+						{% endif %}
+						
+						{% if media_item.two_col__left_type == 'images' %}
+							<div class="page-about__block__image">
+								<div>
+									{% for image in media_item.two_col__left_images %}
+									    <img src="{{image.image.url}}" alt="" {% if loop.index == 2 %}class="overlap"{% endif %}>
+									{% endfor %}
+								</div>
+							</div>
+						{% endif %}
+						{% if media_item.two_col__right_type == 'images' %}
+							<div class="page-about__block__image">
+								<div>
+									{% for image in media_item.two_col__right_images %}
+									    <img src="{{image.image.url}}" alt="" {% if loop.index == 2 %}class="overlap"{% endif %}>
+									{% endfor %}
+								</div>
+							</div>
+						{% endif %}
+					</div>
+
+					{% if media_item.two_col__small_print %}
+						<div class="page-about__small_print text--center">
+							{{media_item.two_col__small_print}}
+						</div>
+					{% endif %}
+
+				</div>
+			</section>
+		{% elseif media_item.acf_fc_layout == 'news_feed'%}
+
+			<div class="single-bar__news">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text--center">
+							<h3 class="single-bar__title"><span class="color--skyblue text--center">Follow our</span>Cuban<br>Adventures</h3>
+						</div>
+					</div>
+				</div>
+				
+
+				{% set slides = {} %}
+				{% set tweet_index = 0 %}
+
+				{% for post in latest_feed %}
+					{% if post.blog_mini_title %}
+						{% set title = post.blog_mini_title %}
+					{% else %}
+					    {% set title = post.title %}
+					{% endif %}
+
+					{% set itemObject = {
+						'type': 'post',
+						'title': title,
+						'content': post.content|excerpt(10),
+						'link': post.link,
+						'overview_image': post.overview_image,
+						'category': post.terms('category')[0],
+					} %}
+
+					{% set slides = slides|merge([itemObject]) %}
+				{% endfor %}
+
+				{% include 'organisms/conveyor.twig' with {
+					'slides': slides
+				} %}
+			</div>
+
+		{% elseif media_item.acf_fc_layout == 'embedded_video' %}
+
+			<div class="standalone-video bg--default--pattern">
+				<div class="container">
+					{% include 'organisms/video-embed.twig' with {
+						'data_embed' : media_item.youtube_embed_code,
+					} %}
+				</div>
+			</div>
+
+		{% elseif media_item.acf_fc_layout == 'standalone_form'%}
+			<div class="standalone-form bg--default--pattern">
+				<div class="container">
+					{% if media_item.form_type == 'grav' %}
+						{% include 'organisms/gravity-form.twig' with {
+							'form_id' : media_item.form_id,
+							'form_title' : media_item.form_title,
+							'intro' : media_item.form_description,
+							'display_title': true,
+							'is_widget' : true,
+						} %}
+					{% else %}
+						{% include 'organisms/booking-form.twig' with {
+							'prepop' : {
+								'cube_form_id' : media_item.form_id|abs,
+								'bar_id' : (media_item.booking_widget_options.bar_id is iterable ? media_item.booking_widget_options.bar_id[0]|abs : media_item.booking_widget_options.bar_id|abs),
+								'party_type' : (media_item.booking_widget_options.party_type_id is iterable ? media_item.booking_widget_options.party_type_id[0] : media_item.booking_widget_options.party_type_id),
+								'occasion' : (media_item.booking_widget_options.occasion_id is iterable ? media_item.booking_widget_options.occasion_id[0] : media_item.booking_widget_options.occasion_id),
+							},
+							'settings' : {
+								'title' : media_item.form_title,
+								'intro' : media_item.form_description,
+								'minimum_booking_type_options' : media_item.booking_widget_options.allow_dining is not defined or media_item.booking_widget_options.allow_dining is same as(true),
+								'occasion_dropdown' : (media_item.booking_widget_options.custom_occasions is iterable ? media_item.booking_widget_options.custom_occasions : media_item.booking_widget_options.custom_occasions),
+							},
+						} %}
+			
+					{% endif %}
+				</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+	<script type="text/javascript">
+		const newBar = () => {
+			if (document.querySelectorAll('.conveyor .blog-post__content')) {
+				var h = 0;
+				document.querySelectorAll('.conveyor .blog-post__content').forEach(function (value) {
+					value.style.minHeight = 'auto';
+					value.style.overflow = 'unset';
+					h = value.clientHeight > h ? value.clientHeight : h;
+				})
+				document.querySelectorAll('.conveyor .blog-post__content').forEach(function (value) {
+					value.style.minHeight = h + "px";
+				})
+				setTimeout(function () {
+					document.querySelectorAll('.conveyor .blog-post__content').forEach(function (value) {
+						value.style.minHeight = 'auto';
+						value.style.overflow = 'unset';
+						h = value.clientHeight > h ? value.clientHeight : h;
+					})
+					document.querySelectorAll('.conveyor .blog-post__content').forEach(function (value) {
+						value.style.minHeight = h + "px";
+					})
+				},300)
+			}
+
+		}
+		document.addEventListener('DOMContentLoaded', newBar);
+		window.addEventListener('resize', newBar, true);
+	</script>
+{% endblock %}
+
